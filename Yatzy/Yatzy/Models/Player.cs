@@ -8,8 +8,12 @@ namespace Yatzy.Models
 {
     class Player
     {
-        public string Name { get; set; }
-
+        #region player properties
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
+        public string Nickname { get; set; }
+        #endregion
+        #region dice results
         public int Ones { get; set; }
         public int Twos { get; set; }
         public int Threes { get; set; }
@@ -28,7 +32,17 @@ namespace Yatzy.Models
         public int FullHouse { get; set; }
         public int Chance { get; set; }
         public int Yatzy { get; set; }
-
+        #endregion
         public int Total { get; set; }
+
+        public int TotalUpper
+        {
+            get
+            {
+                return Ones + Twos + Threes + Fours + Fives + Sixes;
+            }
+        }
+
+
     }
 }

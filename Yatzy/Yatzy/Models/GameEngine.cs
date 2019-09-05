@@ -8,5 +8,15 @@ namespace Yatzy.Models
 {
     class GameEngine
     {
+        Player activePlayer;
+
+        public List<Player> Players { get; set; }
+
+        public GameEngine()
+        {
+            Players = new List<Player>();
+        }
+
+        
     }
 }
