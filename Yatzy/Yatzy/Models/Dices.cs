@@ -15,7 +15,7 @@ namespace Yatzy.Models
             for (int i = 0; i < 6; i++)
             {
                 Random random = new Random();
-                int rand = random.Next(2, 7);
+                int rand = random.Next(1, 7);
 
                 Dices.Add(rand);
             }
