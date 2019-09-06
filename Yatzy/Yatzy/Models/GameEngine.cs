@@ -114,11 +114,16 @@ namespace Yatzy.Models
 
         public int GetYatzy()
         {
+            int sum = 0;
             for (int i = 1; i < 5; i++)
             {
-                if (DicestestList[i] != DicestestList[0]) return 0;
+                if (DicestestList[i] != DicestestList[0])
+                {
+                    return sum;
+                }
             }
-            return 50;
+            sum = 50;
+            return sum;
         }
 
     }
