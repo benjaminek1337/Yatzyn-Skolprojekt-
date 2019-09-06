@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Yatzy.Views"
         mc:Ignorable="d"
         Title="Yatzy" Height="450" Width="800">
-    <Viewbox Stretch="UniformToFill" MinHeight="450" MinWidth="800">
+    <Viewbox Stretch="UniformToFill"  StretchDirection="Both">
         
     <Grid Margin="0" MinHeight="450" MinWidth="800">
         <Grid.ColumnDefinitions>
@@ -31,7 +31,7 @@
 
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7">
-                <Image Source="C:\Users\Bengt\source\repos\yatzy19_3\Yatzy\Yatzy\Resources\wood4.jpg" x:Name="backgroundpic" Margin="0" Opacity="1" Stretch="UniformToFill"/>
+                <Image Source="/Resources/wood4.jpg" x:Name="backgroundpic" Margin="0" Opacity="1" Stretch="UniformToFill"/>
             </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2">
             <Label Content="YATZY"  HorizontalAlignment="Center" FontSize="110" Foreground="DodgerBlue" Margin="50"/>
