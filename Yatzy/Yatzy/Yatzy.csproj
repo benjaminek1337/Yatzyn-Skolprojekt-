@@ -73,7 +73,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Dices.cs" />
+    <Compile Include="Models\DicesViewModel.cs" />
     <Compile Include="Models\GameEngine.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
