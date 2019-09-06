@@ -8,46 +8,46 @@ namespace Yatzy.Models
 {
     class DicesViewModel
     {
-        public int DiceID { get; set; }
-        public int Dice { get; set; }
-        public bool IsDiceActive { get; set; }
 
-
-        public List<DicesViewModel> dices;
+        public List<Dice> dices;
 
         public DicesViewModel()
         {
-            dices = new List<DicesViewModel>();
+            Dice dice;
+            dices = new List<Dice>();
             for (int i = 0; i < 5; i++)
             {
-                dices[i].DiceID = i + 1;
-                dices[i].IsDiceActive = true;
+                dice = new Dice
+                {
+                    DiceID = i + 1,
+                    IsDiceEnabled = true
+                }; dices.Add(dice);
             }
         }
 
-        public void SaveDice(List<DicesViewModel> dices, int diceButtonValue)
+        public void SaveDice(int diceButtonValue)
         {
             
             for (int i = 0; i < dices.Count; i++)
             {
-                if (DiceID == diceButtonValue)
+                if (dices[i].DiceID == diceButtonValue)
                 {
-                    IsDiceActive = false;
+                    dices[i].IsDiceEnabled = false;
                 }
             }
         }
 
 
-        public void RollDices(List<DicesViewModel> dices)
+        public void RollDices()
         {
             for (int i = 0; i < dices.Count; i++)
             {
-                if (IsDiceActive)
+                if (dices[i].IsDiceEnabled)
                 {
                     Random random = new Random();
                     int rand = random.Next(1, 7);
 
-                    dices[i].Dice = rand;
+                    dices[i].DiceValue = rand;
                 }
 
             }

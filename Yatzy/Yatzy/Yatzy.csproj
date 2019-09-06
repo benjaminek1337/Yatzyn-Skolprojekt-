@@ -73,7 +73,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\DicesViewModel.cs" />
+    <Compile Include="Models\Dice.cs" />
+    <Compile Include="ViewModels\DicesViewModel.cs" />
     <Compile Include="Models\GameEngine.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -103,7 +104,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModels\" />
     <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
