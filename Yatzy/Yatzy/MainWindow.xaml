@@ -30,8 +30,11 @@
             <RowDefinition/>
 
         </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7">
+            <Image Source="Resources/pine.jpg" Opacity="1" Stretch="Fill" />
+        </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2">
-            <Label Content="YATZY"  HorizontalAlignment="Center" FontSize="55" Foreground="CadetBlue" />
+            <Label Content="YATZY"  HorizontalAlignment="Center" FontSize="55" Foreground="DodgerBlue" />
         </StackPanel>
         <Border BorderBrush="Black" BorderThickness="1" MinHeight="203" MinWidth="150" Grid.RowSpan="4" Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2">
                 <Rectangle  Fill="LightGray" Opacity="50"/>
@@ -40,11 +43,56 @@
         <StackPanel Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" Grid.RowSpan="4" Cursor="Pen">
             <Label Content="YATZY" FontSize="20" Background="Azure" BorderBrush="Black" BorderThickness="1"/>
         </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Grid.RowSpan="5" Margin="5">
-            <Label Name="play" Content="Spela" FontSize="35" Cursor="Hand" />
-            <Label Name="leaderboard" Content="Leaderboard" FontSize="35" Cursor="Hand"/>
-            <Label Name="rules" Content="Regler" FontSize="35" Cursor="Hand"/>
-            <Label Name="alternativ" Content="Alternativ" FontSize="35" Cursor="Hand"/>
+        <StackPanel Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Grid.RowSpan="5" Margin="5" >
+            <Label Name="play" Content="Spela" FontSize="35" Cursor="Hand" Margin="6">
+                <Label.Style>
+                    <Style>
+                        <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
+                        <Style.Triggers>
+                            <Trigger Property="Label.IsMouseOver" Value="true">
+                                <Setter Property="Label.Foreground" Value="IndianRed"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Label.Style>
+            </Label>
+            <Label Name="leaderboard" Content="Leaderboard" FontSize="35" Cursor="Hand" Margin="6" >
+                <Label.Style>
+                    <Style>
+                        <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
+                        <Style.Triggers>
+                            <Trigger Property="Label.IsMouseOver" Value="true">
+                                <Setter Property="Label.Foreground" Value="IndianRed"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Label.Style>
+            </Label>
+            <Label Name="rules" Content="Regler" FontSize="35" Cursor="Hand" Margin="6" >
+                <Label.Style>
+                    <Style>
+                        <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
+                        <Style.Triggers>
+                            <Trigger Property="Label.IsMouseOver" Value="true">
+                                <Setter Property="Label.Foreground" Value="IndianRed"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Label.Style>
+            </Label>
+            <Label Name="alternativ" Content="Alternativ" FontSize="35" Cursor="Hand" Margin="6" >
+                <Label.Style>
+                    <Style>
+                        <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
+                        <Style.Triggers>
+                            <Trigger Property="Label.IsMouseOver" Value="true">
+                                <Setter Property="Label.Foreground" Value="IndianRed"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Label.Style>
+            </Label>
         </StackPanel>
+
     </Grid>
 </Window>
