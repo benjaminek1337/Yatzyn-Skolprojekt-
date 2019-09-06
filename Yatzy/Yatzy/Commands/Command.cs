@@ -1,0 +1,32 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
+
+namespace Yatzy.Commands
+{
+    class Command : ICommand
+    {
+        Action<object> executeMethod;
+        Func<object, bool> canExecuteMethod;
+
+        public Command(Action<object> executeMethod, Func<object)
+        {
+
+        }
+
+        public event EventHandler CanExecuteChanged;
+
+        public bool CanExecute(object parameter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Execute(object parameter)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
