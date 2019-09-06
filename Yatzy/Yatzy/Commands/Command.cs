@@ -12,10 +12,10 @@ namespace Yatzy.Commands
         Action<object> executeMethod;
         Func<object, bool> canExecuteMethod;
 
-        public Command(Action<object> executeMethod, Func<object)
+        /*public Command(Action<object> executeMethod, Func<object)
         {
 
-        }
+        }*/
 
         public event EventHandler CanExecuteChanged;
 
