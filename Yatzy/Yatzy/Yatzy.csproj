@@ -116,7 +116,9 @@
     <Resource Include="Resources\pine.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\DiceThrow.wav" />
+    <EmbeddedResource Include="Resources\DiceThrow.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -47,7 +47,7 @@
             <Label Name="play" Content="Spela" FontSize="35" Cursor="Hand" Margin="6">
                 <Label.Style>
                     <Style>
-                        <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
+                        <Setter Property="Label.Foreground" Value="AntiqueWhite" />
                         <Style.Triggers>
                             <Trigger Property="Label.IsMouseOver" Value="true">
                                 <Setter Property="Label.Foreground" Value="IndianRed"/>
