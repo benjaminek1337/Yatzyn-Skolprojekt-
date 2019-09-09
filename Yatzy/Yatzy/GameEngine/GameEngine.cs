@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,8 +11,11 @@ namespace Yatzy.Models
     {
 
         Player activePlayer;
-
+        DicesViewModel DicesViewModel;
         public List<int> DicestestList = new List<int>(); //Testlista som ska tas bort efter att metoderna kopplats till rätt lista
+        private ObservableCollection<Dice> Dices;
+        
+
         public int[] ArrayofCountedDices = new int[6];
 
         public void RollDiceTest() //Testmetod som ska tas bort
@@ -26,6 +30,19 @@ namespace Yatzy.Models
 
         }
 
+        public GameEngine(ObservableCollection<Dice> dices)
+        {
+            activePlayer = Player();
+            Dices = new ObservableCollection<Dice>();
+            Dices = dices;
+            DiceCount();
+        }
+
+        private Player Player()
+        {
+            throw new NotImplementedException();
+        }
+
 
         /// <summary>
         /// Konverterar tärningarna i en lista till en array med antal tärningar i varje kategori
@@ -34,27 +51,27 @@ namespace Yatzy.Models
         {
             for (int i = 0; i < 5; i++)
             {
-                if (DicestestList[i] == 1)
+                if (Dices[i].DiceValue == 1)
                 {
                     ArrayofCountedDices[0] += 1;
                 }
-                if (DicestestList[i] == 2)
+                if (Dices[i].DiceValue == 2)
                 {
                     ArrayofCountedDices[1] += 1;
                 }
-                if (DicestestList[i] == 3)
+                if (Dices[i].DiceValue == 3)
                 {
                     ArrayofCountedDices[2] += 1;
                 }
-                if (DicestestList[i] == 4)
+                if (Dices[i].DiceValue == 4)
                 {
                     ArrayofCountedDices[3] += 1;
                 }
-                if (DicestestList[i] == 5)
+                if (Dices[i].DiceValue == 5)
                 {
                     ArrayofCountedDices[4] += 1;
                 }
-                if (DicestestList[i] == 6)
+                if (Dices[i].DiceValue == 6)
                 {
                     ArrayofCountedDices[5] += 1;
                 }
@@ -70,7 +87,7 @@ namespace Yatzy.Models
         {
             int sum = 0;
 
-            for (int i = 0; i < DicestestList.Count; i++)
+            for (int i = 0; i < Dices.Count; i++)
             {
                 if (DicestestList[i] == category)
                 {
@@ -220,9 +237,9 @@ namespace Yatzy.Models
         {
             int sum = 0;
 
-            for (int i = 0; i < DicestestList.Count; i++)
+            for (int i = 0; i < Dices.Count; i++)
             {
-                sum += DicestestList[i];
+                sum += Dices[i].DiceValue;
             }
             return sum;
         }
@@ -235,7 +252,7 @@ namespace Yatzy.Models
             int sum = 0;
             for (int i = 1; i < 5; i++)
             {
-                if (DicestestList[i] != DicestestList[0]) //Kontrollerar om tärning 2-5 är olik tärning 1 och returnerar i så fall 0
+                if (Dices[i].DiceValue != Dices[0].DiceValue) //Kontrollerar om tärning 2-5 är olik tärning 1 och returnerar i så fall 0
                 {
                     return sum;
                 }
@@ -304,5 +321,7 @@ namespace Yatzy.Models
             }
         }
         #endregion
+
+
     }
 }

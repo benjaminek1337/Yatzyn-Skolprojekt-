@@ -30,10 +30,31 @@ namespace Yatzy.Models
                 OnPropertyChanged("Dices");
             }
         }
+
+        private ObservableCollection<Player> scoreCalc;
+
+        public ObservableCollection<Player> ScoreCalc
+        {
+            get { return scoreCalc; }
+            set { scoreCalc = value; OnPropertyChanged("ScoreCalc"); }
+        }
+
+        #endregion
+
+        #region Kalla på Game Engine och kolla poängkombinationer
+
+        GameEngine gameEngine;
+
+        private void GetScoreCombinations()
+        {
+            gameEngine = new GameEngine(Dices);
+            
+        }
+
         #endregion
 
         #region Changed Event Handler
-                public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
                 protected void OnPropertyChanged (string PropertyName)
                 {
                     PropertyChangedEventHandler handler = PropertyChanged;
@@ -97,6 +118,7 @@ namespace Yatzy.Models
 
         public void RollDices(object parameter)
         {
+
             Random random = new Random();
             for (int i = 0; i < Dices.Count; i++)
             {
@@ -109,8 +131,71 @@ namespace Yatzy.Models
                 }
 
             }
+            GetScoreCombinations();
         }
 
         #endregion
+
+        #region Metod för att skicka alla tillgängliga poängkombinationer baserat på kastet
+
+        Player activePlayer;
+
+        public void SetScore()
+        {
+            //På agendan - lägga till alla poster här nedanför in i listan ScoreCalc för att summera alla tillgängliga poäng
+
+            activePlayer = new Player();
+            ScoreCalc = new ObservableCollection<Player>();
+
+            activePlayer.Ones = gameEngine.GetUpperScore(1);
+
+
+            activePlayer.Twos = gameEngine.GetUpperScore(2);
+
+
+            activePlayer.Threes = gameEngine.GetUpperScore(3);
+
+
+            activePlayer.Fours = gameEngine.GetUpperScore(4);
+
+
+            activePlayer.Fives = gameEngine.GetUpperScore(5);
+
+
+            activePlayer.Sixes = gameEngine.GetUpperScore(6);
+
+
+            activePlayer.Pair = gameEngine.GetPair();
+
+
+            activePlayer.Sixes = gameEngine.GetTwoPairs();
+
+
+            activePlayer.Sixes = gameEngine.GetThreeOfAKind();
+
+
+            activePlayer.Sixes = gameEngine.GetFourOfAKind();
+
+
+            activePlayer.Sixes = gameEngine.GetSmallLadder();
+
+
+            activePlayer.Sixes = gameEngine.GetLargeLadder();
+
+
+            activePlayer.Sixes = gameEngine.GetFullHouse();
+
+
+            activePlayer.Sixes = gameEngine.GetChance();
+
+
+            activePlayer.Sixes = gameEngine.GetYatzy();
+
+
+        }
+
     }
+
+    #endregion
+}
 }

@@ -35,13 +35,7 @@ namespace Yatzy.Models
         #endregion
         public int Total { get; set; }
 
-        public int TotalUpper
-        {
-            get
-            {
-                return Ones + Twos + Threes + Fours + Fives + Sixes;
-            }
-        }
+
 
 
     }
