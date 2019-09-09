@@ -13,8 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Media;
 using System.Windows.Input;
-
-
+using Yatzy.ViewModels;
 
 namespace Yatzy.Views
 {
@@ -23,12 +22,12 @@ namespace Yatzy.Views
     /// </summary>
     public partial class MainMenuView : Window //22.40 2019-09-06 detta är fyllekod nu :)))))
     {
-        MainMenuView menuview;
+        MainMenuViewModel menuViewModel;
         
         public MainMenuView()
         {
-            Commands.Command commands = new Commands.Command() { };
-            this.DataContext = menuview;
+            menuViewModel = new MainMenuViewModel();
+            this.DataContext = menuViewModel;
             InitializeComponent();
            
         }
