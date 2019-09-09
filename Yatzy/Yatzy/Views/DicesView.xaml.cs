@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Yatzy.Models;
 
 namespace Yatzy.Views
 {
@@ -19,8 +20,12 @@ namespace Yatzy.Views
     /// </summary>
     public partial class DicesView : Window
     {
+        DicesViewModel dicesViewModel;
+
         public DicesView()
         {
+            dicesViewModel = new DicesViewModel();
+            this.DataContext = dicesViewModel;
             InitializeComponent();
         }
     }

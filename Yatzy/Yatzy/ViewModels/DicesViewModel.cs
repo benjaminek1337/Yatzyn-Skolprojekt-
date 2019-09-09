@@ -1,56 +1,111 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
+using Yatzy.Commands;
 
 namespace Yatzy.Models
 {
-    class DicesViewModel
+    class DicesViewModel : INotifyPropertyChanged
     {
 
-        public List<Dice> dices;
+        public RelayCommand SaveDiceCommand { get; set; }
+        public RelayCommand RollDicesCommand { get; set; }
+
+        //public ObservableCollection<Dice> Dices { get; set; }
+
+        private ObservableCollection<Dice> dices;
+
+        public ObservableCollection<Dice> Dices
+        {
+            get { return dices; }
+            set
+            {
+                dices = value;
+                OnPropertyChanged("Dices");
+            }
+        }
+
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged (string PropertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+                handler(this, new PropertyChangedEventArgs(PropertyName));
+        }
+
+
+        //Konstruktor där 5 objekt av typen Dice skapas och läggs i en lista. Får DiceID från 1 - 5, samt IsDiceEnabled = true.
+        //DiceValue är tom tills tärningarna "kastas" med en metod nedanför.
 
         public DicesViewModel()
         {
+            SaveDiceCommand = new RelayCommand(SaveDice, CanExecuteMethod);
+            RollDicesCommand = new RelayCommand(RollDices, CanExecuteMethod);
+
             Dice dice;
-            dices = new List<Dice>();
+            Dices = new ObservableCollection<Dice>();
             for (int i = 0; i < 5; i++)
             {
                 dice = new Dice
                 {
                     DiceID = i + 1,
                     IsDiceEnabled = true
-                }; dices.Add(dice);
+                }; Dices.Add(dice);
             }
         }
 
-        public void SaveDice(int diceButtonValue)
+        //Metod som skickar in ett godkännande till Command att en metod kan användas. Komplicerat stuff.
+
+        private bool CanExecuteMethod(object parameter)
+        {
+            return true;
+        }
+        
+        //Metod för att välja en tärning att spara genom att skifta värde på IsDiceEnabled
+
+        public void SaveDice(object parameter)
         {
             
-            for (int i = 0; i < dices.Count; i++)
+            //Måste hitta ett sätt att ge den där variabeln ett värde beroende på vald tärning i View
+            int diceButtonValue = int.Parse(parameter.ToString());
+            for (int i = 0; i < Dices.Count; i++)
             {
-                if (dices[i].DiceID == diceButtonValue)
+                if (Dices[i].DiceID == diceButtonValue && Dices[i].IsDiceEnabled)
                 {
-                    dices[i].IsDiceEnabled = false;
+                    Dices[i].IsDiceEnabled = false;
+                }
+                else if (Dices[i].IsDiceEnabled == false && Dices[i].DiceID == diceButtonValue)
+                {
+                    Dices[i].IsDiceEnabled = true;
                 }
             }
         }
 
+        //Metod för att kasta tärningen. Alla tärningar där IsDiceEnabled = true får ett nytt DiceValue
 
-        public void RollDices()
+        public void RollDices(object parameter)
         {
-            for (int i = 0; i < dices.Count; i++)
+            Random random = new Random();
+            for (int i = 0; i < Dices.Count; i++)
             {
-                if (dices[i].IsDiceEnabled)
+                if (Dices[i].IsDiceEnabled)
                 {
-                    Random random = new Random();
+                    
                     int rand = random.Next(1, 7);
 
-                    dices[i].DiceValue = rand;
+                    Dices[i].DiceValue = rand;
                 }
 
             }
+            //MessageBox.Show("yes");
         }
 
 

@@ -12,21 +12,22 @@ namespace Yatzy.Commands
         Action<object> executeMethod;
         Func<object, bool> canExecuteMethod;
 
-        /*public Command(Action<object> executeMethod, Func<object)
+        public Command(Action<object> executeMethod, Func<object, bool> canExecuteMethod)
         {
-
-        }*/
+            this.executeMethod = executeMethod;
+            this.canExecuteMethod = canExecuteMethod;
+        }
 
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            executeMethod(parameter);
         }
     }
 }
