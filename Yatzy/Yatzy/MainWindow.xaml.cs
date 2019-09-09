@@ -24,10 +24,20 @@ namespace Yatzy
         public MainWindow()
         {
             InitializeComponent();
+            MessageBox.Show("Chef");
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            SoundPlayer sound = new SoundPlayer("/Resources/DiceThrow.wav");
+            sound.PlaySync();
         }
 
 
-            //SoundPlayer sound = new SoundPlayer("Resources/DiceThrow.wav"); //.wav ska vara Embedded Resource annars hittar inte VS filen
+
+
+
+        //SoundPlayer sound = new SoundPlayer("Resources/DiceThrow.wav"); //.wav ska vara Embedded Resource annars hittar inte VS filen
 
     }
 }

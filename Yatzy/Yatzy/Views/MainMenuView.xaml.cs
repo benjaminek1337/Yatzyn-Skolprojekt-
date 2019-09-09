@@ -11,17 +11,27 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Media;
+using System.Windows.Input;
+
+
 
 namespace Yatzy.Views
 {
     /// <summary>
     /// Interaction logic for MainMenuView.xaml
     /// </summary>
-    public partial class MainMenuView : Window
+    public partial class MainMenuView : Window //22.40 2019-09-06 detta är fyllekod nu :)))))
     {
+        MainMenuView menuview;
+        
         public MainMenuView()
         {
+            Commands.Command commands = new Commands.Command() { };
+            this.DataContext = menuview;
             InitializeComponent();
+           
         }
+   
     }
 }

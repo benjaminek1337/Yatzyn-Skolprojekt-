@@ -46,19 +46,21 @@
             <Label Content="YATZY" FontSize="20" Background="Azure" BorderBrush="Black" BorderThickness="1"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="3"  Grid.RowSpan="5" Margin="5" >
-            <Label Name="play" Content="Spela" FontSize="45" Cursor="Hand" Margin="10" >
-                <Label.Style>
-                    <Style>
-                        <Setter Property="Label.Foreground" Value="AntiqueWhite" />
-                        <Style.Triggers>
-                            <Trigger Property="Label.IsMouseOver" Value="true">
-                                <Setter Property="Label.Foreground" Value="IndianRed"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Label.Style>
-            </Label>
-            <Label Name="leaderboard" Content="Leaderboard" FontSize="45" Cursor="Hand" Margin="10" >
+                <Button Background="Transparent" BorderBrush="Transparent" Click="Button_Click">
+                    <Label Name="play" Content="Spela" FontSize="45" Cursor="Hand" Margin="10" HorizontalAlignment="Left">
+                        <Label.Style>
+                            <Style>
+                                <Setter Property="Label.Foreground" Value="AntiqueWhite" />
+                                <Style.Triggers>
+                                    <Trigger Property="Label.IsMouseOver" Value="true">
+                                        <Setter Property="Label.Foreground" Value="IndianRed"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Label.Style>
+                    </Label>
+                </Button>
+                <Label Name="leaderboard" Content="Leaderboard" FontSize="45" Cursor="Hand" Margin="10" >
                 <Label.Style>
                     <Style>
                         <Setter Property="Label.Foreground" Value="AntiqueWhite"/>

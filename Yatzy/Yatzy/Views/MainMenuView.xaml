@@ -7,92 +7,105 @@
         mc:Ignorable="d"
         Title="Yatzy" Height="450" Width="800">
     <Viewbox Stretch="UniformToFill"  StretchDirection="Both">
-        
-    <Grid Margin="0" MinHeight="450" MinWidth="800">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition MinWidth="70"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
 
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7">
+        <Grid Margin="0" MinHeight="450" MinWidth="800">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition MinWidth="70"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7">
                 <Image Source="/Resources/wood4.jpg" x:Name="backgroundpic" Margin="0" Opacity="1" Stretch="UniformToFill"/>
             </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2">
-            <Label Content="YATZY"  HorizontalAlignment="Center" FontSize="110" Foreground="DodgerBlue" Margin="50"/>
-        </StackPanel>
-        <Border BorderBrush="Black" BorderThickness="1" MinHeight="203" MinWidth="150" Grid.RowSpan="4" Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2">
-            <Rectangle  Fill="LightGray" Opacity="50"/>
+            <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3">
+                <Image Source="/Resources/tester.png"  MaxHeight="800" MaxWidth="300" RenderTransformOrigin="0.5,0.5" >
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+            </StackPanel>
+            <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <Label Content="YATZY"  HorizontalAlignment="Center" FontSize="110" Foreground="DodgerBlue" Margin="50"/>
+            </StackPanel>
+            <Border BorderBrush="Black" BorderThickness="1" MinHeight="203" MinWidth="150" Grid.RowSpan="4" Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2">
+                <Rectangle  Fill="LightGray" Opacity="50"/>
 
-        </Border>
-        <StackPanel Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" Grid.RowSpan="4" Cursor="Pen">
-            <Label Content="YATZY" FontSize="20" Background="Azure" BorderBrush="Black" BorderThickness="1"/>
-        </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2"  Grid.RowSpan="5" Margin="5" >
-            <Label Name="play" Content="Spela" FontSize="40" Cursor="Hand" Margin="5" >
-                <Label.Style>
-                    <Style>
-                        <Setter Property="Label.Foreground" Value="AntiqueWhite" />
-                        <Style.Triggers>
-                            <Trigger Property="Label.IsMouseOver" Value="true">
-                                <Setter Property="Label.Foreground" Value="IndianRed"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Label.Style>
-            </Label>
-            <Label Name="leaderboard" Content="Leaderboard" FontSize="40" Cursor="Hand" Margin="5" >
-                <Label.Style>
-                    <Style>
-                        <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
-                        <Style.Triggers>
-                            <Trigger Property="Label.IsMouseOver" Value="true">
-                                <Setter Property="Label.Foreground" Value="IndianRed"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Label.Style>
-            </Label>
-            <Label Name="rules" Content="Regler" FontSize="40" Cursor="Hand" Margin="5" >
-                <Label.Style>
-                    <Style>
-                        <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
-                        <Style.Triggers>
-                            <Trigger Property="Label.IsMouseOver" Value="true">
-                                <Setter Property="Label.Foreground" Value="IndianRed"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Label.Style>
-            </Label>
-            <Label Name="alternativ" Content="Alternativ" FontSize="40" Cursor="Hand" Margin="5" >
-                <Label.Style>
-                    <Style>
-                        <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
-                        <Style.Triggers>
-                            <Trigger Property="Label.IsMouseOver" Value="true">
-                                <Setter Property="Label.Foreground" Value="IndianRed"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Label.Style>
-            </Label>
-        </StackPanel>
-    </Grid>
+            </Border>
+            <StackPanel Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" Grid.RowSpan="4" Cursor="Pen">
+                <Label Content="YATZY" FontSize="20" Background="Azure" BorderBrush="Black" BorderThickness="1"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="1"  Grid.RowSpan="5" Margin="5">
+                
+                <Label Name="play" Content="Spela" FontSize="45" Cursor="Hand" Margin="5">
+                    <Label.Style>
+                        <Style>
+                            <Setter Property="Label.Foreground" Value="AntiqueWhite" />
+                            <Style.Triggers>
+                                <Trigger Property="Label.IsMouseOver" Value="true">
+                                    <Setter Property="Label.Foreground" Value="IndianRed"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
+                <Label Name="leaderboard" Content="Leaderboard" FontSize="45" Cursor="Hand" Margin="5"  >
+                    <Label.Style>
+                        <Style>
+                            <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
+                            <Style.Triggers>
+                                <Trigger Property="Label.IsMouseOver" Value="true">
+                                    <Setter Property="Label.Foreground" Value="IndianRed"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
+                <Label Name="rules" Content="Regler" FontSize="45" Cursor="Hand" Margin="5" >
+                    <Label.Style>
+                        <Style>
+                            <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
+                            <Style.Triggers>
+                                <Trigger Property="Label.IsMouseOver" Value="true">
+                                    <Setter Property="Label.Foreground" Value="IndianRed"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
+                <Label Name="alternativ" Content="Alternativ" FontSize="45" Cursor="Hand" Margin="5" >
+                    <Label.Style>
+                        <Style>
+                            <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
+                            <Style.Triggers>
+                                <Trigger Property="Label.IsMouseOver" Value="true">
+                                    <Setter Property="Label.Foreground" Value="IndianRed"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
+            </StackPanel>
+        </Grid>
     </Viewbox>
 </Window>
