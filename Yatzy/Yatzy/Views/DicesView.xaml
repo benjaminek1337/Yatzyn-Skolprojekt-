@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="DicesView" Height="450" Width="800">
     <Grid>
-        <Button x:Name="button" Command="{Binding SaveDiceCommand}" CommandParameter="1" Content="{Binding Path = Dices.DiceVaulue[i]}" HorizontalAlignment="Left" Margin="119,263,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="button" Command="{Binding SaveDiceCommand}" CommandParameter="1" Content="{Binding Path = DiceValue[1]}" HorizontalAlignment="Left" Margin="119,263,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="button1" Command="{Binding SaveDiceCommand}" CommandParameter="2" Content="Button" HorizontalAlignment="Left" Margin="199,263,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="button1_Copy" Command="{Binding SaveDiceCommand}" CommandParameter="3" Content="Button" HorizontalAlignment="Left" Margin="279,263,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="button1_Copy1" Command="{Binding SaveDiceCommand}" CommandParameter="4" Content="Button" HorizontalAlignment="Left" Margin="359,263,0,0" VerticalAlignment="Top" Width="75"/>

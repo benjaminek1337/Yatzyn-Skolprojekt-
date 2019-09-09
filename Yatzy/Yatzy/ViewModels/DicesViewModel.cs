@@ -13,12 +13,12 @@ namespace Yatzy.Models
 {
     class DicesViewModel : INotifyPropertyChanged
     {
-
+        #region Kommandon
         public RelayCommand SaveDiceCommand { get; set; }
         public RelayCommand RollDicesCommand { get; set; }
+        #endregion
 
-        //public ObservableCollection<Dice> Dices { get; set; }
-
+        #region Properties
         private ObservableCollection<Dice> dices;
 
         public ObservableCollection<Dice> Dices
@@ -30,18 +30,19 @@ namespace Yatzy.Models
                 OnPropertyChanged("Dices");
             }
         }
+        #endregion
 
+        #region Changed Event Handler
+                public event PropertyChangedEventHandler PropertyChanged;
+                protected void OnPropertyChanged (string PropertyName)
+                {
+                    PropertyChangedEventHandler handler = PropertyChanged;
+                    if (handler != null)
+                        handler(this, new PropertyChangedEventArgs(PropertyName));
+                }
+        #endregion
 
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged (string PropertyName)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(PropertyName));
-        }
-
-
+        #region Konstruktor
         //Konstruktor där 5 objekt av typen Dice skapas och läggs i en lista. Får DiceID från 1 - 5, samt IsDiceEnabled = true.
         //DiceValue är tom tills tärningarna "kastas" med en metod nedanför.
 
@@ -62,6 +63,9 @@ namespace Yatzy.Models
             }
         }
 
+        #endregion
+
+        #region Metoder för att kasta/spara tärningar samt en bool för att godkänna att metod används
         //Metod som skickar in ett godkännande till Command att en metod kan användas. Komplicerat stuff.
 
         private bool CanExecuteMethod(object parameter)
@@ -105,9 +109,8 @@ namespace Yatzy.Models
                 }
 
             }
-            //MessageBox.Show("yes");
         }
 
-
+        #endregion
     }
 }
