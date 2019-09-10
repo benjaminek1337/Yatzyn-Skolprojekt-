@@ -72,9 +72,9 @@ namespace Yatzy.Models
             get { return _nickname; }
             set
             {
-                if (value != _lastname)
+                if (value != _nickname)
                 {
-                    _lastname = value;
+                    _nickname = value;
                     OnPropertyChanged("Lastname");
                 }
             }
