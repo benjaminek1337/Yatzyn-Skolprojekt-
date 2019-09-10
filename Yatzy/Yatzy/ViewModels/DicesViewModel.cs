@@ -13,8 +13,9 @@ namespace Yatzy.Models
 {
     class DicesViewModel : INotifyPropertyChanged
     {
-        #region Objekt
+        #region Objekt och lokala variabler
         Player activePlayer;
+        int count = 0;
         #endregion
 
         #region Properties 
@@ -72,7 +73,7 @@ namespace Yatzy.Models
         public DicesViewModel()
         {
             SaveDiceCommand = new RelayCommand(SaveDice, CanExecuteMethod);
-            RollDicesCommand = new RelayCommand(RollDices, CanExecuteMethod);
+            RollDicesCommand = new RelayCommand(RollDices, IsTriesEnabled);
 
             Dice dice;
             Dices = new ObservableCollection<Dice>();
@@ -116,35 +117,34 @@ namespace Yatzy.Models
             }
         }
 
-        //Metod för att kasta tärningen. Alla tärningar där IsDiceEnabled = true får ett nytt DiceValue
+        //Metod för att kasta tärningen. Alla tärningar där IsDiceEnabled = true får ett nytt DiceValue, samt en bool som räknar slagen
 
-        public bool IsTriesEnabled()
+        public bool IsTriesEnabled(object parameter)
         {
-            int count = 0;
+            if (count < 3)
+            {
+                return true;
+            }
 
-
-               
             return false;
         }
 
         public void RollDices(object parameter)
         {            
             Random random = new Random();
-            if (IsTriesEnabled())
+
+            for (int i = 0; i < Dices.Count; i++)
             {
-                for (int i = 0; i < Dices.Count; i++)
+                if (Dices[i].IsDiceEnabled)
                 {
-                    if (Dices[i].IsDiceEnabled)
-                    {
-
-                        int rand = random.Next(1, 7);
-
-                        Dices[i].DiceValue = rand;
-                    }
-
+                    int rand = random.Next(1, 7);
+                    Dices[i].DiceValue = rand;
                 }
-                GetGameEngine();
+
             }
+            GetGameEngine();
+            count++;
+            
             
         }
 
