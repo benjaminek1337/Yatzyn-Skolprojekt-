@@ -13,14 +13,15 @@ namespace Yatzy.Models
 {
     class DicesViewModel : INotifyPropertyChanged
     {
-        #region Kommandon
-        public RelayCommand SaveDiceCommand { get; set; }
-        public RelayCommand RollDicesCommand { get; set; }
+        #region Objekt
+        Player activePlayer;
         #endregion
 
-        #region Properties
-        private ObservableCollection<Dice> dices;
+        #region Properties 
+        public RelayCommand SaveDiceCommand { get; set; }
+        public RelayCommand RollDicesCommand { get; set; }
 
+        private ObservableCollection<Dice> dices;
         public ObservableCollection<Dice> Dices
         {
             get { return dices; }
@@ -31,22 +32,12 @@ namespace Yatzy.Models
             }
         }
 
-        private ObservableCollection<Player> scoreCalc;
-
-        public ObservableCollection<Player> ScoreCalc
-        {
-            get { return scoreCalc; }
-            set { scoreCalc = value; OnPropertyChanged(new PropertyChangedEventArgs("ScoreCalc")); }
-        }
-
         private Player player;
-
         public Player Player
         {
             get { return player; }
             set { player = value; OnPropertyChanged(new PropertyChangedEventArgs("Player")); }
         }
-
 
         #endregion
 
@@ -76,6 +67,7 @@ namespace Yatzy.Models
         #region Konstruktor
         //Konstruktor där 5 objekt av typen Dice skapas och läggs i en lista. Får DiceID från 1 - 5, samt IsDiceEnabled = true.
         //DiceValue är tom tills tärningarna "kastas" med en metod nedanför.
+        //Kommandon instanseras även
 
         public DicesViewModel()
         {
@@ -126,22 +118,34 @@ namespace Yatzy.Models
 
         //Metod för att kasta tärningen. Alla tärningar där IsDiceEnabled = true får ett nytt DiceValue
 
-        public void RollDices(object parameter)
+        public bool IsTriesEnabled()
         {
+            int count = 0;
 
+
+               
+            return false;
+        }
+
+        public void RollDices(object parameter)
+        {            
             Random random = new Random();
-            for (int i = 0; i < Dices.Count; i++)
+            if (IsTriesEnabled())
             {
-                if (Dices[i].IsDiceEnabled)
+                for (int i = 0; i < Dices.Count; i++)
                 {
-                    
-                    int rand = random.Next(1, 7);
+                    if (Dices[i].IsDiceEnabled)
+                    {
 
-                    Dices[i].DiceValue = rand;
+                        int rand = random.Next(1, 7);
+
+                        Dices[i].DiceValue = rand;
+                    }
+
                 }
-
+                GetGameEngine();
             }
-            GetGameEngine();
+            
         }
 
         #endregion
@@ -155,9 +159,7 @@ namespace Yatzy.Models
             //På agendan - lägga till alla poster här nedanför in i listan ScoreCalc för att summera alla tillgängliga poäng
 
             Player = new Player();
-            ScoreCalc = new ObservableCollection<Player>();
-
-
+            
             Player.Ones = gameEngine.GetUpperScore(1);
 
 
