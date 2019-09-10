@@ -155,6 +155,7 @@ namespace Yatzy.Models
         private void ChooseScoreCat(object parameter)
         {
             Player.TotalScore += int.Parse(parameter.ToString());
+            //Fixa mer metoder för att spara poängkategori på spelare, totalpoäng samt byta till nästa spelare
         }
 
         #endregion

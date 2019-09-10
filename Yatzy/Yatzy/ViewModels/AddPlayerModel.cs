@@ -63,11 +63,13 @@ namespace Yatzy.ViewModels
             {
                 Player p = new Player
                 {
-                    Firstname ="",
-                    Lastname ="",
-                    Nickname =""
+                    Firstname = "",
+                    Lastname = "",
+                    Nickname = ""
 
                 }; Players.Add(p);
             }
         }
+
+    }
 }

@@ -23,7 +23,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <StackPanel Width="50">
+        <StackPanel Width="49">
             <Button Content="{Binding Path = Player.Ones}" Command="{Binding ChooseScoreCatCommand}" CommandParameter="{Binding Path = Player.Ones}" VerticalAlignment="Top"/>
             <Button Content="{Binding Path = Player.Twos}" Command="{Binding ChooseScoreCatCommand}" CommandParameter="{Binding Path = Player.Twos}" VerticalAlignment="Top"/>
             <Button Content="{Binding Path = Player.Threes}" Command="{Binding ChooseScoreCatCommand}" CommandParameter="{Binding Path = Player.Threes}" VerticalAlignment="Top"/>
