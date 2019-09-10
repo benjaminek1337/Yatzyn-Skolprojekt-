@@ -287,28 +287,28 @@ namespace Yatzy.Models
                     activePlayer.Pair = GetPair();
                     break;
                 case 8:
-                    activePlayer.Sixes = GetTwoPairs();
+                    activePlayer.TwoPairs = GetTwoPairs();
                     break;
                 case 9:
-                    activePlayer.Sixes = GetThreeOfAKind();
+                    activePlayer.ThreeOfaKind = GetThreeOfAKind();
                     break;
                 case 10:
-                    activePlayer.Sixes = GetFourOfAKind();
+                    activePlayer.FourOfaKind = GetFourOfAKind();
                     break;
                 case 11:
-                    activePlayer.Sixes = GetSmallLadder();
+                    activePlayer.SmalLadder = GetSmallLadder();
                     break;
                 case 12:
-                    activePlayer.Sixes = GetLargeLadder();
+                    activePlayer.LargeLadder = GetLargeLadder();
                     break;
                 case 13:
-                    activePlayer.Sixes = GetFullHouse();
+                    activePlayer.FullHouse = GetFullHouse();
                     break;
                 case 14:
-                    activePlayer.Sixes = GetChance();
+                    activePlayer.Chance = GetChance();
                     break;
                 case 15:
-                    activePlayer.Sixes = GetYatzy();
+                    activePlayer.Yatzy= GetYatzy();
                     break;
 
                 default:
