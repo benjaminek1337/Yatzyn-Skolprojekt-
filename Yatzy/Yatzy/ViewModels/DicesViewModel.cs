@@ -15,12 +15,13 @@ namespace Yatzy.Models
     {
         #region Objekt och lokala variabler
         Player activePlayer;
-        int count = 0;
+        private int count = 0;
         #endregion
 
         #region Properties 
         public RelayCommand SaveDiceCommand { get; set; }
         public RelayCommand RollDicesCommand { get; set; }
+        public RelayCommand ChooseScoreCatCommand { get; set; }
 
         private ObservableCollection<Dice> dices;
         public ObservableCollection<Dice> Dices
@@ -74,6 +75,7 @@ namespace Yatzy.Models
         {
             SaveDiceCommand = new RelayCommand(SaveDice, CanExecuteMethod);
             RollDicesCommand = new RelayCommand(RollDices, IsTriesEnabled);
+            ChooseScoreCatCommand = new RelayCommand(ChooseScoreCat, CanExecuteMethod);
 
             Dice dice;
             Dices = new ObservableCollection<Dice>();
@@ -90,7 +92,7 @@ namespace Yatzy.Models
         #endregion
 
         #region Metoder för att kasta/spara tärningar samt en bool för att godkänna att metod används
-        //Metod som skickar in ett godkännande till Command att en metod kan användas. Komplicerat stuff.
+        //Metod som skickar bool-värdet true till kommandot
 
         private bool CanExecuteMethod(object parameter)
         {
@@ -99,10 +101,8 @@ namespace Yatzy.Models
         
         //Metod för att välja en tärning att spara genom att skifta värde på IsDiceEnabled
 
-        public void SaveDice(object parameter)
-        {
-            
-            //Måste hitta ett sätt att ge den där variabeln ett värde beroende på vald tärning i View
+        private void SaveDice(object parameter)
+        {           
             int diceButtonValue = int.Parse(parameter.ToString());
             for (int i = 0; i < Dices.Count; i++)
             {
@@ -117,9 +117,9 @@ namespace Yatzy.Models
             }
         }
 
-        //Metod för att kasta tärningen. Alla tärningar där IsDiceEnabled = true får ett nytt DiceValue, samt en bool som räknar slagen
+        //Metod för att kasta tärningen. Alla tärningar där IsDiceEnabled = true får ett nytt DiceValue, samt en bool som spärrar tärningen efter 3 slag
 
-        public bool IsTriesEnabled(object parameter)
+        private bool IsTriesEnabled(object parameter)
         {
             if (count < 3)
             {
@@ -129,7 +129,7 @@ namespace Yatzy.Models
             return false;
         }
 
-        public void RollDices(object parameter)
+        private void RollDices(object parameter)
         {            
             Random random = new Random();
 
@@ -150,9 +150,18 @@ namespace Yatzy.Models
 
         #endregion
 
+        #region Metod för att välja en poängkategori, samt metod för att godkänna valet
+
+        private void ChooseScoreCat(object parameter)
+        {
+            Player.TotalScore += int.Parse(parameter.ToString());
+        }
+
+        #endregion
+
         #region Metod för att skicka alla tillgängliga poängkombinationer baserat på kastet
 
-        
+
 
         public void GetScoreCombinations()
         {
@@ -207,6 +216,8 @@ namespace Yatzy.Models
 
         }
 
+        #endregion
+
         public void SetTotalUpperScore()
         {
             Player.UpperScore = Player.Ones
@@ -252,6 +263,6 @@ namespace Yatzy.Models
 
     }
 
-    #endregion
+   
 }
 
