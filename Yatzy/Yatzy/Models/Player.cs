@@ -1,20 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Yatzy.Models
 {
-    class Player
-    {
+    class Player : INotifyPropertyChanged
+    { 
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private int _ones;
+
+
+    
         #region player properties
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public string Nickname { get; set; }
         #endregion
         #region dice results
-        public int Ones { get; set; }
+        public int Ones
+        {
+            get { return _ones; }
+            set
+            {
+                if (value != _ones)
+                {
+                    _ones = value;
+                    OnPropertyChanged("Ones");
+                }
+            }
+
+        }
         public int Twos { get; set; }
         public int Threes { get; set; }
         public int Fours { get; set; }

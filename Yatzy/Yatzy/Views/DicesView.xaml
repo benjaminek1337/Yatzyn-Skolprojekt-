@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Yatzy.Views"
+        xmlns:models="clr-namespace:Yatzy.Models"
         mc:Ignorable="d"
         Title="DicesView" Height="450" Width="800">
     <Grid>
@@ -24,7 +25,7 @@
         </ListView>
         <StackPanel >
             <TextBox x:Name="textBox"  TextWrapping="Wrap" Text="{Binding Path = Player.Ones, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="textBox_Copy" TextWrapping="Wrap" Text="{Binding Player.Twos, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="textBox_Copy" TextWrapping="Wrap" Text="{Binding Path=Player.Twos , UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
             <TextBox x:Name="textBox_Copy1"  TextWrapping="Wrap" Text="{Binding Path = Player.Threes, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
             <TextBox x:Name="textBox_Copy2"  TextWrapping="Wrap" Text="{Binding Player.Fours, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
             <TextBox x:Name="textBox_Copy3"  TextWrapping="Wrap" Text="{Binding Fives}" VerticalAlignment="Top" Width="120"/>
