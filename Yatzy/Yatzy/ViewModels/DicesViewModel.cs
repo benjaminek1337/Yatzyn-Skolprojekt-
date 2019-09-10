@@ -168,34 +168,72 @@ namespace Yatzy.Models
             activePlayer.Pair = gameEngine.GetPair();
 
 
-            activePlayer.Sixes = gameEngine.GetTwoPairs();
+            activePlayer.TwoPairs = gameEngine.GetTwoPairs();
 
 
-            activePlayer.Sixes = gameEngine.GetThreeOfAKind();
+            activePlayer.ThreeOfaKind = gameEngine.GetThreeOfAKind();
 
 
-            activePlayer.Sixes = gameEngine.GetFourOfAKind();
+            activePlayer.FourOfaKind = gameEngine.GetFourOfAKind();
 
 
-            activePlayer.Sixes = gameEngine.GetSmallLadder();
+            activePlayer.SmalLadder = gameEngine.GetSmallLadder();
 
 
-            activePlayer.Sixes = gameEngine.GetLargeLadder();
+            activePlayer.LargeLadder = gameEngine.GetLargeLadder();
 
 
-            activePlayer.Sixes = gameEngine.GetFullHouse();
+            activePlayer.FullHouse = gameEngine.GetFullHouse();
 
 
-            activePlayer.Sixes = gameEngine.GetChance();
+            activePlayer.Chance = gameEngine.GetChance();
 
 
-            activePlayer.Sixes = gameEngine.GetYatzy();
-
-
+            activePlayer.Yatzy = gameEngine.GetYatzy();
+        }
+        #endregion
+        public void SetTotalUpperScore()
+        {
+            activePlayer.UpperScore = activePlayer.Ones
+                + activePlayer.Twos
+                + activePlayer.Threes
+                + activePlayer.Fours
+                + activePlayer.Fives
+                + activePlayer.Sixes;
         }
 
-    }
 
-    #endregion
+
+        public void SetBonus() //Ska vi lägga upperBonusLevel som indataparameter istället???
+        {
+            int upperBonusLevel = 63;
+            int totalUpperScore = activePlayer.Ones 
+                + activePlayer.Twos 
+                + activePlayer.Threes 
+                + activePlayer.Fours 
+                + activePlayer.Fives 
+                + activePlayer.Sixes;
+
+            if (totalUpperScore >= upperBonusLevel)
+            {
+                activePlayer.UpperBonus = 50; 
+            }
+        }
+
+        public void SetTotalScore()
+        {
+            activePlayer.TotalScore = activePlayer.UpperScore
+                + activePlayer.UpperBonus
+                + activePlayer.Pair
+                + activePlayer.TwoPairs
+                + activePlayer.ThreeOfaKind
+                + activePlayer.FourOfaKind
+                + activePlayer.SmalLadder
+                + activePlayer.LargeLadder
+                + activePlayer.FullHouse
+                + activePlayer.Chance
+                + activePlayer.Yatzy;
+        }
+    }
 }
 }

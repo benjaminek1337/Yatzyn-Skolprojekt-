@@ -20,8 +20,8 @@ namespace Yatzy.Models
         public int Fours { get; set; }
         public int Fives { get; set; }
         public int Sixes { get; set; }
-        public int Sum { get; set; }
-        public int Bonus { get; set; }
+        public int UpperScore { get; set; }
+        public int UpperBonus { get; set; }
 
         public int Pair { get; set; }
         public int TwoPairs { get; set; }
@@ -33,7 +33,7 @@ namespace Yatzy.Models
         public int Chance { get; set; }
         public int Yatzy { get; set; }
         #endregion
-        public int Total { get; set; }
+        public int TotalScore { get; set; }
 
 
 
