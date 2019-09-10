@@ -7,13 +7,13 @@
         mc:Ignorable="d"
         Title="DicesView" Height="450" Width="800">
     <Grid>
-        <Button x:Name="button" Command="{Binding SaveDiceCommand}" CommandParameter="1" Content="{Binding Path = DiceValue[1]}" HorizontalAlignment="Left" Margin="119,263,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="button1" Command="{Binding SaveDiceCommand}" CommandParameter="2" Content="Button" HorizontalAlignment="Left" Margin="199,263,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="button1_Copy" Command="{Binding SaveDiceCommand}" CommandParameter="3" Content="Button" HorizontalAlignment="Left" Margin="279,263,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="button1_Copy1" Command="{Binding SaveDiceCommand}" CommandParameter="4" Content="Button" HorizontalAlignment="Left" Margin="359,263,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="button1_Copy2" Command="{Binding SaveDiceCommand}" CommandParameter="5" Content="Button" HorizontalAlignment="Left" Margin="439,263,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btnThrow" Command="{Binding RollDicesCommand}" Content="Kasta" HorizontalAlignment="Left" Margin="248,348,0,0" VerticalAlignment="Top" Width="75"/>
-        <ListView x:Name="listView" HorizontalAlignment="Left" Height="157" Margin="176,52,0,0" VerticalAlignment="Top" Width="303" ItemsSource="{Binding Dices}">
+        <Button x:Name="button" Command="{Binding SaveDiceCommand}" CommandParameter="1" Content="{Binding Path = Dices[0].DiceValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="20,229,0,0" VerticalAlignment="Top" Width="35"/>
+        <Button x:Name="button1" Command="{Binding SaveDiceCommand}" CommandParameter="2" Content="{Binding Path = Dices[1].DiceValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="60,229,0,0" VerticalAlignment="Top" Width="35"/>
+        <Button x:Name="button1_Copy" Command="{Binding SaveDiceCommand}" CommandParameter="3" Content="{Binding Path = Dices[2].DiceValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="100,229,0,0" VerticalAlignment="Top" Width="35"/>
+        <Button x:Name="button1_Copy1" Command="{Binding SaveDiceCommand}" CommandParameter="4" Content="{Binding Path = Dices[3].DiceValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="140,229,0,0" VerticalAlignment="Top" Width="35"/>
+        <Button x:Name="button1_Copy2" Command="{Binding SaveDiceCommand}" CommandParameter="5" Content="{Binding Path = Dices[4].DiceValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="180,229,0,0" VerticalAlignment="Top" Width="35"/>
+        <Button x:Name="btnThrow" Command="{Binding RollDicesCommand}" Content="Kasta" HorizontalAlignment="Left" Margin="75,272,0,0" VerticalAlignment="Top" Width="75"/>
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="157" Margin="27,24,0,0" VerticalAlignment="Top" Width="199" ItemsSource="{Binding Dices}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="60" Header="Nummer" DisplayMemberBinding="{Binding DiceValue}"/>
@@ -22,6 +22,24 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <StackPanel >
+            <TextBox x:Name="textBox"  TextWrapping="Wrap" Text="{Binding Path = Player.Ones, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="textBox_Copy" TextWrapping="Wrap" Text="{Binding Player.Twos, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="textBox_Copy1"  TextWrapping="Wrap" Text="{Binding Path = Player.Threes, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="textBox_Copy2"  TextWrapping="Wrap" Text="{Binding Player.Fours, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="textBox_Copy3"  TextWrapping="Wrap" Text="{Binding Fives}" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="textBox_Copy4"  TextWrapping="Wrap" Text="{Binding Sixes}" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="textBox_Copy5"  TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="textBox_Copy6"  TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="textBox_Copy7"  TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="textBox_Copy8"  TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="textBox_Copy9"  TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="textBox_Copy10" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="textBox_Copy11" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="textBox_Copy12" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="textBox_Copy13" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="textBox_Copy14" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        </StackPanel>
 
     </Grid>
 </Window>

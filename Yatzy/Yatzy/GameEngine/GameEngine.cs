@@ -32,15 +32,10 @@ namespace Yatzy.Models
 
         public GameEngine(ObservableCollection<Dice> dices)
         {
-            activePlayer = Player();
+            activePlayer = new Player();
             Dices = new ObservableCollection<Dice>();
             Dices = dices;
             DiceCount();
-        }
-
-        private Player Player()
-        {
-            throw new NotImplementedException();
         }
 
 
@@ -89,7 +84,7 @@ namespace Yatzy.Models
 
             for (int i = 0; i < Dices.Count; i++)
             {
-                if (DicestestList[i] == category)
+                if (Dices[i].DiceValue == category)
                 {
                     sum += category;
                 }

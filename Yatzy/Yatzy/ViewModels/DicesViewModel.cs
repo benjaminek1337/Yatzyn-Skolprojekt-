@@ -27,7 +27,7 @@ namespace Yatzy.Models
             set
             {
                 dices = value;
-                OnPropertyChanged("Dices");
+                OnPropertyChanged(new PropertyChangedEventArgs("Dices"));
             }
         }
 
@@ -36,8 +36,17 @@ namespace Yatzy.Models
         public ObservableCollection<Player> ScoreCalc
         {
             get { return scoreCalc; }
-            set { scoreCalc = value; OnPropertyChanged("ScoreCalc"); }
+            set { scoreCalc = value; OnPropertyChanged(new PropertyChangedEventArgs("ScoreCalc")); }
         }
+
+        private Player player;
+
+        public Player Player
+        {
+            get { return player; }
+            set { player = value; OnPropertyChanged(new PropertyChangedEventArgs("Player")); }
+        }
+
 
         #endregion
 
@@ -45,22 +54,23 @@ namespace Yatzy.Models
 
         GameEngine gameEngine;
 
-        private void GetScoreCombinations()
+        private void GetGameEngine()
         {
             gameEngine = new GameEngine(Dices);
-            
+            GetScoreCombinations();
         }
 
         #endregion
 
         #region Changed Event Handler
         public event PropertyChangedEventHandler PropertyChanged;
-                protected void OnPropertyChanged (string PropertyName)
-                {
-                    PropertyChangedEventHandler handler = PropertyChanged;
-                    if (handler != null)
-                        handler(this, new PropertyChangedEventArgs(PropertyName));
-                }
+
+        protected void OnPropertyChanged (PropertyChangedEventArgs e)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, e);
+        }
+            
         #endregion
 
         #region Konstruktor
@@ -131,65 +141,66 @@ namespace Yatzy.Models
                 }
 
             }
-            GetScoreCombinations();
+            GetGameEngine();
         }
 
         #endregion
 
         #region Metod för att skicka alla tillgängliga poängkombinationer baserat på kastet
 
-        Player activePlayer;
+        
 
-        public void SetScore()
+        public void GetScoreCombinations()
         {
             //På agendan - lägga till alla poster här nedanför in i listan ScoreCalc för att summera alla tillgängliga poäng
 
-            activePlayer = new Player();
+            Player = new Player();
             ScoreCalc = new ObservableCollection<Player>();
 
-            activePlayer.Ones = gameEngine.GetUpperScore(1);
+
+            Player.Ones = gameEngine.GetUpperScore(1);
 
 
-            activePlayer.Twos = gameEngine.GetUpperScore(2);
+            Player.Twos = gameEngine.GetUpperScore(2);
 
 
-            activePlayer.Threes = gameEngine.GetUpperScore(3);
+            Player.Threes = gameEngine.GetUpperScore(3);
 
 
-            activePlayer.Fours = gameEngine.GetUpperScore(4);
+            Player.Fours = gameEngine.GetUpperScore(4);
 
 
-            activePlayer.Fives = gameEngine.GetUpperScore(5);
+            Player.Fives = gameEngine.GetUpperScore(5);
 
 
-            activePlayer.Sixes = gameEngine.GetUpperScore(6);
+            Player.Sixes = gameEngine.GetUpperScore(6);
 
 
-            activePlayer.Pair = gameEngine.GetPair();
+            Player.Pair = gameEngine.GetPair();
 
 
-            activePlayer.Sixes = gameEngine.GetTwoPairs();
+            Player.TwoPairs = gameEngine.GetTwoPairs();
 
 
-            activePlayer.Sixes = gameEngine.GetThreeOfAKind();
+            Player.ThreeOfaKind = gameEngine.GetThreeOfAKind();
 
 
-            activePlayer.Sixes = gameEngine.GetFourOfAKind();
+            Player.FourOfaKind = gameEngine.GetFourOfAKind();
 
 
-            activePlayer.Sixes = gameEngine.GetSmallLadder();
+            Player.SmalLadder = gameEngine.GetSmallLadder();
 
 
-            activePlayer.Sixes = gameEngine.GetLargeLadder();
+            Player.LargeLadder = gameEngine.GetLargeLadder();
 
 
-            activePlayer.Sixes = gameEngine.GetFullHouse();
+            Player.FullHouse = gameEngine.GetFullHouse();
 
 
-            activePlayer.Sixes = gameEngine.GetChance();
+            Player.Chance = gameEngine.GetChance();
 
 
-            activePlayer.Sixes = gameEngine.GetYatzy();
+            Player.Yatzy = gameEngine.GetYatzy();
 
 
         }
@@ -198,4 +209,4 @@ namespace Yatzy.Models
 
     #endregion
 }
-}
+
