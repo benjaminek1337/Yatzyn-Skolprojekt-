@@ -205,6 +205,49 @@ namespace Yatzy.Models
 
         }
 
+        public void SetTotalUpperScore()
+        {
+            Player.UpperScore = Player.Ones
+                + Player.Twos
+                + Player.Threes
+                + Player.Fours
+                + Player.Fives
+                + Player.Sixes;
+        }
+
+
+
+        public void SetBonus() //Ska vi lägga upperBonusLevel som indataparameter istället???
+        {
+            int upperBonusLevel = 63;
+            int totalUpperScore = Player.Ones
+                + Player.Twos
+                + Player.Threes
+                + Player.Fours
+                + Player.Fives
+                + Player.Sixes;
+
+            if (totalUpperScore >= upperBonusLevel)
+            {
+                Player.UpperBonus = 50;
+            }
+        }
+
+        public void SetTotalScore()
+        {
+            Player.TotalScore = Player.UpperScore
+                + Player.UpperBonus
+                + Player.Pair
+                + Player.TwoPairs
+                + Player.ThreeOfaKind
+                + Player.FourOfaKind
+                + Player.SmalLadder
+                + Player.LargeLadder
+                + Player.FullHouse
+                + Player.Chance
+                + Player.Yatzy;
+        }
+
     }
 
     #endregion
