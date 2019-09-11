@@ -32,7 +32,7 @@ namespace Yatzy.GameEngine
 
         public void AddPlayerHardCoded()
         {
-            //if (Players.Count <= 4)
+            //if (ActivePlayers.Count <= 4)
             //{
                 Player p = new Player
                 {
@@ -45,8 +45,20 @@ namespace Yatzy.GameEngine
                 {
                     Firstname = "Erik",
                     Lastname = "Öberg",
-                    Nickname = "Examinator"
+                    Nickname = "Examinat0rN^"
                 }; ActivePlayers.Add(p2);
+            Player p3 = new Player
+            {
+                Firstname = "Johannes",
+                Lastname = "Lundqkqkqkqkqvist",
+                Nickname = "An4lD1gIt4L"
+            }; ActivePlayers.Add(p3);
+            Player p4 = new Player
+            {
+                Firstname = "Greger",
+                Lastname = "Lundqkqkqkqkqvist",
+                Nickname = "K4L"
+            }; ActivePlayers.Add(p4);
             //}
         }
 
@@ -58,7 +70,7 @@ namespace Yatzy.GameEngine
 
         public void SetActivePlayer()
         {
-            int index = 0;
+            int index = -1;
 
             for (int i = 0; i < ActivePlayers.Count; i++)
             {

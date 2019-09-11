@@ -46,10 +46,8 @@ namespace Yatzy.Models
 
         #endregion
 
-        #region Kalla på Game Engine och kolla poängkombinationer
-
-        
-
+        #region Instansera en ny Game Engine och kolla poäng
+       
         private void GetGameEngine()
         {
             gameEngine = new GameEngine(Dices, activePlayer);
@@ -97,22 +95,21 @@ namespace Yatzy.Models
 
             GetGameEngine();
             GetActivePlayer();
-            Player.Firstname = activePlayer.Firstname; //NDISDILFSLDIUFHSUILSUILDGHSUILDFHSILDUFHSDUILFHLSIDUHFLSIUDFHSDUILFHs
+            Player.Firstname = activePlayer.Firstname;
             Player.TotalScore = activePlayer.TotalScore;
         }
 
         #endregion
 
-        #region TESTMETOD FÖR ATT STARTA SPEL!!! TA BORT SEN!!!!!!! HELP FACK PLS SEND WIZARD!!
+        
 
-
-
+        //Metod för att sätta den lokala instansen av objektet activePlayer till den activePlayer som lever i PlayerEngine       
         private void GetActivePlayer()
         {
             activePlayer = playerEngine.GetActivePlayer();
         }
 
-        #endregion
+        
 
         #region Metoder för att kasta/spara/rensa tärningar samt en bool för att godkänna att metod används
         //Metod som skickar bool-värdet true till kommandot
@@ -140,7 +137,7 @@ namespace Yatzy.Models
             }
         }
 
-        //Metod för att kasta tärningen. Alla tärningar där IsDiceEnabled = true får ett nytt DiceValue, samt en bool som spärrar tärningen efter 3 slag
+        //Metod för att tillåta kast
 
         private bool IsTriesEnabled(object parameter)
         {
@@ -151,6 +148,8 @@ namespace Yatzy.Models
 
             return false;
         }
+
+        //Metod för att kasta tärningen
 
         private void RollDices(object parameter)
         {            
@@ -177,21 +176,21 @@ namespace Yatzy.Models
                 Dices[i].DiceValue = 0;
                 Dices[i].IsDiceEnabled = true;
             }
-            ResetPlayer();
+            //ResetPlayer();
         }
 
         #endregion
 
-        #region Metod för att välja en poängkategori, samt metod för att godkänna valet och nolla tärningarna
+        #region Metod för att välja en poängkategori, samt (framtida) metod för att se huruvida kategorin är tillgänglig eller ej
 
         private void ChooseScoreCategory(object parameter)
-        {            
+        {
+            //Fixa metod för att spara poängkategori på aktiv spelare
             activePlayer.TotalScore += int.Parse(parameter.ToString());
-            //Fixa mer metoder för att spara poängkategori på spelare, totalpoäng samt byta till nästa spelare
-
+            
             ResetDices();
             GetGameEngine();
-            playerEngine.SetActivePlayer(); // TA BORT, BARA FÖR TESTNING
+            playerEngine.SetActivePlayer();
 
             GetActivePlayer();
             Player.Firstname = activePlayer.Firstname;
@@ -200,75 +199,34 @@ namespace Yatzy.Models
 
         private bool IsCategoryEnabled(object parameter)
         {
-            
+            //Här kan det va bra att skriva smarta funktioner för att spärra en spelare från att välja samma kategori 2 ggr
 
             return true;
         }
       
-
-        private void ResetPlayer()
-        {
-            GetScoreCombinations();
-        }
         #endregion
 
-        #region Metod för att skicka alla tillgängliga poängkombinationer baserat på kastet
-
-
+        #region Metod för att visa alla tillgängliga poängkombinationer baserat på tärningarna
 
         public void GetScoreCombinations()
         {
             gameEngine.DiceCount();
-
-            //Player = new Player();
             
             Player.Ones = gameEngine.GetUpperScore(1);
-
-
             Player.Twos = gameEngine.GetUpperScore(2);
-
-
             Player.Threes = gameEngine.GetUpperScore(3);
-
-
             Player.Fours = gameEngine.GetUpperScore(4);
-
-
             Player.Fives = gameEngine.GetUpperScore(5);
-
-
             Player.Sixes = gameEngine.GetUpperScore(6);
-
-
             Player.Pair = gameEngine.GetPair();
-
-
             Player.TwoPairs = gameEngine.GetTwoPairs();
-
-
             Player.ThreeOfaKind = gameEngine.GetThreeOfAKind();
-
-
             Player.FourOfaKind = gameEngine.GetFourOfAKind();
-
-
             Player.SmalLadder = gameEngine.GetSmallLadder();
-
-
             Player.LargeLadder = gameEngine.GetLargeLadder();
-
-
             Player.FullHouse = gameEngine.GetFullHouse();
-
-
             Player.Chance = gameEngine.GetChance();
-
-
             Player.Yatzy = gameEngine.GetYatzy();
-
-
-
-
         }
 
         #endregion
@@ -282,8 +240,6 @@ namespace Yatzy.Models
                 + Player.Fives
                 + Player.Sixes;
         }
-
-
 
         public void SetBonus() //Ska vi lägga upperBonusLevel som indataparameter istället???
         {
