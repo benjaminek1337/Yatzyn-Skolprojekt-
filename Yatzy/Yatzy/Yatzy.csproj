@@ -63,6 +63,9 @@
     <Compile Include="GameEngine\PlayerEngine.cs" />
     <Compile Include="ViewModels\AddPlayerViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
+    <Compile Include="Views\ChoseGameType.xaml.cs">
+      <DependentUpon>ChoseGameType.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DicesView.xaml.cs">
       <DependentUpon>DicesView.xaml</DependentUpon>
     </Compile>
@@ -81,6 +84,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ChoseGameType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DicesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -139,6 +146,14 @@
     <Resource Include="Resources\wood4.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\dice1.png" />
+    <Resource Include="Resources\dice2.png" />
+    <Resource Include="Resources\dice3.png" />
+    <Resource Include="Resources\dice4.png" />
+    <Resource Include="Resources\dice5.png" />
+    <Resource Include="Resources\dice6.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
