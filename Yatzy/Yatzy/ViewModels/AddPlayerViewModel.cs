@@ -11,7 +11,7 @@ using Yatzy.Models;
 
 namespace Yatzy.ViewModels
 {
-    class AddPlayerModel : INotifyPropertyChanged
+    class AddPlayerViewModel : INotifyPropertyChanged
     {
         PlayerEngine playerengine;
 

@@ -61,7 +61,7 @@
     </ApplicationDefinition>
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="GameEngine\PlayerEngine.cs" />
-    <Compile Include="ViewModels\AddPlayerModel.cs" />
+    <Compile Include="ViewModels\AddPlayerViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="Views\DicesView.xaml.cs">
       <DependentUpon>DicesView.xaml</DependentUpon>

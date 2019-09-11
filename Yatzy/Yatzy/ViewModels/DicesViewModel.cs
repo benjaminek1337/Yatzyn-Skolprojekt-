@@ -8,20 +8,23 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Yatzy.Commands;
+using Yatzy.GameEngine;
 
 namespace Yatzy.Models
 {
     class DicesViewModel : INotifyPropertyChanged
     {
         #region Objekt och lokala variabler
+        PlayerEngine playerEngine;
         Player activePlayer;
+        GameEngine gameEngine;
         private int count = 0;
         #endregion
 
         #region Properties 
         public RelayCommand SaveDiceCommand { get; set; }
         public RelayCommand RollDicesCommand { get; set; }
-        public RelayCommand ChooseScoreCatCommand { get; set; }
+        public RelayCommand ChooseScoreCategoryCommand { get; set; }
 
         private ObservableCollection<Dice> dices;
         public ObservableCollection<Dice> Dices
@@ -45,11 +48,11 @@ namespace Yatzy.Models
 
         #region Kalla på Game Engine och kolla poängkombinationer
 
-        GameEngine gameEngine;
+        
 
         private void GetGameEngine()
         {
-            gameEngine = new GameEngine(Dices);
+            gameEngine = new GameEngine(Dices, activePlayer);
             GetScoreCombinations();
         }
 
@@ -75,7 +78,10 @@ namespace Yatzy.Models
         {
             SaveDiceCommand = new RelayCommand(SaveDice, CanExecuteMethod);
             RollDicesCommand = new RelayCommand(RollDices, IsTriesEnabled);
-            ChooseScoreCatCommand = new RelayCommand(ChooseScoreCat, CanExecuteMethod);
+            ChooseScoreCategoryCommand = new RelayCommand(ChooseScoreCategory, IsCategoryEnabled);
+
+            playerEngine = new PlayerEngine();
+            
 
             Dice dice;
             Dices = new ObservableCollection<Dice>();
@@ -87,11 +93,26 @@ namespace Yatzy.Models
                     IsDiceEnabled = true
                 }; Dices.Add(dice);
             }
+
+            GetGameEngine();
+            GetActivePlayer();
+            Player.Firstname = activePlayer.Firstname; //NDISDILFSLDIUFHSUILSUILDGHSUILDFHSILDUFHSDUILFHLSIDUHFLSIUDFHSDUILFHs
         }
 
         #endregion
 
-        #region Metoder för att kasta/spara tärningar samt en bool för att godkänna att metod används
+        #region TESTMETOD FÖR ATT STARTA SPEL!!! TA BORT SEN!!!!!!! HELP FACK PLS SEND WIZARD!!
+
+
+
+        private void GetActivePlayer()
+        {
+            activePlayer = playerEngine.GetActivePlayer();
+        }
+
+        #endregion
+
+        #region Metoder för att kasta/spara/rensa tärningar samt en bool för att godkänna att metod används
         //Metod som skickar bool-värdet true till kommandot
 
         private bool CanExecuteMethod(object parameter)
@@ -141,23 +162,52 @@ namespace Yatzy.Models
                     Dices[i].DiceValue = rand;
                 }
 
-            }
-            GetGameEngine();
+            }            
             count++;
-            
-            
+                     
+        }
+
+        private void ResetDices()
+        {
+            count = 0;
+            for (int i = 0; i < Dices.Count; i++)
+            {
+                Dices[i].DiceValue = 0;
+                Dices[i].IsDiceEnabled = true;
+            }
+            ResetPlayer();
         }
 
         #endregion
 
-        #region Metod för att välja en poängkategori, samt metod för att godkänna valet
+        #region Metod för att välja en poängkategori, samt metod för att godkänna valet och nolla tärningarna
 
-        private void ChooseScoreCat(object parameter)
+        private void ChooseScoreCategory(object parameter)
         {
             Player.TotalScore += int.Parse(parameter.ToString());
+            activePlayer.TotalScore += int.Parse(parameter.ToString());
             //Fixa mer metoder för att spara poängkategori på spelare, totalpoäng samt byta till nästa spelare
+
+            ResetDices();
+            GetGameEngine();
+            playerEngine.SetActivePlayer(); // TA BORT, BARA FÖR TESTNING
+
+            GetActivePlayer();
+            Player.Firstname = activePlayer.Firstname;
         }
 
+        private bool IsCategoryEnabled(object parameter)
+        {
+            
+
+            return true;
+        }
+      
+
+        private void ResetPlayer()
+        {
+            GetScoreCombinations();
+        }
         #endregion
 
         #region Metod för att skicka alla tillgängliga poängkombinationer baserat på kastet
@@ -166,7 +216,7 @@ namespace Yatzy.Models
 
         public void GetScoreCombinations()
         {
-            //På agendan - lägga till alla poster här nedanför in i listan ScoreCalc för att summera alla tillgängliga poäng
+            
 
             Player = new Player();
             

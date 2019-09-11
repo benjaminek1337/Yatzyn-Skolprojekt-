@@ -13,33 +13,46 @@ namespace Yatzy.GameEngine
     {
         Player activePlayer;
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
-        private ObservableCollection<Player> players;
+        private ObservableCollection<Player> _activePlayers;
 
-        public ObservableCollection<Player> Players
+        public ObservableCollection<Player> ActivePlayers
         {
-            get { return players; }
-            set { players = value; PropertyChanged(this, new PropertyChangedEventArgs("Players"));}
+            get { return _activePlayers; }
+            set { _activePlayers = value; PropertyChanged(this, new PropertyChangedEventArgs("Players"));}
         }
 
+        public PlayerEngine()
+        {
+            ActivePlayers = new ObservableCollection<Player>();
+            activePlayer = new Player();
+            
+            AddPlayerHardCoded();
+            SetActivePlayer();
+        }
 
         public void AddPlayerHardCoded()
         {
-            if (Players.Count <= 4)
-            {
+            //if (Players.Count <= 4)
+            //{
                 Player p = new Player
                 {
                     Firstname = "Benjamin",
                     Lastname = "Ek",
                     Nickname = "Galne_Gunnar1337"
 
-                }; Players.Add(p);
+                }; ActivePlayers.Add(p);
                 Player p2 = new Player
                 {
                     Firstname = "Erik",
                     Lastname = "Öberg",
                     Nickname = "Examinator"
-                }; Players.Add(p2);
-            }
+                }; ActivePlayers.Add(p2);
+            //}
+        }
+
+        public Player GetActivePlayer()
+        {
+            return activePlayer;
         }
 
 
@@ -47,20 +60,20 @@ namespace Yatzy.GameEngine
         {
             int index = 0;
 
-            for (int i = 0; i < Players.Count; i++)
+            for (int i = 0; i < ActivePlayers.Count; i++)
             {
-                if (Players[i].Equals(activePlayer))
+                if (ActivePlayers[i].Equals(activePlayer))
                 {
                     index = i;
                 }
             }
             index++;
-            if (index.Equals(Players.Count))
+            if (index.Equals(ActivePlayers.Count))
             {
                 index = 0;
             }
 
-            activePlayer = Players[index];
+            activePlayer = ActivePlayers[index];
         }
 
 

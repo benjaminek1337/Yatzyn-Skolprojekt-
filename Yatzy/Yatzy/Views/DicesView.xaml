@@ -24,23 +24,25 @@
             </ListView.View>
         </ListView>
         <StackPanel Width="49">
-            <Button Content="{Binding Path = Player.Ones}" Command="{Binding ChooseScoreCatCommand}" CommandParameter="{Binding Path = Player.Ones}" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.Twos}" Command="{Binding ChooseScoreCatCommand}" CommandParameter="{Binding Path = Player.Twos}" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.Threes}" Command="{Binding ChooseScoreCatCommand}" CommandParameter="{Binding Path = Player.Threes}" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.Fours}" Command="{Binding ChooseScoreCatCommand}" CommandParameter="{Binding Path = Player.Fours}" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.Fives}" Command="{Binding ChooseScoreCatCommand}" CommandParameter="{Binding Path = Player.Fives}" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.Sixes}" Command="{Binding ChooseScoreCatCommand}" CommandParameter="{Binding Path = Player.Sixes}" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.Pair}" Command="{Binding ChooseScoreCatCommand}" CommandParameter="{Binding Path = Player.Pair}" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.TwoPairs}" Command="{Binding ChooseScoreCatCommand}" CommandParameter="{Binding Path = Player.TwoPairs}" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.ThreeOfaKind}" Command="{Binding ChooseScoreCatCommand}" CommandParameter="{Binding Path = Player.ThreeOfaKind}" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.FourOfaKind}" Command="{Binding ChooseScoreCatCommand}" CommandParameter="{Binding Path = Player.FourOfaKind}" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.SmalLadder}" Command="{Binding ChooseScoreCatCommand}" CommandParameter="{Binding Path = Player.SmalLadder}" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.LargeLadder}" Command="{Binding ChooseScoreCatCommand}" CommandParameter="{Binding Path = Player.LargeLadder}" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.FullHouse}" Command="{Binding ChooseScoreCatCommand}" CommandParameter="{Binding Path = Player.FullHouse}" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.Chance}" Command="{Binding ChooseScoreCatCommand}" CommandParameter="{Binding Path = Player.Chance}" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.Yatzy}" Command="{Binding ChooseScoreCatCommand}" CommandParameter="{Binding Path = Player.Yatzy}" VerticalAlignment="Top"/>
+            <Button Content="{Binding Path = Player.Ones}" Command="{Binding ChooseScoreCategoryCommand}" CommandParameter="{Binding Path = Player.Ones}" VerticalAlignment="Top"/>
+            <Button Content="{Binding Path = Player.Twos}" Command="{Binding ChooseScoreCategoryCommand}" CommandParameter="{Binding Path = Player.Twos}" VerticalAlignment="Top"/>
+            <Button Content="{Binding Path = Player.Threes}" Command="{Binding ChooseScoreCategoryCommand}" CommandParameter="{Binding Path = Player.Threes}" VerticalAlignment="Top"/>
+            <Button Content="{Binding Path = Player.Fours}" Command="{Binding ChooseScoreCategoryCommand}" CommandParameter="{Binding Path = Player.Fours}" VerticalAlignment="Top"/>
+            <Button Content="{Binding Path = Player.Fives}" Command="{Binding ChooseScoreCategoryCommand}" CommandParameter="{Binding Path = Player.Fives}" VerticalAlignment="Top"/>
+            <Button Content="{Binding Path = Player.Sixes}" Command="{Binding ChooseScoreCategoryCommand}" CommandParameter="{Binding Path = Player.Sixes}" VerticalAlignment="Top"/>
+            <Button Content="{Binding Path = Player.Pair}" Command="{Binding ChooseScoreCategoryCommand}" CommandParameter="{Binding Path = Player.Pair}" VerticalAlignment="Top"/>
+            <Button Content="{Binding Path = Player.TwoPairs}" Command="{Binding ChooseScoreCategoryCommand}" CommandParameter="{Binding Path = Player.TwoPairs}" VerticalAlignment="Top"/>
+            <Button Content="{Binding Path = Player.ThreeOfaKind}" Command="{Binding ChooseScoreCategoryCommand}" CommandParameter="{Binding Path = Player.ThreeOfaKind}" VerticalAlignment="Top"/>
+            <Button Content="{Binding Path = Player.FourOfaKind}" Command="{Binding ChooseScoreCategoryCommand}" CommandParameter="{Binding Path = Player.FourOfaKind}" VerticalAlignment="Top"/>
+            <Button Content="{Binding Path = Player.SmalLadder}" Command="{Binding ChooseScoreCategoryCommand}" CommandParameter="{Binding Path = Player.SmalLadder}" VerticalAlignment="Top"/>
+            <Button Content="{Binding Path = Player.LargeLadder}" Command="{Binding ChooseScoreCategoryCommand}" CommandParameter="{Binding Path = Player.LargeLadder}" VerticalAlignment="Top"/>
+            <Button Content="{Binding Path = Player.FullHouse}" Command="{Binding ChooseScoreCategoryCommand}" CommandParameter="{Binding Path = Player.FullHouse}" VerticalAlignment="Top"/>
+            <Button Content="{Binding Path = Player.Chance}" Command="{Binding ChooseScoreCategoryCommand}" CommandParameter="{Binding Path = Player.Chance}" VerticalAlignment="Top"/>
+            <Button Content="{Binding Path = Player.Yatzy}" Command="{Binding ChooseScoreCategoryCommand}" CommandParameter="{Binding Path = Player.Yatzy}" VerticalAlignment="Top"/>
             <TextBox Text="{Binding Path = Player.TotalScore}" VerticalAlignment="Top"/>
         </StackPanel>
+        <Button x:Name="button2" Content="Starta spel" Command="{Binding StartGameCommand}" HorizontalAlignment="Left" Margin="95,344,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="label" Content="{Binding Path = Player.Firstname, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="44,309,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

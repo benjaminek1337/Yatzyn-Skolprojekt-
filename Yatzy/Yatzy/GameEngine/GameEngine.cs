@@ -9,32 +9,17 @@ namespace Yatzy.Models
 {
     class GameEngine
     {
-
         Player activePlayer;
-        DicesViewModel DicesViewModel;
-        public List<int> DicestestList = new List<int>(); //Testlista som ska tas bort efter att metoderna kopplats till rätt lista
-        private ObservableCollection<Dice> Dices;
-        
-
+        private ObservableCollection<Dice> Dices;      
         public int[] ArrayofCountedDices = new int[6];
 
-        public void RollDiceTest() //Testmetod som ska tas bort
-        {
-            DicestestList.Add(3);
-            DicestestList.Add(6);
-            DicestestList.Add(2);
-            DicestestList.Add(5);
-            DicestestList.Add(4);
 
-            DiceCount();
-
-        }
-
-        public GameEngine(ObservableCollection<Dice> dices)
+        public GameEngine(ObservableCollection<Dice> dices, Player _activePlayer)
         {
             activePlayer = new Player();
             Dices = new ObservableCollection<Dice>();
             Dices = dices;
+            activePlayer = _activePlayer;
             DiceCount();
         }
 
@@ -249,10 +234,16 @@ namespace Yatzy.Models
             {
                 if (Dices[i].DiceValue != Dices[0].DiceValue) //Kontrollerar om tärning 2-5 är olik tärning 1 och returnerar i så fall 0
                 {
-                    return sum;
+                    sum = 0;
                 }
+                else if(Dices[i].DiceValue > 0)
+                {
+                    sum = 50;
+                }
+
             }
-            return 50; 
+            return sum;
+            
         }
         #endregion
 
