@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Media;
+using Yatzy.ViewModels;
 
 namespace Yatzy
 {
@@ -29,8 +30,7 @@ namespace Yatzy
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SoundPlayer sound = new SoundPlayer("/Resources/DiceThrow.wav");
-            sound.PlaySync();
+            DataContext = new SettingsViewModel();
         }
 
 

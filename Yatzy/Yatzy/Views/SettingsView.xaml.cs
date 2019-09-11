@@ -18,20 +18,21 @@ using Yatzy.ViewModels;
 namespace Yatzy.Views
 {
     /// <summary>
-    /// Interaction logic for MainMenuView.xaml
+    /// Interaction logic for SettingsView.xaml
     /// </summary>
-    public partial class MainMenuView : UserControl
+    public partial class SettingsView : UserControl
     {
-        public MainMenuView()
+        
+        public SettingsView()
         {
-            MainMenuViewModel mainMenuViewModel = new MainMenuViewModel();
-            this.DataContext = mainMenuViewModel;
+            SettingsViewModel settingsViewModel = new SettingsViewModel();
+            this.DataContext = settingsViewModel;
             InitializeComponent();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DataContext = new SettingsViewModel();
+            DataContext = new MainMenuViewModel();
         }
     }
 }
