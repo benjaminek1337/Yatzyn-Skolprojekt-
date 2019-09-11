@@ -10,9 +10,35 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
     <UserControl.Resources>
+        
         <DataTemplate DataType="{x:Type ViewModels:MainMenuViewModel}">
             <Views:MainMenuView Content="{Binding}"/>
         </DataTemplate>
+
+        <Style x:Key="MyButton" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="MinHeight" Value="50"/>
+            <Setter Property="MinWidth" Value="50"/>
+            <Setter Property="FontStyle" Value="Normal"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" BorderBrush="Transparent" BorderThickness="0" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="border" Property="Background" Value="TRansparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+
+        </Style>
+
     </UserControl.Resources>
 
     <Viewbox Stretch="UniformToFill"  StretchDirection="Both">
@@ -68,7 +94,7 @@
 
             <StackPanel Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="1"  Grid.RowSpan="5" Margin="5">
 
-                <Button Background="Transparent" BorderThickness="0" HorizontalContentAlignment="Left">
+                <Button Style="{StaticResource MyButton}" >
 
                     <Label Content="Ljud" FontSize="45" Cursor="Hand" Margin="5">
                         <Label.Style>
@@ -110,7 +136,7 @@
                     </Label.Style>
                 </Label>
 
-                <Button Command="{Binding MainMenuCommand}" Background="Transparent" BorderThickness="0" HorizontalContentAlignment="Left">
+                <Button Style="{StaticResource MyButton}" Command="{Binding MainMenuCommand}" >
 
                     <Label Content="Hem" FontSize="45" Cursor="Hand" Margin="5" >
                         <Label.Style>

@@ -10,10 +10,42 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
     <UserControl.Resources>
+        
         <DataTemplate DataType="{x:Type ViewModels:SettingsViewModel}">
             <Views:SettingsView Content="{Binding}"/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type ViewModels:LeaderBoardViewModel}">
+            <Views:LeaderBoardView Content="{Binding }"/>
+        </DataTemplate>
+
+        <Style x:Key="MyButton" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="MinHeight" Value="50"/>
+            <Setter Property="MinWidth" Value="50"/>
+            <Setter Property="FontStyle" Value="Normal"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" BorderBrush="Transparent" BorderThickness="0" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="border" Property="Background" Value="TRansparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+
+        </Style>
+        
     </UserControl.Resources>
+    
+    
 
     <Viewbox Stretch="UniformToFill"  StretchDirection="Both">
         
@@ -63,13 +95,13 @@
 
 
             <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2">
-                <Label Content="YATZY"  HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="55" Foreground="DodgerBlue" Margin="50"/>
+                <Label Content="YATZY" VerticalContentAlignment="Top" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="55" Foreground="DodgerBlue" Margin="50"/>
             </StackPanel>
 
 
             <StackPanel Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="1"  Grid.RowSpan="5" Margin="5">
 
-                <Button Background="Transparent" BorderThickness="0" HorizontalContentAlignment="Left">
+                <Button Style="{StaticResource MyButton}">
 
                     <Label Name="play" Content="Spela" FontSize="45" Cursor="Hand" Margin="5">
                         <Label.Style>
@@ -85,7 +117,7 @@
                     </Label>
                 </Button>
 
-                <Button Background="Transparent" BorderThickness="0"  HorizontalContentAlignment="Left">
+                <Button  Style="{StaticResource MyButton}" Command="{Binding LeaderBoardCommand}">
                     <Label Name="leaderboard" Content="Leaderboard" FontSize="45" Cursor="Hand" Margin="5"  >
                         <Label.Style>
                             <Style>
@@ -101,7 +133,7 @@
 
                 </Button>
 
-                <Button Background="Transparent" BorderThickness="0"  HorizontalContentAlignment="Left">
+                <Button Style="{StaticResource MyButton}">
                     <Label Name="rules" Content="Regler" FontSize="45" Cursor="Hand" Margin="5" >
                         <Label.Style>
                             <Style>
@@ -117,7 +149,7 @@
 
                 </Button>
 
-                <Button Background="Transparent" BorderThickness="0"  HorizontalContentAlignment="Left"  Command="{Binding SettingsCommand}">
+                <Button Style="{StaticResource MyButton}"  Command="{Binding SettingsCommand}">
                     <Label Name="alternativ" Content="Alternativ" FontSize="45" Cursor="Hand" Margin="5" >
                         <Label.Style>
                             <Style>
@@ -134,7 +166,7 @@
 
             </StackPanel>
 
-            <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="6" Margin="0"  Content="{Binding SelectedViewModel}"/>
+            <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7" Margin="0"  Content="{Binding SelectedViewModel}"/>
 
         </Grid>
     </Viewbox>

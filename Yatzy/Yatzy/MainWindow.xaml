@@ -16,6 +16,34 @@
             <Views:SettingsView Content="{Binding}"/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type ViewModels:LeaderBoardViewModel}">
+            <Views:LeaderBoardView Content="{Binding }"/>
+        </DataTemplate>
+
+        <Style x:Key="MyButton" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="MinHeight" Value="50"/>
+            <Setter Property="MinWidth" Value="50"/>
+            <Setter Property="FontStyle" Value="Normal"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" BorderBrush="Transparent" BorderThickness="0" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="border" Property="Background" Value="TRansparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+
+        </Style>
+
     </Window.Resources>
 
     <Viewbox Stretch="UniformToFill">
@@ -51,11 +79,6 @@
             </StackPanel>
 
 
-            <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2">
-                <Label Content="YATZY"  HorizontalAlignment="Center" FontSize="55" Foreground="DodgerBlue" />
-            </StackPanel>
-
-
             <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3">
                 <Image Source="/Resources/tester.png"  MaxHeight="800" MaxWidth="300" RenderTransformOrigin="0.5,0.5" Opacity="1">
                     <Image.RenderTransform>
@@ -70,10 +93,15 @@
             </StackPanel>
 
 
+            <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <Label Content="YATZY"  HorizontalAlignment="Center" FontSize="55" Foreground="DodgerBlue" />
+            </StackPanel>
+
+
             <StackPanel Grid.Row="2" Grid.Column="3"  Grid.RowSpan="5" Margin="5" >
 
-                <Button Background="Transparent" BorderBrush="Transparent" BorderThickness="0" HorizontalContentAlignment="Left">
-                    <Label Name="play" Content="Spela" FontSize="45" Cursor="Hand" Margin="10" HorizontalAlignment="Left">
+                <Button Style="{StaticResource MyButton}" >
+                    <Label Content="Spela" FontSize="45" Cursor="Hand" Margin="10" HorizontalAlignment="Left">
                         <Label.Style>
                             <Style>
                                 <Setter Property="Label.Foreground" Value="AntiqueWhite" />
@@ -86,19 +114,23 @@
                         </Label.Style>
                     </Label>
                 </Button>
+                
+                <Button Style="{StaticResource MyButton}" Command="{Binding LeaderBoardCommand}">
+                    <Label Name="leaderboard" Content="Leaderboard" FontSize="45" Cursor="Hand" Margin="10" >
+                        <Label.Style>
+                            <Style>
+                                <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
+                                <Style.Triggers>
+                                    <Trigger Property="Label.IsMouseOver" Value="true">
+                                        <Setter Property="Label.Foreground" Value="IndianRed"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Label.Style>
+                    </Label>
 
-                <Label Name="leaderboard" Content="Leaderboard" FontSize="45" Cursor="Hand" Margin="10" >
-                    <Label.Style>
-                        <Style>
-                            <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
-                            <Style.Triggers>
-                                <Trigger Property="Label.IsMouseOver" Value="true">
-                                    <Setter Property="Label.Foreground" Value="IndianRed"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Label.Style>
-                </Label>
+                </Button>
+
 
                 <Label  Content="Regler" FontSize="45" Cursor="Hand" Margin="10">
 
@@ -114,8 +146,7 @@
                     </Label.Style>
                 </Label>
 
-                <Button Background="Transparent" BorderBrush="Transparent"  HorizontalContentAlignment="Left" Command="{Binding SettingsCommand}" >
-
+                <Button Style="{StaticResource MyButton}" Command="{Binding SettingsCommand}">
                     <Label Content="Alternativ" FontSize="45" Cursor="Hand" Margin="10" >
                         <Label.Style>
                             <Style>
@@ -131,7 +162,7 @@
                 </Button>
             </StackPanel>
 
-            <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="6" Content="{Binding SelectedViewModel}"/>
+            <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7" Content="{Binding SelectedViewModel}"/>
         </Grid>
     </Viewbox>
 </Window>
