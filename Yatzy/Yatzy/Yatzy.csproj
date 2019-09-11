@@ -168,5 +168,9 @@
   <ItemGroup>
     <Resource Include="Resources\redigera.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\soundoff.png" />
+    <Resource Include="Resources\soundon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

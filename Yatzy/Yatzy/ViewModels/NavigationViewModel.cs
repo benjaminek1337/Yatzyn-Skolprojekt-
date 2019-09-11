@@ -11,7 +11,7 @@ namespace Yatzy.ViewModels
 {
     class NavigationViewModel : INotifyPropertyChanged
     {
-        #region Commands
+        #region Properties
 
         public ICommand SettingsCommand { get; set; }
         public ICommand MainMenuCommand { get; set; }
@@ -60,6 +60,9 @@ namespace Yatzy.ViewModels
         {
             SelectedViewModel = new LeaderBoardViewModel();
         }
+        #endregion
+
+        #region Event Handlers
         private void OnPropertyChanged(string v)
         {
             if (PropertyChanged !=null)
@@ -67,7 +70,8 @@ namespace Yatzy.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(v));
             }
         }
-        #endregion
         public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
     }
 }
