@@ -29,6 +29,8 @@ namespace Yatzy.Models
         /// </summary>
         public void DiceCount()
         {
+            Array.Clear(ArrayofCountedDices, 0, ArrayofCountedDices.Length);
+
             for (int i = 0; i < 5; i++)
             {
                 if (Dices[i].DiceValue == 1)
@@ -235,6 +237,7 @@ namespace Yatzy.Models
                 if (Dices[i].DiceValue != Dices[0].DiceValue) //Kontrollerar om tärning 2-5 är olik tärning 1 och returnerar i så fall 0
                 {
                     sum = 0;
+                    break;
                 }
                 else if(Dices[i].DiceValue > 0)
                 {
