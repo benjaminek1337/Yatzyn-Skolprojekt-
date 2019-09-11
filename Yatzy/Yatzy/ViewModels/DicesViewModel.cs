@@ -81,6 +81,7 @@ namespace Yatzy.Models
             ChooseScoreCategoryCommand = new RelayCommand(ChooseScoreCategory, IsCategoryEnabled);
 
             playerEngine = new PlayerEngine();
+            Player = new Player();
             
 
             Dice dice;
@@ -97,6 +98,7 @@ namespace Yatzy.Models
             GetGameEngine();
             GetActivePlayer();
             Player.Firstname = activePlayer.Firstname; //NDISDILFSLDIUFHSUILSUILDGHSUILDFHSILDUFHSDUILFHLSIDUHFLSIUDFHSDUILFHs
+            Player.TotalScore = activePlayer.TotalScore;
         }
 
         #endregion
@@ -164,7 +166,7 @@ namespace Yatzy.Models
 
             }            
             count++;
-                     
+            GetScoreCombinations();      
         }
 
         private void ResetDices()
@@ -183,8 +185,7 @@ namespace Yatzy.Models
         #region Metod för att välja en poängkategori, samt metod för att godkänna valet och nolla tärningarna
 
         private void ChooseScoreCategory(object parameter)
-        {
-            Player.TotalScore += int.Parse(parameter.ToString());
+        {            
             activePlayer.TotalScore += int.Parse(parameter.ToString());
             //Fixa mer metoder för att spara poängkategori på spelare, totalpoäng samt byta till nästa spelare
 
@@ -194,6 +195,7 @@ namespace Yatzy.Models
 
             GetActivePlayer();
             Player.Firstname = activePlayer.Firstname;
+            Player.TotalScore = activePlayer.TotalScore;
         }
 
         private bool IsCategoryEnabled(object parameter)
@@ -216,9 +218,9 @@ namespace Yatzy.Models
 
         public void GetScoreCombinations()
         {
-            
+            gameEngine.DiceCount();
 
-            Player = new Player();
+            //Player = new Player();
             
             Player.Ones = gameEngine.GetUpperScore(1);
 
@@ -263,6 +265,8 @@ namespace Yatzy.Models
 
 
             Player.Yatzy = gameEngine.GetYatzy();
+
+
 
 
         }
