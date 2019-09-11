@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Media;
 using Yatzy.ViewModels;
 
+
 namespace Yatzy
 {
     /// <summary>
@@ -24,18 +25,9 @@ namespace Yatzy
     {
         public MainWindow()
         {
+            this.DataContext = new NavigationViewModel();
             InitializeComponent();
-            MessageBox.Show("Chef");
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            DataContext = new SettingsViewModel();
-        }
-
-
-
-
 
         //SoundPlayer sound = new SoundPlayer("Resources/DiceThrow.wav"); //.wav ska vara Embedded Resource annars hittar inte VS filen
 

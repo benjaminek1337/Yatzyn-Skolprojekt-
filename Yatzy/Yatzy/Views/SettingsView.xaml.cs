@@ -25,14 +25,11 @@ namespace Yatzy.Views
         
         public SettingsView()
         {
-            SettingsViewModel settingsViewModel = new SettingsViewModel();
-            this.DataContext = settingsViewModel;
+
+            this.DataContext = new NavigationViewModel();
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            DataContext = new MainMenuViewModel();
-        }
+
     }
 }

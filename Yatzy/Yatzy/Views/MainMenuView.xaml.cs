@@ -24,8 +24,7 @@ namespace Yatzy.Views
     {
         public MainMenuView()
         {
-            MainMenuViewModel mainMenuViewModel = new MainMenuViewModel();
-            this.DataContext = mainMenuViewModel;
+            this.DataContext = new NavigationViewModel();
             InitializeComponent();
         }
 

@@ -7,10 +7,5 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
 
-        <DataTemplate DataType="{x:Type ViewModels:MainMenuViewModel}">
-            <Views:MainMenuView Content="{Binding}"/>
-        </DataTemplate>
-        
-        
     </Application.Resources>
 </Application>

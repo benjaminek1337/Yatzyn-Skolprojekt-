@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Yatzy"
         xmlns:ViewModels="clr-namespace:Yatzy.ViewModels"
         xmlns:Views="clr-namespace:Yatzy.Views"
+        
         mc:Ignorable="d"
         Title="YATZY" Height="450" Width="800">
 
@@ -16,59 +17,62 @@
         </DataTemplate>
 
     </Window.Resources>
-    
+
     <Viewbox Stretch="UniformToFill">
-        
-    <Grid Margin="0">
-        
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition MinWidth="70"/>
-        </Grid.ColumnDefinitions>
-        
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+        <Grid Margin="0">
 
-        </Grid.RowDefinitions>
-        
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7">
-            <Image Source="Resources/wood4.jpg" Opacity="1" Stretch="UniformToFill"/>
-        </StackPanel>
-        
-        
-        <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2">
-            <Label Content="YATZY"  HorizontalAlignment="Center" FontSize="55" Foreground="DodgerBlue" />
-        </StackPanel>
-        
-        
-        <Border BorderBrush="Black" BorderThickness="1" MinHeight="203" MinWidth="150" Grid.RowSpan="4" Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2">
-                <Rectangle  Fill="LightGray" Opacity="50"/>
 
-        </Border>
-        
-        
-        <StackPanel Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" Grid.RowSpan="4" Cursor="Pen">
-            <Label Content="YATZY" FontSize="20" Background="Azure" BorderBrush="Black" BorderThickness="1"/>
-        </StackPanel>
-        
-        
-        <StackPanel Grid.Row="2" Grid.Column="3"  Grid.RowSpan="5" Margin="5" >
-            
-                <Button Background="Transparent" BorderBrush="Transparent" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition MinWidth="70"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="184"/>
+                <RowDefinition Height="184*"/>
+                <RowDefinition Height="142*"/>
+                <RowDefinition Height="142*"/>
+                <RowDefinition Height="143*"/>
+                <RowDefinition Height="142*"/>
+                <RowDefinition Height="143*"/>
+
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7">
+                <Image Source="Resources/wood4.jpg" Opacity="1" Stretch="UniformToFill"/>
+            </StackPanel>
+
+
+            <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <Label Content="YATZY"  HorizontalAlignment="Center" FontSize="55" Foreground="DodgerBlue" />
+            </StackPanel>
+
+
+            <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3">
+                <Image Source="/Resources/tester.png"  MaxHeight="800" MaxWidth="300" RenderTransformOrigin="0.5,0.5" Opacity="1">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+            </StackPanel>
+
+
+            <StackPanel Grid.Row="2" Grid.Column="3"  Grid.RowSpan="5" Margin="5" >
+
+                <Button Background="Transparent" BorderBrush="Transparent" BorderThickness="0" HorizontalContentAlignment="Left">
                     <Label Name="play" Content="Spela" FontSize="45" Cursor="Hand" Margin="10" HorizontalAlignment="Left">
                         <Label.Style>
                             <Style>
@@ -82,36 +86,37 @@
                         </Label.Style>
                     </Label>
                 </Button>
-            
-                <Label Name="leaderboard" Content="Leaderboard" FontSize="45" Cursor="Hand" Margin="10" >
-                <Label.Style>
-                    <Style>
-                        <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
-                        <Style.Triggers>
-                            <Trigger Property="Label.IsMouseOver" Value="true">
-                                <Setter Property="Label.Foreground" Value="IndianRed"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Label.Style>
-            </Label>
-            
-            <Label Name="rules" Content="Regler" FontSize="45" Cursor="Hand" Margin="10" >
-                <Label.Style>
-                    <Style>
-                        <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
-                        <Style.Triggers>
-                            <Trigger Property="Label.IsMouseOver" Value="true">
-                                <Setter Property="Label.Foreground" Value="IndianRed"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Label.Style>
-            </Label>
-            
-                <Button  Background="Transparent" BorderBrush="Transparent"  Click="Button_Click" HorizontalContentAlignment="Left" >
 
-                    <Label Name="alternativ" Content="Alternativ" FontSize="45" Cursor="Hand" Margin="10" >
+                <Label Name="leaderboard" Content="Leaderboard" FontSize="45" Cursor="Hand" Margin="10" >
+                    <Label.Style>
+                        <Style>
+                            <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
+                            <Style.Triggers>
+                                <Trigger Property="Label.IsMouseOver" Value="true">
+                                    <Setter Property="Label.Foreground" Value="IndianRed"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
+
+                <Label  Content="Regler" FontSize="45" Cursor="Hand" Margin="10">
+
+                    <Label.Style>
+                        <Style>
+                            <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
+                            <Style.Triggers>
+                                <Trigger Property="Label.IsMouseOver" Value="true">
+                                    <Setter Property="Label.Foreground" Value="IndianRed"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
+
+                <Button Background="Transparent" BorderBrush="Transparent"  HorizontalContentAlignment="Left" Command="{Binding SettingsCommand}" >
+
+                    <Label Content="Alternativ" FontSize="45" Cursor="Hand" Margin="10" >
                         <Label.Style>
                             <Style>
                                 <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
@@ -124,8 +129,9 @@
                         </Label.Style>
                     </Label>
                 </Button>
-        </StackPanel>
-            <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Content="{Binding}"/>
+            </StackPanel>
+
+            <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="6" Content="{Binding SelectedViewModel}"/>
         </Grid>
     </Viewbox>
 </Window>
