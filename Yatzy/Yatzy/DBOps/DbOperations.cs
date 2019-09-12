@@ -13,6 +13,8 @@ namespace Yatzy.DBOps
     class DbOperations
     {
 
+        string Connect = ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString;
+
         #region Metoder som hämtar data
         public ObservableCollection<Player> GetPlayers()
         {
@@ -55,43 +57,33 @@ namespace Yatzy.DBOps
         }
 
 
-
-          public ObservableCollection<Player> GetPlayersTransaction()
-          {
+        public ObservableCollection<Player> GetPlayersTransaction()
+        {
             Player p;
 
             ObservableCollection<Player> players = new ObservableCollection<Player>();
 
-            using (var conn = new
-                NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            NpgsqlTransaction transaction = null;
+            NpgsqlConnection conn = null;
+            NpgsqlCommand cmd = null;
+
+
+            try
             {
+                string[] stmts = new string[2];
+                stmts[0] = "SELECT * FROM player";
+                stmts[1] = "SELECT * FROM player";
 
-                    NpgsqlTransaction transaction = null;
-                    string [] stmts = new string [1];
-                    stmts [0] = "SELECT * FROM player";
-                    stmts [1] = "SELECT * FROM players";
+                conn = new NpgsqlConnection(Connect);
+                conn.Open();
+                transaction = conn.BeginTransaction();
 
-                try 
-	            {	        
-		                conn.Open();
-
-                 using (var cmd = new NpgsqlCommand())
-                 {
-                    
-                    cmd.Connection = conn;
-                    transaction = conn.BeginTransaction();
-
-                    for (int i = 0; i < stmts.length; i++)
-			        {
-
-			        
-                       cmd.CommandText = stmts[i];
-
-                    
-
-                      using (var reader = cmd.ExecuteReader())
-                      {
-
+                for (int i = 0; i < stmts.Length; i++)                          
+                {
+                    cmd = new NpgsqlCommand(stmts[i], conn);
+                    cmd.Transaction = transaction;
+                    using (var reader = cmd.ExecuteReader())
+                    {
                         while (reader.Read())
                         {
                             p = new Player()
@@ -99,43 +91,36 @@ namespace Yatzy.DBOps
                                 Nickname = reader.GetString(2),
                                 Firstname = reader.GetString(1),
                                 Lastname = reader.GetString(3)
-
                             };
 
                             players.Add(p);
-                        };
-                          
 
-                      }
+                        }
                     }
-                    transaction.Commit();
-                    return players;
-                    
-                 }
-	            }
-	            catch (Exception error)
-	            {
-	     	     transaction.Rollback();
-	            }
-
-                finally
-                {
-                    if (conn.State = System.Data.ConnectionState.Open)
-	                {
-                        conn.Close();
-	                }
-
-
                 }
+
+                transaction.Commit();
+                conn.Close();
+                return players;
+
 
 
             }
+            catch (Exception ex)
+            {
 
-            
+                transaction.Rollback();
+                conn.Close();
+                return null;
+            }
 
-            
 
-          }
+
+
+        }
+
+
+         
 
 
         #endregion
