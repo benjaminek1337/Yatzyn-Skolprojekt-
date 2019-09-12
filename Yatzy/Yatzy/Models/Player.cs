@@ -19,24 +19,24 @@ namespace Yatzy.Models
         private string _lastname;
         private string _nickname;
 
-        private int _ones;
-        private int _twos;
-        private int _threes;
-        private int _fours;
-        private int _fives;
-        private int _sixes;
-        private int _upperScore;
-        private int _upperBonus;
-        private int _pair;
-        private int _twoPairs;
-        private int _threeOfaKind;
-        private int _fourOfaKind;
-        private int _smalLadder;
-        private int _largeLadder;
-        private int _fullHouse;
-        private int _chance;
-        private int _yatzy;
-        private int _totalScore;
+        private int? _ones;
+        private int? _twos;
+        private int? _threes;
+        private int? _fours;
+        private int? _fives;
+        private int? _sixes;
+        private int? _upperScore;
+        private int? _upperBonus;
+        private int? _pair;
+        private int? _twoPairs;
+        private int? _threeOfaKind;
+        private int? _fourOfaKind;
+        private int? _smalLadder;
+        private int? _largeLadder;
+        private int? _fullHouse;
+        private int? _chance;
+        private int? _yatzy;
+        private int? _totalScore;
         #endregion
 
 
@@ -82,7 +82,7 @@ namespace Yatzy.Models
         #endregion
 
         #region dice result properties
-        public int Ones
+        public int? Ones
         {
             get { return _ones; }
             set
@@ -94,7 +94,7 @@ namespace Yatzy.Models
                 }
             }
         }
-        public int Twos
+        public int? Twos
         {
             get { return _twos; }
             set
@@ -106,7 +106,7 @@ namespace Yatzy.Models
                 }
             }
         }
-        public int Threes
+        public int? Threes
         {
             get { return _threes; }
             set
@@ -118,7 +118,7 @@ namespace Yatzy.Models
                 }
             }
         }
-        public int Fours
+        public int? Fours
         {
             get { return _fours; }
             set
@@ -130,7 +130,7 @@ namespace Yatzy.Models
                 }
             }
         }
-        public int Fives
+        public int? Fives
         {
             get { return _fives; }
             set
@@ -142,7 +142,7 @@ namespace Yatzy.Models
                 }
             }
         }
-        public int Sixes
+        public int? Sixes
         {
             get { return _sixes; }
             set
@@ -154,7 +154,7 @@ namespace Yatzy.Models
                 }
             }
         }
-        public int UpperScore
+        public int? UpperScore
         {
             get { return _upperScore; }
             set
@@ -166,7 +166,7 @@ namespace Yatzy.Models
                 }
             }
         }
-        public int UpperBonus
+        public int? UpperBonus
         {
             get { return _upperBonus; }
             set
@@ -179,7 +179,7 @@ namespace Yatzy.Models
             }
         }
 
-        public int Pair
+        public int? Pair
         {
             get { return _pair; }
             set
@@ -191,7 +191,7 @@ namespace Yatzy.Models
                 }
             }
         }
-        public int TwoPairs
+        public int? TwoPairs
         {
             get { return _twoPairs; }
             set
@@ -203,7 +203,7 @@ namespace Yatzy.Models
                 }
             }
         }
-        public int ThreeOfaKind
+        public int? ThreeOfaKind
         {
             get { return _threeOfaKind; }
             set
@@ -216,7 +216,7 @@ namespace Yatzy.Models
             }
         }
 
-        public int FourOfaKind
+        public int? FourOfaKind
         {
             get { return _fourOfaKind; }
             set
@@ -228,7 +228,7 @@ namespace Yatzy.Models
                 }
             }
         }
-        public int SmalLadder
+        public int? SmalLadder
         {
             get { return _smalLadder; }
             set
@@ -241,7 +241,7 @@ namespace Yatzy.Models
             }
         }
 
-        public int LargeLadder
+        public int? LargeLadder
         {
             get { return _largeLadder; }
             set
@@ -254,7 +254,7 @@ namespace Yatzy.Models
             }
         }
 
-        public int FullHouse
+        public int? FullHouse
         {
             get { return _fullHouse; }
             set
@@ -267,7 +267,7 @@ namespace Yatzy.Models
             }
         }
 
-        public int Chance
+        public int? Chance
         {
             get { return _chance; }
             set
@@ -279,7 +279,7 @@ namespace Yatzy.Models
                 }
             }
         }
-        public int Yatzy
+        public int? Yatzy
         {
             get { return _yatzy; }
             set
@@ -292,7 +292,7 @@ namespace Yatzy.Models
             }
         }
         
-        public int TotalScore
+        public int? TotalScore
         {
             get { return _totalScore; }
             set

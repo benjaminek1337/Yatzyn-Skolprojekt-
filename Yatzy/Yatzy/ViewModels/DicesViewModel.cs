@@ -243,8 +243,8 @@ namespace Yatzy.Models
 
         public void SetBonus() //Ska vi lägga upperBonusLevel som indataparameter istället???
         {
-            int upperBonusLevel = 63;
-            int totalUpperScore = Player.Ones
+            int? upperBonusLevel = 63;
+            int? totalUpperScore = Player.Ones
                 + Player.Twos
                 + Player.Threes
                 + Player.Fours
