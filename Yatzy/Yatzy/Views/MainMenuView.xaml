@@ -39,10 +39,9 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-
-
         </Style>
         
+     
     </UserControl.Resources>
     
     
@@ -65,18 +64,18 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="184"/>
-                <RowDefinition Height="123*"/>
-                <RowDefinition Height="59*"/>
-                <RowDefinition Height="59*"/>
-                <RowDefinition Height="59*"/>
-                <RowDefinition Height="59*"/>
-                <RowDefinition Height="59*"/>
+                <RowDefinition Height="184*"/>
+                <RowDefinition Height="142*"/>
+                <RowDefinition Height="142*"/>
+                <RowDefinition Height="143*"/>
+                <RowDefinition Height="142*"/>
+                <RowDefinition Height="143*"/>
 
             </Grid.RowDefinitions>
 
 
             <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7">
-                <Image Source="/Resources/wood4.jpg" x:Name="backgroundpic" Margin="0" Opacity="1" Stretch="UniformToFill"/>
+                <Image Source="/Resources/wood4.jpg" x:Name="backgroundpic" Margin="0" Opacity="1"/>
             </StackPanel>
 
 

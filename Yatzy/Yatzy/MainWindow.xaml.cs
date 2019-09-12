@@ -26,6 +26,7 @@ namespace Yatzy
         public MainWindow()
         {
             this.DataContext = new NavigationViewModel();
+
             InitializeComponent();
         }
 

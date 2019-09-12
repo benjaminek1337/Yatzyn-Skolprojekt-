@@ -29,16 +29,42 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter TargetName="border" Property="Background" Value="TRansparent"/>
+                                <Setter TargetName="border" Property="Background" Value="Transparent"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-
-
         </Style>
 
+        <Style x:Key="Back" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="MinHeight" Value="50"/>
+            <Setter Property="MinWidth" Value="50"/>
+            <Setter Property="FontStyle" Value="Normal"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Image Name="MouseOver" Source="/Resources/MouseOver.png"/>
+                            <Image Name="NotMouseOver" Source="/Resources/NotMouseOver.png"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Image.IsMouseOver" Value="true">
+                                <Setter TargetName="MouseOver" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="NotMouseOver" Property="Visibility" Value="Hidden"/>
+                            </Trigger>
+                            <Trigger Property="Image.IsMouseOver" Value="false">
+                                <Setter TargetName="MouseOver" Property="Visibility" Value="Hidden"/>
+                                <Setter TargetName="NotMouseOver" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+             
     </UserControl.Resources>
 
     <Viewbox Stretch="UniformToFill"  StretchDirection="Both">
@@ -72,7 +98,7 @@
                 <Image Source="/Resources/wood4.jpg" Opacity="1" Stretch="UniformToFill"/>
             </StackPanel>
 
-
+            
             <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3">
                 <Image Source="/Resources/tester.png"  MaxHeight="800" MaxWidth="300" RenderTransformOrigin="0.5,0.5" Opacity="1">
                     <Image.RenderTransform>
@@ -86,6 +112,11 @@
                 </Image>
             </StackPanel>
 
+
+            <StackPanel Grid.Row="0" Grid.Column="0" MaxHeight="110" MaxWidth="110">
+                <Button Style="{StaticResource Back}" Command="{Binding MainMenuCommand}"/>
+            </StackPanel>
+            
 
             <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2">
                 <Label Content="YATZY"  HorizontalAlignment="Center" FontSize="55" Foreground="DodgerBlue" />
@@ -110,35 +141,8 @@
                     </Label>
                 </Button>
 
-                <Label  Content="Deutsch" FontSize="45" Cursor="Hand" Margin="5"  >
-                    <Label.Style>
-                        <Style>
-                            <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
-                            <Style.Triggers>
-                                <Trigger Property="Label.IsMouseOver" Value="true">
-                                    <Setter Property="Label.Foreground" Value="IndianRed"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Label.Style>
-                </Label>
-
-                <Label  Content="Lägg till spelare" FontSize="45" Cursor="Hand" Margin="5" >
-                    <Label.Style>
-                        <Style>
-                            <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
-                            <Style.Triggers>
-                                <Trigger Property="Label.IsMouseOver" Value="true">
-                                    <Setter Property="Label.Foreground" Value="IndianRed"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Label.Style>
-                </Label>
-
-                <Button Style="{StaticResource MyButton}" Command="{Binding MainMenuCommand}" >
-
-                    <Label Content="Hem" FontSize="45" Cursor="Hand" Margin="5" >
+                <Button Style="{StaticResource MyButton}">
+                    <Label  Content="Deutsch" FontSize="45" Cursor="Hand" Margin="5"  >
                         <Label.Style>
                             <Style>
                                 <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
@@ -152,9 +156,27 @@
                     </Label>
                 </Button>
 
+                <Button Style="{StaticResource MyButton}">
+                    <Label  Content="Lägg till spelare" FontSize="45" Cursor="Hand" Margin="5" >
+                        <Label.Style>
+                            <Style>
+                                <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
+                                <Style.Triggers>
+                                    <Trigger Property="Label.IsMouseOver" Value="true">
+                                        <Setter Property="Label.Foreground" Value="IndianRed"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Label.Style>
+                    </Label>
+                </Button>
+
+                
             </StackPanel>
 
             <ContentControl Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="9" Grid.RowSpan="6" Content="{Binding SelectedViewModel}"/>
+            
         </Grid>
     </Viewbox>
+    
 </UserControl>

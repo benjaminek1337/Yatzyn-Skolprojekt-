@@ -45,7 +45,6 @@ namespace Yatzy.ViewModels
             return true;
         }
 
-
         private void OpenSettings(object parameter)
         {
             SelectedViewModel = new SettingsViewModel();

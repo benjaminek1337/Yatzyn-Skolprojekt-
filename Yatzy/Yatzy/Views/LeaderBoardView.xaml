@@ -9,7 +9,35 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-
+        
+        <Style x:Key="Back" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="MinHeight" Value="50"/>
+            <Setter Property="MinWidth" Value="50"/>
+            <Setter Property="FontStyle" Value="Normal"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Image Name="MouseOver" Source="/Resources/MouseOver.png"/>
+                            <Image Name="NotMouseOver" Source="/Resources/NotMouseOver.png"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Image.IsMouseOver" Value="true">
+                                <Setter TargetName="MouseOver" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="NotMouseOver" Property="Visibility" Value="Hidden"/>
+                            </Trigger>
+                            <Trigger Property="Image.IsMouseOver" Value="false">
+                                <Setter TargetName="MouseOver" Property="Visibility" Value="Hidden"/>
+                                <Setter TargetName="NotMouseOver" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
     </UserControl.Resources>
 
     <Viewbox Stretch="UniformToFill"  StretchDirection="Both">
@@ -44,6 +72,11 @@
             </StackPanel>
 
 
+            <StackPanel Grid.Row="0" Grid.Column="0" MaxHeight="110" MaxWidth="110">
+                <Button Style="{StaticResource Back}" Command="{Binding MainMenuCommand}"/>
+            </StackPanel>
+
+
             <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3">
                 <Image Source="/Resources/tester.png"  MaxHeight="800" MaxWidth="300" RenderTransformOrigin="0.5,0.5" >
                     <Image.RenderTransform>
@@ -57,6 +90,7 @@
                 </Image>
             </StackPanel>
 
+            
             <StackPanel Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2">
                 <ListView BorderBrush="Black" Height="473" />
             </StackPanel>

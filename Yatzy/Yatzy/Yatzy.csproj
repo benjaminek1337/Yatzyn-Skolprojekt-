@@ -172,5 +172,9 @@
     <Resource Include="Resources\soundoff.png" />
     <Resource Include="Resources\soundon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\MouseOver.png" />
+    <Resource Include="Resources\NotMouseOver.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
