@@ -47,18 +47,6 @@ namespace Yatzy.GameEngine
                     Lastname = "Öberg",
                     Nickname = "Examinat0rN^"
                 }; ActivePlayers.Add(p2);
-            Player p3 = new Player
-            {
-                Firstname = "Johannes",
-                Lastname = "Lundqkqkqkqkqvist",
-                Nickname = "An4lD1gIt4L"
-            }; ActivePlayers.Add(p3);
-            Player p4 = new Player
-            {
-                Firstname = "Greger",
-                Lastname = "Lundqkqkqkqkqvist",
-                Nickname = "K4L"
-            }; ActivePlayers.Add(p4);
             //}
         }
 

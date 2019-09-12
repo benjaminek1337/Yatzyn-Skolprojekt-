@@ -16,7 +16,6 @@ namespace Yatzy.Models
     {
         #region Objekt och lokala variabler
         PlayerEngine playerEngine;
-        Player activePlayer;
         GameEngine gameEngine;
         private int count = 0;
         #endregion
@@ -25,6 +24,22 @@ namespace Yatzy.Models
         public RelayCommand SaveDiceCommand { get; set; }
         public RelayCommand RollDicesCommand { get; set; }
         public RelayCommand ChooseScoreCategoryCommand { get; set; }
+        public RelayCommand Ones { get; set; }
+        public RelayCommand Twos { get; set; }
+        public RelayCommand Threes { get; set; }
+        public RelayCommand Fours { get; set; }
+        public RelayCommand Fives { get; set; }
+        public RelayCommand Sixes { get; set; }
+        public RelayCommand Pair { get; set; }
+        public RelayCommand TwoPair { get; set; }
+        public RelayCommand Threeofakind { get; set; }
+        public RelayCommand Fourofakind { get; set; }
+        public RelayCommand Smallstraight { get; set; }
+        public RelayCommand Largestraight { get; set; }
+        public RelayCommand Fullhouse { get; set; }
+        public RelayCommand Chance { get; set; }
+        public RelayCommand Yatzy { get; set; }
+
 
         private ObservableCollection<Dice> dices;
         public ObservableCollection<Dice> Dices
@@ -44,10 +59,19 @@ namespace Yatzy.Models
             set { player = value; OnPropertyChanged(new PropertyChangedEventArgs("Player")); }
         }
 
+        private Player _activePlayer;
+
+        public Player activePlayer
+        {
+            get { return _activePlayer; }
+            set { _activePlayer = value; OnPropertyChanged(new PropertyChangedEventArgs("activePlayer")); }
+        }
+
+
         #endregion
 
         #region Instansera en ny Game Engine och kolla poäng
-       
+
         private void GetGameEngine()
         {
             gameEngine = new GameEngine(Dices, activePlayer);
@@ -76,7 +100,22 @@ namespace Yatzy.Models
         {
             SaveDiceCommand = new RelayCommand(SaveDice, CanExecuteMethod);
             RollDicesCommand = new RelayCommand(RollDices, IsTriesEnabled);
-            ChooseScoreCategoryCommand = new RelayCommand(ChooseScoreCategory, IsCategoryEnabled);
+            Ones = new RelayCommand(ChooseScoreCategory, IsOnesEnabled);
+            Twos = new RelayCommand(ChooseScoreCategory, IsTwosEnabled);
+            Threes = new RelayCommand(ChooseScoreCategory, IsThreesEnabled);
+            Fours = new RelayCommand(ChooseScoreCategory, IsFoursEnabled);
+            Fives = new RelayCommand(ChooseScoreCategory, IsFivesEnabled);
+            Sixes = new RelayCommand(ChooseScoreCategory, IsSixesEnabled);
+            Pair = new RelayCommand(ChooseScoreCategory, IsPairEnabled);
+            TwoPair = new RelayCommand(ChooseScoreCategory, IsTwoPairEnabled);
+            Threeofakind = new RelayCommand(ChooseScoreCategory, IsThreeOfaKindEnabled);
+            Fourofakind = new RelayCommand(ChooseScoreCategory, IsFourOfaKindEnabled);
+            Smallstraight = new RelayCommand(ChooseScoreCategory, IsSmalLadderEnabled);
+            Largestraight = new RelayCommand(ChooseScoreCategory, IsLargeLadderEnabled);
+            Fullhouse = new RelayCommand(ChooseScoreCategory, IsFullHouseEnabled);
+            Chance = new RelayCommand(ChooseScoreCategory, IsChanceEnabled);
+            Yatzy = new RelayCommand(ChooseScoreCategory, IsYatzyEnabled);
+
 
             playerEngine = new PlayerEngine();
             Player = new Player();
@@ -181,13 +220,43 @@ namespace Yatzy.Models
 
         #endregion
 
-        #region Metod för att välja en poängkategori, samt (framtida) metod för att se huruvida kategorin är tillgänglig eller ej
+        #region Metod för att välja en poängkategori
 
         private void ChooseScoreCategory(object parameter)
-        {
-            //Fixa metod för att spara poängkategori på aktiv spelare
-            activePlayer.TotalScore += int.Parse(parameter.ToString());
-            
+        {          
+            if (int.Parse(parameter.ToString()) == 1)
+                activePlayer.Ones = Player.Ones;
+            if (int.Parse(parameter.ToString()) == 2)
+                activePlayer.Twos = Player.Twos;
+            if (int.Parse(parameter.ToString()) == 3)
+                activePlayer.Threes = Player.Threes;
+            if (int.Parse(parameter.ToString()) == 4)
+                activePlayer.Fours = Player.Fours;
+            if (int.Parse(parameter.ToString()) == 5)
+                activePlayer.Fives = Player.Fives;
+            if (int.Parse(parameter.ToString()) == 6)
+                activePlayer.Sixes = Player.Sixes;
+            if (int.Parse(parameter.ToString()) == 7)
+                activePlayer.Pair = Player.Pair;
+            if (int.Parse(parameter.ToString()) == 8)
+                activePlayer.TwoPairs = Player.TwoPairs;
+            if (int.Parse(parameter.ToString()) == 9)
+                activePlayer.ThreeOfaKind = Player.ThreeOfaKind;
+            if (int.Parse(parameter.ToString()) == 10)
+                activePlayer.FourOfaKind = Player.FourOfaKind;
+            if (int.Parse(parameter.ToString()) == 11)
+                activePlayer.SmalLadder = Player.SmalLadder;
+            if (int.Parse(parameter.ToString()) == 12)
+                activePlayer.LargeLadder = Player.LargeLadder;
+            if (int.Parse(parameter.ToString()) == 13)
+                activePlayer.FullHouse = Player.FullHouse;
+            if (int.Parse(parameter.ToString()) == 14)
+                activePlayer.Chance = Player.Chance;
+            if (int.Parse(parameter.ToString()) == 15)
+                activePlayer.Yatzy = Player.Yatzy;
+
+
+            SetTotalScore();
             ResetDices();
             GetGameEngine();
             playerEngine.SetActivePlayer();
@@ -197,13 +266,118 @@ namespace Yatzy.Models
             Player.TotalScore = activePlayer.TotalScore;
         }
 
-        private bool IsCategoryEnabled(object parameter)
-        {
-            //Här kan det va bra att skriva smarta funktioner för att spärra en spelare från att välja samma kategori 2 ggr
+        #endregion
 
-            return true;
+        #region Bools för att avgöra om en kategori är sparad eller inte
+        private bool IsOnesEnabled(object parameter)
+        {
+            if (activePlayer.Ones != null)
+                return false;          
+            else
+                return true;            
         }
-      
+        private bool IsTwosEnabled(object parameter)
+        {
+            if (activePlayer.Twos != null)
+                return false;
+            else
+                return true;
+        }
+        private bool IsThreesEnabled(object parameter)
+        {
+            if (activePlayer.Threes != null)
+                return false;
+            else
+                return true;
+        }
+        private bool IsFoursEnabled(object parameter)
+        {
+            if (activePlayer.Fours != null)
+                return false;
+            else
+                return true;
+        }
+        private bool IsFivesEnabled(object parameter)
+        {
+            if (activePlayer.Fives != null)
+                return false;
+            else
+                return true;
+        }
+        private bool IsSixesEnabled(object parameter)
+        {
+            if (activePlayer.Sixes != null)
+                return false;
+            else
+                return true;
+        }
+        private bool IsPairEnabled(object parameter)
+        {
+            if (activePlayer.Pair != null)
+                return false;
+            else
+                return true;
+        }
+        private bool IsTwoPairEnabled(object parameter)
+        {
+            if (activePlayer.TwoPairs != null)
+                return false;
+            else
+                return true;
+        }
+        private bool IsThreeOfaKindEnabled(object parameter)
+        {
+            if (activePlayer.ThreeOfaKind != null)
+                return false;
+            else
+                return true;
+        }
+        private bool IsFourOfaKindEnabled(object parameter)
+        {
+            if (activePlayer.FourOfaKind != null)
+                return false;
+            else
+                return true;
+        }
+        private bool IsSmalLadderEnabled(object parameter)
+        {
+            if (activePlayer.SmalLadder != null)
+                return false;
+            else
+                return true;
+        }
+        private bool IsLargeLadderEnabled(object parameter)
+        {
+            if (activePlayer.LargeLadder != null)
+                return false;
+            else
+                return true;
+        }
+        private bool IsFullHouseEnabled(object parameter)
+        {
+            if (activePlayer.FullHouse != null)
+                return false;
+            else
+                return true;
+        }
+        private bool IsChanceEnabled(object parameter)
+        {
+            if (activePlayer.Chance != null)
+                return false;
+            else
+                return true;
+        }
+        private bool IsYatzyEnabled(object parameter)
+        {
+            if (activePlayer.Yatzy != null)
+                return false;
+            else
+                return true;
+        }
+
+
+
+
         #endregion
 
         #region Metod för att visa alla tillgängliga poängkombinationer baserat på tärningarna
@@ -233,43 +407,45 @@ namespace Yatzy.Models
 
         public void SetTotalUpperScore()
         {
-            Player.UpperScore = Player.Ones
-                + Player.Twos
-                + Player.Threes
-                + Player.Fours
-                + Player.Fives
-                + Player.Sixes;
+            activePlayer.UpperScore = activePlayer.Ones
+                + activePlayer.Twos
+                + activePlayer.Threes
+                + activePlayer.Fours
+                + activePlayer.Fives
+                + activePlayer.Sixes;
+            SetBonus();
         }
 
         public void SetBonus() //Ska vi lägga upperBonusLevel som indataparameter istället???
         {
-            int? upperBonusLevel = 63;
-            int? totalUpperScore = Player.Ones
-                + Player.Twos
-                + Player.Threes
-                + Player.Fours
-                + Player.Fives
-                + Player.Sixes;
+            int upperBonusLevel = 63;
+            int? totalUpperScore = activePlayer.Ones
+                + activePlayer.Twos
+                + activePlayer.Threes
+                + activePlayer.Fours
+                + activePlayer.Fives
+                + activePlayer.Sixes;
 
             if (totalUpperScore >= upperBonusLevel)
             {
-                Player.UpperBonus = 50;
+                activePlayer.UpperBonus = 50;
             }
         }
 
         public void SetTotalScore()
         {
-            Player.TotalScore = Player.UpperScore
-                + Player.UpperBonus
-                + Player.Pair
-                + Player.TwoPairs
-                + Player.ThreeOfaKind
-                + Player.FourOfaKind
-                + Player.SmalLadder
-                + Player.LargeLadder
-                + Player.FullHouse
-                + Player.Chance
-                + Player.Yatzy;
+            SetTotalUpperScore();
+            activePlayer.TotalScore = activePlayer.UpperScore
+                + activePlayer.UpperBonus
+                + activePlayer.Pair
+                + activePlayer.TwoPairs
+                + activePlayer.ThreeOfaKind
+                + activePlayer.FourOfaKind
+                + activePlayer.SmalLadder
+                + activePlayer.LargeLadder
+                + activePlayer.FullHouse
+                + activePlayer.Chance
+                + activePlayer.Yatzy;
         }
 
     }
