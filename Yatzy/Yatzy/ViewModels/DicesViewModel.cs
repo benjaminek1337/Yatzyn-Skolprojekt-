@@ -263,8 +263,8 @@ namespace Yatzy.Models
                 activePlayer.Yatzy = Player.Yatzy;
 
 
-            SetUpperScore();
-            SetTotalScore();
+            gameEngine.SetUpperScore(activePlayer);
+            gameEngine.SetTotalScore(activePlayer);
             ResetDices();
             GetGameEngine();
             playerEngine.SetActivePlayer();
@@ -408,65 +408,6 @@ namespace Yatzy.Models
             Player.Yatzy = gameEngine.GetYatzy();
         }
 
-        #endregion
-
-        #region Metoder för att sätta totalpoäng, samt beräkna de "övre" kategorierna och sätta bonus
-
-        private void SetUpperScore()
-        {
-            int?[] upperScoreArray = new int?[6];
-            int? upperScore = 0;
-
-            upperScoreArray[0] = activePlayer.Ones;
-            upperScoreArray[1] = activePlayer.Twos;
-            upperScoreArray[2] = activePlayer.Threes;
-            upperScoreArray[3] = activePlayer.Fours;
-            upperScoreArray[4] = activePlayer.Fives;
-            upperScoreArray[5] = activePlayer.Sixes;
-
-            for (int i = 0; i < upperScoreArray.Length; i++)
-            {
-                if (upperScoreArray[i] == null)
-                    break;
-                else
-                {                    
-                    upperScore += upperScoreArray[i];
-                    SetBonus(upperScore);
-                }                                       
-            }           
-        }
-
-        private void SetBonus(int? upperScore)
-        {
-            if (upperScore >= 63)
-                activePlayer.UpperBonus = 50;
-            else
-                activePlayer.UpperBonus = 0;
-        }
-
-        private void SetTotalScore()
-        {
-            int?[] totalScoreArray = new int?[16];
-
-            totalScoreArray[0] = activePlayer.Ones;
-            totalScoreArray[1] = activePlayer.Twos;
-            totalScoreArray[2] = activePlayer.Threes;
-            totalScoreArray[3] = activePlayer.Fours;
-            totalScoreArray[4] = activePlayer.Fives;
-            totalScoreArray[5] = activePlayer.Sixes;
-            totalScoreArray[6] = activePlayer.UpperBonus;
-            totalScoreArray[7] = activePlayer.Pair;
-            totalScoreArray[8] = activePlayer.TwoPairs;
-            totalScoreArray[9] = activePlayer.ThreeOfaKind;
-            totalScoreArray[10] = activePlayer.FourOfaKind;
-            totalScoreArray[11] = activePlayer.SmalLadder;
-            totalScoreArray[12] = activePlayer.LargeLadder;
-            totalScoreArray[13] = activePlayer.FullHouse;
-            totalScoreArray[14] = activePlayer.Chance;
-            totalScoreArray[15] = activePlayer.Yatzy;
-
-            activePlayer.TotalScore = totalScoreArray.Sum();
-        }
         #endregion
 
         #region Metoder för när spelet avslutas
