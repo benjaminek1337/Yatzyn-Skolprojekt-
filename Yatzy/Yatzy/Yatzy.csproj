@@ -85,6 +85,7 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="DBOps\DbOperations.cs" />
     <Compile Include="GameEngine\PlayerEngine.cs" />
+    <Compile Include="Models\Game.cs" />
     <Compile Include="ViewModels\AddPlayerViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="Views\ChoseGameType.xaml.cs">

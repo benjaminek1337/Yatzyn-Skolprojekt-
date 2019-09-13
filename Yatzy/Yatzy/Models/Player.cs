@@ -18,6 +18,7 @@ namespace Yatzy.Models
         private string _firstname;
         private string _lastname;
         private string _nickname;
+        private string _playerid;
 
         private int? _ones;
         private int? _twos;
@@ -76,6 +77,19 @@ namespace Yatzy.Models
                 {
                     _nickname = value;
                     OnPropertyChanged("Lastname");
+                }
+            }
+        }
+
+        public string PlayerId
+        {
+            get { return _playerid; }
+            set
+            {
+                if (value != _playerid)
+                {
+                    _playerid = value;
+                    OnPropertyChanged("PlayerID");
                 }
             }
         }
