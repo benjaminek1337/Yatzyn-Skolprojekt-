@@ -48,6 +48,7 @@
             <TextBox Text="{Binding Path= activePlayer.Fours}" />
             <TextBox Text="{Binding Path= activePlayer.Fives}" />
             <TextBox Text="{Binding Path= activePlayer.Sixes}" />
+            <TextBox Text="{Binding Path= activePlayer.UpperBonus}" />
             <TextBox Text="{Binding Path= activePlayer.Pair}" />
             <TextBox Text="{Binding Path= activePlayer.TwoPair}" />
             <TextBox Text="{Binding Path= activePlayer.ThreeOfaKind}" />
@@ -59,7 +60,7 @@
             <TextBox Text="{Binding Path= activePlayer.Yatzy}" />
             <TextBox Text="{Binding Path= activePlayer.TotalScore}" Margin="0,30,0,0" />
         </StackPanel>
-        <Label x:Name="label" Content="{Binding Path = Player.Firstname, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="512,20,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label" Content="{Binding Path = activePlayer.Firstname, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="512,20,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

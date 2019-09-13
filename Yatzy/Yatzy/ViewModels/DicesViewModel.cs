@@ -18,6 +18,7 @@ namespace Yatzy.Models
         PlayerEngine playerEngine;
         GameEngine gameEngine;
         private int count = 0;
+        
         #endregion
 
         #region Properties 
@@ -116,11 +117,9 @@ namespace Yatzy.Models
             Chance = new RelayCommand(ChooseScoreCategory, IsChanceEnabled);
             Yatzy = new RelayCommand(ChooseScoreCategory, IsYatzyEnabled);
 
-
             playerEngine = new PlayerEngine();
             Player = new Player();
             
-
             Dice dice;
             Dices = new ObservableCollection<Dice>();
             for (int i = 0; i < 5; i++)
@@ -134,8 +133,6 @@ namespace Yatzy.Models
 
             GetGameEngine();
             GetActivePlayer();
-            Player.Firstname = activePlayer.Firstname;
-            Player.TotalScore = activePlayer.TotalScore;
         }
 
         #endregion
@@ -214,8 +211,7 @@ namespace Yatzy.Models
             {
                 Dices[i].DiceValue = 0;
                 Dices[i].IsDiceEnabled = true;
-            }
-            //ResetPlayer();
+            }            
         }
 
         #endregion
@@ -256,14 +252,12 @@ namespace Yatzy.Models
                 activePlayer.Yatzy = Player.Yatzy;
 
 
+            SetUpperScore();
             SetTotalScore();
             ResetDices();
             GetGameEngine();
             playerEngine.SetActivePlayer();
-
             GetActivePlayer();
-            Player.Firstname = activePlayer.Firstname;
-            Player.TotalScore = activePlayer.TotalScore;
         }
 
         #endregion
@@ -382,7 +376,7 @@ namespace Yatzy.Models
 
         #region Metod för att visa alla tillgängliga poängkombinationer baserat på tärningarna
 
-        public void GetScoreCombinations()
+        private void GetScoreCombinations()
         {
             gameEngine.DiceCount();
             
@@ -405,49 +399,64 @@ namespace Yatzy.Models
 
         #endregion
 
-        public void SetTotalUpperScore()
-        {
-            activePlayer.UpperScore = activePlayer.Ones
-                + activePlayer.Twos
-                + activePlayer.Threes
-                + activePlayer.Fours
-                + activePlayer.Fives
-                + activePlayer.Sixes;
-            SetBonus();
-        }
+        #region Metoder för att sätta totalpoäng, samt beräkna de "övre" kategorierna och sätta bonus
 
-        public void SetBonus() //Ska vi lägga upperBonusLevel som indataparameter istället???
+        private void SetUpperScore()
         {
-            int upperBonusLevel = 63;
-            int? totalUpperScore = activePlayer.Ones
-                + activePlayer.Twos
-                + activePlayer.Threes
-                + activePlayer.Fours
-                + activePlayer.Fives
-                + activePlayer.Sixes;
+            int?[] upperScoreArray = new int?[6];
+            int? upperScore = 0;
 
-            if (totalUpperScore >= upperBonusLevel)
+            upperScoreArray[0] = activePlayer.Ones;
+            upperScoreArray[1] = activePlayer.Twos;
+            upperScoreArray[2] = activePlayer.Threes;
+            upperScoreArray[3] = activePlayer.Fours;
+            upperScoreArray[4] = activePlayer.Fives;
+            upperScoreArray[5] = activePlayer.Sixes;
+
+            for (int i = 0; i < upperScoreArray.Length; i++)
             {
-                activePlayer.UpperBonus = 50;
-            }
+                if (upperScoreArray[i] == null)
+                    break;
+                else
+                {                    
+                    upperScore += upperScoreArray[i];
+                    SetBonus(upperScore);
+                }                                       
+            }           
         }
 
-        public void SetTotalScore()
+        private void SetBonus(int? upperScore)
         {
-            SetTotalUpperScore();
-            activePlayer.TotalScore = activePlayer.UpperScore
-                + activePlayer.UpperBonus
-                + activePlayer.Pair
-                + activePlayer.TwoPairs
-                + activePlayer.ThreeOfaKind
-                + activePlayer.FourOfaKind
-                + activePlayer.SmalLadder
-                + activePlayer.LargeLadder
-                + activePlayer.FullHouse
-                + activePlayer.Chance
-                + activePlayer.Yatzy;
+            if (upperScore >= 63)
+                activePlayer.UpperBonus = 50;
+            else
+                activePlayer.UpperBonus = 0;
         }
 
+        private void SetTotalScore()
+        {
+            int?[] totalScoreArray = new int?[16];
+
+            totalScoreArray[0] = activePlayer.Ones;
+            totalScoreArray[1] = activePlayer.Twos;
+            totalScoreArray[2] = activePlayer.Threes;
+            totalScoreArray[3] = activePlayer.Fours;
+            totalScoreArray[4] = activePlayer.Fives;
+            totalScoreArray[5] = activePlayer.Sixes;
+            totalScoreArray[6] = activePlayer.UpperBonus;
+            totalScoreArray[7] = activePlayer.Pair;
+            totalScoreArray[8] = activePlayer.TwoPairs;
+            totalScoreArray[9] = activePlayer.ThreeOfaKind;
+            totalScoreArray[10] = activePlayer.FourOfaKind;
+            totalScoreArray[11] = activePlayer.SmalLadder;
+            totalScoreArray[12] = activePlayer.LargeLadder;
+            totalScoreArray[13] = activePlayer.FullHouse;
+            totalScoreArray[14] = activePlayer.Chance;
+            totalScoreArray[15] = activePlayer.Yatzy;
+
+            activePlayer.TotalScore = totalScoreArray.Sum();
+        }
+        #endregion
     }
 
    
