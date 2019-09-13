@@ -38,22 +38,27 @@ namespace Yatzy.GameEngine
 
         public void AddPlayerHardCoded()
         {
-            //if (ActivePlayers.Count <= 4)
-            //{
+
                 Player p = new Player
                 {
-                    Firstname = "Benjamin",
+                    Firstname = "Beendjaamiiihn",
                     Lastname = "Ek",
                     Nickname = "Galne_Gunnar1337"
 
                 }; ActivePlayers.Add(p);
-                Player p2 = new Player
-                {
-                    Firstname = "Erik",
-                    Lastname = "Öberg",
-                    Nickname = "Examinat0rN^"
-                }; ActivePlayers.Add(p2);
-            //}
+                //Player p2 = new Player
+                //{
+                //    Firstname = "Yohannys",
+                //    Lastname = "Öberg",
+                //    Nickname = "Examinat0rN^"
+                //}; ActivePlayers.Add(p2);
+                //Player p3 = new Player
+                //{
+                //    Firstname = "Däääämn",
+                //    Lastname = "Öberg",
+                //    Nickname = "Examinat0rN^"
+                //}; ActivePlayers.Add(p3);
+
         }
 
         public Player GetActivePlayer()
@@ -61,6 +66,10 @@ namespace Yatzy.GameEngine
             return activePlayer;
         }
 
+        public ObservableCollection<Player> GetList()
+        {
+            return ActivePlayers;
+        }
 
         public void SetActivePlayer()
         {

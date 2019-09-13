@@ -53,6 +53,15 @@ namespace Yatzy.Models
             }
         }
 
+        private ObservableCollection<Player> activePlayers;
+
+        public ObservableCollection<Player> ActivePlayers
+        {
+            get { return activePlayers; }
+            set { activePlayers = value; OnPropertyChanged(new PropertyChangedEventArgs("ActivePlayers")); }
+        }
+
+
         private Player player;
         public Player Player
         {
@@ -132,20 +141,23 @@ namespace Yatzy.Models
             }
 
             GetGameEngine();
-            GetActivePlayer();
+            GetPlayersObservableCollection();
+            GetActivePlayer();           
         }
 
         #endregion
 
-        
-
-        //Metod för att sätta den lokala instansen av objektet activePlayer till den activePlayer som lever i PlayerEngine       
+        #region Hämta spelare samt lista över spelare från PlayerEngine 
         private void GetActivePlayer()
         {
             activePlayer = playerEngine.GetActivePlayer();
         }
 
-        
+        private void GetPlayersObservableCollection ()
+        {
+            ActivePlayers = playerEngine.GetList();
+        }
+        #endregion
 
         #region Metoder för att kasta/spara/rensa tärningar samt en bool för att godkänna att metod används
         //Metod som skickar bool-värdet true till kommandot
@@ -252,8 +264,8 @@ namespace Yatzy.Models
                 activePlayer.Yatzy = Player.Yatzy;
 
 
-            SetUpperScore();
-            SetTotalScore();
+            gameEngine.SetUpperScore(activePlayer);
+            gameEngine.SetTotalScore(activePlayer);
             ResetDices();
             GetGameEngine();
             playerEngine.SetActivePlayer();
@@ -399,66 +411,21 @@ namespace Yatzy.Models
 
         #endregion
 
-        #region Metoder för att sätta totalpoäng, samt beräkna de "övre" kategorierna och sätta bonus
+        #region Metoder för när spelet avslutas
 
-        private void SetUpperScore()
+        private void QuitGame()
         {
-            int?[] upperScoreArray = new int?[6];
-            int? upperScore = 0;
 
-            upperScoreArray[0] = activePlayer.Ones;
-            upperScoreArray[1] = activePlayer.Twos;
-            upperScoreArray[2] = activePlayer.Threes;
-            upperScoreArray[3] = activePlayer.Fours;
-            upperScoreArray[4] = activePlayer.Fives;
-            upperScoreArray[5] = activePlayer.Sixes;
-
-            for (int i = 0; i < upperScoreArray.Length; i++)
-            {
-                if (upperScoreArray[i] == null)
-                    break;
-                else
-                {                    
-                    upperScore += upperScoreArray[i];
-                    SetBonus(upperScore);
-                }                                       
-            }           
         }
 
-        private void SetBonus(int? upperScore)
+        private void GameEnded()
         {
-            if (upperScore >= 63)
-                activePlayer.UpperBonus = 50;
-            else
-                activePlayer.UpperBonus = 0;
+
         }
 
-        private void SetTotalScore()
-        {
-            int?[] totalScoreArray = new int?[16];
-
-            totalScoreArray[0] = activePlayer.Ones;
-            totalScoreArray[1] = activePlayer.Twos;
-            totalScoreArray[2] = activePlayer.Threes;
-            totalScoreArray[3] = activePlayer.Fours;
-            totalScoreArray[4] = activePlayer.Fives;
-            totalScoreArray[5] = activePlayer.Sixes;
-            totalScoreArray[6] = activePlayer.UpperBonus;
-            totalScoreArray[7] = activePlayer.Pair;
-            totalScoreArray[8] = activePlayer.TwoPairs;
-            totalScoreArray[9] = activePlayer.ThreeOfaKind;
-            totalScoreArray[10] = activePlayer.FourOfaKind;
-            totalScoreArray[11] = activePlayer.SmalLadder;
-            totalScoreArray[12] = activePlayer.LargeLadder;
-            totalScoreArray[13] = activePlayer.FullHouse;
-            totalScoreArray[14] = activePlayer.Chance;
-            totalScoreArray[15] = activePlayer.Yatzy;
-
-            activePlayer.TotalScore = totalScoreArray.Sum();
-        }
         #endregion
     }
 
-   
+
 }
 
