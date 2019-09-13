@@ -16,8 +16,6 @@ namespace Yatzy.GameEngine
         Player activePlayer;
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         private ObservableCollection<Player> _activePlayers;
-        int lastGame;
-        private ObservableCollection<Game> listGames = new ObservableCollection<Game>();
 
         DBOps.DbOperations dbops;
 
