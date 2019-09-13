@@ -84,13 +84,13 @@
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="184"/>
-                <RowDefinition Height="184*"/>
-                <RowDefinition Height="142*"/>
-                <RowDefinition Height="142*"/>
-                <RowDefinition Height="143*"/>
-                <RowDefinition Height="142*"/>
-                <RowDefinition Height="143*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
 
             </Grid.RowDefinitions>
 
@@ -113,8 +113,8 @@
             </StackPanel>
 
 
-            <StackPanel Grid.Row="0" Grid.Column="0" MaxHeight="110" MaxWidth="110">
-                <Button Style="{StaticResource Back}" Command="{Binding MainMenuCommand}"/>
+            <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button Style="{StaticResource Back}" Command="{Binding MainMenuCommand}" MaxHeight="110" MaxWidth="110" MinHeight="80" MinWidth="80"/>
             </StackPanel>
             
 

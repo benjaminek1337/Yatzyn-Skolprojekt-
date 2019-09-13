@@ -9,7 +9,11 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        
+
+        <DataTemplate DataType="{x:Type ViewModels:MainMenuViewModel}">
+            <Views:MainMenuView Content="{Binding}"/>
+        </DataTemplate>
+
         <Style x:Key="Back" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="MinHeight" Value="50"/>
@@ -37,14 +41,14 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
     </UserControl.Resources>
 
-    <Viewbox Stretch="UniformToFill"  StretchDirection="Both">
-        <Grid Margin="0" MinHeight="450" MinWidth="800">
+    <Viewbox Stretch="UniformToFill"  StretchDirection="Both" MinHeight="450" MinWidth="800">
+        <Grid Margin="0"  Height="450" Width="800">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="80"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -56,24 +60,18 @@
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="184"/>
-                <RowDefinition Height="123*"/>
-                <RowDefinition Height="59*"/>
-                <RowDefinition Height="59*"/>
-                <RowDefinition Height="59*"/>
-                <RowDefinition Height="59*"/>
-                <RowDefinition Height="59*"/>
-
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
 
             <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7">
                 <Image Source="/Resources/wood4.jpg" x:Name="backgroundpic" Margin="0" Opacity="1" Stretch="UniformToFill"/>
-            </StackPanel>
-
-
-            <StackPanel Grid.Row="0" Grid.Column="0" MaxHeight="110" MaxWidth="110">
-                <Button Style="{StaticResource Back}" Command="{Binding MainMenuCommand}"/>
             </StackPanel>
 
 
@@ -90,12 +88,17 @@
                 </Image>
             </StackPanel>
 
+
+            <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button Style="{StaticResource Back}" Command="{Binding MainMenuCommand}" MaxHeight="110" MaxWidth="110" MinHeight="80" MinWidth="80"/>
+            </StackPanel>
             
+
             <StackPanel Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2">
                 <ListView BorderBrush="Black" Height="473" />
             </StackPanel>
 
-            <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7" Content="{Binding SelectedViewModel}"/>
+            <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7" Margin="0"  Content="{Binding SelectedViewModel}"/>
         </Grid>
 
     </Viewbox>
