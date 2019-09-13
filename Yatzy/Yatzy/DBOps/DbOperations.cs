@@ -57,38 +57,38 @@ namespace Yatzy.DBOps
             }
         }
 
-        public ObservableCollection<Game> GetGame()
-        {
-            Game g;
-            ObservableCollection<Game> games = new ObservableCollection<Game>();
+        //public ObservableCollection<Game> GetGame()
+        //{
+        //    Game g;
+        //    ObservableCollection<Game> games = new ObservableCollection<Game>();
 
-            NpgsqlConnection conn = null;
-            NpgsqlCommand cmd = null;
+        //    NpgsqlConnection conn = null;
+        //    NpgsqlCommand cmd = null;
 
 
-            string stmt = "SELECT game_id FROM game order by game_id asc";
+        //    string stmt = "SELECT game_id FROM game order by game_id asc";
 
-                conn = new NpgsqlConnection(Connect);
-                conn.Open();
+        //        conn = new NpgsqlConnection(Connect);
+        //        conn.Open();
 
-                cmd = new NpgsqlCommand(stmt, conn);
+        //        cmd = new NpgsqlCommand(stmt, conn);
                 
-                using (var reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        g = new Game()
-                        {
-                            GameId = reader.GetInt32(0)
-                        };
+        //        using (var reader = cmd.ExecuteReader())
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                g = new Game()
+        //                {
+        //                    GameId = reader.GetInt32(0)
+        //                };
 
-                        games.Add(g);
+        //                games.Add(g);
 
-                    }
-                }
-            conn.Close();
-            return games;
-        }
+        //            }
+        //        }
+        //    conn.Close();
+        //    return games;
+        //}
 
 
         public ObservableCollection<Player> GetPlayersTransaction()
@@ -136,7 +136,7 @@ namespace Yatzy.DBOps
                 conn.Close();
                 return players;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 transaction.Rollback();
@@ -153,7 +153,7 @@ namespace Yatzy.DBOps
 
 
         #region Metoder som skriver data
-        public void StartGameTransaction(List<Player> playerId, int last, int gameType)
+        public void StartGameTransaction(List<Player> playerId, int gameType)
         {
             
 
@@ -165,10 +165,10 @@ namespace Yatzy.DBOps
 
                 string stmt1 = "INSERT INTO game (gametype) VALUES (@gametype)";
                 string stmt2 = "SELECT game_id FROM game ORDER BY game_id DESC LIMIT 1";
-                string stmt3 = "INSERT INTO game_player (player_id, game_id) VALUES (@player_id, @last)";
+                string stmt3 = "INSERT INTO game_player (player_id, game_id) VALUES (@player_id, @game_id)";
 
                 cmd.Parameters.AddWithValue("gametype", gameType);
-                cmd.Parameters.AddWithValue("last", last);
+                cmd.Parameters.AddWithValue("game_id", gameId);
 
                 conn = new NpgsqlConnection(Connect);
                 conn.Open();
@@ -203,7 +203,7 @@ namespace Yatzy.DBOps
                 conn.Close();
                 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 transaction.Rollback();

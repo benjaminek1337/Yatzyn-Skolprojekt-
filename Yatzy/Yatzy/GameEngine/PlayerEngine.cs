@@ -16,8 +16,6 @@ namespace Yatzy.GameEngine
         Player activePlayer;
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         private ObservableCollection<Player> _activePlayers;
-        int lastGame;
-        private ObservableCollection<Game> listGames = new ObservableCollection<Game>();
 
         DBOps.DbOperations dbops;
 
@@ -36,39 +34,31 @@ namespace Yatzy.GameEngine
             SetActivePlayer();
         }
 
-        public void SetLastGame()
-        {
-            lastGame = listGames[listGames.Count - 1].GameId;
-        }
 
-        public int GetLastGame()
-        {
-            return lastGame;
-        }
-
-        public void FillGameList()
-        {
-            listGames = dbops.GetGame();
-        }
 
         public void AddPlayerHardCoded()
         {
-            //if (ActivePlayers.Count <= 4)
-            //{
+
                 Player p = new Player
                 {
-                    Firstname = "Benjamin",
+                    Firstname = "Beendjaamiiihn",
                     Lastname = "Ek",
                     Nickname = "Galne_Gunnar1337"
 
                 }; ActivePlayers.Add(p);
                 Player p2 = new Player
                 {
-                    Firstname = "Erik",
+                    Firstname = "Yohannys",
                     Lastname = "Öberg",
                     Nickname = "Examinat0rN^"
                 }; ActivePlayers.Add(p2);
-            //}
+                Player p3 = new Player
+                {
+                    Firstname = "Däääämn",
+                    Lastname = "Öberg",
+                    Nickname = "Examinat0rN^"
+                }; ActivePlayers.Add(p3);
+
         }
 
         public Player GetActivePlayer()
