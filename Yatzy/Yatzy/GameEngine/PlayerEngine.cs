@@ -36,20 +36,7 @@ namespace Yatzy.GameEngine
             SetActivePlayer();
         }
 
-        public void SetLastGame()
-        {
-            lastGame = listGames[listGames.Count - 1].GameId;
-        }
 
-        public int GetLastGame()
-        {
-            return lastGame;
-        }
-
-        public void FillGameList()
-        {
-            listGames = dbops.GetGame();
-        }
 
         public void AddPlayerHardCoded()
         {

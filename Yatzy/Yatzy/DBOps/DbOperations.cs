@@ -153,7 +153,7 @@ namespace Yatzy.DBOps
 
 
         #region Metoder som skriver data
-        public void StartGameTransaction(List<Player> playerId, int last, int gameType)
+        public void StartGameTransaction(List<Player> playerId, int gameType)
         {
             
 
@@ -165,10 +165,10 @@ namespace Yatzy.DBOps
 
                 string stmt1 = "INSERT INTO game (gametype) VALUES (@gametype)";
                 string stmt2 = "SELECT game_id FROM game ORDER BY game_id DESC LIMIT 1";
-                string stmt3 = "INSERT INTO game_player (player_id, game_id) VALUES (@player_id, @last)";
+                string stmt3 = "INSERT INTO game_player (player_id, game_id) VALUES (@player_id, @game_id)";
 
                 cmd.Parameters.AddWithValue("gametype", gameType);
-                cmd.Parameters.AddWithValue("last", last);
+                cmd.Parameters.AddWithValue("game_id", gameId);
 
                 conn = new NpgsqlConnection(Connect);
                 conn.Open();
