@@ -57,38 +57,6 @@ namespace Yatzy.DBOps
             }
         }
 
-        //public ObservableCollection<Game> GetGame()
-        //{
-        //    Game g;
-        //    ObservableCollection<Game> games = new ObservableCollection<Game>();
-
-        //    NpgsqlConnection conn = null;
-        //    NpgsqlCommand cmd = null;
-
-
-        //    string stmt = "SELECT game_id FROM game order by game_id asc";
-
-        //        conn = new NpgsqlConnection(Connect);
-        //        conn.Open();
-
-        //        cmd = new NpgsqlCommand(stmt, conn);
-                
-        //        using (var reader = cmd.ExecuteReader())
-        //        {
-        //            while (reader.Read())
-        //            {
-        //                g = new Game()
-        //                {
-        //                    GameId = reader.GetInt32(0)
-        //                };
-
-        //                games.Add(g);
-
-        //            }
-        //        }
-        //    conn.Close();
-        //    return games;
-        //}
 
 
         public ObservableCollection<Player> GetPlayersTransaction()
@@ -102,9 +70,8 @@ namespace Yatzy.DBOps
             NpgsqlCommand cmd = null;
             try
             {
-                string[] stmts = new string[2];
+                string[] stmts = new string[1];
                 stmts[0] = "SELECT * FROM player";
-                stmts[1] = "SELECT * FROM player";
 
                 conn = new NpgsqlConnection(Connect);
                 conn.Open();
@@ -153,7 +120,9 @@ namespace Yatzy.DBOps
 
 
         #region Metoder som skriver data
-        public void StartGameTransaction(List<Player> playerId, int gameType)
+
+        //Tar just nu emot en array med player ID, detta skall bytas ut mot lista med active players
+        public void StartGameTransaction(int [] playerId, int gameType)
         {
             
 
@@ -163,12 +132,12 @@ namespace Yatzy.DBOps
             try
             {
 
-                string stmt1 = "INSERT INTO game (gametype) VALUES (@gametype)";
+                string stmt1 = "INSERT INTO game (gametype_id) VALUES (@gametype_id)";
                 string stmt2 = "SELECT game_id FROM game ORDER BY game_id DESC LIMIT 1";
                 string stmt3 = "INSERT INTO game_player (player_id, game_id) VALUES (@player_id, @game_id)";
 
-                cmd.Parameters.AddWithValue("gametype", gameType);
-                cmd.Parameters.AddWithValue("game_id", gameId);
+                //cmd.Parameters.AddWithValue("gametype", gameType);
+                //cmd.Parameters.AddWithValue("game_id", gameId);
 
                 conn = new NpgsqlConnection(Connect);
                 conn.Open();
@@ -176,9 +145,11 @@ namespace Yatzy.DBOps
 
                 cmd = new NpgsqlCommand(stmt1, conn);
                 cmd.Transaction = transaction;
+                cmd.Parameters.AddWithValue("gametype_id", gameType);
                 cmd.ExecuteNonQuery();
 
                 cmd = new NpgsqlCommand(stmt2, conn);
+                cmd.Parameters.AddWithValue("game_id", gameId);
                 cmd.Transaction = transaction;
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -189,15 +160,16 @@ namespace Yatzy.DBOps
                     }
                 }
 
-
-                for (int i = 0; i < playerId.Count; i++)
+                foreach (var item in playerId)
                 {
-                    cmd.Parameters.AddWithValue("player_id", playerId[i]);
                     cmd = new NpgsqlCommand(stmt3, conn);
                     cmd.Transaction = transaction;
+                    cmd.Parameters.AddWithValue("player_id", item);
+                    cmd.Parameters.AddWithValue("game_id", gameId);
                     cmd.ExecuteNonQuery();
-
                 }
+
+
 
                 transaction.Commit();
                 conn.Close();
@@ -205,15 +177,49 @@ namespace Yatzy.DBOps
             }
             catch (Exception)
             {
-
+                
                 transaction.Rollback();
                 conn.Close();
                 
             }
         }
 
+        public void AbortGameTransaction()
+        {
+            NpgsqlTransaction transaction = null;
+            NpgsqlConnection conn = null;
+            NpgsqlCommand cmd = null;
+            try
+            {
 
+                string[] stmts = new string[2];
+                stmts[0] = "DELETE FROM game_player WHERE game_id = @game_id";
+                stmts[1] = "DELETE FROM game WHERE game_id = @game_id";
 
+                conn = new NpgsqlConnection(Connect);
+                conn.Open();
+                transaction = conn.BeginTransaction();
+
+                for (int i = 0; i < stmts.Length; i++)
+                {
+                    cmd = new NpgsqlCommand(stmts[i], conn);
+                    cmd.Transaction = transaction;
+                    cmd.Parameters.AddWithValue("game_id", gameId);
+                    cmd.ExecuteNonQuery();
+                }
+
+                transaction.Commit();
+                conn.Close();
+
+            }
+            catch (Exception)
+            {
+
+                transaction.Rollback();
+                conn.Close();
+
+            }
+        }
 
 
         #endregion
