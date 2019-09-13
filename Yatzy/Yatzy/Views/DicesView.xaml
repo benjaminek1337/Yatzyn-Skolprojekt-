@@ -50,12 +50,12 @@
             <TextBox Text="{Binding Path= activePlayer.Sixes}" />
             <TextBox Text="{Binding Path= activePlayer.UpperBonus}" />
             <TextBox Text="{Binding Path= activePlayer.Pair}" />
-            <TextBox Text="{Binding Path= activePlayer.TwoPair}" />
+            <TextBox Text="{Binding Path= activePlayer.TwoPairs}" />
             <TextBox Text="{Binding Path= activePlayer.ThreeOfaKind}" />
             <TextBox Text="{Binding Path= activePlayer.FourOfaKind}" />
             <TextBox Text="{Binding Path= activePlayer.SmalLadder}" />
             <TextBox Text="{Binding Path= activePlayer.LargeLadder}" />
-            <TextBox Text="{Binding Path= activePlayer.Fullhouse}" />
+            <TextBox Text="{Binding Path= activePlayer.FullHouse}" />
             <TextBox Text="{Binding Path= activePlayer.Chance}" />
             <TextBox Text="{Binding Path= activePlayer.Yatzy}" />
             <TextBox Text="{Binding Path= activePlayer.TotalScore}" Margin="0,30,0,0" />

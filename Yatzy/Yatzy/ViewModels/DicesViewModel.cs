@@ -457,8 +457,22 @@ namespace Yatzy.Models
             activePlayer.TotalScore = totalScoreArray.Sum();
         }
         #endregion
+
+        #region Metoder för när spelet avslutas
+
+        private void QuitGame()
+        {
+
+        }
+
+        private void GameEnded()
+        {
+
+        }
+
+        #endregion
     }
 
-   
+
 }
 
