@@ -66,6 +66,10 @@ namespace Yatzy.GameEngine
             return activePlayer;
         }
 
+        public ObservableCollection<Player> GetList()
+        {
+            return ActivePlayers;
+        }
 
         public void SetActivePlayer()
         {

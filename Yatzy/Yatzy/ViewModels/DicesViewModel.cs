@@ -53,6 +53,15 @@ namespace Yatzy.Models
             }
         }
 
+        private ObservableCollection<Player> activePlayers;
+
+        public ObservableCollection<Player> ActivePlayers
+        {
+            get { return activePlayers; }
+            set { activePlayers = value; OnPropertyChanged(new PropertyChangedEventArgs("ActivePlayers")); }
+        }
+
+
         private Player player;
         public Player Player
         {
@@ -137,15 +146,17 @@ namespace Yatzy.Models
 
         #endregion
 
-        
-
-        //Metod för att sätta den lokala instansen av objektet activePlayer till den activePlayer som lever i PlayerEngine       
+        #region Hämta spelare samt lista över spelare från PlayerEngine 
         private void GetActivePlayer()
         {
             activePlayer = playerEngine.GetActivePlayer();
         }
 
-        
+        private void GetPlayersObservableCollection ()
+        {
+            ActivePlayers = playerEngine.GetList();
+        }
+        #endregion
 
         #region Metoder för att kasta/spara/rensa tärningar samt en bool för att godkänna att metod används
         //Metod som skickar bool-värdet true till kommandot
