@@ -13,7 +13,9 @@ namespace Yatzy.DBOps
     class DbOperations
     {
 
+
         string Connect = ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString;
+        int gameId;
 
         #region Metoder som hämtar data
         public ObservableCollection<Player> GetPlayers()
@@ -21,6 +23,7 @@ namespace Yatzy.DBOps
             Player p;
 
             ObservableCollection<Player> players = new ObservableCollection<Player>();
+            
 
             using (var conn = new
                 NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
@@ -51,9 +54,40 @@ namespace Yatzy.DBOps
                     }
                 }
                 return players;
-
             }
+        }
 
+        public ObservableCollection<Game> GetGame()
+        {
+            Game g;
+            ObservableCollection<Game> games = new ObservableCollection<Game>();
+
+            NpgsqlConnection conn = null;
+            NpgsqlCommand cmd = null;
+
+
+            string stmt = "SELECT game_id FROM game order by game_id asc";
+
+                conn = new NpgsqlConnection(Connect);
+                conn.Open();
+
+                cmd = new NpgsqlCommand(stmt, conn);
+                
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        g = new Game()
+                        {
+                            GameId = reader.GetInt32(0)
+                        };
+
+                        games.Add(g);
+
+                    }
+                }
+            conn.Close();
+            return games;
         }
 
 
@@ -66,8 +100,6 @@ namespace Yatzy.DBOps
             NpgsqlTransaction transaction = null;
             NpgsqlConnection conn = null;
             NpgsqlCommand cmd = null;
-
-
             try
             {
                 string[] stmts = new string[2];
@@ -90,7 +122,8 @@ namespace Yatzy.DBOps
                             {
                                 Nickname = reader.GetString(2),
                                 Firstname = reader.GetString(1),
-                                Lastname = reader.GetString(3)
+                                Lastname = reader.GetString(3),
+                                PlayerId = reader.GetString(0)
                             };
 
                             players.Add(p);
@@ -102,9 +135,6 @@ namespace Yatzy.DBOps
                 transaction.Commit();
                 conn.Close();
                 return players;
-
-
-
             }
             catch (Exception ex)
             {
@@ -113,14 +143,77 @@ namespace Yatzy.DBOps
                 conn.Close();
                 return null;
             }
-
-
-
-
         }
 
 
-         
+
+
+
+        #endregion
+
+
+        #region Metoder som skriver data
+        public void StartGameTransaction(List<Player> playerId, int last, int gameType)
+        {
+            
+
+            NpgsqlTransaction transaction = null;
+            NpgsqlConnection conn = null;
+            NpgsqlCommand cmd = null;
+            try
+            {
+
+                string stmt1 = "INSERT INTO game (gametype) VALUES (@gametype)";
+                string stmt2 = "SELECT game_id FROM game ORDER BY game_id DESC LIMIT 1";
+                string stmt3 = "INSERT INTO game_player (player_id, game_id) VALUES (@player_id, @last)";
+
+                cmd.Parameters.AddWithValue("gametype", gameType);
+                cmd.Parameters.AddWithValue("last", last);
+
+                conn = new NpgsqlConnection(Connect);
+                conn.Open();
+                transaction = conn.BeginTransaction();
+
+                cmd = new NpgsqlCommand(stmt1, conn);
+                cmd.Transaction = transaction;
+                cmd.ExecuteNonQuery();
+
+                cmd = new NpgsqlCommand(stmt2, conn);
+                cmd.Transaction = transaction;
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        gameId = reader.GetInt32(0);
+
+                    }
+                }
+
+
+                for (int i = 0; i < playerId.Count; i++)
+                {
+                    cmd.Parameters.AddWithValue("player_id", playerId[i]);
+                    cmd = new NpgsqlCommand(stmt3, conn);
+                    cmd.Transaction = transaction;
+                    cmd.ExecuteNonQuery();
+
+                }
+
+                transaction.Commit();
+                conn.Close();
+                
+            }
+            catch (Exception ex)
+            {
+
+                transaction.Rollback();
+                conn.Close();
+                
+            }
+        }
+
+
+
 
 
         #endregion

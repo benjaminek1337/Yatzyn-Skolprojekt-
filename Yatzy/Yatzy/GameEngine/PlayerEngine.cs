@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Yatzy.Models;
+using Yatzy.DBOps;
+
 
 namespace Yatzy.GameEngine
 {
@@ -14,6 +16,10 @@ namespace Yatzy.GameEngine
         Player activePlayer;
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         private ObservableCollection<Player> _activePlayers;
+        int lastGame;
+        private ObservableCollection<Game> listGames = new ObservableCollection<Game>();
+
+        DBOps.DbOperations dbops;
 
         public ObservableCollection<Player> ActivePlayers
         {
@@ -28,6 +34,21 @@ namespace Yatzy.GameEngine
             
             AddPlayerHardCoded();
             SetActivePlayer();
+        }
+
+        public void SetLastGame()
+        {
+            lastGame = listGames[listGames.Count - 1].GameId;
+        }
+
+        public int GetLastGame()
+        {
+            return lastGame;
+        }
+
+        public void FillGameList()
+        {
+            listGames = dbops.GetGame();
         }
 
         public void AddPlayerHardCoded()
