@@ -141,7 +141,8 @@ namespace Yatzy.Models
             }
 
             GetGameEngine();
-            GetActivePlayer();
+            GetPlayersObservableCollection();
+            GetActivePlayer();           
         }
 
         #endregion
