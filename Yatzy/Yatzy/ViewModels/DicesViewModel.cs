@@ -40,6 +40,7 @@ namespace Yatzy.Models
         public RelayCommand Fullhouse { get; set; }
         public RelayCommand Chance { get; set; }
         public RelayCommand Yatzy { get; set; }
+        public RelayCommand QuitGameCommand { get; set; }
 
 
         private ObservableCollection<Dice> dices;
@@ -125,6 +126,7 @@ namespace Yatzy.Models
             Fullhouse = new RelayCommand(ChooseScoreCategory, IsFullHouseEnabled);
             Chance = new RelayCommand(ChooseScoreCategory, IsChanceEnabled);
             Yatzy = new RelayCommand(ChooseScoreCategory, IsYatzyEnabled);
+            QuitGameCommand = new RelayCommand(QuitGame, CanExecuteMethod);
 
             playerEngine = new PlayerEngine();
             Player = new Player();
@@ -413,14 +415,24 @@ namespace Yatzy.Models
 
         #region Metoder för när spelet avslutas
 
-        private void QuitGame()
+        private void QuitGame(object parameter)
         {
-
+            //Fixa dialogval och kör metod för att avsluta spel o nolla i databas
         }
 
         private void GameEnded()
         {
+            for (int i = 0; i < ActivePlayers.Count; i++)
+            {
+                if (ActivePlayers[i])//Hitta ett sätt att se till att alla spelares props inte har nullvärden.
+                {
+                    for (int j = 0; j < ActivePlayers.Count; j++)
+                    {
+                        //Metod för att kolla vilket TotalScore prop som är högst. Registrera i databas.
 
+                    }
+                }
+            }
         }
 
         #endregion
