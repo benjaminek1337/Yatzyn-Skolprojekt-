@@ -64,6 +64,7 @@
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -86,12 +87,16 @@
     <Compile Include="DBOps\DbOperations.cs" />
     <Compile Include="GameEngine\PlayerEngine.cs" />
     <Compile Include="ViewModels\AddPlayerViewModel.cs" />
+    <Compile Include="ViewModels\CreateGameViewModel.cs" />
     <Compile Include="ViewModels\LeaderBoardViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\NavigationViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="Views\ChoseGameType.xaml.cs">
       <DependentUpon>ChoseGameType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateGameView.xaml.cs">
+      <DependentUpon>CreateGameView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DicesView.xaml.cs">
       <DependentUpon>DicesView.xaml</DependentUpon>
@@ -124,6 +129,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\ChoseGameType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreateGameView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

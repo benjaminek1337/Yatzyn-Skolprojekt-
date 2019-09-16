@@ -108,8 +108,9 @@ namespace Yatzy.Models
         //DiceValue är tom tills tärningarna "kastas" med en metod nedanför.
         //Kommandon instanseras även
 
-        public DicesViewModel()
+        public DicesViewModel(int _gameType)
         {
+            gameType = _gameType;
             SaveDiceCommand = new RelayCommand(SaveDice, CanExecuteMethod);
             RollDicesCommand = new RelayCommand(RollDices, IsTriesEnabled);
             Ones = new RelayCommand(ChooseScoreCategory, IsOnesEnabled);
