@@ -16,7 +16,7 @@ namespace Yatzy.ViewModels
         public ICommand SettingsCommand { get; set; }
         public ICommand MainMenuCommand { get; set; }
         public ICommand LeaderBoardCommand { get; set; }
-        public ICommand AddPlayerCommand { get; set; }
+        
 
         private object selectedViewModel;
 
@@ -35,7 +35,7 @@ namespace Yatzy.ViewModels
             SettingsCommand = new RelayCommand(OpenSettings, CanExecuteMethod);
             MainMenuCommand = new RelayCommand(OpenMainMenu, CanExecuteMethod);
             LeaderBoardCommand = new RelayCommand(OpenLeaderBoard, CanExecuteMethod);
-            AddPlayerCommand = new RelayCommand(OpenAddPlayer, CanExecuteMethod);
+           
         }
 
         #endregion
@@ -62,10 +62,6 @@ namespace Yatzy.ViewModels
             SelectedViewModel = new LeaderBoardViewModel();
         }
 
-        private void OpenAddPlayer(object parameter)
-        {
-            SelectedViewModel = new AddPlayerViewModel();
-        }
 
         #endregion
 

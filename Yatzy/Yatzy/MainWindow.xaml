@@ -75,7 +75,7 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7">
-                <Image Source="Resources/wood4.jpg" Opacity="1" Stretch="UniformToFill"/>
+                <Image Source="/Resources/wood4.jpg" Opacity="1" Stretch="UniformToFill"/>
             </StackPanel>
 
 

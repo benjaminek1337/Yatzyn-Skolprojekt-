@@ -65,10 +65,22 @@
             </Setter>
         </Style>
 
-        <Style x:Key="LeaderBoard" TargetType="Label">
-            <Setter Property="MinHeight" Value="50"/>
-            <Setter Property="MinWidth" Value="50"/>
-            <Setter Property="FontSize" Value="30"/>
+        <Style x:Key="LeaderBoard" TargetType="ListView">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="MinHeight" Value="400"/>
+            <Setter Property="MinWidth" Value="300"/>
+            <Setter Property="MaxHeight" Value="400"/>
+            <Setter Property="MaxWidth" Value="300"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListView">
+                        <Grid>
+                            
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
     </UserControl.Resources>
