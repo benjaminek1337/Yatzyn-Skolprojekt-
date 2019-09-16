@@ -18,7 +18,8 @@ namespace Yatzy.Models
         private string _firstname;
         private string _lastname;
         private string _nickname;
-        private string _playerid;
+        private int _playerid;
+        private int _highscore;
 
         private int? _ones;
         private int? _twos;
@@ -81,7 +82,7 @@ namespace Yatzy.Models
             }
         }
 
-        public string PlayerId
+        public int PlayerId
         {
             get { return _playerid; }
             set
@@ -89,6 +90,19 @@ namespace Yatzy.Models
                 if (value != _playerid)
                 {
                     _playerid = value;
+                    OnPropertyChanged("PlayerID");
+                }
+            }
+        }
+
+        public int HighScore
+        {
+            get { return _highscore; }
+            set
+            {
+                if (value != _highscore)
+                {
+                    _highscore = value;
                     OnPropertyChanged("PlayerID");
                 }
             }
