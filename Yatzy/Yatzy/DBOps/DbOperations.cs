@@ -59,9 +59,83 @@ namespace Yatzy.DBOps
             }
         }
 
+        //public ObservableCollection<Player> GetMostWins()
+        //{
+        //    Player p;
+
+        //    ObservableCollection<Player> players = new ObservableCollection<Player>();
+
+        //    NpgsqlTransaction transaction = null;
+        //    NpgsqlConnection conn = null;
+        //    NpgsqlCommand cmd = null;
+        //    try
+        //    {
+        //        string[] stmts = new string[1];
+        //        stmts[0] = "SELECT * from player";
+        //        stmts[1] = "SELECT * FROM game_player order by game_player.game_id desc";
+        //        stmts[2] = "";
+
+        //        conn = new NpgsqlConnection(Connect);
+        //        conn.Open();
+        //        transaction = conn.BeginTransaction();
 
 
-        public ObservableCollection<Player> GetPlayersTransaction()
+        //            cmd = new NpgsqlCommand(stmts[0], conn);
+        //            cmd.Transaction = transaction;
+        //            using (var reader = cmd.ExecuteReader())
+        //            {
+        //                while (reader.Read())
+        //                {
+        //                    p = new Player()
+        //                    {
+        //                        Nickname = reader.GetString(2),
+        //                        Firstname = reader.GetString(1),
+        //                        Lastname = reader.GetString(3),
+        //                        PlayerId = reader.GetInt32(0)
+        //                    };
+
+        //                players.Add(p);
+        //                }
+        //            }
+
+        //        cmd = new NpgsqlCommand(stmts[0], conn);
+        //        cmd.Transaction = transaction;
+        //        using (var reader = cmd.ExecuteReader())
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                p = new Player()
+        //                {
+        //                    Nickname = reader.GetString(2),
+        //                    Firstname = reader.GetString(1),
+        //                    Lastname = reader.GetString(3),
+        //                    PlayerId = reader.GetInt32(0)
+        //                };
+
+        //                players.Add(p);
+        //            }
+        //        }
+
+
+        //        transaction.Commit();
+        //        conn.Close();
+        //        return players;
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //        transaction.Rollback();
+        //        conn.Close();
+        //        return null;
+        //    }
+
+
+
+
+
+        //}
+
+        public ObservableCollection<Player> GetAvaliablePlayers()
         {
             Player p;
 
@@ -72,16 +146,14 @@ namespace Yatzy.DBOps
             NpgsqlCommand cmd = null;
             try
             {
-                string[] stmts = new string[1];
-                stmts[0] = "SELECT * FROM player";
+                
+                string stmt = "SELECT * FROM player WHERE EXISTS ( SELECT score FROM game_player WHERE score IS NOT null)";
 
                 conn = new NpgsqlConnection(Connect);
                 conn.Open();
                 transaction = conn.BeginTransaction();
 
-                for (int i = 0; i < stmts.Length; i++)
-                {
-                    cmd = new NpgsqlCommand(stmts[i], conn);
+                    cmd = new NpgsqlCommand(stmt, conn);
                     cmd.Transaction = transaction;
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -99,8 +171,6 @@ namespace Yatzy.DBOps
 
                         }
                     }
-                }
-
                 transaction.Commit();
                 conn.Close();
                 return players;
