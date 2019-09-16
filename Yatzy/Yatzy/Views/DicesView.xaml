@@ -59,8 +59,9 @@
             <TextBox Text="{Binding Path= activePlayer.Chance}" />
             <TextBox Text="{Binding Path= activePlayer.Yatzy}" />
             <TextBox Text="{Binding Path= activePlayer.TotalScore}" Margin="0,30,0,0" />
+            <Button Command="{Binding QuitGameCommand}" Content="Avsluta"/>
         </StackPanel>
         <Label x:Name="label" Content="{Binding Path = activePlayer.Firstname, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="512,20,0,0" VerticalAlignment="Top"/>
-
+        
     </Grid>
 </Window>
