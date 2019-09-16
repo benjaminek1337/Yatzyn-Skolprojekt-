@@ -34,31 +34,36 @@ namespace Yatzy.GameEngine
             SetActivePlayer();
         }
 
-
+        public void AddPlayer(string firstname, string lastname, string nickname)
+        {
+            Player p = new Player
+            {
+                Firstname = firstname,
+                Lastname = lastname,
+                Nickname = nickname
+            }; ActivePlayers.Add(p);
+        }
 
         public void AddPlayerHardCoded()
         {
-
-                Player p = new Player
-                {
-                    Firstname = "Beendjaamiiihn",
-                    Lastname = "Ek",
-                    Nickname = "Galne_Gunnar1337"
-
-                }; ActivePlayers.Add(p);
-                //Player p2 = new Player
-                //{
-                //    Firstname = "Yohannys",
-                //    Lastname = "Öberg",
-                //    Nickname = "Examinat0rN^"
-                //}; ActivePlayers.Add(p2);
-                //Player p3 = new Player
-                //{
-                //    Firstname = "Däääämn",
-                //    Lastname = "Öberg",
-                //    Nickname = "Examinat0rN^"
-                //}; ActivePlayers.Add(p3);
-
+            Player p = new Player
+            {
+                Firstname = "Beendjaameeehn",
+                Lastname = "Ek",
+                Nickname = "Galne_Gunnar1337"
+            }; ActivePlayers.Add(p);
+            //Player p2 = new Player
+            //{
+            //    Firstname = "Näääädaaliiiiee",
+            //    Lastname = "Öberg",
+            //    Nickname = "Examinat0rN^"
+            //}; ActivePlayers.Add(p2);
+            //Player p3 = new Player
+            //{
+            //    Firstname = "Däääämn",
+            //    Lastname = "Öberg",
+            //    Nickname = "Examinat0rN^"
+            //}; ActivePlayers.Add(p3);
         }
 
         public Player GetActivePlayer()

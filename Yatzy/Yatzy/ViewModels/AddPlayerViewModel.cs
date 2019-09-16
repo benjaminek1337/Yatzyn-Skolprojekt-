@@ -13,25 +13,13 @@ namespace Yatzy.ViewModels
 {
     class AddPlayerViewModel : INotifyPropertyChanged
     {
-        PlayerEngine playerengine;
+        PlayerEngine playerEngine;
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
         #region Properties 
-        public RelayCommand SavePlayerCommand { get; set; }
         public RelayCommand AddPlayerCommand { get; set; }
-
-        private ObservableCollection<Player> _players;
-        public ObservableCollection<Player> Players
-        {
-            get { return _players; }
-            set
-            {
-                _players = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Players"));
-            }
-        }
-
+        public RelayCommand CancelCommand { get; set; }
         private Player player;
         public Player Player
         {
@@ -41,35 +29,35 @@ namespace Yatzy.ViewModels
 
         #endregion
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public void AddPlayer(string player)
+        #region Konstruktor
+        public AddPlayerViewModel()
         {
-            if (Players.Count <= 4)
-            {
-                Player p = new Player
-                {
-                    Firstname = "",
-                    Lastname = "",
-                    Nickname = ""
-
-                }; Players.Add(p);
-            }
+            AddPlayerCommand = new RelayCommand(AddPlayer, CanExecute);
+            CancelCommand = new RelayCommand(Cancel, CanExecute);
         }
+        #endregion
+
+        #region Metoder för att lägga till spelare
+
+        private void AddPlayer(object parameter)
+        {
+            playerEngine.AddPlayer(Player.Firstname, Player.Lastname, Player.Nickname);
+            //Fixa bindings till fnamn, enamn o nickname i textboxar i view nånstans.
+        }
+
+        private void Cancel(object parameter)
+        {
+            //Metod för att återgå till tidigare
+        }
+
+        private bool CanExecute(object parameter)
+        {
+            return true;
+        }
+
+        #endregion
+
+
 
     }
 }
