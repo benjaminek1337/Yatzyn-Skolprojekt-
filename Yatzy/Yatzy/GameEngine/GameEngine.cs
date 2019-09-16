@@ -23,6 +23,11 @@ namespace Yatzy.Models
             DiceCount();
         }
 
+        public void NullProps()
+        {
+            activePlayer = null;
+            Dices = null;
+        }
 
         /// <summary>
         /// Konverterar tärningarna i en lista till en array med antal tärningar i varje kategori

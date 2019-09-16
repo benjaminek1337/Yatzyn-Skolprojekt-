@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Yatzy.Commands;
+using Yatzy.DBOps;
 using Yatzy.GameEngine;
 
 namespace Yatzy.Models
@@ -17,7 +18,9 @@ namespace Yatzy.Models
         #region Objekt och lokala variabler
         PlayerEngine playerEngine;
         GameEngine gameEngine;
+        DbOperations dbOperations = new DbOperations();
         private int count = 0;
+        private int rounds = 0;
         
         #endregion
 
@@ -230,7 +233,7 @@ namespace Yatzy.Models
 
         #endregion
 
-        #region Metod för att välja en poängkategori
+        #region Metod för att välja en poängkategori och metod för att avgöra hur många rundor som är kvar.
 
         private void ChooseScoreCategory(object parameter)
         {          
@@ -269,9 +272,22 @@ namespace Yatzy.Models
             gameEngine.SetUpperScore(activePlayer);
             gameEngine.SetTotalScore(activePlayer);
             ResetDices();
+            RoundsLeft();
             GetGameEngine();
             playerEngine.SetActivePlayer();
             GetActivePlayer();
+            if (rounds == 15)
+            {
+                GameEnded();
+            }
+        }
+
+        private void RoundsLeft()
+        {
+            if (activePlayer == ActivePlayers[ActivePlayers.Count - 1])
+            {
+                rounds += 1;
+            }
         }
 
         #endregion
@@ -417,21 +433,25 @@ namespace Yatzy.Models
 
         private void QuitGame(object parameter)
         {
-            //Fixa dialogval och kör metod för att avsluta spel o nolla i databas
+            if (MessageBox.Show("Close Application?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+            {
+                
+            }
+            else
+            {
+                dbOperations.AbortGameTransaction();
+                gameEngine.NullProps();
+                playerEngine.NullProps();
+                //SLÄNG I NÅGOT FÖR ATT GÅ TILL HUVUDMENYN
+            }
         }
 
         private void GameEnded()
         {
             for (int i = 0; i < ActivePlayers.Count; i++)
             {
-                if (ActivePlayers[i])//Hitta ett sätt att se till att alla spelares props inte har nullvärden.
-                {
-                    for (int j = 0; j < ActivePlayers.Count; j++)
-                    {
-                        //Metod för att kolla vilket TotalScore prop som är högst. Registrera i databas.
-
-                    }
-                }
+                ActivePlayers.OrderBy(activePlayer => activePlayer.TotalScore).ToList();
+                MessageBox.Show(ActivePlayers.First().Firstname.ToString() + " vann med " + ActivePlayers.First().TotalScore.ToString() + " poäng");
             }
         }
 

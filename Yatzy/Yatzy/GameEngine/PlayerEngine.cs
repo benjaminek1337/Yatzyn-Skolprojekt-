@@ -34,6 +34,12 @@ namespace Yatzy.GameEngine
             SetActivePlayer();
         }
 
+        public void NullProps()
+        {
+            activePlayer = null;
+            ActivePlayers = null;
+        }
+
         public void AddPlayer(string firstname, string lastname, string nickname)
         {
             Player p = new Player
