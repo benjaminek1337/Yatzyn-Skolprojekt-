@@ -12,10 +12,12 @@ namespace Yatzy.Models
         Player activePlayer;
         private ObservableCollection<Dice> Dices;      
         public int[] ArrayofCountedDices = new int[6];
+        int gameType = 0;
 
 
-        public GameEngine(ObservableCollection<Dice> dices, Player _activePlayer)
+        public GameEngine(ObservableCollection<Dice> dices, Player _activePlayer, int _gameType)
         {
+            gameType = _gameType;
             activePlayer = new Player();
             Dices = new ObservableCollection<Dice>();
             Dices = dices;
@@ -343,18 +345,28 @@ namespace Yatzy.Models
                 else
                 {
                     upperScore += upperScoreArray[i];
-                    SetBonus(upperScore);
+                    SetBonus(upperScore, gameType);
                 }
 
             }
         }
 
-        public void SetBonus(int? upperScore)
+        public void SetBonus(int? upperScore, int gameType)
         {
-            if (upperScore >= 63)
-                activePlayer.UpperBonus = 50;
+            if(gameType == 5)
+            {
+                if (upperScore >= 42)
+                    activePlayer.UpperBonus = 50;
+                else
+                    activePlayer.UpperBonus = 0;
+            }
             else
-                activePlayer.UpperBonus = 0;
+            {
+                if (upperScore >= 63)
+                    activePlayer.UpperBonus = 50;
+                else
+                    activePlayer.UpperBonus = 0;
+            }
         }
 
         public void SetTotalScore(Player _activePlayer)

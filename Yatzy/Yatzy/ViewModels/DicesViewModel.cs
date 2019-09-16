@@ -15,12 +15,17 @@ namespace Yatzy.Models
 {
     class DicesViewModel : INotifyPropertyChanged
     {
+        //ATT GÖRA I DEN HÄR KLASSEN
+        // NÄR ETT SPEL SKAPAS SÅ SKA EN INT PASSERAS TILL int gameType MED VÄRDE 4 FÖR KLASSISK ELLER 5 FÖR STYRD
+        //SEN ÄR ALLT GULD OCH GRÖNA SKOGAR. ANTAR JAG.
+
         #region Objekt och lokala variabler
         PlayerEngine playerEngine;
         GameEngine gameEngine;
         DbOperations dbOperations = new DbOperations();
         private int count = 0;
         private int rounds = 0;
+        private int gameType = 5;
         
         #endregion
 
@@ -81,7 +86,7 @@ namespace Yatzy.Models
 
         private void GetGameEngine()
         {
-            gameEngine = new GameEngine(Dices, activePlayer);
+            gameEngine = new GameEngine(Dices, activePlayer, gameType);
             GetScoreCombinations();
         }
 
@@ -289,7 +294,12 @@ namespace Yatzy.Models
 
         private bool IsGameTypeStyrd()
         {
-            return true;
+            if (gameType == 5)
+            {
+                return true;
+            }
+            else
+                return false;
         }
 
         private bool IsOnesEnabled(object parameter)
@@ -583,7 +593,6 @@ namespace Yatzy.Models
             }
 
         }
-
         #endregion
 
         #region Metod för att visa alla tillgängliga poängkombinationer baserat på tärningarna
