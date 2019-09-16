@@ -50,21 +50,15 @@ namespace Yatzy.Models
         public ObservableCollection<Dice> Dices
         {
             get { return dices; }
-            set
-            {
-                dices = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("Dices"));
-            }
+            set { dices = value; OnPropertyChanged(new PropertyChangedEventArgs("Dices")); }
         }
 
         private ObservableCollection<Player> activePlayers;
-
         public ObservableCollection<Player> ActivePlayers
         {
             get { return activePlayers; }
             set { activePlayers = value; OnPropertyChanged(new PropertyChangedEventArgs("ActivePlayers")); }
         }
-
 
         private Player player;
         public Player Player
@@ -74,7 +68,6 @@ namespace Yatzy.Models
         }
 
         private Player _activePlayer;
-
         public Player activePlayer
         {
             get { return _activePlayer; }
@@ -292,115 +285,304 @@ namespace Yatzy.Models
 
         #endregion
 
-        #region Bools för att avgöra om en kategori är sparad eller inte
+        #region Bools för att avgöra om en kategori kan användas eller inte beroende på speltyp
+
+        private bool IsGameTypeStyrd()
+        {
+            return true;
+        }
+
         private bool IsOnesEnabled(object parameter)
         {
-            if (activePlayer.Ones != null)
-                return false;          
+            if (IsGameTypeStyrd())
+            {
+                if (int.Parse(parameter.ToString()) == rounds + 1)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
             else
-                return true;            
+            {
+                if (activePlayer.Ones != null)
+                    return false;
+                else
+                    return true;
+            }          
         }
         private bool IsTwosEnabled(object parameter)
         {
-            if (activePlayer.Twos != null)
-                return false;
+            if (IsGameTypeStyrd())
+            {
+                if (int.Parse(parameter.ToString()) == rounds + 1)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
             else
-                return true;
+            {
+                if (activePlayer.Twos != null)
+                    return false;
+                else
+                    return true;
+            }
         }
         private bool IsThreesEnabled(object parameter)
         {
-            if (activePlayer.Threes != null)
-                return false;
+            if (IsGameTypeStyrd())
+            {
+                if (int.Parse(parameter.ToString()) == rounds + 1)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
             else
-                return true;
+            {
+                if (activePlayer.Threes != null)
+                    return false;
+                else
+                    return true;
+            }
         }
         private bool IsFoursEnabled(object parameter)
         {
-            if (activePlayer.Fours != null)
-                return false;
+            if (IsGameTypeStyrd())
+            {
+                if (int.Parse(parameter.ToString()) == rounds + 1)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
             else
-                return true;
+            {
+                if (activePlayer.Fours != null)
+                    return false;
+                else
+                    return true;
+            }
+
         }
         private bool IsFivesEnabled(object parameter)
         {
-            if (activePlayer.Fives != null)
-                return false;
+            if (IsGameTypeStyrd())
+            {
+                if (int.Parse(parameter.ToString()) == rounds + 1)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
             else
-                return true;
+            {
+                if (activePlayer.Fives != null)
+                    return false;
+                else
+                    return true;
+            }
         }
         private bool IsSixesEnabled(object parameter)
         {
-            if (activePlayer.Sixes != null)
-                return false;
+            if (IsGameTypeStyrd())
+            {
+                if (int.Parse(parameter.ToString()) == rounds + 1)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
             else
-                return true;
+            {
+                if (activePlayer.Sixes != null)
+                    return false;
+                else
+                    return true;
+            }
         }
         private bool IsPairEnabled(object parameter)
         {
-            if (activePlayer.Pair != null)
-                return false;
+            if (IsGameTypeStyrd())
+            {
+                if (int.Parse(parameter.ToString()) == rounds + 1)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
             else
-                return true;
+            {
+                if (activePlayer.Pair != null)
+                    return false;
+                else
+                    return true;
+            }
         }
         private bool IsTwoPairEnabled(object parameter)
         {
-            if (activePlayer.TwoPairs != null)
-                return false;
+            if (IsGameTypeStyrd())
+            {
+                if (int.Parse(parameter.ToString()) == rounds + 1)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
             else
-                return true;
+            {
+                if (activePlayer.TwoPairs != null)
+                    return false;
+                else
+                    return true;
+            }
         }
         private bool IsThreeOfaKindEnabled(object parameter)
         {
-            if (activePlayer.ThreeOfaKind != null)
-                return false;
+            if (IsGameTypeStyrd())
+            {
+                if (int.Parse(parameter.ToString()) == rounds + 1)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
             else
-                return true;
+            {
+                if (activePlayer.ThreeOfaKind != null)
+                    return false;
+                else
+                    return true;
+            }
         }
         private bool IsFourOfaKindEnabled(object parameter)
         {
-            if (activePlayer.FourOfaKind != null)
-                return false;
+            if (IsGameTypeStyrd())
+            {
+                if (int.Parse(parameter.ToString()) == rounds + 1)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
             else
-                return true;
+            {
+                if (activePlayer.FourOfaKind != null)
+                    return false;
+                else
+                    return true;
+            }
         }
         private bool IsSmalLadderEnabled(object parameter)
         {
-            if (activePlayer.SmalLadder != null)
-                return false;
+            if (IsGameTypeStyrd())
+            {
+                if (int.Parse(parameter.ToString()) == rounds + 1)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
             else
-                return true;
+            {
+                if (activePlayer.SmalLadder != null)
+                    return false;
+                else
+                    return true;
+            }
+
         }
         private bool IsLargeLadderEnabled(object parameter)
         {
-            if (activePlayer.LargeLadder != null)
-                return false;
+            if (IsGameTypeStyrd())
+            {
+                if (int.Parse(parameter.ToString()) == rounds + 1)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
             else
-                return true;
+            {
+                if (activePlayer.LargeLadder != null)
+                    return false;
+                else
+                    return true;
+            }
+
         }
         private bool IsFullHouseEnabled(object parameter)
         {
-            if (activePlayer.FullHouse != null)
-                return false;
+            if (IsGameTypeStyrd())
+            {
+                if (int.Parse(parameter.ToString()) == rounds + 1)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
             else
-                return true;
+            {
+                if (activePlayer.FullHouse != null)
+                    return false;
+                else
+                    return true;
+            }
+
         }
         private bool IsChanceEnabled(object parameter)
         {
-            if (activePlayer.Chance != null)
-                return false;
+            if (IsGameTypeStyrd())
+            {
+                if (int.Parse(parameter.ToString()) == rounds + 1)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
             else
-                return true;
+            {
+                if (activePlayer.Chance != null)
+                    return false;
+                else
+                    return true;
+            }
+
         }
         private bool IsYatzyEnabled(object parameter)
         {
-            if (activePlayer.Yatzy != null)
-                return false;
+            if (IsGameTypeStyrd())
+            {
+                if (int.Parse(parameter.ToString()) == rounds + 1)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
             else
-                return true;
+            {
+                if (activePlayer.Yatzy != null)
+                    return false;
+                else
+                    return true;
+            }
+
         }
-
-
-
 
         #endregion
 
@@ -433,9 +615,8 @@ namespace Yatzy.Models
 
         private void QuitGame(object parameter)
         {
-            if (MessageBox.Show("Close Application?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
-            {
-                
+            if (MessageBox.Show("Vill du avsluta spelet?", "Avsluta spel", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+            {               
             }
             else
             {
@@ -445,7 +626,7 @@ namespace Yatzy.Models
                 //SLÄNG I NÅGOT FÖR ATT GÅ TILL HUVUDMENYN
             }
         }
-        /*
+        
         private void GameEnded()
         {
             for (int i = 0; i < ActivePlayers.Count; i++)
@@ -454,7 +635,7 @@ namespace Yatzy.Models
                 MessageBox.Show(ActivePlayers.First().Firstname.ToString() + " vann med " + ActivePlayers.First().TotalScore.ToString() + " poäng");
             }
         }
-        */
+        
         #endregion
     }
 
