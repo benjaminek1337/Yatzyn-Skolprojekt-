@@ -10,9 +10,9 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Media;
-using System.Windows.Input;
+using System.Xaml;
 using Yatzy.ViewModels;
 
 namespace Yatzy.Views
@@ -20,17 +20,13 @@ namespace Yatzy.Views
     /// <summary>
     /// Interaction logic for MainMenuView.xaml
     /// </summary>
-    public partial class MainMenuView : Window //22.40 2019-09-06 detta är fyllekod nu :)))))
+    public partial class MainMenuView : UserControl
     {
-        MainMenuViewModel menuViewModel;
-        
         public MainMenuView()
         {
-            menuViewModel = new MainMenuViewModel();
-            this.DataContext = menuViewModel;
+            this.DataContext = new NavigationViewModel();
             InitializeComponent();
-           
         }
-   
+
     }
 }

@@ -86,7 +86,10 @@
     <Compile Include="DBOps\DbOperations.cs" />
     <Compile Include="GameEngine\PlayerEngine.cs" />
     <Compile Include="ViewModels\AddPlayerViewModel.cs" />
+    <Compile Include="ViewModels\LeaderBoardViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
+    <Compile Include="ViewModels\NavigationViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="Views\ChoseGameType.xaml.cs">
       <DependentUpon>ChoseGameType.xaml</DependentUpon>
     </Compile>
@@ -95,6 +98,15 @@
     </Compile>
     <Compile Include="Views\GameView.xaml.cs">
       <DependentUpon>GameView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LeaderBoardView.xaml.cs">
+      <DependentUpon>LeaderBoardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainMenuView.xaml.cs">
+      <DependentUpon>MainMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -117,6 +129,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\GameView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LeaderBoardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -179,6 +203,14 @@
     <Resource Include="Resources\dice4.png" />
     <Resource Include="Resources\dice5.png" />
     <Resource Include="Resources\dice6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\soundoff.png" />
+    <Resource Include="Resources\soundon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\MouseOver.png" />
+    <Resource Include="Resources\NotMouseOver.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -419,7 +419,7 @@ namespace Yatzy.Models
         {
             //Fixa dialogval och kör metod för att avsluta spel o nolla i databas
         }
-
+        /*
         private void GameEnded()
         {
             for (int i = 0; i < ActivePlayers.Count; i++)
@@ -434,7 +434,7 @@ namespace Yatzy.Models
                 }
             }
         }
-
+        */
         #endregion
     }
 
