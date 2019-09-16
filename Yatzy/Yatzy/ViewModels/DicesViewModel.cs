@@ -16,7 +16,8 @@ namespace Yatzy.Models
     class DicesViewModel : INotifyPropertyChanged
     {
         //ATT GÖRA I DEN HÄR KLASSEN
-        // NÄR ETT SPEL SKAPAS SÅ SKA EN INT PASSERAS TILL int gameType MED VÄRDE 4 FÖR KLASSISK ELLER 5 FÖR STYRD
+        // NÄR ETT SPEL SKAPAS OCH KLASSEN INSTANSERAS SÅ SKA EN INT PASSERAS TILL int gameType (finns i regionen alldeles nedan) MED VÄRDE 4 FÖR KLASSISK ELLER 5 FÖR STYRD
+        // OCH SE TILL ATT NÄR ETT SPEL AVSLUTATS (regionen längst ned) SÅ ÅTERGÅR VYN TILL HUVUDMENYN
         //SEN ÄR ALLT GULD OCH GRÖNA SKOGAR. ANTAR JAG.
 
         #region Objekt och lokala variabler
@@ -25,7 +26,7 @@ namespace Yatzy.Models
         DbOperations dbOperations = new DbOperations();
         private int count = 0;
         private int rounds = 0;
-        private int gameType = 5;
+        private int gameType = 0;
         
         #endregion
 
@@ -104,13 +105,12 @@ namespace Yatzy.Models
         #endregion
 
         #region Konstruktor
-        //Konstruktor där 5 objekt av typen Dice skapas och läggs i en lista. Får DiceID från 1 - 5, samt IsDiceEnabled = true.
-        //DiceValue är tom tills tärningarna "kastas" med en metod nedanför.
-        //Kommandon instanseras även
 
         public DicesViewModel(int _gameType)
         {
             gameType = _gameType;
+            playerEngine = new PlayerEngine();
+            Player = new Player();
             SaveDiceCommand = new RelayCommand(SaveDice, CanExecuteMethod);
             RollDicesCommand = new RelayCommand(RollDices, IsTriesEnabled);
             Ones = new RelayCommand(ChooseScoreCategory, IsOnesEnabled);
@@ -130,20 +130,7 @@ namespace Yatzy.Models
             Yatzy = new RelayCommand(ChooseScoreCategory, IsYatzyEnabled);
             QuitGameCommand = new RelayCommand(QuitGame, CanExecuteMethod);
 
-            playerEngine = new PlayerEngine();
-            Player = new Player();
-            
-            Dice dice;
-            Dices = new ObservableCollection<Dice>();
-            for (int i = 0; i < 5; i++)
-            {
-                dice = new Dice
-                {
-                    DiceID = i + 1,
-                    IsDiceEnabled = true
-                }; Dices.Add(dice);
-            }
-
+            GenerateDices();
             GetGameEngine();
             GetPlayersObservableCollection();
             GetActivePlayer();           
@@ -164,15 +151,41 @@ namespace Yatzy.Models
         #endregion
 
         #region Metoder för att kasta/spara/rensa tärningar samt en bool för att godkänna att metod används
-        //Metod som skickar bool-värdet true till kommandot
 
-        private bool CanExecuteMethod(object parameter)
+        //Metod för att generera tärningen
+        private void GenerateDices()
         {
-            return true;
+            Dice dice;
+            Dices = new ObservableCollection<Dice>();
+            for (int i = 0; i < 5; i++)
+            {
+                dice = new Dice
+                {
+                    DiceID = i + 1,
+                    IsDiceEnabled = true
+                }; Dices.Add(dice);
+            }
+        }
+
+        //Metod för att kasta tärningen
+        private void RollDices(object parameter)
+        {
+            Random random = new Random();
+
+            for (int i = 0; i < Dices.Count; i++)
+            {
+                if (Dices[i].IsDiceEnabled)
+                {
+                    int rand = random.Next(1, 7);
+                    Dices[i].DiceValue = rand;
+                }
+
+            }
+            count++;
+            GetScoreCombinations();
         }
         
         //Metod för att välja en tärning att spara genom att skifta värde på IsDiceEnabled
-
         private void SaveDice(object parameter)
         {           
             int diceButtonValue = int.Parse(parameter.ToString());
@@ -189,8 +202,12 @@ namespace Yatzy.Models
             }
         }
 
-        //Metod för att tillåta kast
+        private bool CanExecuteMethod(object parameter)
+        {
+            return true;
+        }
 
+        //Metod för att tillåta kast
         private bool IsTriesEnabled(object parameter)
         {
             if (count < 3)
@@ -201,25 +218,7 @@ namespace Yatzy.Models
             return false;
         }
 
-        //Metod för att kasta tärningen
-
-        private void RollDices(object parameter)
-        {            
-            Random random = new Random();
-
-            for (int i = 0; i < Dices.Count; i++)
-            {
-                if (Dices[i].IsDiceEnabled)
-                {
-                    int rand = random.Next(1, 7);
-                    Dices[i].DiceValue = rand;
-                }
-
-            }            
-            count++;
-            GetScoreCombinations();      
-        }
-
+        //Metod för att återställa tärningarnas värde till 0 inför ny runda
         private void ResetDices()
         {
             count = 0;
@@ -626,14 +625,15 @@ namespace Yatzy.Models
         private void QuitGame(object parameter)
         {
             if (MessageBox.Show("Vill du avsluta spelet?", "Avsluta spel", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
-            {               
+            {
+                //rutan stängs ned här
             }
             else
             {
                 dbOperations.AbortGameTransaction();
                 gameEngine.NullProps();
                 playerEngine.NullProps();
-                //SLÄNG I NÅGOT FÖR ATT GÅ TILL HUVUDMENYN
+                //SLÄNG I NÅGOT FÖR ATT GÅ TILL HUVUDMENY
             }
         }
         
@@ -643,6 +643,8 @@ namespace Yatzy.Models
             {
                 ActivePlayers.OrderBy(activePlayer => activePlayer.TotalScore).ToList();
                 MessageBox.Show(ActivePlayers.First().Firstname.ToString() + " vann med " + ActivePlayers.First().TotalScore.ToString() + " poäng");
+                dbOperations.SaveGameTransaction(ActivePlayers);
+                //SLÄNG I NÅGOT FÖR ATT GÅ TILL HUVUDMENY
             }
         }
         
