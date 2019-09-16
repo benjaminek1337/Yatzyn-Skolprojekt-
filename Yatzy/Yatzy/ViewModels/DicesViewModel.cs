@@ -445,7 +445,7 @@ namespace Yatzy.Models
                 //SLÄNG I NÅGOT FÖR ATT GÅ TILL HUVUDMENYN
             }
         }
-
+        /*
         private void GameEnded()
         {
             for (int i = 0; i < ActivePlayers.Count; i++)
@@ -454,7 +454,7 @@ namespace Yatzy.Models
                 MessageBox.Show(ActivePlayers.First().Firstname.ToString() + " vann med " + ActivePlayers.First().TotalScore.ToString() + " poäng");
             }
         }
-
+        */
         #endregion
     }
 

@@ -12,24 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Media;
 using Yatzy.ViewModels;
 
-namespace Yatzy
+namespace Yatzy.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for LeaderBoardView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LeaderBoardView : UserControl
     {
-        public MainWindow()
+        public LeaderBoardView()
         {
             this.DataContext = new NavigationViewModel();
             InitializeComponent();
-           
         }
-
-        //SoundPlayer sound = new SoundPlayer("Resources/DiceThrow.wav"); //.wav ska vara Embedded Resource annars hittar inte VS filen
-
     }
 }
