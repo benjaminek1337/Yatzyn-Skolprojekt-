@@ -20,6 +20,10 @@
             <Views:LeaderBoardView Content="{Binding}"/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type ViewModels:NavigationViewModel}">
+            <Views:RulesView Content="{Binding}"/>
+        </DataTemplate>
+                      
         <Style x:Key="MyButton" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="MinHeight" Value="50"/>
@@ -34,7 +38,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter TargetName="border" Property="Background" Value="TRansparent"/>
+                                <Setter TargetName="border" Property="Background" Value="Transparent"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -48,7 +52,7 @@
 
     <Viewbox Stretch="UniformToFill">
 
-        <Grid Margin="0">
+        <Grid Margin="0"  MaxHeight="1080" MinWidth="1920" >
 
 
             <Grid.ColumnDefinitions>
@@ -100,7 +104,7 @@
 
             <StackPanel Grid.Row="2" Grid.Column="3"  Grid.RowSpan="5" Margin="5" >
 
-                <Button Style="{StaticResource MyButton}" >
+                <Button Style="{StaticResource MyButton}"  Command="{Binding }">
                     <Label Content="Spela" FontSize="45" Cursor="Hand" Margin="10" HorizontalAlignment="Left">
                         <Label.Style>
                             <Style>
@@ -131,20 +135,21 @@
 
                 </Button>
 
+                <Button Style="{StaticResource MyButton}" Command="{Binding RulesCommand}">
+                    <Label  Content="Regler" FontSize="45" Cursor="Hand" Margin="10">
 
-                <Label  Content="Regler" FontSize="45" Cursor="Hand" Margin="10">
-
-                    <Label.Style>
-                        <Style>
-                            <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
-                            <Style.Triggers>
-                                <Trigger Property="Label.IsMouseOver" Value="true">
-                                    <Setter Property="Label.Foreground" Value="IndianRed"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Label.Style>
-                </Label>
+                        <Label.Style>
+                            <Style>
+                                <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
+                                <Style.Triggers>
+                                    <Trigger Property="Label.IsMouseOver" Value="true">
+                                        <Setter Property="Label.Foreground" Value="IndianRed"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Label.Style>
+                    </Label>
+                </Button>
 
                 <Button Style="{StaticResource MyButton}" Command="{Binding SettingsCommand}">
                     <Label Content="Alternativ" FontSize="45" Cursor="Hand" Margin="10" >

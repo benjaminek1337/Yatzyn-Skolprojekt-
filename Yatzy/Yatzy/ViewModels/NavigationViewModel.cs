@@ -16,7 +16,7 @@ namespace Yatzy.ViewModels
         public ICommand SettingsCommand { get; set; }
         public ICommand MainMenuCommand { get; set; }
         public ICommand LeaderBoardCommand { get; set; }
-
+        public ICommand RulesCommand { get; set; }
 
         private object selectedViewModel;
 
@@ -36,7 +36,7 @@ namespace Yatzy.ViewModels
             SettingsCommand = new RelayCommand(OpenSettings, CanExecuteMethod);
             MainMenuCommand = new RelayCommand(OpenMainMenu, CanExecuteMethod);
             LeaderBoardCommand = new RelayCommand(OpenLeaderBoard, CanExecuteMethod);
-
+            RulesCommand = new RelayCommand(OpenRules, CanExecuteMethod);
         }
 
         #endregion
@@ -63,6 +63,10 @@ namespace Yatzy.ViewModels
             SelectedViewModel = new LeaderBoardViewModel();
         }
 
+        private void OpenRules(object parameter)
+        {
+            SelectedViewModel = new NavigationViewModel();
+        }
 
         #endregion
 
