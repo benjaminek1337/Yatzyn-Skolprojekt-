@@ -12,16 +12,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Yatzy.ViewModels;
 
 namespace Yatzy.Views
 {
     /// <summary>
     /// Interaction logic for CreateGameView.xaml
     /// </summary>
-    public partial class CreateGameView : Page
+    public partial class CreateGameView : UserControl
     {
         public CreateGameView()
         {
+            this.DataContext = new NavigationViewModel();
             InitializeComponent();
         }
     }

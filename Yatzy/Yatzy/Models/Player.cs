@@ -42,8 +42,6 @@ namespace Yatzy.Models
         #endregion
 
 
-
-
         #region player properties
         public string Firstname
         {

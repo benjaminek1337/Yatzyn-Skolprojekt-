@@ -59,7 +59,7 @@ namespace Yatzy.DBOps
             }
         }
 
-        //public ObservableCollection<Player> GetMostWins()
+        /*public ObservableCollection<Player> GetMostWins()
         //{
         //    Player p;
 
@@ -133,7 +133,7 @@ namespace Yatzy.DBOps
 
 
 
-        //}
+        //}*/
 
         public ObservableCollection<Player> GetAvaliablePlayers()
         {

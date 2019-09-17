@@ -26,7 +26,7 @@ namespace Yatzy.Views
         DicesViewModel dicesViewModel;
         public GameView()
         {
-            dicesViewModel = new DicesViewModel();
+            dicesViewModel = new DicesViewModel(4);//La till 4 för att kunna köra
             DataContext = dicesViewModel;
         }
     }
