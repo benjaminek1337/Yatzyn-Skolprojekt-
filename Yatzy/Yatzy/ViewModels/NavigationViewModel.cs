@@ -52,7 +52,7 @@ namespace Yatzy.ViewModels
         }
 
         private void OpenGameMenu(object parameter)
-        {
+        {            
             SelectedViewModel = new CreateGameViewModel();
         }
 

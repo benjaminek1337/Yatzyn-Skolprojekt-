@@ -51,7 +51,7 @@ namespace Yatzy.ViewModels
             Player p2 = new Player
             {
                 Firstname = "Djååohäänis",
-                Lastname = "Kuk",
+                Lastname = "Inte ett könsord ;)",
                 Nickname = "ChildKillah"
             }; HardcodedPlayers.Add(p2);
             Player p3 = new Player
@@ -88,8 +88,9 @@ namespace Yatzy.ViewModels
             AddPlayerCommand = new RelayCommand(AddPlayer, CanAddPlayer);
             RemovePlayerCommand = new RelayCommand(RemovePlayer, CanRemovePlayer);
             StartGameCommand = new RelayCommand(StartGame, CanStartGame);
-
-            //GetAvaliablePlayers();
+            HardcodedPlayers = new ObservableCollection<Player>();
+            SelectedPlayer = new Player();
+            GetAvaliablePlayers();
             SetHardcodedPlayers();
         }
 
