@@ -16,11 +16,24 @@ namespace Yatzy.ViewModels
     {
 
         #region Properties
+        public RelayCommand ClassicGameCommand { get; set; }
+        public RelayCommand StyrdGameCommand { get; set; }
+        public RelayCommand AddPlayerCommand { get; set; }
+        public RelayCommand RemovePlayerCommand { get; set; }
+        public RelayCommand StartGameCommand { get; set; }
+
         private ObservableCollection<Player> _players;
         public ObservableCollection<Player> AvailablePlayers
         {
             get { return _players; }
             set { _players = value; OnPropertyChanged("Players"); }
+        }
+
+        private ObservableCollection<Player> selectedPlayers;
+        public ObservableCollection<Player> SelectedPlayers
+        {
+            get { return selectedPlayers; }
+            set { selectedPlayers = value; OnPropertyChanged("SelectedPlayers"); }
         }
 
         private Player _selectedPlayer;
@@ -32,8 +45,8 @@ namespace Yatzy.ViewModels
         #endregion
 
         #region Hårdkodad lista för testning
-        private ObservableCollection<Player> _hardcodedPlayers;
 
+        private ObservableCollection<Player> _hardcodedPlayers;
         public ObservableCollection<Player> HardcodedPlayers
         {
             get { return _hardcodedPlayers; }
@@ -51,7 +64,7 @@ namespace Yatzy.ViewModels
             Player p2 = new Player
             {
                 Firstname = "Djååohäänis",
-                Lastname = "Inte ett könsord ;)",
+                Lastname = "Kuk",
                 Nickname = "ChildKillah"
             }; HardcodedPlayers.Add(p2);
             Player p3 = new Player
@@ -70,11 +83,7 @@ namespace Yatzy.ViewModels
         PlayerEngine playerEngine;
         DbOperations dbOps = new DbOperations();
 
-        RelayCommand ClassicGameCommand;
-        RelayCommand StyrdGameCommand;
-        RelayCommand AddPlayerCommand;
-        RelayCommand RemovePlayerCommand;
-        RelayCommand StartGameCommand;
+
         private int gameType = 0; //Ändra denna till 4 för klassisk eller 5 för styrd.
 
         #endregion
@@ -83,14 +92,20 @@ namespace Yatzy.ViewModels
 
         public CreateGameViewModel()
         {
-            ClassicGameCommand = new RelayCommand(StyrdGame, CanChooseClassicYatzy);
-            StyrdGameCommand = new RelayCommand(ClassicGame, CanChooseStyrdYatzy);
+            playerEngine = new PlayerEngine();
+
+            HardcodedPlayers = new ObservableCollection<Player>();
+            SelectedPlayers = new ObservableCollection<Player>();
+            SelectedPlayer = new Player();
+
+            ClassicGameCommand = new RelayCommand(ClassicGame, CanChooseClassicYatzy);
+            StyrdGameCommand = new RelayCommand(StyrdGame, CanChooseStyrdYatzy);
             AddPlayerCommand = new RelayCommand(AddPlayer, CanAddPlayer);
             RemovePlayerCommand = new RelayCommand(RemovePlayer, CanRemovePlayer);
             StartGameCommand = new RelayCommand(StartGame, CanStartGame);
-            HardcodedPlayers = new ObservableCollection<Player>();
-            SelectedPlayer = new Player();
-            GetAvaliablePlayers();
+
+           
+            //GetAvaliablePlayers();
             SetHardcodedPlayers();
         }
 
@@ -112,7 +127,7 @@ namespace Yatzy.ViewModels
         #region bools
         private bool CanStartGame(object parameter)
         {
-            if (playerEngine.ActivePlayers.Count > 1 && playerEngine.ActivePlayers.Count < 5 && gameType == 4 || gameType == 5)
+            if (playerEngine.ActivePlayers.Count > 1 && playerEngine.ActivePlayers.Count < 5 && gameType < 6 && gameType > 3)
                 return true;
             else
                 return false;
@@ -120,14 +135,14 @@ namespace Yatzy.ViewModels
 
         private bool CanAddPlayer(object parameter)
         {
-            if (playerEngine.ActivePlayers.Count < 5)
+            if (SelectedPlayers.Count < 5 && SelectedPlayer != null)
                 return true;
             else
                 return false;                    
         }
         private bool CanRemovePlayer(object parameter)
         {
-            if (playerEngine.ActivePlayers.Count > 0)
+            if (SelectedPlayers.Count > 0 && SelectedPlayer != null)
                 return true;
             else
                 return false;
@@ -135,17 +150,17 @@ namespace Yatzy.ViewModels
 
         private bool CanChooseClassicYatzy(object parameter)
         {
-            if (CanChooseStyrdYatzy(parameter))
-                return false;
-            else
+            //if (CanChooseStyrdYatzy(parameter))
+            //    return false;
+            //else
                 return true;
         }
 
         private bool CanChooseStyrdYatzy(object parameter)
         {
-            if (CanChooseClassicYatzy(parameter))
-                return false;
-            else
+            //if (CanChooseClassicYatzy(parameter))
+            //    return false;
+            //else
                 return true;                
         }
 
@@ -160,11 +175,14 @@ namespace Yatzy.ViewModels
         public void RemovePlayer(object parameter)
         {
             playerEngine.ActivePlayers.Remove(SelectedPlayer);
+            SelectedPlayers.Remove(SelectedPlayer);
         }
 
         public void AddPlayer(object parameter)
         {
             playerEngine.ActivePlayers.Add(SelectedPlayer);
+            SelectedPlayers.Add(SelectedPlayer);
+            //AvailablePlayers.Remove(SelectedPlayer);
         }
 
         private void ClassicGame(object parameter)
