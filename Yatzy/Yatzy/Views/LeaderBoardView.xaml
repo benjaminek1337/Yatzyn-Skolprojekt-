@@ -146,11 +146,11 @@
 
             <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="4" HorizontalAlignment="Center">
                 <Label Content="Bästa spelare" FontSize="30" HorizontalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
-                <ListView MaxHeight="500" MaxWidth="400" MinWidth="400" MinHeight="500">
+                <ListView MaxWidth="400" MinWidth="400"  ItemsSource="{Binding LeaderBoardClassic}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Nickname" Width="150"/>
-                            <GridViewColumn  Header="Poäng" Width="150" HeaderStringFormat="55"/>
+                            <GridViewColumn Header="Nickname" Width="150" DisplayMemberBinding="{Binding Nickname}"/>
+                            <GridViewColumn  Header="Poäng" Width="150" HeaderStringFormat="55" DisplayMemberBinding="{Binding Highscore}"/>
                             <GridViewColumn/>
                         </GridView>
                     </ListView.View>

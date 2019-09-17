@@ -105,7 +105,7 @@
 
 
             <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Button Style="{StaticResource Back}" Command="{Binding MainMenuCommand}" MaxHeight="110" MaxWidth="110" MinHeight="80" MinWidth="80"/>
+                <Button Style="{StaticResource Back}" Command="{Binding BackCommand}" MaxHeight="110" MaxWidth="110" MinHeight="80" MinWidth="80"/>
             </StackPanel>
 
 
@@ -114,14 +114,14 @@
             </StackPanel>
 
             <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="5">
-                <ListView ItemsSource="{Binding HardcodedPlayers}" SelectedItem="{Binding AddPlayer, Mode=TwoWay}" Background="#3FFFFFFF" Foreground="#FF00FF46" BorderBrush="#4C000000" Width="273" FontSize="18">
+                <ListView ItemsSource="{Binding HardcodedPlayers}" SelectedItem="{Binding SelectedPlayer}" Background="#3FFFFFFF" Foreground="#FF00FF46" BorderBrush="#4C000000" Width="273" FontSize="18">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Förnamn" Width="100" DisplayMemberBinding="{Binding Firstname}" />
                             <GridViewColumn Header="Efternamn" Width="175" DisplayMemberBinding="{Binding Lastname}" />
-                        </GridView>
+                        </GridView>                        
                     </ListView.View>
-                    
+
                 </ListView>
             </StackPanel>
 
@@ -169,7 +169,7 @@
 
                 </Button>
 
-                <Button Style="{StaticResource MyButton}" Command="{Binding RulesCommand}">
+                <Button Style="{StaticResource MyButton}" Command="{Binding }">
                     <Label  Content="Starta Spelet" FontSize="45" Cursor="Hand" Margin="0,200,0,0">
 
                         <Label.Style>

@@ -7,15 +7,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Yatzy.Models;
+using Yatzy.DBOps;
 
 namespace Yatzy.ViewModels
 {
     class LeaderBoardViewModel : INotifyPropertyChanged
     {
 
-        #region Commands
+        #region Fields
 
-        public ICommand UpdateLeaderBoardCommand { get; set; }
+        DbOperations dbOps = new DbOperations();
+        
+        ObservableCollection<Player> leaderBoard { get; set; }
 
 
         #endregion
@@ -24,10 +27,10 @@ namespace Yatzy.ViewModels
 
         public LeaderBoardViewModel()
         {
-
+            LeaderBoardClassic();
+            LeaderBoardForced();
         }
 
-        ObservableCollection<Player> leaderBoard { get; set; }
 
         #endregion
 
@@ -46,18 +49,15 @@ namespace Yatzy.ViewModels
 
         #region Methods
 
-        public bool CanExecute(object parameter)
+        public void LeaderBoardClassic()
         {
-            return true;
+            leaderBoard = dbOps.GetHighScorePlayers(4);            
         }
 
-        public void UpdateLeaderBoard(object parameter)
+        public void LeaderBoardForced()
         {
-
-
-
+            leaderBoard = dbOps.GetHighScorePlayers(5);
         }
-
         #endregion
     }
 }
