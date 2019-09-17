@@ -95,9 +95,6 @@
     <Compile Include="Views\ChoseGameType.xaml.cs">
       <DependentUpon>ChoseGameType.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CreateGameView.xaml.cs">
-      <DependentUpon>CreateGameView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\DicesView.xaml.cs">
       <DependentUpon>DicesView.xaml</DependentUpon>
     </Compile>
@@ -129,10 +126,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\ChoseGameType.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CreateGameView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

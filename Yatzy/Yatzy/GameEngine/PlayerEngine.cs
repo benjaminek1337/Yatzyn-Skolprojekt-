@@ -40,7 +40,7 @@ namespace Yatzy.GameEngine
             ActivePlayers = null;
         }
 
-        public void AddPlayer(string firstname, string lastname, string nickname)
+        public void AddPlayer(string firstname, string lastname, string nickname) // Byt ut den här till att lägga in personobjekt i lista om ni vill
         {
             Player p = new Player
             {
