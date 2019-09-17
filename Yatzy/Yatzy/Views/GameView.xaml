@@ -26,12 +26,67 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <DataGrid ItemsSource="{Binding Path=ActivePlayers}" VerticalAlignment="Top" Grid.Column="2" Grid.Row="1" BorderThickness="1" BorderBrush="Black"  HorizontalGridLinesBrush="Black" MinRowHeight="20" AutoGenerateColumns="False" CanUserAddRows="False" ColumnWidth="*" HeadersVisibility="Column" ColumnHeaderHeight="20"  Height="Auto" />
-        <DataGrid ItemsSource="{Binding Path=Code}" VerticalAlignment="Top" Grid.Column="3" Grid.Row="1" BorderThickness="1" BorderBrush="Black"  HorizontalGridLinesBrush="Black" MinRowHeight="20" AutoGenerateColumns="False" CanUserAddRows="False" ColumnWidth="*" HeadersVisibility="None" Height="Auto"/>
-        <DataGrid ItemsSource="{Binding Path=Code}" VerticalAlignment="Top" Grid.Column="4" Grid.Row="1" BorderThickness="1" BorderBrush="Black"  HorizontalGridLinesBrush="Black" MinRowHeight="20" AutoGenerateColumns="False" CanUserAddRows="False" ColumnWidth="*" HeadersVisibility="None" Height="Auto"/>
-        <DataGrid ItemsSource="{Binding Path=Code}" VerticalAlignment="Top" Grid.Column="5" Grid.Row="1" BorderThickness="1" BorderBrush="Black"  HorizontalGridLinesBrush="Black" MinRowHeight="20" AutoGenerateColumns="False" CanUserAddRows="False" ColumnWidth="*" HeadersVisibility="None" Height="Auto"/>
+        <DataGrid ItemsSource="{Binding Path=ActivePlayers}"  Grid.Column="1" Grid.Row="1" BorderThickness="1" BorderBrush="Black" 
+                  IsReadOnly="True" CanUserSortColumns="False" IsHitTestVisible="False"
+                  HorizontalGridLinesBrush="Black" MinRowHeight="80"  AutoGenerateColumns="False" CanUserAddRows="False"  HeadersVisibility="Column" 
+                  ColumnHeaderHeight="25"   >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Förnamn" Binding="{Binding Firstname}"/>
+                <DataGridTextColumn Header="Ettor" Binding="{Binding Ones}"/>
+                <DataGridTextColumn Header="Tvåor" Binding="{Binding Twos}"/>
+                <DataGridTextColumn Header="Treor" Binding="{Binding Threes}"/>
+                <DataGridTextColumn Header="Fyror" Binding="{Binding Fours}"/>
+                <DataGridTextColumn Header="Femmor" Binding="{Binding Fives}"/>
+                <DataGridTextColumn Header="Sexor" Binding="{Binding Sixes}"/>
+                <DataGridTextColumn Header="Summa" Binding="{Binding UpperScore}"/>
+                <DataGridTextColumn Header="Bonus" Binding="{Binding UpperBonus}"/>
+                <DataGridTextColumn Header="Par" Binding="{Binding Pair}"/>
+                <DataGridTextColumn Header="Två par" Binding="{Binding TwoPairs}"/>
+                <DataGridTextColumn Header="Tretal" Binding="{Binding ThreeOfaKind}"/>
+                <DataGridTextColumn Header="Fyrtal" Binding="{Binding FourOfaKind}"/>
+                <DataGridTextColumn Header="Liten stege" Binding="{Binding SmalLadder}"/>
+                <DataGridTextColumn Header="Stor stege" Binding="{Binding LargeLadder}"/>
+                <DataGridTextColumn Header="Kåk" Binding="{Binding FullHouse}"/>
+                <DataGridTextColumn Header="Chans" Binding="{Binding Chanse}"/>
+                <DataGridTextColumn Header="Yatzy" Binding="{Binding Yatzy}"/>
+                <DataGridTextColumn Header="Total summa" Binding="{Binding TotalScore}"/>
+            </DataGrid.Columns>
+            
+            <!--Konverterar kolumnerna så de visas vertikalt istället för horisontellt-->
+            <DataGrid.LayoutTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="90"/>
+                    <MatrixTransform Matrix="-1,0,0,1,0,0"/>
+                </TransformGroup>
+            </DataGrid.LayoutTransform>
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                    <Setter Property="LayoutTransform">
+                        <Setter.Value>
+                            <TransformGroup>
+                                <RotateTransform Angle="-90"/>
+                                <ScaleTransform ScaleX="1" ScaleY="-1" />
+                            </TransformGroup>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.CellStyle  >
+                <Style TargetType="DataGridCell">
+                    <Setter Property="LayoutTransform">
+                        <Setter.Value>
+                            <TransformGroup>
+                                <RotateTransform Angle="-90"/>
+                                <ScaleTransform ScaleX="1" ScaleY="-1" />
+                            </TransformGroup>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </DataGrid.CellStyle>
+        </DataGrid>
         
-        <Grid x:Name="DiceBoard" ShowGridLines="True" Grid.Column="1" HorizontalAlignment="Left" Height="200" Margin="100,100,0,0" Grid.Row="1" VerticalAlignment="Top" Width="300">
+        
+        <!-- <Grid x:Name="DiceBoard" ShowGridLines="True" Grid.Column="1" HorizontalAlignment="Left" Height="200" Margin="100,100,0,0" Grid.Row="1" VerticalAlignment="Top" Width="300">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -48,8 +103,8 @@
                 <RowDefinition/>
 
 
-            </Grid.RowDefinitions>
-        </Grid>
+            </Grid.RowDefinitions> 
+        </Grid> -->
 
 
 
