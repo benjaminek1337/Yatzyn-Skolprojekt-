@@ -22,9 +22,13 @@ namespace Yatzy.Views
     /// </summary>
     public partial class CreateGameView : UserControl
     {
+        CreateGameViewModel createGameViewModel;
+
+
         public CreateGameView()
         {
-            this.DataContext = new NavigationViewModel();
+            createGameViewModel = new CreateGameViewModel();
+            DataContext = createGameViewModel;
             InitializeComponent();
         }
     }
