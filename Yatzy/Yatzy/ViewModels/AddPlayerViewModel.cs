@@ -41,8 +41,7 @@ namespace Yatzy.ViewModels
 
         private void AddPlayer(object parameter)
         {
-            playerEngine.AddPlayer(Player.Firstname, Player.Lastname, Player.Nickname);
-            //Fixa bindings till fnamn, enamn o nickname i textboxar i view nånstans.
+
         }
 
         private void Cancel(object parameter)

@@ -23,6 +23,13 @@ namespace Yatzy.ViewModels
             set { _players = value; OnPropertyChanged("Players"); }
         }
 
+        private ObservableCollection<Player> selectedPlayers;
+        public ObservableCollection<Player> SelectedPlayers
+        {
+            get { return selectedPlayers; }
+            set { selectedPlayers = value; OnPropertyChanged("SelectedPlayers"); }
+        }
+
         private Player _selectedPlayer;
         public Player SelectedPlayer
         {
@@ -32,8 +39,8 @@ namespace Yatzy.ViewModels
         #endregion
 
         #region Hårdkodad lista för testning
-        private ObservableCollection<Player> _hardcodedPlayers;
 
+        private ObservableCollection<Player> _hardcodedPlayers;
         public ObservableCollection<Player> HardcodedPlayers
         {
             get { return _hardcodedPlayers; }
@@ -83,6 +90,10 @@ namespace Yatzy.ViewModels
 
         public CreateGameViewModel()
         {
+            HardcodedPlayers = new ObservableCollection<Player>();
+            SelectedPlayers = new ObservableCollection<Player>();
+            SelectedPlayer = new Player();
+
             ClassicGameCommand = new RelayCommand(ClassicGame, CanChooseClassicYatzy);
             StyrdGameCommand = new RelayCommand(StyrdGame, CanChooseStyrdYatzy);
             AddPlayerCommand = new RelayCommand(AddPlayer, CanAddPlayer);
@@ -159,11 +170,13 @@ namespace Yatzy.ViewModels
         public void RemovePlayer(object parameter)
         {
             playerEngine.ActivePlayers.Remove(SelectedPlayer);
+            SelectedPlayers.Remove(SelectedPlayer);
         }
 
         public void AddPlayer(object parameter)
         {
             playerEngine.ActivePlayers.Add(SelectedPlayer);
+            SelectedPlayers.Add(SelectedPlayer);
         }
 
         private void ClassicGame(object parameter)
