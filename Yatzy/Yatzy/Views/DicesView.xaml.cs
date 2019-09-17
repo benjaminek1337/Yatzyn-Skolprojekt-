@@ -24,7 +24,7 @@ namespace Yatzy.Views
 
         public DicesView()
         {
-            dicesViewModel = new DicesViewModel();
+            dicesViewModel = new DicesViewModel(4);//La till 4 för att kunna köra
             this.DataContext = dicesViewModel;
             InitializeComponent();
         }

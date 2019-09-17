@@ -17,6 +17,7 @@ namespace Yatzy.ViewModels
         public ICommand MainMenuCommand { get; set; }
         public ICommand LeaderBoardCommand { get; set; }
         public ICommand RulesCommand { get; set; }
+        public ICommand CreateGamesCommand { get; set; }
 
         private object selectedViewModel;
 
@@ -37,6 +38,7 @@ namespace Yatzy.ViewModels
             MainMenuCommand = new RelayCommand(OpenMainMenu, CanExecuteMethod);
             LeaderBoardCommand = new RelayCommand(OpenLeaderBoard, CanExecuteMethod);
             RulesCommand = new RelayCommand(OpenRules, CanExecuteMethod);
+            CreateGamesCommand = new RelayCommand(OpenGameMenu ,CanExecuteMethod);
         }
 
         #endregion
@@ -46,6 +48,11 @@ namespace Yatzy.ViewModels
         private bool CanExecuteMethod(object parameter)
         {
             return true;
+        }
+
+        private void OpenGameMenu(object parameter)
+        {
+            SelectedViewModel = new CreateGameViewModel();
         }
 
         private void OpenSettings(object parameter)
