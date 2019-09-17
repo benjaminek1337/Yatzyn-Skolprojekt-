@@ -150,17 +150,17 @@ namespace Yatzy.ViewModels
 
         private bool CanChooseClassicYatzy(object parameter)
         {
-            //if (CanChooseStyrdYatzy(parameter))
-            //    return false;
-            //else
+            if (gameType == 4)
+                return false;
+            else
                 return true;
         }
 
         private bool CanChooseStyrdYatzy(object parameter)
         {
-            //if (CanChooseClassicYatzy(parameter))
-            //    return false;
-            //else
+            if (gameType == 5)
+                return false;
+            else
                 return true;                
         }
 
@@ -182,7 +182,10 @@ namespace Yatzy.ViewModels
         {
             playerEngine.ActivePlayers.Add(SelectedPlayer);
             SelectedPlayers.Add(SelectedPlayer);
-            //AvailablePlayers.Remove(SelectedPlayer);
+            if (SelectedPlayer != null)
+                AvailablePlayers.Remove(SelectedPlayer);
+            else
+                SelectedPlayer = null;
         }
 
         private void ClassicGame(object parameter)
