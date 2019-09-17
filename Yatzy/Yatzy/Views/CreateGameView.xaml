@@ -111,7 +111,7 @@
 
 
             <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="4" HorizontalAlignment="Center">
-                <ListBox ItemsSource="{Binding GetAvaliablePlayers}" Height="615" Width="400"/>
+                <ListBox ItemsSource="{Binding test}" Height="615" Width="400"/>
             </StackPanel>
 
 

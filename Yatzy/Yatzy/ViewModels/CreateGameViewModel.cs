@@ -16,7 +16,10 @@ namespace Yatzy.ViewModels
     {
         DicesViewModel dicesViewModel;
         PlayerEngine playerEngine; //Kasta in eller ut de valda spelarna till listan ActivePlayers eller vad fan den nu heter inne i PlayerEngine
-        DbOperations dbOps;
+        DbOperations dbOps = new DbOperations();
+        
+        ObservableCollection<Player> players { get; set; }
+
 
         #region Properties
         RelayCommand ClassicGameCommand;
@@ -24,6 +27,10 @@ namespace Yatzy.ViewModels
         RelayCommand AddPlayerCommand;
         RelayCommand RemovePlayerCommand;
         RelayCommand StartGameCommand;
+
+        public string Firstname { get; set; }
+        public string Nickname { get; set; }
+        public string Lastname { get; set; }
 
         private int gameType = 4; //Ändra denna till 4 för klassisk eller 5 för styrd.
         private Player selectedPlayer;
@@ -40,6 +47,10 @@ namespace Yatzy.ViewModels
             RemovePlayerCommand = new RelayCommand(, CanExecute);
             StartGameCommand = new RelayCommand(StartGame, CanExecute);*/
 
+
+            GetAvaliablePlayers();
+
+           
             //Ta bort kommentarsträcken när metoderna är skapade
         }
 
@@ -66,13 +77,12 @@ namespace Yatzy.ViewModels
         {
             get { return selectedPlayer; }
             set { selectedPlayer = value; OnPropertyChanged("SelectedPlayer"); }
-
         }
 
 
-        public ObservableCollection<Player> GetAvaliablePlayers()
+        private void GetAvaliablePlayers()
         {
-            return dbOps.GetAvaliablePlayers();
+            players = dbOps.GetAvaliablePlayers();
         }
 
         public void RemovePlayer(object parameter)

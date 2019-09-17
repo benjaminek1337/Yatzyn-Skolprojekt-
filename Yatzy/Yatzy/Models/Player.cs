@@ -14,6 +14,7 @@ namespace Yatzy.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
         #region variabler till properties
         private string _firstname;
         private string _lastname;
@@ -40,7 +41,6 @@ namespace Yatzy.Models
         private int? _yatzy;
         private int? _totalScore;
         #endregion
-
 
         #region player properties
         public string Firstname
