@@ -12,12 +12,11 @@
 
     <UserControl.Resources>
 
-
-        <DataTemplate DataType="{x:Type ViewModels:NavigationViewModel}">
-            <Views:RulesView Content="{Binding}"/>
+        <DataTemplate DataType="{x:Type ViewModels:MainMenuViewModel}">
+            <Views:MainMenuView Content="{Binding}"/>
         </DataTemplate>
 
-        
+                
         <Style x:Key="MyButton" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="MinHeight" Value="50"/>
@@ -40,7 +39,33 @@
             </Setter>
         </Style>
 
-
+        <Style x:Key="Back" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="MinHeight" Value="50"/>
+            <Setter Property="MinWidth" Value="50"/>
+            <Setter Property="FontStyle" Value="Normal"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Image Name="MouseOver" Source="/Resources/MouseOver.png"/>
+                            <Image Name="NotMouseOver" Source="/Resources/NotMouseOver.png"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Image.IsMouseOver" Value="true">
+                                <Setter TargetName="MouseOver" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="NotMouseOver" Property="Visibility" Value="Hidden"/>
+                            </Trigger>
+                            <Trigger Property="Image.IsMouseOver" Value="false">
+                                <Setter TargetName="MouseOver" Property="Visibility" Value="Hidden"/>
+                                <Setter TargetName="NotMouseOver" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
     </UserControl.Resources>
 
@@ -79,25 +104,30 @@
             </StackPanel>
 
 
+            <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button Style="{StaticResource Back}" Command="{Binding MainMenuCommand}" MaxHeight="110" MaxWidth="110" MinHeight="80" MinWidth="80"/>
+            </StackPanel>
+
 
             <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2">
                 <Label Content="YATZY"  HorizontalAlignment="Center" FontSize="55" Foreground="DodgerBlue" />
             </StackPanel>
 
             <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="5">
-                <ListView ItemsSource="{Binding TillgängligaSpelareListan}" Background="#3FFFFFFF" Foreground="#FF00FF46" BorderBrush="#4C000000" Width="273" FontSize="18">
+                <ListView ItemsSource="{Binding HardcodedPlayers}" SelectedItem="{Binding AddPlayer, Mode=TwoWay}" Background="#3FFFFFFF" Foreground="#FF00FF46" BorderBrush="#4C000000" Width="273" FontSize="18">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Förnamn" Width="100" DisplayMemberBinding="{Binding Firstname}" />
                             <GridViewColumn Header="Efternamn" Width="175" DisplayMemberBinding="{Binding Lastname}" />
                         </GridView>
                     </ListView.View>
+                    
                 </ListView>
             </StackPanel>
 
             <StackPanel Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Grid.RowSpan="5" Width="600">
                 <Label Content="Valda spelare" FontSize="30" Foreground="AntiqueWhite" HorizontalAlignment="Center"/>
-                <Label Content="Benjamin Ek" FontSize="26" Foreground="AntiqueWhite" HorizontalAlignment="Center" Margin="0,30,0,0"/>
+                <Label Content="{Binding SelectedPlayers}" FontSize="26" Foreground="AntiqueWhite" HorizontalAlignment="Center" Margin="0,30,0,0"/>
                 <Label Content="Dan Johansson" FontSize="26" Foreground="AntiqueWhite" HorizontalAlignment="Center"/>
                 <Label Content="Johannes Lundqvist" FontSize="26" Foreground="AntiqueWhite" HorizontalAlignment="Center"/>
                 <Label Content="Anne-Mattias Svensson-Strålberg" FontSize="26" Foreground="AntiqueWhite" HorizontalAlignment="Center"/>
@@ -105,7 +135,7 @@
 
             <StackPanel Grid.Row="1" Grid.Column="8"  Grid.RowSpan="5" Margin="5" >
 
-                <Button Style="{StaticResource MyButton}" Command="{}" Margin="0,80,0,0" CommandParameter="4">
+                <Button Style="{StaticResource MyButton}" Command="{Binding Classic}" Margin="0,80,0,0" CommandParameter="4">
                     <Label Content="Klassisk Yatzy" FontSize="45" Cursor="Hand" Margin="10" HorizontalAlignment="Left">
                         <Label.Style>
                             <Style>

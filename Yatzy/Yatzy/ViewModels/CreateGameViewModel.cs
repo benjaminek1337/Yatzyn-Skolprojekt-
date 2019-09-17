@@ -14,26 +14,77 @@ namespace Yatzy.ViewModels
 {
     class CreateGameViewModel : INotifyPropertyChanged
     {
-        DicesViewModel dicesViewModel;
-        PlayerEngine playerEngine; //Kasta in eller ut de valda spelarna till listan ActivePlayers eller vad fan den nu heter inne i PlayerEngine
-        DbOperations dbOps = new DbOperations();
-        
-        ObservableCollection<Player> players { get; set; }
-
 
         #region Properties
-        RelayCommand ClassicGameCommand;
-        RelayCommand StyrdGameCommand;
-        RelayCommand AddPlayerCommand;
-        RelayCommand RemovePlayerCommand;
-        RelayCommand StartGameCommand;
+        public RelayCommand ClassicGameCommand { get; set; }
+        public RelayCommand StyrdGameCommand { get; set; }
+        public RelayCommand AddPlayerCommand { get; set; }
+        public RelayCommand RemovePlayerCommand { get; set; }
+        public RelayCommand StartGameCommand { get; set; }
 
-        public string Firstname { get; set; }
-        public string Nickname { get; set; }
-        public string Lastname { get; set; }
+        private ObservableCollection<Player> _players;
+        public ObservableCollection<Player> AvailablePlayers
+        {
+            get { return _players; }
+            set { _players = value; OnPropertyChanged("Players"); }
+        }
 
-        private int gameType = 4; //Ändra denna till 4 för klassisk eller 5 för styrd.
-        private Player selectedPlayer;
+        private ObservableCollection<Player> selectedPlayers;
+        public ObservableCollection<Player> SelectedPlayers
+        {
+            get { return selectedPlayers; }
+            set { selectedPlayers = value; OnPropertyChanged("SelectedPlayers"); }
+        }
+
+        private Player _selectedPlayer;
+        public Player SelectedPlayer
+        {
+            get { return _selectedPlayer; }
+            set { _selectedPlayer = value; OnPropertyChanged("SelectedPlayer"); }
+        }
+        #endregion
+
+        #region Hårdkodad lista för testning
+
+        private ObservableCollection<Player> _hardcodedPlayers;
+        public ObservableCollection<Player> HardcodedPlayers
+        {
+            get { return _hardcodedPlayers; }
+            set { _hardcodedPlayers = value; OnPropertyChanged("HardcodedPlayers"); }
+        }
+
+        private void SetHardcodedPlayers()
+        {
+            Player p = new Player
+            {
+                Firstname = "Beendjaameeehn",
+                Lastname = "Ek",
+                Nickname = "Galne_Gunnar1337"
+            }; HardcodedPlayers.Add(p);
+            Player p2 = new Player
+            {
+                Firstname = "Djååohäänis",
+                Lastname = "Kuk",
+                Nickname = "ChildKillah"
+            }; HardcodedPlayers.Add(p2);
+            Player p3 = new Player
+            {
+                Firstname = "Määtiihuuuhs",
+                Lastname = "Svensson",
+                Nickname = "Skolrunken"
+            }; HardcodedPlayers.Add(p3);
+        }
+
+        #endregion
+
+        #region Objekt och lokala variabler
+
+        DicesViewModel dicesViewModel;
+        PlayerEngine playerEngine;
+        DbOperations dbOps = new DbOperations();
+
+
+        private int gameType = 0; //Ändra denna till 4 för klassisk eller 5 för styrd.
 
         #endregion
 
@@ -41,22 +92,26 @@ namespace Yatzy.ViewModels
 
         public CreateGameViewModel()
         {
-            /*ClassicGameCommand = new RelayCommand(, CanExecute);
-            StyrdGameCommand = new RelayCommand(, CanExecute);
-            AddPlayerCommand = new RelayCommand(, CanExecute);
-            RemovePlayerCommand = new RelayCommand(, CanExecute);
-            StartGameCommand = new RelayCommand(StartGame, CanExecute);*/
+            playerEngine = new PlayerEngine();
 
+            HardcodedPlayers = new ObservableCollection<Player>();
+            SelectedPlayers = new ObservableCollection<Player>();
+            SelectedPlayer = new Player();
 
-            GetAvaliablePlayers();
+            ClassicGameCommand = new RelayCommand(ClassicGame, CanChooseClassicYatzy);
+            StyrdGameCommand = new RelayCommand(StyrdGame, CanChooseStyrdYatzy);
+            AddPlayerCommand = new RelayCommand(AddPlayer, CanAddPlayer);
+            RemovePlayerCommand = new RelayCommand(RemovePlayer, CanRemovePlayer);
+            StartGameCommand = new RelayCommand(StartGame, CanStartGame);
 
            
-            //Ta bort kommentarsträcken när metoderna är skapade
+            //GetAvaliablePlayers();
+            SetHardcodedPlayers();
         }
 
         #endregion
 
-        #region intnu
+        #region PropChanged
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged(string v)
@@ -67,42 +122,84 @@ namespace Yatzy.ViewModels
             }
         }
 
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
         #endregion
 
-        public Player SelectedPlayer
+        #region bools
+        private bool CanStartGame(object parameter)
         {
-            get { return selectedPlayer; }
-            set { selectedPlayer = value; OnPropertyChanged("SelectedPlayer"); }
+            if (playerEngine.ActivePlayers.Count > 1 && playerEngine.ActivePlayers.Count < 5 && gameType < 6 && gameType > 3)
+                return true;
+            else
+                return false;
         }
 
+        private bool CanAddPlayer(object parameter)
+        {
+            if (SelectedPlayers.Count < 5 && SelectedPlayer != null)
+                return true;
+            else
+                return false;                    
+        }
+        private bool CanRemovePlayer(object parameter)
+        {
+            if (SelectedPlayers.Count > 0 && SelectedPlayer != null)
+                return true;
+            else
+                return false;
+        }
 
+        private bool CanChooseClassicYatzy(object parameter)
+        {
+            //if (CanChooseStyrdYatzy(parameter))
+            //    return false;
+            //else
+                return true;
+        }
+
+        private bool CanChooseStyrdYatzy(object parameter)
+        {
+            //if (CanChooseClassicYatzy(parameter))
+            //    return false;
+            //else
+                return true;                
+        }
+
+        #endregion
+
+        #region Metoder
         private void GetAvaliablePlayers()
         {
-            players = dbOps.GetAvaliablePlayers();
+            AvailablePlayers = dbOps.GetAvaliablePlayers();
         }
 
         public void RemovePlayer(object parameter)
         {
             playerEngine.ActivePlayers.Remove(SelectedPlayer);
+            SelectedPlayers.Remove(SelectedPlayer);
         }
 
-
-        public void AddPlayerToGame(object parameter)
+        public void AddPlayer(object parameter)
         {
             playerEngine.ActivePlayers.Add(SelectedPlayer);
+            SelectedPlayers.Add(SelectedPlayer);
+            //AvailablePlayers.Remove(SelectedPlayer);
         }
 
+        private void ClassicGame(object parameter)
+        {
+            gameType = int.Parse(parameter.ToString());
+        }
 
+        private void StyrdGame(object parameter)
+        {
+            gameType = int.Parse(parameter.ToString());
+        }
 
         private void StartGame(object parameter)
         {
             dicesViewModel = new DicesViewModel(gameType);
         }
 
-
+        #endregion
     }
 }
