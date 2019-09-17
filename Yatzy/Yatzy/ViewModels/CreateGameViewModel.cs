@@ -83,8 +83,8 @@ namespace Yatzy.ViewModels
 
         public CreateGameViewModel()
         {
-            ClassicGameCommand = new RelayCommand(StyrdGame, CanChooseClassicYatzy);
-            StyrdGameCommand = new RelayCommand(ClassicGame, CanChooseStyrdYatzy);
+            ClassicGameCommand = new RelayCommand(ClassicGame, CanChooseClassicYatzy);
+            StyrdGameCommand = new RelayCommand(StyrdGame, CanChooseStyrdYatzy);
             AddPlayerCommand = new RelayCommand(AddPlayer, CanAddPlayer);
             RemovePlayerCommand = new RelayCommand(RemovePlayer, CanRemovePlayer);
             StartGameCommand = new RelayCommand(StartGame, CanStartGame);
