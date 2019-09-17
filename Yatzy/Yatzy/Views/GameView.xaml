@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GameView">
 
-    <Grid ShowGridLines="False" Background="White">
+    <Grid ShowGridLines="True" Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition Width="10*"/>
@@ -26,22 +26,28 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <DataGrid ItemsSource="{Binding Path=Code}" VerticalAlignment="Top" Grid.Column="2" Grid.Row="1" BorderThickness="1" BorderBrush="Black"  HorizontalGridLinesBrush="Black" MinRowHeight="20" AutoGenerateColumns="False" CanUserAddRows="False" ColumnWidth="*" HeadersVisibility="Column" ColumnHeaderHeight="20"  Height="Auto" />
+        <DataGrid ItemsSource="{Binding Path=ActivePlayers}" VerticalAlignment="Top" Grid.Column="2" Grid.Row="1" BorderThickness="1" BorderBrush="Black"  HorizontalGridLinesBrush="Black" MinRowHeight="20" AutoGenerateColumns="False" CanUserAddRows="False" ColumnWidth="*" HeadersVisibility="Column" ColumnHeaderHeight="20"  Height="Auto" />
         <DataGrid ItemsSource="{Binding Path=Code}" VerticalAlignment="Top" Grid.Column="3" Grid.Row="1" BorderThickness="1" BorderBrush="Black"  HorizontalGridLinesBrush="Black" MinRowHeight="20" AutoGenerateColumns="False" CanUserAddRows="False" ColumnWidth="*" HeadersVisibility="None" Height="Auto"/>
         <DataGrid ItemsSource="{Binding Path=Code}" VerticalAlignment="Top" Grid.Column="4" Grid.Row="1" BorderThickness="1" BorderBrush="Black"  HorizontalGridLinesBrush="Black" MinRowHeight="20" AutoGenerateColumns="False" CanUserAddRows="False" ColumnWidth="*" HeadersVisibility="None" Height="Auto"/>
         <DataGrid ItemsSource="{Binding Path=Code}" VerticalAlignment="Top" Grid.Column="5" Grid.Row="1" BorderThickness="1" BorderBrush="Black"  HorizontalGridLinesBrush="Black" MinRowHeight="20" AutoGenerateColumns="False" CanUserAddRows="False" ColumnWidth="*" HeadersVisibility="None" Height="Auto"/>
-        <Grid x:Name="Test" Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="100,100,0,0" Grid.Row="1" VerticalAlignment="Top" Width="100">
+        
+        <Grid x:Name="DiceBoard" ShowGridLines="True" Grid.Column="1" HorizontalAlignment="Left" Height="200" Margin="100,100,0,0" Grid.Row="1" VerticalAlignment="Top" Width="300">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />                
+                <ColumnDefinition />
+                <ColumnDefinition />
                 <ColumnDefinition />
                 <ColumnDefinition />
                 <ColumnDefinition />
 
+
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition/>
-                <RowDefinition Height="12*"/>
                 <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+
+
             </Grid.RowDefinitions>
         </Grid>
 
