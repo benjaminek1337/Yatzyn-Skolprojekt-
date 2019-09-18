@@ -213,12 +213,12 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\dice1.png" />
-    <Resource Include="Resources\dice2.png" />
-    <Resource Include="Resources\dice3.png" />
-    <Resource Include="Resources\dice4.png" />
-    <Resource Include="Resources\dice5.png" />
-    <Resource Include="Resources\dice6.png" />
+    <Resource Include="Resources\Images\dice1.png" />
+    <Resource Include="Resources\Images\dice2.png" />
+    <Resource Include="Resources\Images\dice3.png" />
+    <Resource Include="Resources\Images\dice4.png" />
+    <Resource Include="Resources\Images\dice5.png" />
+    <Resource Include="Resources\Images\dice6.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\soundoff.png" />

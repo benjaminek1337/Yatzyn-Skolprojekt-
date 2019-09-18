@@ -8,6 +8,8 @@
         mc:Ignorable="d"
         Title="DicesView" Height="800" Width="1000">
     <Grid ShowGridLines="True" Background="White">
+        
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="7*"/>
@@ -25,7 +27,7 @@
             <Button x:Name="button1_Copy" Command="{Binding SaveDiceCommand}" CommandParameter="3" Content="{Binding Path = Dices[2].DiceValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="30"/>
             <Button x:Name="button1_Copy1" Command="{Binding SaveDiceCommand}" CommandParameter="4" Content="{Binding Path = Dices[3].DiceValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="30"/>
             <Button x:Name="button1_Copy2" Command="{Binding SaveDiceCommand}" CommandParameter="5" Content="{Binding Path = Dices[4].DiceValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="30"/>
-            <Button x:Name="btnThrow" Command="{Binding RollDicesCommand}" Content="Kasta" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
+            <Button x:Name="btnThrow" Command="{Binding RollDicesCommand}" Content="Kasta" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/> 
         </StackPanel>    
         <ListView x:Name="listView" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="157" Margin="27,24,0,0" VerticalAlignment="Top" Width="199" ItemsSource="{Binding Dices}">
                 <ListView.View>
@@ -78,7 +80,7 @@
             <TextBox Text="{Binding Path= activePlayer.TotalScore}" Margin="0,30,0,0" />
             <Button Command="{Binding QuitGameCommand}" Content="Avsluta"/>
         </StackPanel>
-        <Label x:Name="label" Content="{Binding Path = activePlayer.Firstname, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="512,20,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label" Grid.Row="0" Grid.Column="2" Content="{Binding Path = activePlayer.Firstname, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="22,20,0,0" VerticalAlignment="Top"/>
         
         <DataGrid ItemsSource="{Binding Path=ActivePlayers}"  Grid.Column="2" Grid.Row="1" BorderThickness="1" BorderBrush="Black" 
                   IsReadOnly="True" CanUserSortColumns="True" IsHitTestVisible="True" HorizontalAlignment="Left"
@@ -139,5 +141,6 @@
                 </Style>
             </DataGrid.CellStyle>
         </DataGrid>
+
     </Grid>
 </Window>
