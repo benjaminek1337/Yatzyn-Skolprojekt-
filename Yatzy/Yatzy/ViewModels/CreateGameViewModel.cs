@@ -23,6 +23,7 @@ namespace Yatzy.ViewModels
         public RelayCommand AddPlayerCommand { get; set; }
         public RelayCommand RemovePlayerCommand { get; set; }
         public RelayCommand StartGameCommand { get; set; }
+        public RelayCommand OpenAddPlayerCommand { get; set; }
         public ICommand BackCommand { get; set; }
 
         private ObservableCollection<Player> _players;
@@ -105,6 +106,7 @@ namespace Yatzy.ViewModels
             RemovePlayerCommand = new RelayCommand(RemovePlayer, CanRemovePlayer);
             StartGameCommand = new RelayCommand(StartGame, CanStartGame);
             BackCommand = new RelayCommand(Backcommand,CanExecuteMethod);
+            OpenAddPlayerCommand = new RelayCommand(OpenAddPlayer, CanExecuteMethod);
 
             //GetAvaliablePlayers();
             SetHardcodedPlayers();
@@ -211,6 +213,17 @@ namespace Yatzy.ViewModels
             
             dicesView.Show();
         }
+
+        #endregion
+
+        #region Metod för att öppna ett Registrera ny spelare Fönster
+
+        private void OpenAddPlayer(object parameter)
+        {
+            AddPlayerView addPlayerView = new AddPlayerView();
+            addPlayerView.Show();
+        }
+
 
         #endregion
 

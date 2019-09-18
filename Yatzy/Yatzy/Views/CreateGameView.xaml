@@ -123,6 +123,7 @@
                     </ListView.View>
                 </ListView>
                 <Button Content="Lägg till spelare" Margin="0,30,0,0" Width="100" Height="30" Command="{Binding AddPlayerCommand}"/>
+                <Button Content="Registrera spelare" Margin="0,30,0,0" Width="100" Height="30" Command="{Binding OpenAddPlayerCommand}"/>
             </StackPanel>
 
             <StackPanel Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Grid.RowSpan="5" Width="600">

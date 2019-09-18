@@ -5,14 +5,19 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Yatzy.Commands;
+using Yatzy.DBOps;
 using Yatzy.GameEngine;
 using Yatzy.Models;
+using Yatzy.Views;
 
 namespace Yatzy.ViewModels
 {
     class AddPlayerViewModel : INotifyPropertyChanged
     {
+        DbOperations dbOps;
+
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
         #region Properties 
@@ -30,21 +35,21 @@ namespace Yatzy.ViewModels
         public string _Firstname
         {
             get { return _firstname; }
-            set { _firstname = value; PropertyChanged(this, new PropertyChangedEventArgs("_Firstname"); }
+            set { _firstname = value; PropertyChanged(this, new PropertyChangedEventArgs("_Firstname")); }
         }
 
         private string _lastname;
         public string _Lastname
         {
             get { return _lastname; }
-            set { _lastname = value; PropertyChanged(this, new PropertyChangedEventArgs("_Lastname"); }
+            set { _lastname = value; PropertyChanged(this, new PropertyChangedEventArgs("_Lastname")); }
         }
 
         private string _nickname;
         public string _Nickname
         {
             get { return _nickname; }
-            set { _nickname = value; PropertyChanged(this, new PropertyChangedEventArgs("_Nickname"); }
+            set { _nickname = value; PropertyChanged(this, new PropertyChangedEventArgs("_Nickname")); }
         }
 
         #endregion
@@ -52,7 +57,8 @@ namespace Yatzy.ViewModels
         #region Konstruktor
         public AddPlayerViewModel()
         {
-            AddPlayerCommand = new RelayCommand(AddPlayer, CanExecute);
+            dbOps = new DbOperations();
+            AddPlayerCommand = new RelayCommand(AddPlayer, CanAddPlayer);
             CancelCommand = new RelayCommand(Cancel, CanExecute);
         }
         #endregion
@@ -67,11 +73,24 @@ namespace Yatzy.ViewModels
                 Lastname = _Lastname,
                 Nickname = _Nickname
             };
+            dbOps.RegisterPlayer(Player);
+            MessageBox.Show("Spelare " + Player.Firstname + " '" + Player.Nickname + "' " + Player.Lastname + " är tillagd.");
         }
 
         private void Cancel(object parameter)
         {
             //Metod för att återgå till tidigare
+            AddPlayerView addPlayerView = new AddPlayerView();
+            addPlayerView.Close();
+        }
+
+        private bool CanAddPlayer(object parameter)
+        {
+            //if (_Firstname != null && _Lastname != null && _Nickname != null)
+                return true;
+            //else
+            //    return false;
+                    
         }
 
         private bool CanExecute(object parameter)
