@@ -391,7 +391,7 @@ namespace Yatzy.DBOps
 
         public void RegisterPlayer(Player player)
         {
-            NpgsqlTransaction transaction = null;
+            
             NpgsqlConnection conn = null;
             NpgsqlCommand cmd = null;
             try
@@ -401,29 +401,23 @@ namespace Yatzy.DBOps
                 
 
                 conn = new NpgsqlConnection(Connect);
-                conn.Open();
-                transaction = conn.BeginTransaction();
+                conn.Open();            
 
                 for (int i = 0; i < stmts.Length; i++)
                 {
                     cmd = new NpgsqlCommand(stmts, conn);
-                    cmd.Transaction = transaction;
+                    //cmd.Transaction = transaction;
                     cmd.Parameters.AddWithValue("fname", player.Firstname);
                     cmd.Parameters.AddWithValue("nname", player.Nickname);
                     cmd.Parameters.AddWithValue("lname", player.Lastname);
                     cmd.ExecuteNonQuery();
-                }
-
-                transaction.Commit();
+                }               
                 conn.Close();
 
             }
             catch (Exception)
-            {
-
-                transaction.Rollback();
+            {              
                 conn.Close();
-
             }
         }
 
