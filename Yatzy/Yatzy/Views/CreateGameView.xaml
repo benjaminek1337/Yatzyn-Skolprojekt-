@@ -114,7 +114,7 @@
             </StackPanel>
 
             <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="4">
-                <ListView ItemsSource="{Binding HardcodedPlayers}" SelectedItem="{Binding SelectedPlayer}" Background="#3FFFFFFF" Foreground="#FF00FF46" BorderBrush="#4C000000" Width="400" Height="500" FontSize="18">
+                <ListView ItemsSource="{Binding AvailablePlayers}" SelectedItem="{Binding SelectedPlayer}" Background="#3FFFFFFF" Foreground="#FF00FF46" BorderBrush="#4C000000" Width="400" Height="500" FontSize="18">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Förnamn" Width="200" DisplayMemberBinding="{Binding Firstname}" />

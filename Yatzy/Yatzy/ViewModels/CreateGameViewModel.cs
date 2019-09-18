@@ -84,7 +84,7 @@ namespace Yatzy.ViewModels
         #region Objekt och lokala variabler
 
         PlayerEngine playerEngine;
-        //DbOperations dbOps = new DbOperations();
+        DbOperations dbOps;
 
 
         private int gameType = 0; //Denna ändras till 4 för klassisk eller 5 för styrd.
@@ -95,6 +95,7 @@ namespace Yatzy.ViewModels
 
         public CreateGameViewModel()
         {
+            dbOps = new DbOperations();
             playerEngine = new PlayerEngine();
             HardcodedPlayers = new ObservableCollection<Player>();
             SelectedPlayers = new ObservableCollection<Player>();
@@ -108,8 +109,8 @@ namespace Yatzy.ViewModels
             BackCommand = new RelayCommand(Backcommand,CanExecuteMethod);
             OpenAddPlayerCommand = new RelayCommand(OpenAddPlayer, CanExecuteMethod);
 
-            //GetAvaliablePlayers();
-            SetHardcodedPlayers();
+            GetAvaliablePlayers();
+            //SetHardcodedPlayers();
         }
 
         #endregion
@@ -170,10 +171,10 @@ namespace Yatzy.ViewModels
         #endregion
 
         #region Metoder
-        //private void GetAvaliablePlayers()
-        //{
-        //    AvailablePlayers = dbOps.GetAvaliablePlayers();
-        //}
+        private void GetAvaliablePlayers()
+        {
+            AvailablePlayers = dbOps.GetAvaliablePlayers();
+        }
 
         public void RemovePlayer(object parameter)
         {

@@ -18,7 +18,13 @@ namespace Yatzy.ViewModels
     {
         DbOperations dbOps;
 
-        public event PropertyChangedEventHandler PropertyChanged = delegate { };
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(PropertyChangedEventArgs e)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, e);
+        }
 
         #region Properties 
         public RelayCommand AddPlayerCommand { get; set; }
@@ -28,28 +34,28 @@ namespace Yatzy.ViewModels
         public Player Player
         {
             get { return player; }
-            set { player = value; PropertyChanged(this, new PropertyChangedEventArgs("Player")); }
+            set { player = value; OnPropertyChanged(new PropertyChangedEventArgs("Player")); }
         }
 
         private string _firstname;
         public string _Firstname
         {
             get { return _firstname; }
-            set { _firstname = value; PropertyChanged(this, new PropertyChangedEventArgs("_Firstname")); }
+            set { _firstname = value; OnPropertyChanged(new PropertyChangedEventArgs("_Firstname")); }
         }
 
         private string _lastname;
         public string _Lastname
         {
             get { return _lastname; }
-            set { _lastname = value; PropertyChanged(this, new PropertyChangedEventArgs("_Lastname")); }
+            set { _lastname = value; OnPropertyChanged(new PropertyChangedEventArgs("_Lastname")); }
         }
 
         private string _nickname;
         public string _Nickname
         {
             get { return _nickname; }
-            set { _nickname = value; PropertyChanged(this, new PropertyChangedEventArgs("_Nickname")); }
+            set { _nickname = value; OnPropertyChanged(new PropertyChangedEventArgs("_Nickname")); }
         }
 
         #endregion
@@ -86,11 +92,11 @@ namespace Yatzy.ViewModels
 
         private bool CanAddPlayer(object parameter)
         {
-            //if (_Firstname != null && _Lastname != null && _Nickname != null)
+            if (_Firstname != null && _Lastname != null && _Nickname != null)
                 return true;
-            //else
-            //    return false;
-                    
+            else
+                return false;
+
         }
 
         private bool CanExecute(object parameter)
