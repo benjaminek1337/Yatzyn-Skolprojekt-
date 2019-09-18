@@ -22,6 +22,18 @@ namespace Yatzy.ViewModels
         ObservableCollection<Player> leaderBoard { get; set; }
         public ICommand BackCommand { get; set; }
 
+
+        private ObservableCollection<Player> sortedBy;
+        public ObservableCollection<Player> SortedBy
+        {
+            get { return sortedBy; }
+            set
+            {
+                sortedBy = value;
+                OnPropertyChanged("SortedBy");
+            }
+
+        }
         #endregion
 
         #region Hårdkodad lista för testning
@@ -67,6 +79,7 @@ namespace Yatzy.ViewModels
             HardcodedPlayers = new ObservableCollection<Player>();
             SetHardcodedPlayers();
             CountLeaderBoardPosition();
+            SortedBy = new ObservableCollection<Player>();
             //LeaderBoard7Days();
             BackCommand = new RelayCommand(Backcommand, CanExecuteMethod);
         }
@@ -94,10 +107,10 @@ namespace Yatzy.ViewModels
             leaderBoard = dbOps.GetHighScorePlayers(4);            
         }
 
-            Player player = new Player();
+        ObservableCollection<Player> Sortedby;
         public void CountLeaderBoardPosition()
         {
-            ObservableCollection<Player> Sortedby = new ObservableCollection<Player>(HardcodedPlayers.OrderBy(player => player.HighScore));        
+            Sortedby = dbOps.GetAvaliablePlayers();
         }
         #endregion
 
