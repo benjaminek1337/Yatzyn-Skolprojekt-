@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Yatzy.Views"
         xmlns:models="clr-namespace:Yatzy.Models"
         mc:Ignorable="d"
-        Title="DicesView" Height="450" Width="800">
+        Title="DicesView" Height="600" Width="1000">
     <Grid>
         <Button x:Name="button" Command="{Binding SaveDiceCommand}" CommandParameter="1" Content="{Binding Path = Dices[0].DiceValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="20,229,0,0" VerticalAlignment="Top" Width="35"/>
         <Button x:Name="button1" Command="{Binding SaveDiceCommand}" CommandParameter="2" Content="{Binding Path = Dices[1].DiceValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="60,229,0,0" VerticalAlignment="Top" Width="35"/>
@@ -24,21 +24,21 @@
             </ListView.View>
         </ListView>
         <StackPanel Width="49" Margin="0,20,0,0">
-            <Button Content="{Binding Path = Player.Ones}" Command="{Binding Ones}" CommandParameter="1" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.Twos}" Command="{Binding Twos}" CommandParameter="2" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.Threes}" Command="{Binding Threes}" CommandParameter="3" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.Fours}" Command="{Binding Fours}" CommandParameter="4" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.Fives}" Command="{Binding Fives}" CommandParameter="5" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.Sixes}" Command="{Binding Sixes}" CommandParameter="6" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.Pair}" Command="{Binding Pair}" CommandParameter="7" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.TwoPairs}" Command="{Binding TwoPair}" CommandParameter="8" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.ThreeOfaKind}" Command="{Binding Threeofakind}" CommandParameter="9" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.FourOfaKind}" Command="{Binding Fourofakind}" CommandParameter="10" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.SmalLadder}" Command="{Binding Smallstraight}" CommandParameter="11" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.LargeLadder}" Command="{Binding Largestraight}" CommandParameter="12" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.FullHouse}" Command="{Binding Fullhouse}" CommandParameter="13" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.Chance}" Command="{Binding Chance}" CommandParameter="14" VerticalAlignment="Top"/>
-            <Button Content="{Binding Path = Player.Yatzy}" Command="{Binding Yatzy}" CommandParameter="15" VerticalAlignment="Top"/>
+            <Button Content="{Binding Path = Player.Ones}" Command="{Binding Ones}" CommandParameter="1" VerticalAlignment="Top" MinHeight="25"/>
+            <Button Content="{Binding Path = Player.Twos}" Command="{Binding Twos}" CommandParameter="2" VerticalAlignment="Top" MinHeight="25"/>
+            <Button Content="{Binding Path = Player.Threes}" Command="{Binding Threes}" CommandParameter="3" VerticalAlignment="Top" MinHeight="25"/>
+            <Button Content="{Binding Path = Player.Fours}" Command="{Binding Fours}" CommandParameter="4" VerticalAlignment="Top" MinHeight="25"/>
+            <Button Content="{Binding Path = Player.Fives}" Command="{Binding Fives}" CommandParameter="5" VerticalAlignment="Top" MinHeight="25"/>
+            <Button Content="{Binding Path = Player.Sixes}" Command="{Binding Sixes}" CommandParameter="6" VerticalAlignment="Top" MinHeight="25"/>
+            <Button Content="{Binding Path = Player.Pair}" Command="{Binding Pair}" CommandParameter="7" VerticalAlignment="Top" MinHeight="25"/>
+            <Button Content="{Binding Path = Player.TwoPairs}" Command="{Binding TwoPair}" CommandParameter="8" VerticalAlignment="Top" MinHeight="25"/>
+            <Button Content="{Binding Path = Player.ThreeOfaKind}" Command="{Binding Threeofakind}" CommandParameter="9" VerticalAlignment="Top" MinHeight="25"/>
+            <Button Content="{Binding Path = Player.FourOfaKind}" Command="{Binding Fourofakind}" CommandParameter="10" VerticalAlignment="Top" MinHeight="25"/>
+            <Button Content="{Binding Path = Player.SmalLadder}" Command="{Binding Smallstraight}" CommandParameter="11" VerticalAlignment="Top" MinHeight="25"/>
+            <Button Content="{Binding Path = Player.LargeLadder}" Command="{Binding Largestraight}" CommandParameter="12" VerticalAlignment="Top" MinHeight="25"/>
+            <Button Content="{Binding Path = Player.FullHouse}" Command="{Binding Fullhouse}" CommandParameter="13" VerticalAlignment="Top" MinHeight="25"/>
+            <Button Content="{Binding Path = Player.Chance}" Command="{Binding Chance}" CommandParameter="14" VerticalAlignment="Top" MinHeight="25"/>
+            <Button Content="{Binding Path = Player.Yatzy}" Command="{Binding Yatzy}" CommandParameter="15" VerticalAlignment="Top" MinHeight="25"/>
 
         </StackPanel>
         <StackPanel Width="50" Margin="150,20,0,0">
@@ -63,5 +63,64 @@
         </StackPanel>
         <Label x:Name="label" Content="{Binding Path = activePlayer.Firstname, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="512,20,0,0" VerticalAlignment="Top"/>
         
+        <DataGrid ItemsSource="{Binding Path=ActivePlayers}"  Grid.Column="1" Grid.Row="1" BorderThickness="1" BorderBrush="Black" 
+                  IsReadOnly="True" CanUserSortColumns="True" IsHitTestVisible="True" HorizontalAlignment="Right"
+                  HorizontalGridLinesBrush="Black" MinRowHeight="80"  AutoGenerateColumns="False" CanUserAddRows="False"  HeadersVisibility="Column" 
+                  ColumnHeaderHeight="25"   >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Förnamn" Binding="{Binding Firstname}"/>
+                
+                <DataGridTextColumn Header="Ettor" Binding="{Binding Ones}"/>
+                <DataGridTextColumn Header="Tvåor" Binding="{Binding Twos}"/>
+                <DataGridTextColumn Header="Treor" Binding="{Binding Threes}"/>
+                <DataGridTextColumn Header="Fyror" Binding="{Binding Fours}"/>
+                <DataGridTextColumn Header="Femmor" Binding="{Binding Fives}"/>
+                <DataGridTextColumn Header="Sexor" Binding="{Binding Sixes}"/>
+                <DataGridTextColumn Header="Summa" Binding="{Binding UpperScore}"/>
+                <DataGridTextColumn Header="Bonus" Binding="{Binding UpperBonus}"/>
+                <DataGridTextColumn Header="Par" Binding="{Binding Pair}"/>
+                <DataGridTextColumn Header="Två par" Binding="{Binding TwoPairs}"/>
+                <DataGridTextColumn Header="Tretal" Binding="{Binding ThreeOfaKind}"/>
+                <DataGridTextColumn Header="Fyrtal" Binding="{Binding FourOfaKind}"/>
+                <DataGridTextColumn Header="Liten stege" Binding="{Binding SmalLadder}"/>
+                <DataGridTextColumn Header="Stor stege" Binding="{Binding LargeLadder}"/>
+                <DataGridTextColumn Header="Kåk" Binding="{Binding FullHouse}"/>
+                <DataGridTextColumn Header="Chans" Binding="{Binding Chanse}"/>
+                <DataGridTextColumn Header="Yatzy" Binding="{Binding Yatzy}"/>
+                <DataGridTextColumn Header="Total summa" Binding="{Binding TotalScore}"/>
+            </DataGrid.Columns>
+
+            <!--Konverterar kolumnerna så de visas vertikalt istället för horisontellt-->
+            <DataGrid.LayoutTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="90"/>
+                    <MatrixTransform Matrix="-1,0,0,1,0,0"/>
+                </TransformGroup>
+            </DataGrid.LayoutTransform>
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                    <Setter Property="LayoutTransform">
+                        <Setter.Value>
+                            <TransformGroup>
+                                <RotateTransform Angle="-90"/>
+                                <ScaleTransform ScaleX="1" ScaleY="-1" />
+                            </TransformGroup>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.CellStyle  >
+                <Style TargetType="DataGridCell">
+                    <Setter Property="LayoutTransform">
+                        <Setter.Value>
+                            <TransformGroup>
+                                <RotateTransform Angle="-90"/>
+                                <ScaleTransform ScaleX="1" ScaleY="-1" />
+                            </TransformGroup>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </DataGrid.CellStyle>
+        </DataGrid>
     </Grid>
 </Window>
