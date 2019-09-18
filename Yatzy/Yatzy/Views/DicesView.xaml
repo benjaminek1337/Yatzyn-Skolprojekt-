@@ -6,30 +6,47 @@
         xmlns:local="clr-namespace:Yatzy.Views"
         xmlns:models="clr-namespace:Yatzy.Models"
         mc:Ignorable="d"
-        Title="DicesView" Height="600" Width="1000">
-    <Grid>
-        <Button x:Name="button" Command="{Binding SaveDiceCommand}" CommandParameter="1" Content="{Binding Path = Dices[0].DiceValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="20,229,0,0" VerticalAlignment="Top" Width="35"/>
-        <Button x:Name="button1" Command="{Binding SaveDiceCommand}" CommandParameter="2" Content="{Binding Path = Dices[1].DiceValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="60,229,0,0" VerticalAlignment="Top" Width="35"/>
-        <Button x:Name="button1_Copy" Command="{Binding SaveDiceCommand}" CommandParameter="3" Content="{Binding Path = Dices[2].DiceValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="100,229,0,0" VerticalAlignment="Top" Width="35"/>
-        <Button x:Name="button1_Copy1" Command="{Binding SaveDiceCommand}" CommandParameter="4" Content="{Binding Path = Dices[3].DiceValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="140,229,0,0" VerticalAlignment="Top" Width="35"/>
-        <Button x:Name="button1_Copy2" Command="{Binding SaveDiceCommand}" CommandParameter="5" Content="{Binding Path = Dices[4].DiceValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="180,229,0,0" VerticalAlignment="Top" Width="35"/>
-        <Button x:Name="btnThrow" Command="{Binding RollDicesCommand}" Content="Kasta" HorizontalAlignment="Left" Margin="75,272,0,0" VerticalAlignment="Top" Width="75"/>
-        <ListView x:Name="listView" HorizontalAlignment="Left" Height="157" Margin="27,24,0,0" VerticalAlignment="Top" Width="199" ItemsSource="{Binding Dices}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="60" Header="Nummer" DisplayMemberBinding="{Binding DiceValue}"/>
-                    <GridViewColumn Width="60" Header="Sparad" DisplayMemberBinding="{Binding IsDiceEnabled}"/>
-                    <GridViewColumn Width="60" Header="ID" DisplayMemberBinding="{Binding DiceID}"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <StackPanel Width="49" Margin="0,20,0,0">
+        Title="DicesView" Height="800" Width="1000">
+    <Grid ShowGridLines="True" Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="12*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Margin="0,200,0,0" Width="500">
+        <Button x:Name="button" Command="{Binding SaveDiceCommand}" CommandParameter="1" Content="{Binding Path = Dices[0].DiceValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="30"/>
+            <Button x:Name="button1" Command="{Binding SaveDiceCommand}" CommandParameter="2" Content="{Binding Path = Dices[1].DiceValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="30"/>
+            <Button x:Name="button1_Copy" Command="{Binding SaveDiceCommand}" CommandParameter="3" Content="{Binding Path = Dices[2].DiceValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="30"/>
+            <Button x:Name="button1_Copy1" Command="{Binding SaveDiceCommand}" CommandParameter="4" Content="{Binding Path = Dices[3].DiceValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="30"/>
+            <Button x:Name="button1_Copy2" Command="{Binding SaveDiceCommand}" CommandParameter="5" Content="{Binding Path = Dices[4].DiceValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="30"/>
+            <Button x:Name="btnThrow" Command="{Binding RollDicesCommand}" Content="Kasta" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
+        </StackPanel>    
+        <ListView x:Name="listView" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="157" Margin="27,24,0,0" VerticalAlignment="Top" Width="199" ItemsSource="{Binding Dices}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="60" Header="Nummer" DisplayMemberBinding="{Binding DiceValue}"/>
+                        <GridViewColumn Width="60" Header="Sparad" DisplayMemberBinding="{Binding IsDiceEnabled}"/>
+                        <GridViewColumn Width="60" Header="ID" DisplayMemberBinding="{Binding DiceID}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+      
+        <StackPanel Width="49" Margin="0,0,0,0" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right">
+            <Button Name="Empty" VerticalAlignment="Top" MinHeight="25"/>
             <Button Content="{Binding Path = Player.Ones}" Command="{Binding Ones}" CommandParameter="1" VerticalAlignment="Top" MinHeight="25"/>
             <Button Content="{Binding Path = Player.Twos}" Command="{Binding Twos}" CommandParameter="2" VerticalAlignment="Top" MinHeight="25"/>
             <Button Content="{Binding Path = Player.Threes}" Command="{Binding Threes}" CommandParameter="3" VerticalAlignment="Top" MinHeight="25"/>
             <Button Content="{Binding Path = Player.Fours}" Command="{Binding Fours}" CommandParameter="4" VerticalAlignment="Top" MinHeight="25"/>
             <Button Content="{Binding Path = Player.Fives}" Command="{Binding Fives}" CommandParameter="5" VerticalAlignment="Top" MinHeight="25"/>
             <Button Content="{Binding Path = Player.Sixes}" Command="{Binding Sixes}" CommandParameter="6" VerticalAlignment="Top" MinHeight="25"/>
+            <Button Name="Empty1" VerticalAlignment="Top" MinHeight="25"/>
+            <Button Name="Empty2" VerticalAlignment="Top" MinHeight="25"/>
             <Button Content="{Binding Path = Player.Pair}" Command="{Binding Pair}" CommandParameter="7" VerticalAlignment="Top" MinHeight="25"/>
             <Button Content="{Binding Path = Player.TwoPairs}" Command="{Binding TwoPair}" CommandParameter="8" VerticalAlignment="Top" MinHeight="25"/>
             <Button Content="{Binding Path = Player.ThreeOfaKind}" Command="{Binding Threeofakind}" CommandParameter="9" VerticalAlignment="Top" MinHeight="25"/>
@@ -41,7 +58,7 @@
             <Button Content="{Binding Path = Player.Yatzy}" Command="{Binding Yatzy}" CommandParameter="15" VerticalAlignment="Top" MinHeight="25"/>
 
         </StackPanel>
-        <StackPanel Width="50" Margin="150,20,0,0">
+        <StackPanel Width="50" Margin="150,20,0,0" Grid.Column="1" Grid.Row="1">
             <TextBox Text="{Binding Path= activePlayer.Ones}" />
             <TextBox Text="{Binding Path= activePlayer.Twos}" />
             <TextBox Text="{Binding Path= activePlayer.Threes}" />
@@ -63,8 +80,8 @@
         </StackPanel>
         <Label x:Name="label" Content="{Binding Path = activePlayer.Firstname, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="512,20,0,0" VerticalAlignment="Top"/>
         
-        <DataGrid ItemsSource="{Binding Path=ActivePlayers}"  Grid.Column="1" Grid.Row="1" BorderThickness="1" BorderBrush="Black" 
-                  IsReadOnly="True" CanUserSortColumns="True" IsHitTestVisible="True" HorizontalAlignment="Right"
+        <DataGrid ItemsSource="{Binding Path=ActivePlayers}"  Grid.Column="2" Grid.Row="1" BorderThickness="1" BorderBrush="Black" 
+                  IsReadOnly="True" CanUserSortColumns="True" IsHitTestVisible="True" HorizontalAlignment="Left"
                   HorizontalGridLinesBrush="Black" MinRowHeight="80"  AutoGenerateColumns="False" CanUserAddRows="False"  HeadersVisibility="Column" 
                   ColumnHeaderHeight="25"   >
             <DataGrid.Columns>
