@@ -48,7 +48,7 @@
                     <ControlTemplate TargetType="Button">
                         <Grid>
                             <Image Name="MouseOver" Source="/Resources/MouseOver.png"/>
-                            <Image Name="NotMouseOver" Source="/REsources/NotMouseOver.png"/>
+                            <Image Name="NotMouseOver" Source="/Resources/NotMouseOver.png"/>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="Image.IsMouseOver" Value="true">

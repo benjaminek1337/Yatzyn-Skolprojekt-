@@ -109,33 +109,33 @@
             </StackPanel>
 
 
-            <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <StackPanel Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2">
                 <Label Content="YATZY"  HorizontalAlignment="Center" FontSize="55" Foreground="DodgerBlue" />
             </StackPanel>
 
-            <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="5">
-                <ListView ItemsSource="{Binding HardcodedPlayers}" SelectedItem="{Binding SelectedPlayer}" Background="#3FFFFFFF" Foreground="#FF00FF46" BorderBrush="#4C000000" Width="273" FontSize="18">
+            <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="4">
+                <ListView ItemsSource="{Binding HardcodedPlayers}" SelectedItem="{Binding SelectedPlayer}" Background="#3FFFFFFF" Foreground="#FF00FF46" BorderBrush="#4C000000" Width="400" Height="500" FontSize="18">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Förnamn" Width="100" DisplayMemberBinding="{Binding Firstname}" />
-                            <GridViewColumn Header="Efternamn" Width="175" DisplayMemberBinding="{Binding Lastname}" />
-                        </GridView>                        
+                            <GridViewColumn Header="Förnamn" Width="200" DisplayMemberBinding="{Binding Firstname}" />
+                            <GridViewColumn Header="Efternamn" Width="200" DisplayMemberBinding="{Binding Lastname}" />
+                        </GridView>
                     </ListView.View>
-
                 </ListView>
+                <Button Content="Lägg till spelare" Margin="0,30,0,0" Width="100" Height="30" Command="{Binding AddPlayerCommand}"/>
             </StackPanel>
 
             <StackPanel Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Grid.RowSpan="5" Width="600">
                 <Label Content="Valda spelare" FontSize="30" Foreground="AntiqueWhite" HorizontalAlignment="Center"/>
-                <Label Content="{Binding SelectedPlayers}" FontSize="26" Foreground="AntiqueWhite" HorizontalAlignment="Center" Margin="0,30,0,0"/>
-                <Label Content="Dan Johansson" FontSize="26" Foreground="AntiqueWhite" HorizontalAlignment="Center"/>
-                <Label Content="Johannes Lundqvist" FontSize="26" Foreground="AntiqueWhite" HorizontalAlignment="Center"/>
-                <Label Content="Anne-Mattias Svensson-Strålberg" FontSize="26" Foreground="AntiqueWhite" HorizontalAlignment="Center"/>
+                <Label Content="{Binding SelectedPlayers[0].Firstname}" FontSize="26" Foreground="AntiqueWhite" HorizontalAlignment="Center" Margin="0,30,0,0"/>
+                <Label Content="{Binding SelectedPlayers[1].Firstname}" FontSize="26" Foreground="AntiqueWhite" HorizontalAlignment="Center"/>
+                <Label Content="{Binding SelectedPlayers[2].Firstname}" FontSize="26" Foreground="AntiqueWhite" HorizontalAlignment="Center"/>
+                <Label Content="{Binding SelectedPlayers[3].Firstname}" FontSize="26" Foreground="AntiqueWhite" HorizontalAlignment="Center"/>
             </StackPanel>
 
             <StackPanel Grid.Row="1" Grid.Column="8"  Grid.RowSpan="5" Margin="5" >
 
-                <Button Style="{StaticResource MyButton}" Command="{Binding Classic}" Margin="0,80,0,0" CommandParameter="4">
+                <Button Style="{StaticResource MyButton}" Command="{Binding ClassicGameCommand}" Margin="0,80,0,0" CommandParameter="4">
                     <Label Content="Klassisk Yatzy" FontSize="45" Cursor="Hand" Margin="10" HorizontalAlignment="Left">
                         <Label.Style>
                             <Style>
@@ -152,7 +152,7 @@
                     </Label>
                 </Button>
 
-                <Button Style="{StaticResource MyButton}" Command="{}" CommandParameter="5">
+                <Button Style="{StaticResource MyButton}" Command="{Binding StyrdGameCommand}" CommandParameter="5">
                     <Label  Content="Styrd Yatzy" FontSize="45" Cursor="Hand" Margin="10" >
                         <Label.Style>
                             <Style>
@@ -169,7 +169,7 @@
 
                 </Button>
 
-                <Button Style="{StaticResource MyButton}" Command="{Binding }">
+                <Button Style="{StaticResource MyButton}" Command="{Binding StartGameCommand}">
                     <Label  Content="Starta Spelet" FontSize="45" Cursor="Hand" Margin="0,200,0,0">
 
                         <Label.Style>

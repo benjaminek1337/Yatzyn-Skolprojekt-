@@ -15,13 +15,14 @@ namespace Yatzy.Models
         int gameType = 0;
 
 
-        public GameEngine(ObservableCollection<Dice> dices, Player _activePlayer, int _gameType)
+        public GameEngine(ObservableCollection<Dice> _dices, Player _activePlayer, int _gameType)
         {
             gameType = _gameType;
             activePlayer = new Player();
-            Dices = new ObservableCollection<Dice>();
-            Dices = dices;
             activePlayer = _activePlayer;
+            Dices = new ObservableCollection<Dice>();
+            Dices = _dices;
+
             DiceCount();
         }
 
@@ -318,16 +319,11 @@ namespace Yatzy.Models
         }
         #endregion
 
-        private void SetActivePlayer(Player _activePlayer)
-        {
-            activePlayer = _activePlayer;
-        }
 
         #region Metoder för att sätta totalpoäng, samt beräkna de "övre" kategorierna och sätta bonus
 
-        public void SetUpperScore(Player _activePlayer)
+        public void SetUpperScore()
         {
-            SetActivePlayer(_activePlayer);
             int?[] upperScoreArray = new int?[6];
             int? upperScore = 0;
 
@@ -345,13 +341,13 @@ namespace Yatzy.Models
                 else
                 {
                     upperScore += upperScoreArray[i];
-                    SetBonus(upperScore, gameType);
+                    SetBonus(upperScore);
                 }
 
             }
         }
 
-        public void SetBonus(int? upperScore, int gameType)
+        public void SetBonus(int? upperScore)
         {
             if(gameType == 5)
             {
@@ -369,9 +365,9 @@ namespace Yatzy.Models
             }
         }
 
-        public void SetTotalScore(Player _activePlayer)
+        public void SetTotalScore()
         {
-            SetActivePlayer(_activePlayer);
+            
 
             int?[] totalScoreArray = new int?[16];
 

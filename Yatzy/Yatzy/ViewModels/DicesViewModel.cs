@@ -27,7 +27,7 @@ namespace Yatzy.Models
         
         private int count = 0;
         private int rounds = 0;
-        private int theGameType = 0;
+        private int gameType = 0;
         
         #endregion
 
@@ -84,12 +84,11 @@ namespace Yatzy.Models
 
         #endregion
 
-        #region Instansera en ny Game Engine och kolla poäng
+        #region Instansera en ny Game Engine och skicka in tärningarna, aktiva spelaren och speltypen
 
         private void GetGameEngine()
         {
-            gameEngine = new GameEngine(Dices, activePlayer, theGameType);
-            GetScoreCombinations();
+            gameEngine = new GameEngine(Dices, activePlayer, gameType);
         }
 
         #endregion
@@ -110,7 +109,7 @@ namespace Yatzy.Models
         public DicesViewModel(PlayerEngine _playerEngine)
         {
             playerEngine = _playerEngine;
-            theGameType = playerEngine.SetGameType();
+            gameType = playerEngine.SetGameType();
             Player = new Player();
             SaveDiceCommand = new RelayCommand(SaveDice, CanExecuteMethod);
             RollDicesCommand = new RelayCommand(RollDices, IsTriesEnabled);
@@ -131,24 +130,10 @@ namespace Yatzy.Models
             Yatzy = new RelayCommand(ChooseScoreCategory, IsYatzyEnabled);
             QuitGameCommand = new RelayCommand(QuitGame, CanExecuteMethod);
 
-            SetActivePlayers();
+            playerEngine.SetPlayers();
             GenerateDices();
             GetGameEngine();
-            playerEngine.SetActivePlayer();
-            SetActivePlayer();           
-        }
-
-        #endregion
-
-        #region Hämta spelare samt lista över spelare från PlayerEngine 
-        private void SetActivePlayer()
-        {
-            activePlayer = playerEngine.GetActivePlayer();
-        }
-
-        private void SetActivePlayers()
-        {
-            ActivePlayers = playerEngine.SetPlayers();
+            playerEngine.SetActivePlayer();   
         }
 
         #endregion
@@ -269,14 +254,13 @@ namespace Yatzy.Models
             if (int.Parse(parameter.ToString()) == 15)
                 activePlayer.Yatzy = Player.Yatzy;
 
-
-            gameEngine.SetUpperScore(activePlayer);
-            gameEngine.SetTotalScore(activePlayer);
+            GetGameEngine();
+            gameEngine.SetUpperScore();
+            gameEngine.SetTotalScore();
             ResetDices();
             RoundsLeft();
-            GetGameEngine();
+            GetScoreCombinations();
             playerEngine.SetActivePlayer();
-            SetActivePlayer();
             if (rounds == 15)
             {
                 GameEnded();
@@ -297,7 +281,7 @@ namespace Yatzy.Models
 
         private bool IsGameTypeStyrd()
         {
-            if (theGameType == 5)
+            if (gameType == 5)
             {
                 return true;
             }
