@@ -146,7 +146,7 @@
 
             <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="4" HorizontalAlignment="Center">
                 <Label Content="Bästa spelarna de senaste 7 dagarna" FontSize="30" HorizontalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
-                <ListView MaxWidth="600" MinWidth="600"  ItemsSource="{Binding Sortedby}">
+                <ListView MaxWidth="600" MinWidth="600"  ItemsSource="{Binding leaderBoard}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Plats" Width="120" DisplayMemberBinding="{Binding }"/>
