@@ -23,11 +23,11 @@ namespace Yatzy.Views
     /// </summary>
     public partial class GameView : Page
     {
-        DicesViewModel dicesViewModel;
+        //DicesViewModel dicesViewModel;
         public GameView()
         {
-            dicesViewModel = new DicesViewModel(4);//La till 4 för att kunna köra
-            DataContext = dicesViewModel;
+            //dicesViewModel = new DicesViewModel();//La till 4 för att kunna köra
+            //DataContext = dicesViewModel;
         }
     }
 

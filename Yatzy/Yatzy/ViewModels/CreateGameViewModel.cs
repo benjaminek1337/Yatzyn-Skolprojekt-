@@ -21,7 +21,6 @@ namespace Yatzy.ViewModels
         public RelayCommand AddPlayerCommand { get; set; }
         public RelayCommand RemovePlayerCommand { get; set; }
         public RelayCommand StartGameCommand { get; set; }
-        public RelayCommand BackCommand { get; set; }
 
         private ObservableCollection<Player> _players;
         public ObservableCollection<Player> AvailablePlayers
@@ -65,14 +64,14 @@ namespace Yatzy.ViewModels
             Player p2 = new Player
             {
                 Firstname = "Djååohäänis",
-                Lastname = "Inte ett könsord ;)",
-                Nickname = "ChildKillah"
+                Lastname = "Läähndkqqvvsst",
+                Nickname = "GWPERSSON"
             }; HardcodedPlayers.Add(p2);
             Player p3 = new Player
             {
                 Firstname = "Määtiihuuuhs",
                 Lastname = "Svensson",
-                Nickname = "Skolrunken"
+                Nickname = "grodan"
             }; HardcodedPlayers.Add(p3);
         }
 
@@ -80,12 +79,11 @@ namespace Yatzy.ViewModels
 
         #region Objekt och lokala variabler
 
-        DicesViewModel dicesViewModel;
         PlayerEngine playerEngine;
-        DbOperations dbOps = new DbOperations();
+        //DbOperations dbOps = new DbOperations();
 
 
-        private int gameType = 0; //Ändra denna till 4 för klassisk eller 5 för styrd.
+        private int gameType = 0; //Denna ändras till 4 för klassisk eller 5 för styrd.
 
         #endregion
 
@@ -94,7 +92,6 @@ namespace Yatzy.ViewModels
         public CreateGameViewModel()
         {
             playerEngine = new PlayerEngine();
-
             HardcodedPlayers = new ObservableCollection<Player>();
             SelectedPlayers = new ObservableCollection<Player>();
             SelectedPlayer = new Player();
@@ -104,8 +101,8 @@ namespace Yatzy.ViewModels
             AddPlayerCommand = new RelayCommand(AddPlayer, CanAddPlayer);
             RemovePlayerCommand = new RelayCommand(RemovePlayer, CanRemovePlayer);
             StartGameCommand = new RelayCommand(StartGame, CanStartGame);
-            BackCommand = new RelayCommand(Backcommand ,CanExecuteMethod);
-           
+
+
             //GetAvaliablePlayers();
             SetHardcodedPlayers();
         }
@@ -128,7 +125,7 @@ namespace Yatzy.ViewModels
         #region bools
         private bool CanStartGame(object parameter)
         {
-            if (playerEngine.ActivePlayers.Count > 1 && playerEngine.ActivePlayers.Count < 5 && gameType < 6 && gameType > 3)
+            if (gameType < 6 && gameType > 3 && SelectedPlayers.Count >= 2 && SelectedPlayers.Count <= 4)
                 return true;
             else
                 return false;
@@ -136,10 +133,10 @@ namespace Yatzy.ViewModels
 
         private bool CanAddPlayer(object parameter)
         {
-            if (SelectedPlayers.Count < 5 && SelectedPlayer != null)
+            if (SelectedPlayers.Count < 4 && SelectedPlayer != null)
                 return true;
             else
-                return false;                    
+                return false;
         }
         private bool CanRemovePlayer(object parameter)
         {
@@ -162,20 +159,19 @@ namespace Yatzy.ViewModels
             if (gameType == 5)
                 return false;
             else
-                return true;                
+                return true;
         }
 
         #endregion
 
         #region Metoder
-        private void GetAvaliablePlayers()
-        {
-            AvailablePlayers = dbOps.GetAvaliablePlayers();
-        }
+        //private void GetAvaliablePlayers()
+        //{
+        //    AvailablePlayers = dbOps.GetAvaliablePlayers();
+        //}
 
         public void RemovePlayer(object parameter)
         {
-            playerEngine.ActivePlayers.Remove(SelectedPlayer);
             SelectedPlayers.Remove(SelectedPlayer);
         }
 
@@ -183,10 +179,13 @@ namespace Yatzy.ViewModels
         {
             playerEngine.ActivePlayers.Add(SelectedPlayer);
             SelectedPlayers.Add(SelectedPlayer);
-            if (SelectedPlayer != null)
-                AvailablePlayers.Remove(SelectedPlayer);
-            else
-                SelectedPlayer = null;
+            //if (SelectedPlayer != null)
+            //{
+            //    AvailablePlayers.Remove(SelectedPlayer);
+            //    AvailablePlayers.CollectionChanged; 
+
+
+            //}
         }
 
         private void ClassicGame(object parameter)
@@ -199,28 +198,21 @@ namespace Yatzy.ViewModels
             gameType = int.Parse(parameter.ToString());
         }
 
+        public void SetGameType()
+        {
+            playerEngine.GetGameType(gameType);
+        }
+
         private void StartGame(object parameter)
         {
-            dicesViewModel = new DicesViewModel(gameType);
+            DicesView dicesView = new DicesView();
+
+            DicesViewModel dicesViewModel = new DicesViewModel(playerEngine);
+            dicesView.DataContext = dicesViewModel;
+            SetGameType();
+            dicesView.Show();
         }
 
-        #endregion
-
-        #region Methods for going back
-        private object selectedViewModel;
-        public object SelectedViewModel
-        {
-            get { return selectedViewModel; }
-            set { selectedViewModel = value; OnPropertyChanged("SelectedViewModel"); }
-        }
-        public void Backcommand(object parameter)
-        {
-            SelectedViewModel = new MainMenuViewModel();
-        }
-        private bool CanExecuteMethod(object parameter)
-        {
-            return true;
-        }
         #endregion
     }
 }

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Yatzy.ViewModels;
 using Yatzy.Models;
+using System.Collections.ObjectModel;
 
 namespace Yatzy.Views
 {
@@ -23,7 +24,6 @@ namespace Yatzy.Views
     public partial class CreateGameView : UserControl
     {
         CreateGameViewModel createGameViewModel;
-
 
         public CreateGameView()
         {
