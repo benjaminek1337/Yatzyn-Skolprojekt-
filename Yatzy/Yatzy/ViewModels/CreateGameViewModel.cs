@@ -23,6 +23,7 @@ namespace Yatzy.ViewModels
         public RelayCommand AddPlayerCommand { get; set; }
         public RelayCommand RemovePlayerCommand { get; set; }
         public RelayCommand StartGameCommand { get; set; }
+        public RelayCommand OpenAddPlayerCommand { get; set; }
         public ICommand BackCommand { get; set; }
 
         private ObservableCollection<Player> _players;
@@ -83,8 +84,8 @@ namespace Yatzy.ViewModels
         #region Objekt och lokala variabler
 
         PlayerEngine playerEngine;
-        //DbOperations dbOps = new DbOperations();
-
+        DbOperations dbOps;
+        CreateGameViewModel createGameViewModel;
 
         private int gameType = 0; //Denna ändras till 4 för klassisk eller 5 för styrd.
 
@@ -94,6 +95,7 @@ namespace Yatzy.ViewModels
 
         public CreateGameViewModel()
         {
+            dbOps = new DbOperations();
             playerEngine = new PlayerEngine();
             HardcodedPlayers = new ObservableCollection<Player>();
             SelectedPlayers = new ObservableCollection<Player>();
@@ -105,9 +107,10 @@ namespace Yatzy.ViewModels
             RemovePlayerCommand = new RelayCommand(RemovePlayer, CanRemovePlayer);
             StartGameCommand = new RelayCommand(StartGame, CanStartGame);
             BackCommand = new RelayCommand(Backcommand,CanExecuteMethod);
+            OpenAddPlayerCommand = new RelayCommand(OpenAddPlayer, CanExecuteMethod);
 
-            //GetAvaliablePlayers();
-            SetHardcodedPlayers();
+            GetAvaliablePlayers();
+            //SetHardcodedPlayers();
         }
 
         #endregion
@@ -168,10 +171,10 @@ namespace Yatzy.ViewModels
         #endregion
 
         #region Metoder
-        //private void GetAvaliablePlayers()
-        //{
-        //    AvailablePlayers = dbOps.GetAvaliablePlayers();
-        //}
+        public void GetAvaliablePlayers()
+        {
+            AvailablePlayers = dbOps.GetAvaliablePlayers();
+        }
 
         public void RemovePlayer(object parameter)
         {
@@ -211,6 +214,20 @@ namespace Yatzy.ViewModels
             
             dicesView.Show();
         }
+
+        #endregion
+
+        #region Metod för att öppna ett Registrera ny spelare Fönster
+
+        private void OpenAddPlayer(object parameter)
+        {
+            AddPlayerViewModel addPlayerViewModel = new AddPlayerViewModel();
+            AddPlayerView addPlayerView = new AddPlayerView();
+            addPlayerView.DataContext = addPlayerViewModel;
+            addPlayerView.Show();
+
+        }
+
 
         #endregion
 

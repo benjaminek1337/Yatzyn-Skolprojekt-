@@ -108,9 +108,14 @@ namespace Yatzy.Models
 
         public DicesViewModel(PlayerEngine _playerEngine)
         {
+            Player = new Player();
             playerEngine = _playerEngine;
             gameType = playerEngine.SetGameType();
-            Player = new Player();
+            ActivePlayers = playerEngine.SetPlayers();
+            activePlayer = playerEngine.SetActivePlayer();
+            GenerateDices();
+            GetGameEngine();
+
             SaveDiceCommand = new RelayCommand(SaveDice, CanExecuteMethod);
             RollDicesCommand = new RelayCommand(RollDices, IsTriesEnabled);
             Ones = new RelayCommand(ChooseScoreCategory, IsOnesEnabled);
@@ -130,10 +135,7 @@ namespace Yatzy.Models
             Yatzy = new RelayCommand(ChooseScoreCategory, IsYatzyEnabled);
             QuitGameCommand = new RelayCommand(QuitGame, CanExecuteMethod);
 
-            playerEngine.SetPlayers();
-            GenerateDices();
-            GetGameEngine();
-            playerEngine.SetActivePlayer();   
+
         }
 
         #endregion
@@ -260,7 +262,7 @@ namespace Yatzy.Models
             ResetDices();
             RoundsLeft();
             GetScoreCombinations();
-            playerEngine.SetActivePlayer();
+            activePlayer = playerEngine.SetActivePlayer();
             if (rounds == 15)
             {
                 GameEnded();

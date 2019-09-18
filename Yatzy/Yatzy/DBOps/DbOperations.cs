@@ -8,6 +8,7 @@ using Npgsql;
 using System.Collections.ObjectModel;
 using Yatzy.Models;
 using Yatzy.GameEngine;
+using System.Windows;
 
 namespace Yatzy.DBOps
 {
@@ -17,6 +18,8 @@ namespace Yatzy.DBOps
 
         string Connect = ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString;
         int gameId;
+
+        public object Messagebox { get; private set; }
 
         #region Metoder som hämtar data
         public ObservableCollection<Player> GetPlayers()
@@ -175,9 +178,8 @@ namespace Yatzy.DBOps
                 conn.Close();
                 return players;
             }
-            catch (Exception)
+            catch (PostgresException ex)
             {
-
                 transaction.Rollback();
                 conn.Close();
                 return null;
@@ -388,6 +390,38 @@ namespace Yatzy.DBOps
 
         }
 
+
+        public void RegisterPlayer(Player player)
+        {
+            
+            NpgsqlConnection conn = null;
+            NpgsqlCommand cmd = null;
+            try
+            {
+
+                string stmts = "insert into player(firstname, nickname, lastname) values(@fname,@nname,@lname)";
+                
+
+                conn = new NpgsqlConnection(Connect);
+                conn.Open();            
+
+                for (int i = 0; i < stmts.Length; i++)
+                {
+                    cmd = new NpgsqlCommand(stmts, conn);
+                    //cmd.Transaction = transaction;
+                    cmd.Parameters.AddWithValue("fname", player.Firstname);
+                    cmd.Parameters.AddWithValue("nname", player.Nickname);
+                    cmd.Parameters.AddWithValue("lname", player.Lastname);
+                    cmd.ExecuteNonQuery();
+                }               
+                conn.Close();
+
+            }
+            catch (Exception)
+            {              
+                conn.Close();
+            }
+        }
 
         #endregion
     }
