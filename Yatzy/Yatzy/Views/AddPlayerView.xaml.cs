@@ -20,11 +20,11 @@ namespace Yatzy.Views
     /// </summary>
     public partial class AddPlayerView : Window
     {
-        AddPlayerViewModel addPlayerViewModel;
+        //AddPlayerViewModel addPlayerViewModel;
         public AddPlayerView()
         {
-            addPlayerViewModel = new AddPlayerViewModel();
-            DataContext = addPlayerViewModel;
+            //addPlayerViewModel = new AddPlayerViewModel();
+            //DataContext = addPlayerViewModel;
             InitializeComponent();
         }
     }

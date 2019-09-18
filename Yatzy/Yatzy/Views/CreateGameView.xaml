@@ -113,8 +113,9 @@
                 <Label Content="YATZY"  HorizontalAlignment="Center" FontSize="55" Foreground="DodgerBlue" />
             </StackPanel>
 
-            <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="4">
-                <ListView ItemsSource="{Binding AvailablePlayers}" SelectedItem="{Binding SelectedPlayer}" Background="#3FFFFFFF" Foreground="#FF00FF46" BorderBrush="#4C000000" Width="400" Height="500" FontSize="18">
+            <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="5">
+                <Label Content="Tillgängliga spelare" FontSize="30" Foreground="AntiqueWhite" HorizontalAlignment="Center"/>
+                <ListView ItemsSource="{Binding AvailablePlayers}" SelectedItem="{Binding SelectedPlayer}" Background="#19FFFFFF" Foreground="AntiqueWhite" BorderBrush="#4C000000" Width="410" Height="500" FontSize="18">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Förnamn" Width="200" DisplayMemberBinding="{Binding Firstname}" />
@@ -122,8 +123,8 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
-                <Button Content="Lägg till spelare" Margin="0,30,0,0" Width="100" Height="30" Command="{Binding AddPlayerCommand}"/>
-                <Button Content="Registrera spelare" Margin="0,30,0,0" Width="100" Height="30" Command="{Binding OpenAddPlayerCommand}"/>
+                <Button Content="Lägg till vald spelare" Margin="0,20,0,0" Width="200" Height="45" FontSize="20" Command="{Binding AddPlayerCommand}"/>
+                <Button Content="Skapa en ny spelare" Margin="0,50,0,0" Width="200" Height="45" FontSize="20" Command="{Binding OpenAddPlayerCommand}"/>
             </StackPanel>
 
             <StackPanel Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Grid.RowSpan="5" Width="600">
