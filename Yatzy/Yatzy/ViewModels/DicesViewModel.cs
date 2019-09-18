@@ -27,7 +27,7 @@ namespace Yatzy.Models
         
         private int count = 0;
         private int rounds = 0;
-        private int theGameType = 0;
+        private int gameType = 0;
         
         #endregion
 
@@ -88,7 +88,7 @@ namespace Yatzy.Models
 
         private void GetGameEngine()
         {
-            gameEngine = new GameEngine(Dices, activePlayer, theGameType);
+            gameEngine = new GameEngine(Dices, activePlayer, gameType);
         }
 
         #endregion
@@ -109,7 +109,7 @@ namespace Yatzy.Models
         public DicesViewModel(PlayerEngine _playerEngine)
         {
             playerEngine = _playerEngine;
-            theGameType = playerEngine.SetGameType();
+            gameType = playerEngine.SetGameType();
             Player = new Player();
             SaveDiceCommand = new RelayCommand(SaveDice, CanExecuteMethod);
             RollDicesCommand = new RelayCommand(RollDices, IsTriesEnabled);
@@ -254,12 +254,11 @@ namespace Yatzy.Models
             if (int.Parse(parameter.ToString()) == 15)
                 activePlayer.Yatzy = Player.Yatzy;
 
-
-            gameEngine.SetUpperScore(activePlayer);
-            gameEngine.SetTotalScore(activePlayer);
+            GetGameEngine();
+            gameEngine.SetUpperScore();
+            gameEngine.SetTotalScore();
             ResetDices();
             RoundsLeft();
-            GetGameEngine();
             GetScoreCombinations();
             playerEngine.SetActivePlayer();
             if (rounds == 15)
@@ -282,7 +281,7 @@ namespace Yatzy.Models
 
         private bool IsGameTypeStyrd()
         {
-            if (theGameType == 5)
+            if (gameType == 5)
             {
                 return true;
             }
