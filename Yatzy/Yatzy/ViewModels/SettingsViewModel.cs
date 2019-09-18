@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xaml;
 using System.Windows.Media;
+using System.Windows;
 
 namespace Yatzy.ViewModels
 {
-    class SettingsViewModel : INotifyPropertyChanged
+    public class SettingsViewModel : INotifyPropertyChanged
     {
         #region Properties
 
@@ -19,17 +20,18 @@ namespace Yatzy.ViewModels
 
         #endregion
 
-        #region Methods
-        public void ToggleSound(object paramter)
+        public SettingsViewModel()
         {
-            bool sound = true;
-
-
-
+            
+        }
+        #region Methods
+        public void ToggleSound()
+        {
+           
         }
 
         public void ToggleImage(object paramater)
-        {
+        {            
 
         }
 

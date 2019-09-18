@@ -140,18 +140,20 @@
 
 
             <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Button Style="{StaticResource Back}" Command="{Binding MainMenuCommand}" MaxHeight="110" MaxWidth="110" MinHeight="80" MinWidth="80"/>
+                <Button Style="{StaticResource Back}" Command="{Binding BackCommand}" MaxHeight="110" MaxWidth="110" MinHeight="80" MinWidth="80"/>
             </StackPanel>
 
 
             <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="4" HorizontalAlignment="Center">
-                <Label Content="Bästa spelare" FontSize="30" HorizontalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
-                <ListView MaxHeight="500" MaxWidth="400" MinWidth="400" MinHeight="500">
+                <Label Content="Bästa spelarna de senaste 7 dagarna" FontSize="30" HorizontalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
+                <ListView MaxWidth="600" MinWidth="600"  ItemsSource="{Binding Sortedby}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Nickname" Width="150"/>
-                            <GridViewColumn  Header="Poäng" Width="150" HeaderStringFormat="55"/>
-                            <GridViewColumn/>
+                            <GridViewColumn Header="Plats" Width="120" DisplayMemberBinding="{Binding }"/>
+                            <GridViewColumn Header="Firstname" Width="120" DisplayMemberBinding="{Binding Firstname}"/>
+                            <GridViewColumn Header="Nickname" Width="120" DisplayMemberBinding="{Binding Nickname}"/>
+                            <GridViewColumn Header="Lastname" Width="120" DisplayMemberBinding="{Binding Lastname}"/>
+                            <GridViewColumn  Header="Poäng" Width="120"  DisplayMemberBinding="{Binding HighScore}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>

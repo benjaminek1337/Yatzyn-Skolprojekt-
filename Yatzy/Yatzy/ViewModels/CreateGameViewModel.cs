@@ -21,6 +21,7 @@ namespace Yatzy.ViewModels
         public RelayCommand AddPlayerCommand { get; set; }
         public RelayCommand RemovePlayerCommand { get; set; }
         public RelayCommand StartGameCommand { get; set; }
+        public RelayCommand BackCommand { get; set; }
 
         private ObservableCollection<Player> _players;
         public ObservableCollection<Player> AvailablePlayers
@@ -64,7 +65,7 @@ namespace Yatzy.ViewModels
             Player p2 = new Player
             {
                 Firstname = "Djååohäänis",
-                Lastname = "Kuk",
+                Lastname = "Inte ett könsord ;)",
                 Nickname = "ChildKillah"
             }; HardcodedPlayers.Add(p2);
             Player p3 = new Player
@@ -103,7 +104,7 @@ namespace Yatzy.ViewModels
             AddPlayerCommand = new RelayCommand(AddPlayer, CanAddPlayer);
             RemovePlayerCommand = new RelayCommand(RemovePlayer, CanRemovePlayer);
             StartGameCommand = new RelayCommand(StartGame, CanStartGame);
-
+            BackCommand = new RelayCommand(Backcommand ,CanExecuteMethod);
            
             //GetAvaliablePlayers();
             SetHardcodedPlayers();
@@ -203,6 +204,23 @@ namespace Yatzy.ViewModels
             dicesViewModel = new DicesViewModel(gameType);
         }
 
+        #endregion
+
+        #region Methods for going back
+        private object selectedViewModel;
+        public object SelectedViewModel
+        {
+            get { return selectedViewModel; }
+            set { selectedViewModel = value; OnPropertyChanged("SelectedViewModel"); }
+        }
+        public void Backcommand(object parameter)
+        {
+            SelectedViewModel = new MainMenuViewModel();
+        }
+        private bool CanExecuteMethod(object parameter)
+        {
+            return true;
+        }
         #endregion
     }
 }
