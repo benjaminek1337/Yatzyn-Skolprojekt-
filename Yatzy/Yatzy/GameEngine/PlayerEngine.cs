@@ -13,25 +13,23 @@ namespace Yatzy.GameEngine
 {
     class PlayerEngine : INotifyPropertyChanged
     {
-        Player activePlayer;
+        Player activePlayer { get; set; }
+        public int gameType = 0;
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
+
         private ObservableCollection<Player> _activePlayers;
-
-        DBOps.DbOperations dbops;
-
         public ObservableCollection<Player> ActivePlayers
         {
             get { return _activePlayers; }
-            set { _activePlayers = value; PropertyChanged(this, new PropertyChangedEventArgs("Players"));}
+            set { _activePlayers = value; PropertyChanged(this, new PropertyChangedEventArgs("ActivePlayers"));}
         }
 
         public PlayerEngine()
         {
             ActivePlayers = new ObservableCollection<Player>();
             activePlayer = new Player();
-            
-            AddPlayerHardCoded();
-            SetActivePlayer();
+            //DicesViewModel dicesViewModel = new DicesViewModel();
+            //SetActivePlayer();
         }
 
         public void NullProps()
@@ -40,9 +38,19 @@ namespace Yatzy.GameEngine
             ActivePlayers = null;
         }
 
-        public void AddPlayer(Player _player) // Byt ut den här till att lägga in personobjekt i lista om ni vill
+        public void GetGameType(int _gameType)
         {
-            ActivePlayers.Add(_player);
+            gameType = _gameType;
+        }
+
+        public int SetGameType()
+        {
+            return gameType;
+        }
+
+        public ObservableCollection<Player> SetPlayers()
+        {
+            return ActivePlayers;
         }
 
         public void AddPlayerHardCoded()

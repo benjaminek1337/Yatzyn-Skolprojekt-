@@ -19,14 +19,15 @@ namespace Yatzy.Models
         // NÄR ETT SPEL SKAPAS OCH KLASSEN INSTANSERAS SÅ SKA EN INT PASSERAS TILL int gameType (finns i regionen alldeles nedan) MED VÄRDE 4 FÖR KLASSISK ELLER 5 FÖR STYRD
         // OCH SE TILL ATT NÄR ETT SPEL AVSLUTATS (regionen längst ned) SÅ ÅTERGÅR VYN TILL HUVUDMENYN
         //SEN ÄR ALLT GULD OCH GRÖNA SKOGAR. ANTAR JAG.
+        //JAG HAR KOPPLAT UR DATABASEN HELT Å HÅLLET 
 
         #region Objekt och lokala variabler
         PlayerEngine playerEngine;
         GameEngine gameEngine;
-        DbOperations dbOperations = new DbOperations();
+        
         private int count = 0;
         private int rounds = 0;
-        private int gameType = 0;
+        private int theGameType = 0;
         
         #endregion
 
@@ -87,7 +88,7 @@ namespace Yatzy.Models
 
         private void GetGameEngine()
         {
-            gameEngine = new GameEngine(Dices, activePlayer, gameType);
+            gameEngine = new GameEngine(Dices, activePlayer, theGameType);
             GetScoreCombinations();
         }
 
@@ -101,15 +102,15 @@ namespace Yatzy.Models
             if (PropertyChanged != null)
                 PropertyChanged(this, e);
         }
-            
+
         #endregion
 
         #region Konstruktor
 
-        public DicesViewModel(int _gameType)
+        public DicesViewModel(PlayerEngine _playerEngine)
         {
-            gameType = _gameType;
-            playerEngine = new PlayerEngine();
+            playerEngine = _playerEngine;
+            theGameType = playerEngine.SetGameType();
             Player = new Player();
             SaveDiceCommand = new RelayCommand(SaveDice, CanExecuteMethod);
             RollDicesCommand = new RelayCommand(RollDices, IsTriesEnabled);
@@ -130,24 +131,26 @@ namespace Yatzy.Models
             Yatzy = new RelayCommand(ChooseScoreCategory, IsYatzyEnabled);
             QuitGameCommand = new RelayCommand(QuitGame, CanExecuteMethod);
 
+            SetActivePlayers();
             GenerateDices();
             GetGameEngine();
-            GetPlayersObservableCollection();
-            GetActivePlayer();           
+            playerEngine.SetActivePlayer();
+            SetActivePlayer();           
         }
 
         #endregion
 
         #region Hämta spelare samt lista över spelare från PlayerEngine 
-        private void GetActivePlayer()
+        private void SetActivePlayer()
         {
             activePlayer = playerEngine.GetActivePlayer();
         }
 
-        private void GetPlayersObservableCollection ()
+        private void SetActivePlayers()
         {
-            ActivePlayers = playerEngine.GetList();
+            ActivePlayers = playerEngine.SetPlayers();
         }
+
         #endregion
 
         #region Metoder för att kasta/spara/rensa tärningar samt en bool för att godkänna att metod används
@@ -273,7 +276,7 @@ namespace Yatzy.Models
             RoundsLeft();
             GetGameEngine();
             playerEngine.SetActivePlayer();
-            GetActivePlayer();
+            SetActivePlayer();
             if (rounds == 15)
             {
                 GameEnded();
@@ -294,7 +297,7 @@ namespace Yatzy.Models
 
         private bool IsGameTypeStyrd()
         {
-            if (gameType == 5)
+            if (theGameType == 5)
             {
                 return true;
             }
@@ -630,7 +633,7 @@ namespace Yatzy.Models
             }
             else
             {
-                dbOperations.AbortGameTransaction();
+                //dbOperations.AbortGameTransaction();
                 gameEngine.NullProps();
                 playerEngine.NullProps();
                 //SLÄNG I NÅGOT FÖR ATT GÅ TILL HUVUDMENY
@@ -641,11 +644,15 @@ namespace Yatzy.Models
         {
             for (int i = 0; i < ActivePlayers.Count; i++)
             {
-                ActivePlayers.OrderBy(activePlayer => activePlayer.TotalScore).ToList();
-                MessageBox.Show(ActivePlayers.First().Firstname.ToString() + " vann med " + ActivePlayers.First().TotalScore.ToString() + " poäng");
-                dbOperations.SaveGameTransaction(ActivePlayers);
+                List<Player> Results = new List<Player>();
+                Results = ActivePlayers.ToList<Player>();
+                Results.OrderBy(activePlayer => activePlayer.TotalScore).ToList();
+                MessageBox.Show(Results.First().Firstname.ToString() + " vann med " + Results.First().TotalScore.ToString() + " poäng");
+                //dbOperations.SaveGameTransaction(ActivePlayers);
                 //SLÄNG I NÅGOT FÖR ATT GÅ TILL HUVUDMENY
             }
+            gameEngine.NullProps();
+            playerEngine.NullProps();
         }
         
         #endregion
