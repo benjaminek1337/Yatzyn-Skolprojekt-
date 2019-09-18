@@ -13,9 +13,15 @@ namespace Yatzy.GameEngine
 {
     class PlayerEngine : INotifyPropertyChanged
     {
-        Player activePlayer { get; set; }
+        #region Objekt och variabler
         public int gameType = 0;
+        #endregion
+
+        #region Property Changed
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
+        #endregion
+
+        #region Properties
 
         private ObservableCollection<Player> _activePlayers;
         public ObservableCollection<Player> ActivePlayers
@@ -23,7 +29,11 @@ namespace Yatzy.GameEngine
             get { return _activePlayers; }
             set { _activePlayers = value; PropertyChanged(this, new PropertyChangedEventArgs("ActivePlayers"));}
         }
+        Player activePlayer { get; set; }
 
+        #endregion
+
+        #region Construktor
         public PlayerEngine()
         {
             ActivePlayers = new ObservableCollection<Player>();
@@ -31,13 +41,17 @@ namespace Yatzy.GameEngine
             //DicesViewModel dicesViewModel = new DicesViewModel();
             //SetActivePlayer();
         }
+        #endregion
 
+        #region Metod för att nulla Props
         public void NullProps()
         {
             activePlayer = null;
             ActivePlayers = null;
         }
+        #endregion
 
+        #region Metoder för att ta emot och skicka ut typ av spel
         public void GetGameType(int _gameType)
         {
             gameType = _gameType;
@@ -47,7 +61,9 @@ namespace Yatzy.GameEngine
         {
             return gameType;
         }
+        #endregion
 
+        #region Metoder för att hantera listan över spelare, samt sätta "nästa spelare"
         public ObservableCollection<Player> SetPlayers()
         {
             return ActivePlayers;
@@ -75,17 +91,12 @@ namespace Yatzy.GameEngine
             //}; ActivePlayers.Add(p3);
         }
 
-        public Player GetActivePlayer()
-        {
-            return activePlayer;
-        }
+        //public Player GetActivePlayer()
+        //{
+        //    return activePlayer;
+        //}
 
-        public ObservableCollection<Player> GetList()
-        {
-            return ActivePlayers;
-        }
-
-        public void SetActivePlayer()
+        public Player SetActivePlayer()
         {
             int index = -1;
 
@@ -103,8 +114,10 @@ namespace Yatzy.GameEngine
             }
 
             activePlayer = ActivePlayers[index];
+
+            return activePlayer;
         }
 
-
+        #endregion
     }
 }

@@ -9,6 +9,7 @@ using Yatzy.Commands;
 using Yatzy.GameEngine;
 using Yatzy.Models;
 using Yatzy.DBOps;
+using Yatzy.Views;
 
 namespace Yatzy.ViewModels
 {
@@ -191,25 +192,21 @@ namespace Yatzy.ViewModels
         private void ClassicGame(object parameter)
         {
             gameType = int.Parse(parameter.ToString());
+            playerEngine.GetGameType(gameType);
         }
 
         private void StyrdGame(object parameter)
         {
             gameType = int.Parse(parameter.ToString());
-        }
-
-        public void SetGameType()
-        {
             playerEngine.GetGameType(gameType);
         }
 
         private void StartGame(object parameter)
         {
             DicesView dicesView = new DicesView();
-
             DicesViewModel dicesViewModel = new DicesViewModel(playerEngine);
             dicesView.DataContext = dicesViewModel;
-            SetGameType();
+            
             dicesView.Show();
         }
 
