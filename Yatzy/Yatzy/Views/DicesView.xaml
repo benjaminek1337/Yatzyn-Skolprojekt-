@@ -32,25 +32,25 @@
                     <TextBlock Text="{Binding Dices[0].DiceImage, UpdateSourceTrigger=PropertyChanged}" Width="35" Height="35"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="btnDice12" Command="{Binding SaveDiceCommand}" CommandParameter="1"  Background="Transparent" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="35" BorderBrush="#00707070" Foreground="#00000000">
+            <Button x:Name="btnDice12" Command="{Binding SaveDiceCommand}" CommandParameter="2"  Background="Transparent" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="35" BorderBrush="#00707070" Foreground="#00000000">
                 <StackPanel>
                     <Image Source="{Binding Dices[1].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Text="{Binding Dices[1].DiceImage, UpdateSourceTrigger=PropertyChanged}" Width="35" Height="35"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="btnDice13" Command="{Binding SaveDiceCommand}" CommandParameter="1"  Background="Transparent" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="35" BorderBrush="#00707070" Foreground="#00000000">
+            <Button x:Name="btnDice13" Command="{Binding SaveDiceCommand}" CommandParameter="3"  Background="Transparent" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="35" BorderBrush="#00707070" Foreground="#00000000">
                 <StackPanel>
                     <Image Source="{Binding Dices[2].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Text="{Binding Dices[2].DiceImage, UpdateSourceTrigger=PropertyChanged}" Width="35" Height="35"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="btnDice14" Command="{Binding SaveDiceCommand}" CommandParameter="1"  Background="Transparent" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="35" BorderBrush="#00707070" Foreground="#00000000">
+            <Button x:Name="btnDice14" Command="{Binding SaveDiceCommand}" CommandParameter="4"  Background="Transparent" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="35" BorderBrush="#00707070" Foreground="#00000000">
                 <StackPanel>
                     <Image Source="{Binding Dices[3].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Text="{Binding Dices[3].DiceImage, UpdateSourceTrigger=PropertyChanged}" Width="35" Height="35"/>
                 </StackPanel>
             </Button>
-            <Button Command="{Binding SaveDiceCommand}" CommandParameter="1"  Background="Transparent" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="35" BorderBrush="#00707070" Foreground="#00000000">
+            <Button Command="{Binding SaveDiceCommand}" CommandParameter="5"  Background="Transparent" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="35" BorderBrush="#00707070" Foreground="#00000000">
                 <StackPanel>
                     <Image Source="{Binding Dices[4].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Text="{Binding Dices[4].DiceImage, UpdateSourceTrigger=PropertyChanged}" Width="35" Height="35"/>
