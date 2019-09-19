@@ -30,7 +30,23 @@ namespace Yatzy.Models
         }      
 
         public int DiceID { get; set; }
-        public BitmapImage DicePicture { get; set; }
+
+        private BitmapImage diceImage;
+        public BitmapImage DiceImage
+        {
+            get { return diceImage; }
+            set
+            {
+                if (diceImage != value)
+                {
+                    diceImage = value;
+                    PropertyChanged(this, new PropertyChangedEventArgs("DiceValue"));
+                }
+            }
+        }
+
+
+
         //public int DiceValue { get; set; }
         //public bool IsDiceEnabled { get; set; }
 

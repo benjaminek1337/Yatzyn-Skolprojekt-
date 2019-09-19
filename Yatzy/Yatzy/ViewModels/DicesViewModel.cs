@@ -10,6 +10,7 @@ using System.Windows.Input;
 using Yatzy.Commands;
 using Yatzy.DBOps;
 using Yatzy.GameEngine;
+using System.Windows.Media.Imaging;
 
 namespace Yatzy.Models
 {
@@ -24,7 +25,8 @@ namespace Yatzy.Models
         #region Objekt och lokala variabler
         PlayerEngine playerEngine;
         GameEngine gameEngine;
-        
+        ObservableCollection<Dice> diceImages;
+
         private int count = 0;
         private int rounds = 0;
         private int gameType = 0;
@@ -81,7 +83,47 @@ namespace Yatzy.Models
             set { _activePlayer = value; OnPropertyChanged(new PropertyChangedEventArgs("activePlayer")); }
         }
 
+        ObservableCollection<Dice> DiceImages()
+        {
+            BitmapImage diceImage1 = new BitmapImage(new Uri(@"/Resources/Images/dice1.png", UriKind.Relative));
+            BitmapImage diceImage2 = new BitmapImage(new Uri(@"/Resources/Images/dice2.png", UriKind.Relative));
+            BitmapImage diceImage3 = new BitmapImage(new Uri(@"/Resources/Images/dice3.png", UriKind.Relative));
+            BitmapImage diceImage4 = new BitmapImage(new Uri(@"/Resources/Images/dice4.png", UriKind.Relative));
+            BitmapImage diceImage5 = new BitmapImage(new Uri(@"/Resources/Images/dice5.png", UriKind.Relative));
+            BitmapImage diceImage6 = new BitmapImage(new Uri(@"resources/Images/dice6.png", UriKind.Relative));
 
+            diceImages = new ObservableCollection<Dice>();
+            diceImages.Add(new Dice()
+            {
+                DiceImage = diceImage1
+            });
+
+            diceImages.Add(new Dice()
+            {
+                DiceImage = diceImage2
+            });
+
+            diceImages.Add(new Dice()
+            {
+                DiceImage = diceImage3
+            });
+
+            diceImages.Add(new Dice()
+            {
+                DiceImage = diceImage4
+            });
+
+            diceImages.Add(new Dice()
+            {
+                DiceImage = diceImage5
+            });
+
+            diceImages.Add(new Dice()
+            {
+                DiceImage = diceImage6
+            });
+            return diceImages;
+        }
         #endregion
 
         #region Instansera en ny Game Engine och skicka in tärningarna, aktiva spelaren och speltypen
@@ -115,6 +157,8 @@ namespace Yatzy.Models
             activePlayer = playerEngine.SetActivePlayer();
             GenerateDices();
             GetGameEngine();
+            DiceImages();
+
 
             SaveDiceCommand = new RelayCommand(SaveDice, CanExecuteMethod);
             RollDicesCommand = new RelayCommand(RollDices, IsTriesEnabled);
@@ -158,6 +202,23 @@ namespace Yatzy.Models
         }
 
         //Metod för att kasta tärningen
+        //private void RollDices(object parameter)
+        //{
+        //    Random random = new Random();
+
+        //    for (int i = 0; i < Dices.Count; i++)
+        //    {
+        //        if (Dices[i].IsDiceEnabled)
+        //        {
+        //            int rand = random.Next(1, 7);
+        //            Dices[i].DiceValue = rand;                    
+        //        }
+
+        //    }
+        //    count++;
+        //    GetScoreCombinations();
+        //}
+
         private void RollDices(object parameter)
         {
             Random random = new Random();
@@ -168,13 +229,14 @@ namespace Yatzy.Models
                 {
                     int rand = random.Next(1, 7);
                     Dices[i].DiceValue = rand;
+                    Dices[i].DiceImage = diceImages[rand-1].DiceImage;
                 }
 
             }
             count++;
             GetScoreCombinations();
         }
-        
+
         //Metod för att välja en tärning att spara genom att skifta värde på IsDiceEnabled
         private void SaveDice(object parameter)
         {           
