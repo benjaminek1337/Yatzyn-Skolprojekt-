@@ -85,12 +85,12 @@ namespace Yatzy.Models
 
         ObservableCollection<Dice> DiceImages()
         {
-            BitmapImage diceImage1 = new BitmapImage(new Uri(@"/Resources/Images/dice1.png", UriKind.Relative));
-            BitmapImage diceImage2 = new BitmapImage(new Uri(@"/Resources/Images/dice2.png", UriKind.Relative));
-            BitmapImage diceImage3 = new BitmapImage(new Uri(@"/Resources/Images/dice3.png", UriKind.Relative));
-            BitmapImage diceImage4 = new BitmapImage(new Uri(@"/Resources/Images/dice4.png", UriKind.Relative));
-            BitmapImage diceImage5 = new BitmapImage(new Uri(@"/Resources/Images/dice5.png", UriKind.Relative));
-            BitmapImage diceImage6 = new BitmapImage(new Uri(@"resources/Images/dice6.png", UriKind.Relative));
+            BitmapImage diceImage1 = new BitmapImage(new Uri(@"Resources/Images/dice1.png", UriKind.Relative));
+            BitmapImage diceImage2 = new BitmapImage(new Uri(@"Resources/Images/dice2.png", UriKind.Relative));
+            BitmapImage diceImage3 = new BitmapImage(new Uri(@"Resources/Images/dice3.png", UriKind.Relative));
+            BitmapImage diceImage4 = new BitmapImage(new Uri(@"Resources/Images/dice4.png", UriKind.Relative));
+            BitmapImage diceImage5 = new BitmapImage(new Uri(@"Resources/Images/dice5.png", UriKind.Relative));
+            BitmapImage diceImage6 = new BitmapImage(new Uri(@"Resources/Images/dice6.png", UriKind.Relative));
 
             diceImages = new ObservableCollection<Dice>();
             diceImages.Add(new Dice()
