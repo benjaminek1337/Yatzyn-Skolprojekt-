@@ -300,6 +300,7 @@ namespace Yatzy.DBOps
             }
         }
 
+
         public void AbortGameTransaction()
         {
             NpgsqlTransaction transaction = null;

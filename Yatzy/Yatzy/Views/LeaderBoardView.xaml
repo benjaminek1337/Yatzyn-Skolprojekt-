@@ -75,9 +75,13 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ListView">
-                        <Grid>
-
-                        </Grid>
+                        <GridView MaxWidth="600" MinWidth="600"  ItemsSource="{Binding LeaderboardsevenDays}/>
+                            <GridViewColumn Header="Plats" Width="120" DisplayMemberBinding="{Binding }"/>
+                            <GridViewColumn Header="Firstname" Width="120" DisplayMemberBinding="{Binding Firstname}"/>
+                            <GridViewColumn Header="Nickname" Width="120" DisplayMemberBinding="{Binding Nickname}"/>
+                            <GridViewColumn Header="Lastname" Width="120" DisplayMemberBinding="{Binding Lastname}"/>
+                            <GridViewColumn  Header="Poäng" Width="120"  DisplayMemberBinding="{Binding HighScore}"/>
+                        </GridView>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -146,7 +150,7 @@
 
             <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="4" HorizontalAlignment="Center">
                 <Label Content="Bästa spelarna de senaste 7 dagarna" FontSize="30" HorizontalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
-                <ListView MaxWidth="600" MinWidth="600"  ItemsSource="{Binding leaderBoard}">
+                <ListView MaxWidth="600" MinWidth="600"  ItemsSource="{Binding LeaderboardsevenDays}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Plats" Width="120" DisplayMemberBinding="{Binding }"/>

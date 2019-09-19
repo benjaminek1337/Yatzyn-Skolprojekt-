@@ -18,61 +18,30 @@ namespace Yatzy.ViewModels
         #region Fields
 
         DbOperations dbOps = new DbOperations();
-        
-        ObservableCollection<Player> leaderBoard { get; set; }
+
+        private ObservableCollection<Player> _leaderboardsevenDays;
+        public ObservableCollection<Player> LeaderboardsevenDays {
+            get { return _leaderboardsevenDays; }
+            set { _leaderboardsevenDays = value; OnPropertyChanged("LeaderboardsevenDays");}
+        }
 
         public ICommand BackCommand { get; set; }
 
 
         #endregion
 
-        #region Hårdkodad lista för testning
-
-        private ObservableCollection<Player> _hardcodedPlayers;
-        public ObservableCollection<Player> HardcodedPlayers
-        {
-            get { return _hardcodedPlayers; }
-            set { _hardcodedPlayers = value; OnPropertyChanged("HardcodedPlayers"); }
-        }
-
-        private void SetHardcodedPlayers()
-        {
-            Player p = new Player
-            {
-                Firstname = "Beendjaameeehn",
-                Lastname = "Ek",
-                Nickname = "Galne_Gunnar1337",
-                HighScore = 2
-            }; HardcodedPlayers.Add(p);
-            Player p2 = new Player
-            {
-                Firstname = "Djååohäänis",
-                Lastname = "Inte ett könsord ;)",
-                Nickname = "Cheffer",
-                HighScore = 1
-            }; HardcodedPlayers.Add(p2);
-            Player p3 = new Player
-            {
-                Firstname = "Määtiihuuuhs",
-                Lastname = "Svensson",
-                Nickname = "Bruh_momento",
-                HighScore = 420
-            }; HardcodedPlayers.Add(p3);
-        }
-
-        #endregion
-
+        
         #region Contructor
 
         public LeaderBoardViewModel()
         {
-            HardcodedPlayers = new ObservableCollection<Player>();
-            leaderBoard = new ObservableCollection<Player>();
+            dbOps = new DbOperations();            
+            LeaderboardsevenDays = new ObservableCollection<Player>();
+            LeaderBoard7Days();
             BackCommand = new RelayCommand(Backcommand, CanExecuteMethod);
 
-            SetHardcodedPlayers();
-            CountLeaderBoardPosition();
-            LeaderBoard7Days();
+            
+            
         }
 
 
@@ -93,15 +62,11 @@ namespace Yatzy.ViewModels
 
         #region Methods
 
-        public void LeaderBoard7Days()
+        private void LeaderBoard7Days()
         {
-            leaderBoard = dbOps.GetHighScorePlayers(4);            
+            LeaderboardsevenDays = dbOps.GetHighScorePlayers(4);            
         }
-
-        
-        public void CountLeaderBoardPosition()
-        {
-        }
+       
         #endregion
 
         #region Methods for going back
