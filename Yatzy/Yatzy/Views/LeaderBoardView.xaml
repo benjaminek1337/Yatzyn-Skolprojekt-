@@ -65,23 +65,16 @@
             </Setter>
         </Style>
 
-        <Style x:Key="LeaderBoard" TargetType="ListView">
-            <Setter Property="OverridesDefaultStyle" Value="True"/>
-            <Setter Property="MinHeight" Value="400"/>
-            <Setter Property="MinWidth" Value="300"/>
-            <Setter Property="MaxHeight" Value="400"/>
-            <Setter Property="MaxWidth" Value="300"/>
-            <Setter Property="Background" Value="Transparent"/>
+        <Style x:Key="HeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>            
+            <Setter Property="Background" Value="Wheat"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontStyle" Value="Normal"/>
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="ListView">
-                        <GridView MaxWidth="600" MinWidth="600"  ItemsSource="{Binding LeaderboardsevenDays}/>
-                            <GridViewColumn Header="Plats" Width="120" DisplayMemberBinding="{Binding }"/>
-                            <GridViewColumn Header="Firstname" Width="120" DisplayMemberBinding="{Binding Firstname}"/>
-                            <GridViewColumn Header="Nickname" Width="120" DisplayMemberBinding="{Binding Nickname}"/>
-                            <GridViewColumn Header="Lastname" Width="120" DisplayMemberBinding="{Binding Lastname}"/>
-                            <GridViewColumn  Header="Poäng" Width="120"  DisplayMemberBinding="{Binding HighScore}"/>
-                        </GridView>
+                    <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
+                        <Border BorderThickness="0" BorderBrush="Transparent" Background="AliceBlue" Opacity="0.5"/>                        
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -149,15 +142,15 @@
 
 
             <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="4" HorizontalAlignment="Center">
-                <Label Content="Bästa spelarna de senaste 7 dagarna" FontSize="30" HorizontalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
-                <ListView MaxWidth="600" MinWidth="600"  ItemsSource="{Binding LeaderboardsevenDays}">
+                <Label Content="Bästa spelarna de senaste 7 dagarna (Klassisk)" FontSize="30" HorizontalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
+                <ListView MaxWidth="600" MinWidth="600"  ItemsSource="{Binding LeaderboardsevenDays}" Background="Transparent" Foreground="Azure" BorderBrush="Transparent" FontSize="25" >
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Plats" Width="120" DisplayMemberBinding="{Binding }"/>
-                            <GridViewColumn Header="Firstname" Width="120" DisplayMemberBinding="{Binding Firstname}"/>
-                            <GridViewColumn Header="Nickname" Width="120" DisplayMemberBinding="{Binding Nickname}"/>
-                            <GridViewColumn Header="Lastname" Width="120" DisplayMemberBinding="{Binding Lastname}"/>
-                            <GridViewColumn  Header="Poäng" Width="120"  DisplayMemberBinding="{Binding HighScore}"/>
+                            <GridViewColumn HeaderContainerStyle="{StaticResource HeaderStyle}" Header="Plats" Width="70" DisplayMemberBinding="{Binding }"/>
+                            <GridViewColumn HeaderContainerStyle="{StaticResource HeaderStyle}" Header="Firstname" Width="140" DisplayMemberBinding="{Binding Firstname}"/>
+                            <GridViewColumn HeaderContainerStyle="{StaticResource HeaderStyle}" Header="Nickname" Width="150" DisplayMemberBinding="{Binding Nickname}"/>
+                            <GridViewColumn HeaderContainerStyle="{StaticResource HeaderStyle}" Header="Lastname" Width="170" DisplayMemberBinding="{Binding Lastname}"/>
+                            <GridViewColumn HeaderContainerStyle="{StaticResource HeaderStyle}" Header="Poäng" Width="70"  DisplayMemberBinding="{Binding HighScore}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>

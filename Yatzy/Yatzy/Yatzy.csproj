@@ -235,5 +235,11 @@
     <Resource Include="Resources\MouseOver.png" />
     <Resource Include="Resources\NotMouseOver.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\right.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
