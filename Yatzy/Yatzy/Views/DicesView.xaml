@@ -21,6 +21,7 @@
             <RowDefinition Height="12*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        
         <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Margin="0,200,0,0" Width="500">
             <Button x:Name="btnDice1" Command="{Binding SaveDiceCommand}" CommandParameter="1"  Background="Transparent" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="35">
                 <StackPanel>

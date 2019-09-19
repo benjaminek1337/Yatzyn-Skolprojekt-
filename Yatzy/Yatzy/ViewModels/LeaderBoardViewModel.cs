@@ -18,6 +18,7 @@ namespace Yatzy.ViewModels
         #region Fields
 
         DbOperations dbOps = new DbOperations();
+        public ICommand BackCommand { get; set; }
 
         private ObservableCollection<Player> _leaderboardsevenDays;
         public ObservableCollection<Player> LeaderboardsevenDays {
@@ -25,12 +26,11 @@ namespace Yatzy.ViewModels
             set { _leaderboardsevenDays = value; OnPropertyChanged("LeaderboardsevenDays");}
         }
 
-        public ICommand BackCommand { get; set; }
 
 
         #endregion
-
         
+
         #region Contructor
 
         public LeaderBoardViewModel()
@@ -38,14 +38,13 @@ namespace Yatzy.ViewModels
             dbOps = new DbOperations();            
             LeaderboardsevenDays = new ObservableCollection<Player>();
             LeaderBoard7Days();
-            BackCommand = new RelayCommand(Backcommand, CanExecuteMethod);
-
-            
+            BackCommand = new RelayCommand(Backcommand, CanExecuteMethod);           
             
         }
 
 
         #endregion
+
 
         #region Event Handlers
 
@@ -60,6 +59,7 @@ namespace Yatzy.ViewModels
 
         #endregion
 
+
         #region Methods
 
         private void LeaderBoard7Days()
@@ -68,6 +68,7 @@ namespace Yatzy.ViewModels
         }
        
         #endregion
+
 
         #region Methods for going back
         private object selectedViewModel;

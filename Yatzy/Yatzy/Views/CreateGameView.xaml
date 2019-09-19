@@ -99,6 +99,7 @@
 
             </Grid.RowDefinitions>
 
+            
             <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7">
                 <Image Source="/Resources/wood4.jpg" Opacity="1" Stretch="UniformToFill"/>
             </StackPanel>
@@ -107,12 +108,13 @@
             <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Button Style="{StaticResource Back}" Command="{Binding BackCommand}" MaxHeight="110" MaxWidth="110" MinHeight="80" MinWidth="80"/>
             </StackPanel>
-
+            
 
             <StackPanel Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2">
                 <Label Content="YATZY"  HorizontalAlignment="Center" FontSize="55" Foreground="DodgerBlue" />
             </StackPanel>
 
+            
             <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="5">
                 <Label Content="Tillgängliga spelare" FontSize="30" Foreground="AntiqueWhite" HorizontalAlignment="Center"/>
                 <ListView ItemsSource="{Binding AvailablePlayers}" SelectedItem="{Binding SelectedPlayer}" Background="#19FFFFFF" Foreground="AntiqueWhite" BorderBrush="#4C000000" Width="410" Height="500" FontSize="18">
@@ -127,6 +129,7 @@
                 <Button Content="Skapa en ny spelare" Margin="0,50,0,0" Width="200" Height="45" FontSize="20" Command="{Binding OpenAddPlayerCommand}"/>
             </StackPanel>
 
+            
             <StackPanel Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Grid.RowSpan="5" Width="600">
                 <Label Content="Valda spelare" FontSize="30" Foreground="AntiqueWhite" HorizontalAlignment="Center"/>
                 <Label Content="{Binding SelectedPlayers[0].Firstname}" FontSize="26" Foreground="AntiqueWhite" HorizontalAlignment="Center" Margin="0,30,0,0"/>
@@ -135,6 +138,7 @@
                 <Label Content="{Binding SelectedPlayers[3].Firstname}" FontSize="26" Foreground="AntiqueWhite" HorizontalAlignment="Center"/>
             </StackPanel>
 
+            
             <StackPanel Grid.Row="1" Grid.Column="8"  Grid.RowSpan="5" Margin="5" >
 
                 <Button Style="{StaticResource MyButton}" Command="{Binding ClassicGameCommand}" Margin="0,80,0,0" CommandParameter="4">
