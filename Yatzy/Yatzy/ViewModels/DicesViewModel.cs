@@ -202,24 +202,6 @@ namespace Yatzy.Models
             }
         }
 
-        //Metod för att kasta tärningen
-        //private void RollDices(object parameter)
-        //{
-        //    Random random = new Random();
-
-        //    for (int i = 0; i < Dices.Count; i++)
-        //    {
-        //        if (Dices[i].IsDiceEnabled)
-        //        {
-        //            int rand = random.Next(1, 7);
-        //            Dices[i].DiceValue = rand;                    
-        //        }
-
-        //    }
-        //    count++;
-        //    GetScoreCombinations();
-        //}
-
         private void RollDices(object parameter)
         {
             Random random = new Random();
