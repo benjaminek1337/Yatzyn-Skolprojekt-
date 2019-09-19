@@ -674,15 +674,13 @@ namespace Yatzy.Models
         
         private void GameEnded()
         {
+            List<Player> Results = new List<Player>();
             for (int i = 0; i < ActivePlayers.Count; i++)
             {
-                List<Player> Results = new List<Player>();
                 Results = ActivePlayers.ToList<Player>();
                 Results.OrderBy(activePlayer => activePlayer.TotalScore).ToList();
-                MessageBox.Show(Results.First().Firstname.ToString() + " vann med " + Results.First().TotalScore.ToString() + " poäng");
-                //dbOperations.SaveGameTransaction(ActivePlayers);
-                //SLÄNG I NÅGOT FÖR ATT GÅ TILL HUVUDMENY
             }
+            MessageBox.Show(Results.First().Firstname.ToString() + " vann med " + Results.First().TotalScore.ToString() + " poäng");
             gameEngine.NullProps();
             playerEngine.NullProps();
         }
