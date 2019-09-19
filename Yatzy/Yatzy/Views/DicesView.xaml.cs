@@ -30,5 +30,10 @@ namespace Yatzy.Views
             //this.DataContext = dicesViewModel;
             InitializeComponent();
         }
+
+        private void Window_SourceInitialized(object sender, EventArgs e)
+        {
+
+        }
     }
 }

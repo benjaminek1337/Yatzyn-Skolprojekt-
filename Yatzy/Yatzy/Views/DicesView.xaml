@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Yatzy.Views"
         xmlns:models="clr-namespace:Yatzy.Models"
+        xmlns:my="clr-namespace:Yatzy.Models"
         mc:Ignorable="d"
         Title="DicesView" Height="800" Width="1000">
     <Grid ShowGridLines="True" Background="White">
@@ -22,31 +23,39 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         
-        <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Margin="0,200,0,0" Width="500">
-            <Button x:Name="btnDice1" Command="{Binding SaveDiceCommand}" CommandParameter="1" Content="{Binding Path = Dices[0].DiceValue, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="30">
-
-            </Button>
-            <Button x:Name="button1" Command="{Binding SaveDiceCommand}" CommandParameter="2" Content="{Binding Path = Dices[1].DiceValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="30">
-               
-            </Button>
-            <Button x:Name="button1_Copy" Command="{Binding SaveDiceCommand}" CommandParameter="3" Content="{Binding Path = Dices[2].DiceValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="30"/>
-            <Button x:Name="button1_Copy1" Command="{Binding SaveDiceCommand}" CommandParameter="4" Content="{Binding Path = Dices[3].DiceValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="30"/>
-            <Button x:Name="button1_Copy2" Command="{Binding SaveDiceCommand}" CommandParameter="5" Content="{Binding Path = Dices[4].DiceValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="30"/>
-            <Button x:Name="btnThrow" Command="{Binding RollDicesCommand}" Content="Kasta" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Height="30"/> 
-        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Margin="0,200,0,0" Width="500"/>
 
         <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Margin="0,250,0,0" Width="500">
-            <Button x:Name="btnDice11" Command="{Binding SaveDiceCommand}" CommandParameter="1"  Background="Transparent" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="35">
+            <Button x:Name="btnDice11" Command="{Binding SaveDiceCommand}" CommandParameter="1"  Background="Transparent" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="35" BorderBrush="#00707070" Foreground="#00000000">
                 <StackPanel>
-                    <Image x:Name="picDice11"  Source="{Binding Path = Dices[0].DiceImage, UpdateSourceTrigger=PropertyChanged}"  />
+                    <Image Source="{Binding Dices[0].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Text="{Binding Dices[0].DiceImage, UpdateSourceTrigger=PropertyChanged}" Width="35" Height="35"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="btnDice12" Command="{Binding SaveDiceCommand}" CommandParameter="2" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="35">
-                <Image x:Name="picDice12"  Source="/Resources/Images/dice1.png"  />
+            <Button x:Name="btnDice12" Command="{Binding SaveDiceCommand}" CommandParameter="1"  Background="Transparent" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="35" BorderBrush="#00707070" Foreground="#00000000">
+                <StackPanel>
+                    <Image Source="{Binding Dices[1].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Text="{Binding Dices[1].DiceImage, UpdateSourceTrigger=PropertyChanged}" Width="35" Height="35"/>
+                </StackPanel>
             </Button>
-            <Button x:Name="btnDice13" Command="{Binding SaveDiceCommand}" CommandParameter="3" Content="{Binding Path = Dices[2].DiceValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="30"/>
-            <Button x:Name="btnDice14" Command="{Binding SaveDiceCommand}" CommandParameter="4" Content="{Binding Path = Dices[3].DiceValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="30"/>
-            <Button x:Name="btnDice15" Command="{Binding SaveDiceCommand}" CommandParameter="5" Content="{Binding Path = Dices[4].DiceValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="30"/>
+            <Button x:Name="btnDice13" Command="{Binding SaveDiceCommand}" CommandParameter="1"  Background="Transparent" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="35" BorderBrush="#00707070" Foreground="#00000000">
+                <StackPanel>
+                    <Image Source="{Binding Dices[2].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Text="{Binding Dices[2].DiceImage, UpdateSourceTrigger=PropertyChanged}" Width="35" Height="35"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnDice14" Command="{Binding SaveDiceCommand}" CommandParameter="1"  Background="Transparent" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="35" BorderBrush="#00707070" Foreground="#00000000">
+                <StackPanel>
+                    <Image Source="{Binding Dices[3].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Text="{Binding Dices[3].DiceImage, UpdateSourceTrigger=PropertyChanged}" Width="35" Height="35"/>
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding SaveDiceCommand}" CommandParameter="1"  Background="Transparent" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="35" BorderBrush="#00707070" Foreground="#00000000">
+                <StackPanel>
+                    <Image Source="{Binding Dices[4].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Text="{Binding Dices[4].DiceImage, UpdateSourceTrigger=PropertyChanged}" Width="35" Height="35"/>
+                </StackPanel>
+            </Button>
             <Button x:Name="btnDice16" Command="{Binding RollDicesCommand}" Content="Kasta" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Height="30"/>
         </StackPanel>
 

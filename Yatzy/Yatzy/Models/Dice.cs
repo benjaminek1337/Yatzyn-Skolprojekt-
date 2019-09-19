@@ -40,7 +40,7 @@ namespace Yatzy.Models
                 if (diceImage != value)
                 {
                     diceImage = value;
-                    PropertyChanged(this, new PropertyChangedEventArgs("DiceValue"));
+                    PropertyChanged(this, new PropertyChangedEventArgs("DiceImage"));
                 }
             }
         }
