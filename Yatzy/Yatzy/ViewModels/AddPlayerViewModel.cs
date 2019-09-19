@@ -86,13 +86,13 @@ namespace Yatzy.ViewModels
         private void Cancel(object parameter)
         {
             //Metod för att återgå till tidigare
-            AddPlayerView addPlayerView = new AddPlayerView();
-            addPlayerView.Close();
+            //AddPlayerView addPlayerView = this.AddPlayerView;
+            //addPlayerView.Close();
         }
 
         private bool CanAddPlayer(object parameter)
         {
-            if (_Firstname != null && _Lastname != null && _Nickname != null)
+            if (_firstname != null && _lastname != null && _nickname != null)
                 return true;
             else
                 return false;

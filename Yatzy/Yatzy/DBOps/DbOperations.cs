@@ -8,6 +8,7 @@ using Npgsql;
 using System.Collections.ObjectModel;
 using Yatzy.Models;
 using Yatzy.GameEngine;
+using System.Windows;
 
 namespace Yatzy.DBOps
 {
@@ -17,6 +18,8 @@ namespace Yatzy.DBOps
 
         string Connect = ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString;
         int gameId;
+
+        public object Messagebox { get; private set; }
 
         #region Metoder som hämtar data
         public ObservableCollection<Player> GetPlayers()
@@ -175,9 +178,8 @@ namespace Yatzy.DBOps
                 conn.Close();
                 return players;
             }
-            catch (Exception)
+            catch (PostgresException ex)
             {
-
                 transaction.Rollback();
                 conn.Close();
                 return null;

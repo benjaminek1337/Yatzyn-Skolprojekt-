@@ -85,7 +85,7 @@ namespace Yatzy.ViewModels
 
         PlayerEngine playerEngine;
         DbOperations dbOps;
-
+        CreateGameViewModel createGameViewModel;
 
         private int gameType = 0; //Denna ändras till 4 för klassisk eller 5 för styrd.
 
@@ -171,7 +171,7 @@ namespace Yatzy.ViewModels
         #endregion
 
         #region Metoder
-        private void GetAvaliablePlayers()
+        public void GetAvaliablePlayers()
         {
             AvailablePlayers = dbOps.GetAvaliablePlayers();
         }
@@ -221,8 +221,11 @@ namespace Yatzy.ViewModels
 
         private void OpenAddPlayer(object parameter)
         {
+            AddPlayerViewModel addPlayerViewModel = new AddPlayerViewModel();
             AddPlayerView addPlayerView = new AddPlayerView();
+            addPlayerView.DataContext = addPlayerViewModel;
             addPlayerView.Show();
+
         }
 
 
