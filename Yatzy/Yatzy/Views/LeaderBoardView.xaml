@@ -198,7 +198,7 @@
 
             <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="4" HorizontalAlignment="Center">
                 <Label Content="Bästa spelarna de senaste 7 dagarna (Klassisk)" FontSize="30" HorizontalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
-                <ListView MaxWidth="600" Width="600"  ItemsSource="{Binding LeaderboardsevenDays}"  Background="Transparent" Foreground="Yellow" BorderBrush="Transparent" FontSize="17" >
+                <ListView MaxWidth="600" Width="600"  ItemsSource="{Binding MostGames}"  Background="Transparent" Foreground="Yellow" BorderBrush="Transparent" FontSize="17" >
                     <ListView.View>
                         <GridView>
                             <GridViewColumn  Header="Plats" Width="70" DisplayMemberBinding="{Binding }"/>

@@ -239,16 +239,21 @@ namespace Yatzy.DBOps
 
             ObservableCollection<Player> players = new ObservableCollection<Player>();
 
-            NpgsqlTransaction transaction = null;
+           
             NpgsqlConnection conn = null;
             NpgsqlCommand cmd = null;
             try
             {
-                string[] stmts = new string[2];
-                string stmt = "";
+                
+                string stmt = "select player.firstname, player.nickname, player.lastname,game.gametype_id, count(game_player.player_id) as player_id " +
+                    "from((game_player" +
+                    "inner join player on player.player_id = game_player.player_id)" +
+                    "inner join game on game_player.game_id = game.game_id)" +
+                    "where game.gametype_id = @gametype" +
+                    "group by game_player.player_id, player.firstname, player.nickname, player.lastname, game.gametype_id" +
+                    "order by count(game_player.player_id) desc;";
                 conn = new NpgsqlConnection(Connect);
-                conn.Open();
-                transaction = conn.BeginTransaction();
+                conn.Open();                
                 cmd = new NpgsqlCommand(stmt, conn);
                 cmd.Parameters.AddWithValue("gametype", gametype);
                 using (var reader = cmd.ExecuteReader())
@@ -266,14 +271,12 @@ namespace Yatzy.DBOps
                         players.Add(p);
 
                     }
-                }
-                transaction.Commit();
+                }                
                 conn.Close();
                 return players;
             }
             catch (Exception)
-            {
-                transaction.Rollback();
+            {                
                 conn.Close();
                 return null;
             }
