@@ -27,6 +27,48 @@ namespace Yatzy.Models
         GameEngine gameEngine;
         ObservableCollection<Dice> diceImages;
 
+        ObservableCollection<Dice> DiceImages()
+        {
+            BitmapImage diceImage1 = new BitmapImage(new Uri(@"pack://application:,,,/Resources/Images/dice1.png", UriKind.RelativeOrAbsolute));
+            BitmapImage diceImage2 = new BitmapImage(new Uri(@"pack://application:,,,/Resources/Images/dice2.png", UriKind.RelativeOrAbsolute));
+            BitmapImage diceImage3 = new BitmapImage(new Uri(@"pack://application:,,,/Resources/Images/dice3.png", UriKind.RelativeOrAbsolute));
+            BitmapImage diceImage4 = new BitmapImage(new Uri(@"pack://application:,,,/Resources/Images/dice4.png", UriKind.RelativeOrAbsolute));
+            BitmapImage diceImage5 = new BitmapImage(new Uri(@"pack://application:,,,/Resources/Images/dice5.png", UriKind.RelativeOrAbsolute));
+            BitmapImage diceImage6 = new BitmapImage(new Uri(@"pack://application:,,,/Resources/Images/dice6.png", UriKind.RelativeOrAbsolute));
+
+            diceImages = new ObservableCollection<Dice>();
+            diceImages.Add(new Dice()
+            {
+                DiceImage = diceImage1
+            });
+
+            diceImages.Add(new Dice()
+            {
+                DiceImage = diceImage2
+            });
+
+            diceImages.Add(new Dice()
+            {
+                DiceImage = diceImage3
+            });
+
+            diceImages.Add(new Dice()
+            {
+                DiceImage = diceImage4
+            });
+
+            diceImages.Add(new Dice()
+            {
+                DiceImage = diceImage5
+            });
+
+            diceImages.Add(new Dice()
+            {
+                DiceImage = diceImage6
+            });
+            return diceImages;
+        }
+
         private int count = 0;
         private int rounds = 0;
         private int gameType = 0;
@@ -83,47 +125,6 @@ namespace Yatzy.Models
             set { _activePlayer = value; OnPropertyChanged(new PropertyChangedEventArgs("activePlayer")); }
         }
 
-        ObservableCollection<Dice> DiceImages()
-        {
-            BitmapImage diceImage1 = new BitmapImage(new Uri(@"Resources/Images/dice1.png", UriKind.Relative));
-            BitmapImage diceImage2 = new BitmapImage(new Uri(@"Resources/Images/dice2.png", UriKind.Relative));
-            BitmapImage diceImage3 = new BitmapImage(new Uri(@"Resources/Images/dice3.png", UriKind.Relative));
-            BitmapImage diceImage4 = new BitmapImage(new Uri(@"Resources/Images/dice4.png", UriKind.Relative));
-            BitmapImage diceImage5 = new BitmapImage(new Uri(@"Resources/Images/dice5.png", UriKind.Relative));
-            BitmapImage diceImage6 = new BitmapImage(new Uri(@"Resources/Images/dice6.png", UriKind.Relative));
-
-            diceImages = new ObservableCollection<Dice>();
-            diceImages.Add(new Dice()
-            {
-                DiceImage = diceImage1
-            });
-
-            diceImages.Add(new Dice()
-            {
-                DiceImage = diceImage2
-            });
-
-            diceImages.Add(new Dice()
-            {
-                DiceImage = diceImage3
-            });
-
-            diceImages.Add(new Dice()
-            {
-                DiceImage = diceImage4
-            });
-
-            diceImages.Add(new Dice()
-            {
-                DiceImage = diceImage5
-            });
-
-            diceImages.Add(new Dice()
-            {
-                DiceImage = diceImage6
-            });
-            return diceImages;
-        }
         #endregion
 
         #region Instansera en ny Game Engine och skicka in tärningarna, aktiva spelaren och speltypen
@@ -201,24 +202,6 @@ namespace Yatzy.Models
             }
         }
 
-        //Metod för att kasta tärningen
-        //private void RollDices(object parameter)
-        //{
-        //    Random random = new Random();
-
-        //    for (int i = 0; i < Dices.Count; i++)
-        //    {
-        //        if (Dices[i].IsDiceEnabled)
-        //        {
-        //            int rand = random.Next(1, 7);
-        //            Dices[i].DiceValue = rand;                    
-        //        }
-
-        //    }
-        //    count++;
-        //    GetScoreCombinations();
-        //}
-
         private void RollDices(object parameter)
         {
             Random random = new Random();
@@ -278,6 +261,7 @@ namespace Yatzy.Models
             {
                 Dices[i].DiceValue = 0;
                 Dices[i].IsDiceEnabled = true;
+                Dices[i].DiceImage = null;
             }            
         }
 
@@ -690,15 +674,13 @@ namespace Yatzy.Models
         
         private void GameEnded()
         {
+            List<Player> Results = new List<Player>();
             for (int i = 0; i < ActivePlayers.Count; i++)
             {
-                List<Player> Results = new List<Player>();
                 Results = ActivePlayers.ToList<Player>();
                 Results.OrderBy(activePlayer => activePlayer.TotalScore).ToList();
-                MessageBox.Show(Results.First().Firstname.ToString() + " vann med " + Results.First().TotalScore.ToString() + " poäng");
-                //dbOperations.SaveGameTransaction(ActivePlayers);
-                //SLÄNG I NÅGOT FÖR ATT GÅ TILL HUVUDMENY
             }
+            MessageBox.Show(Results.First().Firstname.ToString() + " vann med " + Results.First().TotalScore.ToString() + " poäng");
             gameEngine.NullProps();
             playerEngine.NullProps();
         }

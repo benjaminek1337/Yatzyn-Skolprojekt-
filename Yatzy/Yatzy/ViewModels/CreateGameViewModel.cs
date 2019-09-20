@@ -11,6 +11,7 @@ using Yatzy.Models;
 using Yatzy.DBOps;
 using Yatzy.Views;
 using System.Windows.Input;
+using System.Windows;
 
 namespace Yatzy.ViewModels
 {
@@ -23,10 +24,10 @@ namespace Yatzy.ViewModels
         public RelayCommand AddPlayerCommand { get; set; }
         public RelayCommand RemovePlayerCommand { get; set; }
         public RelayCommand StartGameCommand { get; set; }
-        public RelayCommand OpenAddPlayerCommand { get; set; }
+        public RelayCommand AddNewPlayerCommand { get; set; }
         public ICommand BackCommand { get; set; }
 
-        private ObservableCollection<Player> _players;
+        private ObservableCollection<Player> _players = new ObservableCollection<Player>();
         public ObservableCollection<Player> AvailablePlayers
         {
             get { return _players; }
@@ -46,46 +47,33 @@ namespace Yatzy.ViewModels
             get { return _selectedPlayer; }
             set { _selectedPlayer = value; OnPropertyChanged("SelectedPlayer"); }
         }
-        #endregion
 
-        #region Hårdkodad lista för testning
-
-        private ObservableCollection<Player> _hardcodedPlayers;
-        public ObservableCollection<Player> HardcodedPlayers
+        private string _firstname;
+        public string _Firstname
         {
-            get { return _hardcodedPlayers; }
-            set { _hardcodedPlayers = value; OnPropertyChanged("HardcodedPlayers"); }
+            get { return _firstname; }
+            set { _firstname = value; OnPropertyChanged("_Firstname"); }
         }
 
-        private void SetHardcodedPlayers()
+        private string _lastname;
+        public string _Lastname
         {
-            Player p = new Player
-            {
-                Firstname = "Beendjaameeehn",
-                Lastname = "Ek",
-                Nickname = "Galne_Gunnar1337"
-            }; HardcodedPlayers.Add(p);
-            Player p2 = new Player
-            {
-                Firstname = "Djååohäänis",
-                Lastname = "Läähndkqqvvsst",
-                Nickname = "GWPERSSON"
-            }; HardcodedPlayers.Add(p2);
-            Player p3 = new Player
-            {
-                Firstname = "Määtiihuuuhs",
-                Lastname = "Svensson",
-                Nickname = "grodan"
-            }; HardcodedPlayers.Add(p3);
+            get { return _lastname; }
+            set { _lastname = value; OnPropertyChanged("_Lastname"); }
         }
 
+        private string _nickname;
+        public string _Nickname
+        {
+            get { return _nickname; }
+            set { _nickname = value; OnPropertyChanged("_Nickname"); }
+        }
         #endregion
 
         #region Objekt och lokala variabler
 
         PlayerEngine playerEngine;
         DbOperations dbOps;
-        CreateGameViewModel createGameViewModel;
 
         private int gameType = 0; //Denna ändras till 4 för klassisk eller 5 för styrd.
 
@@ -97,7 +85,6 @@ namespace Yatzy.ViewModels
         {
             dbOps = new DbOperations();
             playerEngine = new PlayerEngine();
-            HardcodedPlayers = new ObservableCollection<Player>();
             SelectedPlayers = new ObservableCollection<Player>();
             SelectedPlayer = new Player();
 
@@ -107,10 +94,9 @@ namespace Yatzy.ViewModels
             RemovePlayerCommand = new RelayCommand(RemovePlayer, CanRemovePlayer);
             StartGameCommand = new RelayCommand(StartGame, CanStartGame);
             BackCommand = new RelayCommand(Backcommand,CanExecuteMethod);
-            OpenAddPlayerCommand = new RelayCommand(OpenAddPlayer, CanExecuteMethod);
+            AddNewPlayerCommand = new RelayCommand(AddNewPlayer, CanAddNewPlayer);
 
             GetAvaliablePlayers();
-            //SetHardcodedPlayers();
         }
 
         #endregion
@@ -152,6 +138,14 @@ namespace Yatzy.ViewModels
                 return false;
         }
 
+        private bool CanAddNewPlayer(object parameter)
+        {
+            if (_firstname != null && _lastname != null && _nickname != null)
+                return true;
+            else
+                return false;
+        }
+
         private bool CanChooseClassicYatzy(object parameter)
         {
             if (gameType == 4)
@@ -174,6 +168,13 @@ namespace Yatzy.ViewModels
         public void GetAvaliablePlayers()
         {
             AvailablePlayers = dbOps.GetAvaliablePlayers();
+            UpdateAvaliablePlayers();
+        }
+
+        private void UpdateAvaliablePlayers()
+        {
+            _players.Clear();
+            _players = dbOps.GetAvaliablePlayers();
         }
 
         public void RemovePlayer(object parameter)
@@ -196,6 +197,8 @@ namespace Yatzy.ViewModels
 
         private void ClassicGame(object parameter)
         {
+            GetAvaliablePlayers(); // DEN DÄR LIGGER DÄR I TESTNINGSSYFTE
+            UpdateAvaliablePlayers();
             gameType = int.Parse(parameter.ToString());
             playerEngine.GetGameType(gameType);
         }
@@ -219,13 +222,21 @@ namespace Yatzy.ViewModels
 
         #region Metod för att öppna ett Registrera ny spelare Fönster
 
-        private void OpenAddPlayer(object parameter)
-        {
-            AddPlayerViewModel addPlayerViewModel = new AddPlayerViewModel();
-            AddPlayerView addPlayerView = new AddPlayerView();
-            addPlayerView.DataContext = addPlayerViewModel;
-            addPlayerView.Show();
 
+        private void AddNewPlayer(object parameter)
+        {
+            Player player;
+            player = new Player
+            {
+                Firstname = _Firstname,
+                Lastname = _Lastname,
+                Nickname = _Nickname
+            };
+            dbOps.RegisterPlayer(player);
+            _Firstname = null;
+            _Lastname = null;
+            _Nickname = null;
+            GetAvaliablePlayers();
         }
 
 

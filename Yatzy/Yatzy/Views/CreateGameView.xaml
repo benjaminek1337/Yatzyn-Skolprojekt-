@@ -16,7 +16,7 @@
             <Views:MainMenuView Content="{Binding}"/>
         </DataTemplate>
 
-                
+
         <Style x:Key="MyButton" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="MinHeight" Value="50"/>
@@ -79,27 +79,17 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition MinWidth="70"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="184"/>
-                <RowDefinition Height="184*"/>
-                <RowDefinition Height="142*"/>
-                <RowDefinition Height="142*"/>
-                <RowDefinition Height="143*"/>
-                <RowDefinition Height="142*"/>
-                <RowDefinition Height="143*"/>
-
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            
             <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7">
                 <Image Source="/Resources/wood4.jpg" Opacity="1" Stretch="UniformToFill"/>
             </StackPanel>
@@ -108,65 +98,90 @@
             <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Button Style="{StaticResource Back}" Command="{Binding BackCommand}" MaxHeight="110" MaxWidth="110" MinHeight="80" MinWidth="80"/>
             </StackPanel>
-            
 
-            <StackPanel Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2">
+
+            <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2">
                 <Label Content="YATZY"  HorizontalAlignment="Center" FontSize="55" Foreground="DodgerBlue" />
             </StackPanel>
 
-            
-            <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="5">
-                <Label Content="Tillgängliga spelare" FontSize="30" Foreground="AntiqueWhite" HorizontalAlignment="Center"/>
-                <ListView ItemsSource="{Binding AvailablePlayers}" SelectedItem="{Binding SelectedPlayer}" Background="#19FFFFFF" Foreground="AntiqueWhite" BorderBrush="#4C000000" Width="410" Height="500" FontSize="18">
+            <StackPanel Grid.Row="1" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="2">
+
+                <Label  Content="Skapa ny spelare" FontSize="30" Margin="0,215,0,0" HorizontalAlignment="Center" Foreground="AntiqueWhite"/>
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="1">
+                <Label Content="Förnamn" HorizontalAlignment="Right" FontSize="26" Foreground="AntiqueWhite" Margin="0,290,20,0"/>
+                <Label Content="Efternamn" HorizontalAlignment="Right" FontSize="26" Foreground="AntiqueWhite" Margin="0,0,20,0"/>
+                <Label Content="Användarnamn" HorizontalAlignment="Right" FontSize="26" Foreground="AntiqueWhite" Margin="0,25,20,0"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="1">
+                <TextBox Text="{Binding _Firstname, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Width="164" Height="30" HorizontalAlignment="Left" Margin="0,300,0,0"/>
+                <TextBox Text="{Binding _Lastname, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Width="164" Height="30" HorizontalAlignment="Left" Margin=" 0,16,0,0"/>
+                <TextBox Text="{Binding _Nickname, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Width="164" Height="30" HorizontalAlignment="Left" Margin=" 0,39,0,0"/>
+                <Button Content="Skapa" Margin="64,20,0,0" Width="100" Height="35" FontSize="20" Command="{Binding AddNewPlayerCommand}" HorizontalAlignment="Left"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" Grid.RowSpan="1">
+                <Label Content="Välj spelare" FontSize="30" Foreground="AntiqueWhite" HorizontalAlignment="Center" FontWeight="Bold"/>
+                <ListBox ItemsSource="{Binding AvailablePlayers, IsAsync=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedItem="{Binding SelectedPlayer}" Background="#19FFFFFF" Foreground="AntiqueWhite" Width="410" Height="500" FontSize="20"/> 
+                <!--ListView ItemsSource="{Binding AvailablePlayers, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedPlayer, UpdateSourceTrigger=Explicit}" Background="#19FFFFFF" Foreground="AntiqueWhite" BorderBrush="#4C000000" Width="610" Height="500" FontSize="18">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Förnamn" Width="200" DisplayMemberBinding="{Binding Firstname}" />
+                            <GridViewColumn Header="Användarnamn" Width="200" DisplayMemberBinding="{Binding Nickname}"/>
                             <GridViewColumn Header="Efternamn" Width="200" DisplayMemberBinding="{Binding Lastname}" />
                         </GridView>
                     </ListView.View>
-                </ListView>
-                <Button Content="Lägg till vald spelare" Margin="0,20,0,0" Width="200" Height="45" FontSize="20" Command="{Binding AddPlayerCommand}"/>
-                <Button Content="Skapa en ny spelare" Margin="0,50,0,0" Width="200" Height="45" FontSize="20" Command="{Binding OpenAddPlayerCommand}"/>
+                </-->
+                <Button Content="Lägg till den valda spelaren" Margin="0,20,0,0" Width="300" Height="40" FontSize="20" Command="{Binding AddPlayerCommand}"/>
+
             </StackPanel>
 
-            
-            <StackPanel Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Grid.RowSpan="5" Width="600">
-                <Label Content="Valda spelare" FontSize="30" Foreground="AntiqueWhite" HorizontalAlignment="Center"/>
-                <Label Content="{Binding SelectedPlayers[0].Firstname}" FontSize="26" Foreground="AntiqueWhite" HorizontalAlignment="Center" Margin="0,30,0,0"/>
-                <Label Content="{Binding SelectedPlayers[1].Firstname}" FontSize="26" Foreground="AntiqueWhite" HorizontalAlignment="Center"/>
-                <Label Content="{Binding SelectedPlayers[2].Firstname}" FontSize="26" Foreground="AntiqueWhite" HorizontalAlignment="Center"/>
-                <Label Content="{Binding SelectedPlayers[3].Firstname}" FontSize="26" Foreground="AntiqueWhite" HorizontalAlignment="Center"/>
+            <StackPanel Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="1" Grid.RowSpan="1">
+                <Label Content="Valda spelare" FontSize="30" Foreground="AntiqueWhite" HorizontalAlignment="Center" FontWeight="Bold"/>
+                <Label Content="{Binding SelectedPlayers[0].Nickname}" FontSize="26" Foreground="AntiqueWhite" HorizontalAlignment="Center" Margin="0,30,0,0"/>
+                <Label Content="{Binding SelectedPlayers[1].Nickname}" FontSize="26" Foreground="AntiqueWhite" HorizontalAlignment="Center"/>
+                <Label Content="{Binding SelectedPlayers[2].Nickname}" FontSize="26" Foreground="AntiqueWhite" HorizontalAlignment="Center"/>
+                <Label Content="{Binding SelectedPlayers[3].Nickname}" FontSize="26" Foreground="AntiqueWhite" HorizontalAlignment="Center"/>
             </StackPanel>
 
-            
-            <StackPanel Grid.Row="1" Grid.Column="8"  Grid.RowSpan="5" Margin="5" >
-
-                <Button Style="{StaticResource MyButton}" Command="{Binding ClassicGameCommand}" Margin="0,80,0,0" CommandParameter="4">
-                    <Label Content="Klassisk Yatzy" FontSize="45" Cursor="Hand" Margin="10" HorizontalAlignment="Left">
+            <StackPanel Grid.Row="1" Grid.Column="4"  Grid.RowSpan="1">
+                <Label Content="Välj Speltyp" FontSize="30" Foreground="AntiqueWhite" HorizontalAlignment="Right" Margin="0,0,30,0" FontWeight="Bold" />
+                <Button Style="{StaticResource MyButton}" Command="{Binding ClassicGameCommand}" Margin="0,70,30,10" CommandParameter="4" HorizontalAlignment="Right">
+                    <Label Content="Klassisk Yatzy" FontSize="45" Cursor="Hand" >
                         <Label.Style>
                             <Style>
                                 <Setter Property="Label.Foreground" Value="AntiqueWhite" />
                                 <Style.Triggers>
                                     <Trigger Property="Label.IsMouseOver" Value="true">
-                                        <Setter Property="Label.Foreground" Value="LightGreen"/>
+                                        <Setter Property="Label.Foreground" Value="White"/>
                                         <Setter Property="Label.FontSize" Value="50"/>
                                     </Trigger>
-                                    <Trigger Property="Label.IsMouseOver" Value="true"/>
+                                    <Trigger Property="Label.IsEnabled" Value="false">
+                                        <Setter Property="Label.Foreground" Value="Gold"/>
+                                    </Trigger>
+
+
                                 </Style.Triggers>
                             </Style>
                         </Label.Style>
                     </Label>
                 </Button>
 
-                <Button Style="{StaticResource MyButton}" Command="{Binding StyrdGameCommand}" CommandParameter="5">
-                    <Label  Content="Styrd Yatzy" FontSize="45" Cursor="Hand" Margin="10" >
+                <Button Style="{StaticResource MyButton}" Command="{Binding StyrdGameCommand}" CommandParameter="5" Margin="0,0,30,0" HorizontalAlignment="Right">
+                    <Label  Content="Styrd Yatzy" FontSize="45" Cursor="Hand" >
                         <Label.Style>
                             <Style>
                                 <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
                                 <Style.Triggers>
                                     <Trigger Property="Label.IsMouseOver" Value="true">
-                                        <Setter Property="Label.Foreground" Value="LightGreen"/>
+                                        <Setter Property="Label.Foreground" Value="White"/>
                                         <Setter Property="Label.FontSize" Value="50"/>
+                                    </Trigger>
+                                    <Trigger Property="Label.IsEnabled" Value="false">
+                                        <Setter Property="Label.Foreground" Value="Gold"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -175,21 +190,22 @@
 
                 </Button>
 
-                <Button Style="{StaticResource MyButton}" Command="{Binding StartGameCommand}">
-                    <Label  Content="Starta Spelet" FontSize="45" Cursor="Hand" Margin="0,200,0,0">
+                <Button Style="{StaticResource MyButton}" Command="{Binding StartGameCommand}" Margin="0,400,30,0" HorizontalAlignment="Right">
+                    <Label  Content="Starta Spelet" FontSize="45" Cursor="Hand">
 
                         <Label.Style>
                             <Style>
                                 <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
                                 <Style.Triggers>
                                     <Trigger Property="Label.IsMouseOver" Value="true">
-                                        <Setter Property="Label.Foreground" Value="IndianRed"/>
+                                        <Setter Property="Label.Foreground" Value="White"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
                         </Label.Style>
                     </Label>
                 </Button>
+
 
             </StackPanel>
 
