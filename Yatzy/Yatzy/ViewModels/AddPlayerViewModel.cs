@@ -58,6 +58,27 @@ namespace Yatzy.ViewModels
             set { _nickname = value; OnPropertyChanged(new PropertyChangedEventArgs("_Nickname")); }
         }
 
+        private void AddPlayer(object parameter)
+        {
+            Player = new Player
+            {
+                Firstname = _Firstname,
+                Lastname = _Lastname,
+                Nickname = _Nickname
+            };
+            dbOps.RegisterPlayer(Player);
+            MessageBox.Show("Spelare " + Player.Firstname + " '" + Player.Nickname + "' " + Player.Lastname + " är tillagd.");
+        }
+
+
+        private bool CanAddPlayer(object parameter)
+        {
+            if (_firstname != null && _lastname != null && _nickname != null)
+                return true;
+            else
+                return false;
+        }
+
         #endregion
 
         #region Konstruktor
@@ -71,32 +92,13 @@ namespace Yatzy.ViewModels
 
         #region Metoder för att lägga till spelare
 
-        private void AddPlayer(object parameter)
-        {
-            Player = new Player
-            {
-                Firstname = _Firstname,
-                Lastname = _Lastname,
-                Nickname = _Nickname
-            };
-            dbOps.RegisterPlayer(Player);
-            MessageBox.Show("Spelare " + Player.Firstname + " '" + Player.Nickname + "' " + Player.Lastname + " är tillagd.");
-        }
+
 
         private void Cancel(object parameter)
         {
             //Metod för att återgå till tidigare
             //AddPlayerView addPlayerView = this.AddPlayerView;
             //addPlayerView.Close();
-        }
-
-        private bool CanAddPlayer(object parameter)
-        {
-            if (_firstname != null && _lastname != null && _nickname != null)
-                return true;
-            else
-                return false;
-
         }
 
         private bool CanExecute(object parameter)
