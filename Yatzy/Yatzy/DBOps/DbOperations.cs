@@ -245,7 +245,7 @@ namespace Yatzy.DBOps
             try
             {
                 
-                string stmt = "select player.firstname, player.nickname, player.lastname,game.gametype_id, count(game_player.player_id) as player_id " +
+                string stmt = "select player.firstname, player.nickname, player.lastname,game.gametype_id, count(game_player.player_id) as Won_Games " +
                     "from((game_player" +
                     "inner join player on player.player_id = game_player.player_id)" +
                     "inner join game on game_player.game_id = game.game_id)" +
