@@ -16,6 +16,7 @@ using System.Windows;
 namespace Yatzy.ViewModels
 {
     class CreateGameViewModel : INotifyPropertyChanged
+
     {
 
         #region Properties
@@ -26,13 +27,12 @@ namespace Yatzy.ViewModels
         public RelayCommand StartGameCommand { get; set; }
         public RelayCommand AddNewPlayerCommand { get; set; }
         public ICommand BackCommand { get; set; }
-        public RelayCommand PlayGamecommand { get; set; }
 
-        private ObservableCollection<Player> _players = new ObservableCollection<Player>();
+        private ObservableCollection<Player> _availablePlayers;
         public ObservableCollection<Player> AvailablePlayers
         {
-            get { return _players; }
-            set { _players = value; OnPropertyChanged("Players"); }
+            get { return _availablePlayers; }
+            set { _availablePlayers = value; OnPropertyChanged("AvailablePlayers"); }
         }
 
         private ObservableCollection<Player> selectedPlayers;
@@ -42,11 +42,19 @@ namespace Yatzy.ViewModels
             set { selectedPlayers = value; OnPropertyChanged("SelectedPlayers"); }
         }
 
-        private Player _selectedPlayer;
+        private Player _availablePlayer;
+        public Player AvailablePlayer
+        {
+            get { return _availablePlayer; }
+            set { _availablePlayer = value; OnPropertyChanged("AvailablePlayer"); }
+        }
+
+        private Player player;
+
         public Player SelectedPlayer
         {
-            get { return _selectedPlayer; }
-            set { _selectedPlayer = value; OnPropertyChanged("SelectedPlayer"); }
+            get { return player; }
+            set { player = value; OnPropertyChanged("SelectedPlayer"); }
         }
 
         private string _firstname;
@@ -87,18 +95,22 @@ namespace Yatzy.ViewModels
             dbOps = new DbOperations();
             playerEngine = new PlayerEngine();
             SelectedPlayers = new ObservableCollection<Player>();
-            SelectedPlayer = new Player();
+            AvailablePlayer = new Player();
+            AvailablePlayers = new ObservableCollection<Player>();
 
             ClassicGameCommand = new RelayCommand(ClassicGame, CanChooseClassicYatzy);
             StyrdGameCommand = new RelayCommand(StyrdGame, CanChooseStyrdYatzy);
             AddPlayerCommand = new RelayCommand(AddPlayer, CanAddPlayer);
             RemovePlayerCommand = new RelayCommand(RemovePlayer, CanRemovePlayer);
             StartGameCommand = new RelayCommand(StartGame, CanStartGame);
-            BackCommand = new RelayCommand(Backcommand,CanExecuteMethod);
+            BackCommand = new RelayCommand(Backcommand, CanExecuteMethod);
             AddNewPlayerCommand = new RelayCommand(AddNewPlayer, CanAddNewPlayer);
-            PlayGamecommand = new RelayCommand(PlayGame,CanExecuteMethod);
+
+            AvailablePlayer = null;
             GetAvaliablePlayers();
         }
+
+
 
         #endregion
 
@@ -126,7 +138,7 @@ namespace Yatzy.ViewModels
 
         private bool CanAddPlayer(object parameter)
         {
-            if (SelectedPlayers.Count < 4 && SelectedPlayer != null)
+            if (SelectedPlayers.Count < 4 && AvailablePlayer != null)
                 return true;
             else
                 return false;
@@ -169,37 +181,42 @@ namespace Yatzy.ViewModels
         public void GetAvaliablePlayers()
         {
             AvailablePlayers = dbOps.GetAvaliablePlayers();
-            UpdateAvaliablePlayers();
         }
 
         private void UpdateAvaliablePlayers()
         {
-            _players.Clear();
-            _players = dbOps.GetAvaliablePlayers();
+            AvailablePlayers.Clear();
+            AvailablePlayers = dbOps.GetAvaliablePlayers();
         }
 
         public void RemovePlayer(object parameter)
         {
-            SelectedPlayers.Remove(SelectedPlayer);
+            playerEngine.ActivePlayers.Remove(SelectedPlayer);
+            AvailablePlayers.Add(SelectedPlayer);
+            if (SelectedPlayer != null)
+            {
+                SelectedPlayers.Remove(SelectedPlayer);
+                SelectedPlayer = null;
+            }
+            SelectedPlayer = null;
         }
 
         public void AddPlayer(object parameter)
         {
-            playerEngine.ActivePlayers.Add(SelectedPlayer);
-            SelectedPlayers.Add(SelectedPlayer);
-            //if (SelectedPlayer != null)
-            //{
-            //    AvailablePlayers.Remove(SelectedPlayer);
-            //    AvailablePlayers.CollectionChanged; 
+            playerEngine.ActivePlayers.Add(AvailablePlayer);
+            SelectedPlayers.Add(AvailablePlayer);
 
+            if (AvailablePlayer != null)
+            {
+                AvailablePlayers.Remove(AvailablePlayer);
+                AvailablePlayer = null;
+            }
+            AvailablePlayer = null;
 
-            //}
         }
 
         private void ClassicGame(object parameter)
         {
-            GetAvaliablePlayers(); // DEN DÄR LIGGER DÄR I TESTNINGSSYFTE
-            UpdateAvaliablePlayers();
             gameType = int.Parse(parameter.ToString());
             playerEngine.GetGameType(gameType);
         }
@@ -212,16 +229,13 @@ namespace Yatzy.ViewModels
 
         private void StartGame(object parameter)
         {
-            DicesView dicesView = new DicesView();
-            DicesViewModel dicesViewModel = new DicesViewModel(playerEngine);
-            dicesView.DataContext = dicesViewModel;
-            
-            dicesView.Show();
+            PlayGameView dicesView = new PlayGameView();
+            SelectedViewModel = new DicesViewModel(playerEngine);
+            dicesView.DataContext = SelectedViewModel;
         }
 
         #endregion
 
-        #region Metod för att öppna ett Registrera ny spelare Fönster
 
 
         private void AddNewPlayer(object parameter)
@@ -237,13 +251,11 @@ namespace Yatzy.ViewModels
             _Firstname = null;
             _Lastname = null;
             _Nickname = null;
-            GetAvaliablePlayers();
+            UpdateAvaliablePlayers();
         }
 
 
-        #endregion
-
-        #region Methods for Navigationg
+        #region Methods for going back
         private object selectedViewModel;
         public object SelectedViewModel
         {
@@ -253,12 +265,6 @@ namespace Yatzy.ViewModels
         public void Backcommand(object parameter)
         {
             SelectedViewModel = new MainMenuViewModel();
-        }
-        public void PlayGame(object parameter)
-        {
-            PlayGameView dicesView = new PlayGameView();
-            SelectedViewModel = new DicesViewModel(playerEngine);
-            dicesView.DataContext = SelectedViewModel;
         }
         private bool CanExecuteMethod(object parameter)
         {
