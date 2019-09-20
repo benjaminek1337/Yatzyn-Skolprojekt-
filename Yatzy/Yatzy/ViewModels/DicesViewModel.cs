@@ -17,11 +17,8 @@ namespace Yatzy.Models
 {
     class DicesViewModel : INotifyPropertyChanged
     {
-        //ATT GÖRA I DEN HÄR KLASSEN
-        // NÄR ETT SPEL SKAPAS OCH KLASSEN INSTANSERAS SÅ SKA EN INT PASSERAS TILL int gameType (finns i regionen alldeles nedan) MED VÄRDE 4 FÖR KLASSISK ELLER 5 FÖR STYRD
-        // OCH SE TILL ATT NÄR ETT SPEL AVSLUTATS (regionen längst ned) SÅ ÅTERGÅR VYN TILL HUVUDMENYN
-        //SEN ÄR ALLT GULD OCH GRÖNA SKOGAR. ANTAR JAG.
-        //JAG HAR KOPPLAT UR DATABASEN HELT Å HÅLLET 
+        //ALLT SKA VA GULD Å GRÖNA SKOGAR HÄR.
+
 
         #region Objekt och lokala variabler
         PlayerEngine playerEngine;
