@@ -25,6 +25,7 @@ namespace Yatzy.Models
         #region Objekt och lokala variabler
         PlayerEngine playerEngine;
         GameEngine gameEngine;
+        DbOperations dbOps;
         ObservableCollection<Dice> diceImages;
 
         ObservableCollection<Dice> DiceImages()
@@ -119,7 +120,7 @@ namespace Yatzy.Models
         }
 
         private Player _activePlayer;
-        public Player activePlayer
+        public Player ActivePlayer
         {
             get { return _activePlayer; }
             set { _activePlayer = value; OnPropertyChanged(new PropertyChangedEventArgs("activePlayer")); }
@@ -131,7 +132,7 @@ namespace Yatzy.Models
 
         private void GetGameEngine()
         {
-            gameEngine = new GameEngine(Dices, activePlayer, gameType);
+            gameEngine = new GameEngine(Dices, ActivePlayer, gameType);
         }
 
         #endregion
@@ -153,9 +154,10 @@ namespace Yatzy.Models
         {
             Player = new Player();
             playerEngine = _playerEngine;
+            dbOps = new DbOperations();
             gameType = playerEngine.SetGameType();
             ActivePlayers = playerEngine.SetPlayers();
-            activePlayer = playerEngine.SetActivePlayer();
+            ActivePlayer = playerEngine.SetActivePlayer();
             GenerateDices();
             GetGameEngine();
             DiceImages();
@@ -272,35 +274,35 @@ namespace Yatzy.Models
         private void ChooseScoreCategory(object parameter)
         {          
             if (int.Parse(parameter.ToString()) == 1)
-                activePlayer.Ones = Player.Ones;
+                ActivePlayer.Ones = Player.Ones;
             if (int.Parse(parameter.ToString()) == 2)
-                activePlayer.Twos = Player.Twos;
+                ActivePlayer.Twos = Player.Twos;
             if (int.Parse(parameter.ToString()) == 3)
-                activePlayer.Threes = Player.Threes;
+                ActivePlayer.Threes = Player.Threes;
             if (int.Parse(parameter.ToString()) == 4)
-                activePlayer.Fours = Player.Fours;
+                ActivePlayer.Fours = Player.Fours;
             if (int.Parse(parameter.ToString()) == 5)
-                activePlayer.Fives = Player.Fives;
+                ActivePlayer.Fives = Player.Fives;
             if (int.Parse(parameter.ToString()) == 6)
-                activePlayer.Sixes = Player.Sixes;
+                ActivePlayer.Sixes = Player.Sixes;
             if (int.Parse(parameter.ToString()) == 7)
-                activePlayer.Pair = Player.Pair;
+                ActivePlayer.Pair = Player.Pair;
             if (int.Parse(parameter.ToString()) == 8)
-                activePlayer.TwoPairs = Player.TwoPairs;
+                ActivePlayer.TwoPairs = Player.TwoPairs;
             if (int.Parse(parameter.ToString()) == 9)
-                activePlayer.ThreeOfaKind = Player.ThreeOfaKind;
+                ActivePlayer.ThreeOfaKind = Player.ThreeOfaKind;
             if (int.Parse(parameter.ToString()) == 10)
-                activePlayer.FourOfaKind = Player.FourOfaKind;
+                ActivePlayer.FourOfaKind = Player.FourOfaKind;
             if (int.Parse(parameter.ToString()) == 11)
-                activePlayer.SmalLadder = Player.SmalLadder;
+                ActivePlayer.SmalLadder = Player.SmalLadder;
             if (int.Parse(parameter.ToString()) == 12)
-                activePlayer.LargeLadder = Player.LargeLadder;
+                ActivePlayer.LargeLadder = Player.LargeLadder;
             if (int.Parse(parameter.ToString()) == 13)
-                activePlayer.FullHouse = Player.FullHouse;
+                ActivePlayer.FullHouse = Player.FullHouse;
             if (int.Parse(parameter.ToString()) == 14)
-                activePlayer.Chance = Player.Chance;
+                ActivePlayer.Chance = Player.Chance;
             if (int.Parse(parameter.ToString()) == 15)
-                activePlayer.Yatzy = Player.Yatzy;
+                ActivePlayer.Yatzy = Player.Yatzy;
 
             GetGameEngine();
             gameEngine.SetUpperScore();
@@ -308,7 +310,7 @@ namespace Yatzy.Models
             ResetDices();
             RoundsLeft();
             GetScoreCombinations();
-            activePlayer = playerEngine.SetActivePlayer();
+            ActivePlayer = playerEngine.SetActivePlayer();
             if (rounds == 15)
             {
                 GameEnded();
@@ -317,7 +319,7 @@ namespace Yatzy.Models
 
         private void RoundsLeft()
         {
-            if (activePlayer == ActivePlayers[ActivePlayers.Count - 1])
+            if (ActivePlayer == ActivePlayers[ActivePlayers.Count - 1])
             {
                 rounds += 1;
             }
@@ -350,7 +352,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.Ones != null)
+                if (ActivePlayer.Ones != null)
                     return false;
                 else
                     return true;
@@ -369,7 +371,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.Twos != null)
+                if (ActivePlayer.Twos != null)
                     return false;
                 else
                     return true;
@@ -388,7 +390,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.Threes != null)
+                if (ActivePlayer.Threes != null)
                     return false;
                 else
                     return true;
@@ -407,7 +409,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.Fours != null)
+                if (ActivePlayer.Fours != null)
                     return false;
                 else
                     return true;
@@ -427,7 +429,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.Fives != null)
+                if (ActivePlayer.Fives != null)
                     return false;
                 else
                     return true;
@@ -446,7 +448,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.Sixes != null)
+                if (ActivePlayer.Sixes != null)
                     return false;
                 else
                     return true;
@@ -465,7 +467,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.Pair != null)
+                if (ActivePlayer.Pair != null)
                     return false;
                 else
                     return true;
@@ -484,7 +486,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.TwoPairs != null)
+                if (ActivePlayer.TwoPairs != null)
                     return false;
                 else
                     return true;
@@ -503,7 +505,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.ThreeOfaKind != null)
+                if (ActivePlayer.ThreeOfaKind != null)
                     return false;
                 else
                     return true;
@@ -522,7 +524,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.FourOfaKind != null)
+                if (ActivePlayer.FourOfaKind != null)
                     return false;
                 else
                     return true;
@@ -541,7 +543,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.SmalLadder != null)
+                if (ActivePlayer.SmalLadder != null)
                     return false;
                 else
                     return true;
@@ -561,7 +563,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.LargeLadder != null)
+                if (ActivePlayer.LargeLadder != null)
                     return false;
                 else
                     return true;
@@ -581,7 +583,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.FullHouse != null)
+                if (ActivePlayer.FullHouse != null)
                     return false;
                 else
                     return true;
@@ -601,7 +603,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.Chance != null)
+                if (ActivePlayer.Chance != null)
                     return false;
                 else
                     return true;
@@ -621,7 +623,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.Yatzy != null)
+                if (ActivePlayer.Yatzy != null)
                     return false;
                 else
                     return true;
@@ -665,10 +667,15 @@ namespace Yatzy.Models
             }
             else
             {
-                //dbOperations.AbortGameTransaction();
+                dbOps.AbortGameTransaction();
                 gameEngine.NullProps();
                 playerEngine.NullProps();
-                //SLÄNG I NÅGOT FÖR ATT GÅ TILL HUVUDMENY
+
+                Player = null;
+                ActivePlayer = null;
+                ActivePlayers = null;
+                Dices = null;
+                //SLÄNG I NÅGOT FÖR ATT BACKA TILL HUVUDMENY
             }
         }
         
@@ -681,8 +688,14 @@ namespace Yatzy.Models
                 Results.OrderBy(activePlayer => activePlayer.TotalScore).ToList();
             }
             MessageBox.Show(Results.First().Firstname.ToString() + " vann med " + Results.First().TotalScore.ToString() + " poäng");
+            dbOps.SaveGameTransaction(ActivePlayers);
             gameEngine.NullProps();
             playerEngine.NullProps();
+
+            Player = null;
+            ActivePlayer = null;
+            ActivePlayers = null;
+            Dices = null;
         }
         
         #endregion

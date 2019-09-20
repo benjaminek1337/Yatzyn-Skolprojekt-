@@ -228,6 +228,7 @@ namespace Yatzy.ViewModels
 
         private void StartGame(object parameter)
         {
+            dbOps.StartGameTransaction(SelectedPlayers, gameType);
             PlayGameView dicesView = new PlayGameView();
             SelectedViewModel = new DicesViewModel(playerEngine);
             dicesView.DataContext = SelectedViewModel;

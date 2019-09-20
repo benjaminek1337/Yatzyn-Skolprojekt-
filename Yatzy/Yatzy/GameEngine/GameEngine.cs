@@ -339,7 +339,6 @@ namespace Yatzy.Models
             {
                 if (upperScoreArray[i] == null || upperScoreArray[1] == null || upperScoreArray[2] == null || upperScoreArray[3] == null || upperScoreArray[4] == null || upperScoreArray[5] == null)
                 {
-                    upperScore += upperScoreArray[i];
                     break;
                 }
                 else
