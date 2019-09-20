@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Yatzy.Models;
 using Yatzy.ViewModels;
+using Yatzy.GameEngine;
 
 namespace Yatzy.Views
 {
@@ -21,7 +22,7 @@ namespace Yatzy.Views
     /// Interaction logic for PlayGameView.xaml
     /// </summary>
     public partial class PlayGameView : UserControl
-    {        
+    {
         public PlayGameView()
         {
             InitializeComponent();            

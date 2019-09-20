@@ -16,7 +16,10 @@
             <Views:MainMenuView Content="{Binding}"/>
         </DataTemplate>
 
-
+        <DataTemplate DataType="{x:Type Models:DicesViewModel}">
+            <Views:PlayGameView Content="{Binding}"/>
+        </DataTemplate>
+        
         <Style x:Key="MyButton" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="MinHeight" Value="50"/>
@@ -190,7 +193,7 @@
 
                 </Button>
 
-                <Button Style="{StaticResource MyButton}" Command="{Binding StartGameCommand}" Margin="0,400,30,0" HorizontalAlignment="Right">
+                <Button Style="{StaticResource MyButton}" Command="{Binding PlayGamecommand}" Margin="0,400,30,0" HorizontalAlignment="Right">
                     <Label  Content="Starta Spelet" FontSize="45" Cursor="Hand">
 
                         <Label.Style>

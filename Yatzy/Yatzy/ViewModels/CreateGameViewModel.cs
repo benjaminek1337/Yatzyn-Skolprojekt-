@@ -26,6 +26,7 @@ namespace Yatzy.ViewModels
         public RelayCommand StartGameCommand { get; set; }
         public RelayCommand AddNewPlayerCommand { get; set; }
         public ICommand BackCommand { get; set; }
+        public RelayCommand PlayGamecommand { get; set; }
 
         private ObservableCollection<Player> _players = new ObservableCollection<Player>();
         public ObservableCollection<Player> AvailablePlayers
@@ -95,7 +96,7 @@ namespace Yatzy.ViewModels
             StartGameCommand = new RelayCommand(StartGame, CanStartGame);
             BackCommand = new RelayCommand(Backcommand,CanExecuteMethod);
             AddNewPlayerCommand = new RelayCommand(AddNewPlayer, CanAddNewPlayer);
-
+            PlayGamecommand = new RelayCommand(PlayGame,CanExecuteMethod);
             GetAvaliablePlayers();
         }
 
@@ -253,9 +254,11 @@ namespace Yatzy.ViewModels
         {
             SelectedViewModel = new MainMenuViewModel();
         }
-        public void StartGame(object parameter)
+        public void PlayGame(object parameter)
         {
-            SelectedViewModel = 
+            PlayGameView dicesView = new PlayGameView();
+            SelectedViewModel = new DicesViewModel(playerEngine);
+            dicesView.DataContext = SelectedViewModel;
         }
         private bool CanExecuteMethod(object parameter)
         {
