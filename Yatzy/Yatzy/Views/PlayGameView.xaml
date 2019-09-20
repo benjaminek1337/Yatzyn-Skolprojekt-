@@ -5,62 +5,78 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Yatzy.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    
+             d:DesignHeight="600" d:DesignWidth="1000">
+
     <Grid ShowGridLines="True">
         <Grid.Background>
             <ImageBrush ImageSource="/Resources/wood4.jpg"/>
         </Grid.Background>
-
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="7*"/>
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="12*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <!--Grid för tärningar och kasta knapp-->
+        <Grid x:Name="DiceBoard" ShowGridLines="True" Grid.Column="1" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Margin="0,200,0,0" Width="500"/>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition />
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
 
-        <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Margin="0,250,0,0" Width="500">
-            <Button x:Name="btnDice11" Command="{Binding SaveDiceCommand}" CommandParameter="1"  Background="Transparent" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="35" BorderBrush="#00707070" Foreground="#00000000">
-                <StackPanel>
-                    <Image Source="{Binding Dices[0].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBlock Text="{Binding Dices[0].DiceImage, UpdateSourceTrigger=PropertyChanged}" Width="35" Height="35"/>
-                </StackPanel>
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="FontSize" Value="30"/>
+                    <Setter Property="BorderThickness" Value="5"/>
+                    <Setter Property="BorderBrush" Value="Black"/>
+                    <Setter Property="Background" Value="Black"/>
+                    <Setter Property="Margin" Value="5,0,5,0"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Style>
+            </Grid.Resources>
+            <Button x:Name="btnDice1" Grid.Row="5" Grid.Column="1"  Command="{Binding SaveDiceCommand}" CommandParameter="1">
+                <Image Source="{Binding Dices[0].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
-            <Button x:Name="btnDice12" Command="{Binding SaveDiceCommand}" CommandParameter="2"  Background="Transparent" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="35" BorderBrush="#00707070" Foreground="#00000000">
-                <StackPanel>
-                    <Image Source="{Binding Dices[1].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBlock Text="{Binding Dices[1].DiceImage, UpdateSourceTrigger=PropertyChanged}" Width="35" Height="35"/>
-                </StackPanel>
+            <Button x:Name="btnDice2" Grid.Row="5" Grid.Column="2" Command="{Binding SaveDiceCommand}" CommandParameter="2">
+                <Image Source="{Binding Dices[1].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
-            <Button x:Name="btnDice13" Command="{Binding SaveDiceCommand}" CommandParameter="3"  Background="Transparent" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="35" BorderBrush="#00707070" Foreground="#00000000">
-                <StackPanel>
-                    <Image Source="{Binding Dices[2].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBlock Text="{Binding Dices[2].DiceImage, UpdateSourceTrigger=PropertyChanged}" Width="35" Height="35"/>
-                </StackPanel>
+            <Button x:Name="btnDice3" Grid.Row="5" Grid.Column="3" Command="{Binding SaveDiceCommand}" CommandParameter="3">
+                <Image Source="{Binding Dices[2].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
-            <Button x:Name="btnDice14" Command="{Binding SaveDiceCommand}" CommandParameter="4"  Background="Transparent" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="35" BorderBrush="#00707070" Foreground="#00000000">
-                <StackPanel>
-                    <Image Source="{Binding Dices[3].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBlock Text="{Binding Dices[3].DiceImage, UpdateSourceTrigger=PropertyChanged}" Width="35" Height="35"/>
-                </StackPanel>
+            <Button x:Name="btnDice4" Grid.Row="5" Grid.Column="4" Command="{Binding SaveDiceCommand}" CommandParameter="4">
+                <Image Source="{Binding Dices[3].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
-            <Button Command="{Binding SaveDiceCommand}" CommandParameter="5"  Background="Transparent" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Height="35" BorderBrush="#00707070" Foreground="#00000000">
-                <StackPanel>
-                    <Image Source="{Binding Dices[4].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBlock Text="{Binding Dices[4].DiceImage, UpdateSourceTrigger=PropertyChanged}" Width="35" Height="35"/>
-                </StackPanel>
+            <Button x:Name="btnDice5" Grid.Row="5" Grid.Column="5" Command="{Binding SaveDiceCommand}" CommandParameter="5">
+                <Image Source="{Binding Dices[3].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
-            <Button x:Name="btnDice16" Command="{Binding RollDicesCommand}" Content="Kasta" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Height="30"/>
-        </StackPanel>
+            <Button x:Name="btnRollDices" Command="{Binding RollDicesCommand}" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3" Content="Kasta"/>
+            <Button x:Name="btnQuitGame" Command="{Binding QuitGameCommand}" Grid.Row="8" Grid.Column="6"  Content="Avsluta"/>
+        </Grid>
 
-        <ListView x:Name="listView" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="157" Margin="27,24,0,0" VerticalAlignment="Top" Width="199" ItemsSource="{Binding Dices}">
+
+
+        <ListView x:Name="listView" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Height="157" Margin="27,24,0,0" VerticalAlignment="Top" Width="199" ItemsSource="{Binding Dices}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="60" Header="Nummer" DisplayMemberBinding="{Binding DiceValue}"/>
@@ -71,7 +87,7 @@
         </ListView>
 
         <StackPanel Width="49" Margin="0,0,0,0" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right">
-            <Button Name="Empty" VerticalAlignment="Top" MinHeight="25"/>
+            <Button Name="Empty" VerticalAlignment="Top" MinHeight="25" Background="Transparent" />
             <Button Content="{Binding Path = Player.Ones}" Command="{Binding Ones}" CommandParameter="1" VerticalAlignment="Top" MinHeight="25"/>
             <Button Content="{Binding Path = Player.Twos}" Command="{Binding Twos}" CommandParameter="2" VerticalAlignment="Top" MinHeight="25"/>
             <Button Content="{Binding Path = Player.Threes}" Command="{Binding Threes}" CommandParameter="3" VerticalAlignment="Top" MinHeight="25"/>
@@ -91,30 +107,11 @@
             <Button Content="{Binding Path = Player.Yatzy}" Command="{Binding Yatzy}" CommandParameter="15" VerticalAlignment="Top" MinHeight="25"/>
 
         </StackPanel>
-        <!--<StackPanel Width="50" Margin="150,20,0,0" Grid.Column="1" Grid.Row="1">
-            <TextBox Text="{Binding Path= activePlayer.Ones}" />
-            <TextBox Text="{Binding Path= activePlayer.Twos}" />
-            <TextBox Text="{Binding Path= activePlayer.Threes}" />
-            <TextBox Text="{Binding Path= activePlayer.Fours}" />
-            <TextBox Text="{Binding Path= activePlayer.Fives}" />
-            <TextBox Text="{Binding Path= activePlayer.Sixes}" />
-            <TextBox Text="{Binding Path= activePlayer.UpperBonus}" />
-            <TextBox Text="{Binding Path= activePlayer.Pair}" />
-            <TextBox Text="{Binding Path= activePlayer.TwoPairs}" />
-            <TextBox Text="{Binding Path= activePlayer.ThreeOfaKind}" />
-            <TextBox Text="{Binding Path= activePlayer.FourOfaKind}" />
-            <TextBox Text="{Binding Path= activePlayer.SmalLadder}" />
-            <TextBox Text="{Binding Path= activePlayer.LargeLadder}" />
-            <TextBox Text="{Binding Path= activePlayer.FullHouse}" />
-            <TextBox Text="{Binding Path= activePlayer.Chance}" />
-            <TextBox Text="{Binding Path= activePlayer.Yatzy}" />
-            <TextBox Text="{Binding Path= activePlayer.TotalScore}" Margin="0,30,0,0" />
-            <Button Command="{Binding QuitGameCommand}" Content="Avsluta"/>
-        </StackPanel> -->
+
         <Label x:Name="label" Grid.Row="0" Grid.Column="2" Content="{Binding Path = activePlayer.Firstname, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="22,20,0,0" VerticalAlignment="Top"/>
 
-        <DataGrid ItemsSource="{Binding Path=ActivePlayers}"  Grid.Column="2" Grid.Row="1" BorderThickness="1" BorderBrush="Black" 
-                  IsReadOnly="True" CanUserSortColumns="True" IsHitTestVisible="True" HorizontalAlignment="Left"
+        <DataGrid ItemsSource="{Binding Path=ActivePlayers}"  Grid.Column="2" Grid.Row="1" BorderThickness="1" BorderBrush="Black" FontSize="20"
+                  IsReadOnly="True" CanUserSortColumns="False" IsHitTestVisible="False" HorizontalAlignment="Left" VerticalAlignment="Top"
                   HorizontalGridLinesBrush="Black" VerticalGridLinesBrush="Black" MinRowHeight="80"  AutoGenerateColumns="False" CanUserAddRows="False"  HeadersVisibility="Column" 
                   ColumnHeaderHeight="25"   >
             <DataGrid.Resources>
