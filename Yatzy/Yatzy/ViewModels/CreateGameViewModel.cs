@@ -231,7 +231,7 @@ namespace Yatzy.ViewModels
 
         #endregion
 
-        #region Methods for going back
+        #region Methods for Navigationg
         private object selectedViewModel;
         public object SelectedViewModel
         {
@@ -241,6 +241,10 @@ namespace Yatzy.ViewModels
         public void Backcommand(object parameter)
         {
             SelectedViewModel = new MainMenuViewModel();
+        }
+        public void StartGame(object parameter)
+        {
+            SelectedViewModel = 
         }
         private bool CanExecuteMethod(object parameter)
         {

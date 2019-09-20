@@ -26,10 +26,22 @@ namespace Yatzy.ViewModels
             set { _leaderboardsevenDays = value; OnPropertyChanged("LeaderboardsevenDays");}
         }
 
+        private ObservableCollection<Player> _mostGames;
+        public ObservableCollection<Player> MostGames
+        {
+            get { return _mostGames; }
+            set { _mostGames = value; OnPropertyChanged("LeaderboardsevenDays"); }
+        }
 
+        private ObservableCollection<Player> _mostvictoriesinaRow;
+        public ObservableCollection<Player> MostVictoriesInaRow
+        {
+            get { return _mostvictoriesinaRow; }
+            set { _mostvictoriesinaRow = value; OnPropertyChanged("LeaderboardsevenDays"); }
+        }
 
         #endregion
-        
+
 
         #region Contructor
 
@@ -38,6 +50,8 @@ namespace Yatzy.ViewModels
             dbOps = new DbOperations();            
             LeaderboardsevenDays = new ObservableCollection<Player>();
             LeaderBoard7Days();
+            LeaderBoardMostGames();
+            LeaderBoardMostVicoriesInARow();
             BackCommand = new RelayCommand(Backcommand, CanExecuteMethod);           
             
         }
@@ -66,7 +80,21 @@ namespace Yatzy.ViewModels
         {
             LeaderboardsevenDays = dbOps.GetHighScorePlayers(4);            
         }
-       
+        
+        private void LeaderBoardMostGames()
+        {
+            MostGames = dbOps.GetHighestGames(4); 
+        }
+
+        private void LeaderBoardMostVicoriesInARow()
+        {
+            MostVictoriesInaRow = dbOps.GetHighestWinStreak(4);
+        }
+
+        private void CountLeaderBoardPosition()
+        {
+            
+        }
         #endregion
 
 

@@ -65,21 +65,76 @@
             </Setter>
         </Style>
 
-        <Style x:Key="HeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+        <Style x:Key="CustomHeader" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="OverridesDefaultStyle" Value="True"/>            
             <Setter Property="Background" Value="Wheat"/>
-            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Foreground" Value="Wheat"/>
             <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontStyle" Value="Normal"/>            
+            <Setter Property="Template">
+                <Setter.Value>                    
+                    <ControlTemplate TargetType="{x:Type GridViewColumnHeader}"> 
+                        <Border BorderThickness="0" BorderBrush="Transparent" Background="SlateGray" Opacity="0.8" />
+                    </ControlTemplate>                    
+                </Setter.Value>                
+            </Setter>
+        </Style>
+
+        <Style x:Key="SwitchRight" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="50"/>
             <Setter Property="FontStyle" Value="Normal"/>
+            <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
-                        <Border BorderThickness="0" BorderBrush="Transparent" Background="AliceBlue" Opacity="0.5"/>                        
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Image Name="MouseOver" Source="/Resources/rightgreen.png"/>
+                            <Image Name="NotMouseOver" Source="/Resources/right.png"/>                            
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Image.IsMouseOver" Value="true">
+                                <Setter TargetName="MouseOver" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="NotMouseOver" Property="Visibility" Value="Hidden"/>                                
+                            </Trigger>
+                            <Trigger Property="Image.IsMouseOver" Value="false">
+                                <Setter TargetName="MouseOver" Property="Visibility" Value="Hidden"/>
+                                <Setter TargetName="NotMouseOver" Property="Visibility" Value="Visible"/>                                
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-
+        
+        <Style x:Key="SwitchLeft" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="FontStyle" Value="Normal"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Image Name="MouseOver" Source="/Resources/leftgreen.png"/>
+                            <Image Name="NotMouseOver" Source="/Resources/left.png"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Image.IsMouseOver" Value="true">
+                                <Setter TargetName="MouseOver" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="NotMouseOver" Property="Visibility" Value="Hidden"/>
+                            </Trigger>
+                            <Trigger Property="Image.IsMouseOver" Value="false">
+                                <Setter TargetName="MouseOver" Property="Visibility" Value="Hidden"/>
+                                <Setter TargetName="NotMouseOver" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
 
 
@@ -143,19 +198,27 @@
 
             <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="4" HorizontalAlignment="Center">
                 <Label Content="Bästa spelarna de senaste 7 dagarna (Klassisk)" FontSize="30" HorizontalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
-                <ListView MaxWidth="600" MinWidth="600"  ItemsSource="{Binding LeaderboardsevenDays}" Background="Transparent" Foreground="Azure" BorderBrush="Transparent" FontSize="25" >
+                <ListView MaxWidth="600" Width="600"  ItemsSource="{Binding LeaderboardsevenDays}"  Background="Transparent" Foreground="Yellow" BorderBrush="Transparent" FontSize="17" >
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn HeaderContainerStyle="{StaticResource HeaderStyle}" Header="Plats" Width="70" DisplayMemberBinding="{Binding }"/>
-                            <GridViewColumn HeaderContainerStyle="{StaticResource HeaderStyle}" Header="Firstname" Width="140" DisplayMemberBinding="{Binding Firstname}"/>
-                            <GridViewColumn HeaderContainerStyle="{StaticResource HeaderStyle}" Header="Nickname" Width="150" DisplayMemberBinding="{Binding Nickname}"/>
-                            <GridViewColumn HeaderContainerStyle="{StaticResource HeaderStyle}" Header="Lastname" Width="170" DisplayMemberBinding="{Binding Lastname}"/>
-                            <GridViewColumn HeaderContainerStyle="{StaticResource HeaderStyle}" Header="Poäng" Width="70"  DisplayMemberBinding="{Binding HighScore}"/>
+                            <GridViewColumn  Header="Plats" Width="70" DisplayMemberBinding="{Binding }"/>
+                            <GridViewColumn  Header="Firstname" Width="140" DisplayMemberBinding="{Binding Firstname}"/>
+                            <GridViewColumn  Header="Nickname" Width="150" DisplayMemberBinding="{Binding Nickname}"/>
+                            <GridViewColumn  Header="Lastname" Width="170" DisplayMemberBinding="{Binding Lastname}"/>
+                            <GridViewColumn  Header="Poäng" Width="70"  DisplayMemberBinding="{Binding HighScore}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
             </StackPanel>
 
+
+            <StackPanel Grid.Row="1" Grid.Column="4">
+                <Button Style="{StaticResource SwitchRight}" HorizontalAlignment="Left"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Grid.Column="1">
+                <Button Style="{StaticResource SwitchLeft}" HorizontalAlignment="Right"/>
+            </StackPanel>
 
             <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7" Content="{Binding SelectedViewModel}"/>
         </Grid>
