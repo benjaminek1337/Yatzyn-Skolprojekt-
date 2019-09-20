@@ -11,6 +11,7 @@ using Yatzy.Commands;
 using Yatzy.DBOps;
 using Yatzy.GameEngine;
 using System.Windows.Media.Imaging;
+using Yatzy.ViewModels;
 
 namespace Yatzy.Models
 {
@@ -659,6 +660,18 @@ namespace Yatzy.Models
 
         #region Metoder för när spelet avslutas
 
+        private object selectedViewModel;
+        public object SelectedViewModel
+        {
+            get { return selectedViewModel; }
+            set { selectedViewModel = value; OnPropertyChanged(new PropertyChangedEventArgs("SelectedViewModel")); }
+        }
+        public void Backcommand()
+        {
+            SelectedViewModel = new MainMenuViewModel();
+        }
+
+
         private void QuitGame(object parameter)
         {
             if (MessageBox.Show("Vill du avsluta spelet?", "Avsluta spel", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
@@ -676,6 +689,7 @@ namespace Yatzy.Models
                 ActivePlayers = null;
                 Dices = null;
                 //SLÄNG I NÅGOT FÖR ATT BACKA TILL HUVUDMENY
+                Backcommand();
             }
         }
         
