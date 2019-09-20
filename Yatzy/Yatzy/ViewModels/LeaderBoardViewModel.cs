@@ -91,10 +91,6 @@ namespace Yatzy.ViewModels
             MostVictoriesInaRow = dbOps.GetHighestWinStreak(4);
         }
 
-        private void CountLeaderBoardPosition()
-        {
-            
-        }
         #endregion
 
 
