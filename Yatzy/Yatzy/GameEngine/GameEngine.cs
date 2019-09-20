@@ -334,17 +334,21 @@ namespace Yatzy.Models
             upperScoreArray[4] = activePlayer.Fives;
             upperScoreArray[5] = activePlayer.Sixes;
 
+
             for (int i = 0; i < upperScoreArray.Length; i++)
             {
                 if (upperScoreArray[i] == null || upperScoreArray[1] == null || upperScoreArray[2] == null || upperScoreArray[3] == null || upperScoreArray[4] == null || upperScoreArray[5] == null)
+                {
+                    upperScore += upperScoreArray[i];
                     break;
+                }
                 else
                 {
                     upperScore += upperScoreArray[i];
                     SetBonus(upperScore);
                 }
-
             }
+            activePlayer.UpperScore = upperScoreArray.Sum();
         }
 
         public void SetBonus(int? upperScore)
@@ -367,8 +371,7 @@ namespace Yatzy.Models
 
         public void SetTotalScore()
         {
-            
-
+           
             int?[] totalScoreArray = new int?[16];
 
             totalScoreArray[0] = activePlayer.Ones;
