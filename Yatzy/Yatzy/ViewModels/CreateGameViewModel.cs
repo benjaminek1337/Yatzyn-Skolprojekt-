@@ -153,7 +153,7 @@ namespace Yatzy.ViewModels
 
         private bool CanAddNewPlayer(object parameter)
         {
-            if (_firstname != null && _lastname != null && _nickname != null)
+            if (!String.IsNullOrEmpty(_Firstname) && !String.IsNullOrEmpty(_Lastname) && !String.IsNullOrEmpty(_Nickname))
                 return true;
             else
                 return false;
@@ -212,7 +212,6 @@ namespace Yatzy.ViewModels
                 AvailablePlayer = null;
             }
             AvailablePlayer = null;
-
         }
 
         private void ClassicGame(object parameter)
@@ -234,10 +233,6 @@ namespace Yatzy.ViewModels
             dicesView.DataContext = SelectedViewModel;
         }
 
-        #endregion
-
-
-
         private void AddNewPlayer(object parameter)
         {
             Player player;
@@ -253,6 +248,8 @@ namespace Yatzy.ViewModels
             _Nickname = null;
             UpdateAvaliablePlayers();
         }
+
+        #endregion
 
 
         #region Methods for going back
