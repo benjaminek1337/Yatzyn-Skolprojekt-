@@ -53,6 +53,11 @@
                     <Setter Property="Background" Value="Black"/>
                     <Setter Property="Margin" Value="5,0,5,0"/>
                     <Setter Property="Foreground" Value="White"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver"  Value="True">
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Trigger>
+                    </Style.Triggers>
                 </Style>
             </Grid.Resources>
             <Button x:Name="btnDice1" Grid.Row="5" Grid.Column="1"  Command="{Binding SaveDiceCommand}" CommandParameter="1">
@@ -70,8 +75,8 @@
             <Button x:Name="btnDice5" Grid.Row="5" Grid.Column="5" Command="{Binding SaveDiceCommand}" CommandParameter="5">
                 <Image Source="{Binding Dices[3].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
-            <Button x:Name="btnRollDices" Command="{Binding RollDicesCommand}" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3" Content="Kasta"/>
-            <Button x:Name="btnQuitGame" Command="{Binding QuitGameCommand}" Grid.Row="8" Grid.Column="6"  Content="Avsluta"/>
+            <Button Style="{StaticResource TemplateButton}" x:Name="btnRollDices" Command="{Binding RollDicesCommand}" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" Content="Kasta"/>
+            <Button Style="{StaticResource TemplateButton}" x:Name="btnQuitGame" Command="{Binding QuitGameCommand}" Grid.Row="8" Grid.Column="6"  Content="Avsluta"/>
         </Grid>
 
 
