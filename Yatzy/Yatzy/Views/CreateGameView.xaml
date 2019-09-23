@@ -49,14 +49,13 @@
             
             <Label Content="YATZY" Grid.Column="2" Grid.ColumnSpan="2" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="55" Foreground="DodgerBlue" />
 
-            <Label Content="Skapa ny spelare" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,225,0,500" />
+            <Label Content="Skapa ny spelare" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0" Foreground="AntiqueWhite" Grid.ColumnSpan="2" Margin="0,225,0,500" />
 
             <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="1" VerticalAlignment="Center">
-                <Label Content="Förnamn" HorizontalAlignment="Right" FontSize="25"  Margin="5,5,5,5"/>
-                <Label Content="Efternamn" HorizontalAlignment="Right" FontSize="25" Margin="5,5,5,5"/>
-                <Label Content="Användarnamn" HorizontalAlignment="Right" FontSize="25" Margin="5,5,5,5"/>
-                <Label Content=" " HorizontalAlignment="Right" FontSize="25" Foreground="AntiqueWhite" Margin="5,5,5,5"/>
-
+                <Label Content="Förnamn" HorizontalAlignment="Right" FontSize="25"  Margin="5,5,5,5" Foreground="AntiqueWhite" />
+                <Label Content="Efternamn" HorizontalAlignment="Right" FontSize="25" Margin="5,5,5,5" Foreground="AntiqueWhite" />
+                <Label Content="Användarnamn" HorizontalAlignment="Right" FontSize="25" Margin="5,5,5,5" Foreground="AntiqueWhite" />
+                <Label Content=" " HorizontalAlignment="Right" FontSize="25"  Margin="5,5,5,5"/>
             </StackPanel>
 
             <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="1" VerticalAlignment="Center">
@@ -69,8 +68,9 @@
             </StackPanel>
 
             <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" Grid.RowSpan="1">
-                <Label Content="Välj spelare" HorizontalAlignment="Center" FontWeight="Bold"/>
-                <ListBox ItemsSource="{Binding AvailablePlayers, IsAsync=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedItem="{Binding AvailablePlayer}" Background="#19FFFFFF" Foreground="AntiqueWhite" Width="410" Height="500" FontSize="24" BorderBrush="#00000000"/>
+                <Label Content="Välj spelare" HorizontalAlignment="Center" FontWeight="Bold" Foreground="AntiqueWhite"/>
+                <ListBox ItemsSource="{Binding AvailablePlayers, IsAsync=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedItem="{Binding AvailablePlayer}" 
+                         Background="#19FFFFFF" Foreground="AntiqueWhite" Width="410" Height="500" FontSize="24" BorderBrush="#00000000"/>
                 <Button Style="{StaticResource TemplateButton}"  Command="{Binding AddPlayerCommand}" Margin="0,20,0,0" HorizontalAlignment="Center" >
                     <Label Content="Lägg till vald spelare" FontSize="30"/>
                 </Button>
@@ -86,7 +86,7 @@
             </StackPanel>
 
             <StackPanel Grid.Row="1" Grid.Column="4"  Grid.RowSpan="1">
-                <Label Content="Välj Speltyp" HorizontalAlignment="Right" Margin="0,0,30,0" FontWeight="Bold" />
+                <Label Content="Välj Speltyp" HorizontalAlignment="Right" Margin="0,0,30,0" FontWeight="Bold" Foreground="AntiqueWhite"/>
                 <Button Style="{StaticResource TemplateButton}" Command="{Binding ClassicGameCommand}" Margin="0,70,30,10" CommandParameter="4" HorizontalAlignment="Right">
                     <Label Content="Klassisk Yatzy" FontSize="45"/>
                 </Button>
@@ -100,7 +100,7 @@
                 </Button>
             </StackPanel>
 
-            <!-- <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="3" Content="{Binding SelectedViewModel}" Margin="1,0,-1,0"/> -->
+            <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="3" Content="{Binding SelectedViewModel}" Margin="1,0,-1,0"/>
         </Grid>
     </Viewbox>
 

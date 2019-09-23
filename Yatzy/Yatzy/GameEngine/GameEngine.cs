@@ -337,7 +337,8 @@ namespace Yatzy.Models
 
             for (int i = 0; i < upperScoreArray.Length; i++)
             {
-                if (upperScoreArray[i] == null || upperScoreArray[1] == null || upperScoreArray[2] == null || upperScoreArray[3] == null || upperScoreArray[4] == null || upperScoreArray[5] == null)
+                if (upperScoreArray[0] == null || upperScoreArray[1] == null || upperScoreArray[2] == null || 
+                    upperScoreArray[3] == null || upperScoreArray[4] == null || upperScoreArray[5] == null)
                 {
                     break;
                 }
