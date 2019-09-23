@@ -6,6 +6,89 @@
              xmlns:local="clr-namespace:Yatzy.Views"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <Storyboard x:Key="RollDice1">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="btnDice1">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="119.75"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="btnDice1">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-172.141"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="RollDice2">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="btnDice2">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="179.626"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="btnDice2">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-113.514"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="RollDice3">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="btnDice3">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-122.245"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="btnDice3">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-172.141"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="RollDice4">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="btnDice4">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-112.266"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="btnDice4">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="63.617"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="RollDice5">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="btnDice5">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-57.38"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="btnDice5">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-170.894"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="RollDice5_Copy1">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="btnDice5">
+                <SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="btnDice5">
+                <SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="RollDice1_Copy1">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="btnDice1">
+                <SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="btnDice1">
+                <SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="RollDice2_Copy1">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="btnDice2">
+                <SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="btnDice2">
+                <SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="RollDice3_Copy1">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="btnDice3">
+                <SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="btnDice3">
+                <SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="RollDice4_Copy1">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="btnDice4">
+                <SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="btnDice4">
+                <SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+
 
     <Grid ShowGridLines="True">
         <Grid.Background>
@@ -60,19 +143,59 @@
                     </Style.Triggers>
                 </Style>
             </Grid.Resources>
-            <Button x:Name="btnDice1" Grid.Row="5" Grid.Column="1"  Command="{Binding SaveDiceCommand}" CommandParameter="1">
+            <Button x:Name="btnDice1" Grid.Row="5" Grid.Column="1"  Command="{Binding SaveDiceCommand}" CommandParameter="1" RenderTransformOrigin="0.5,0.5">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
                 <Image Source="{Binding Dices[0].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
-            <Button x:Name="btnDice2" Grid.Row="5" Grid.Column="2" Command="{Binding SaveDiceCommand}" CommandParameter="2">
+            <Button x:Name="btnDice2" Grid.Row="5" Grid.Column="2" Command="{Binding SaveDiceCommand}" CommandParameter="2" RenderTransformOrigin="0.5,0.5">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
                 <Image Source="{Binding Dices[1].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
-            <Button x:Name="btnDice3" Grid.Row="5" Grid.Column="3" Command="{Binding SaveDiceCommand}" CommandParameter="3">
+            <Button x:Name="btnDice3" Grid.Row="5" Grid.Column="3" Command="{Binding SaveDiceCommand}" CommandParameter="3" RenderTransformOrigin="0.5,0.5">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
                 <Image Source="{Binding Dices[2].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
-            <Button x:Name="btnDice4" Grid.Row="5" Grid.Column="4" Command="{Binding SaveDiceCommand}" CommandParameter="4">
+            <Button x:Name="btnDice4" Grid.Row="5" Grid.Column="4" Command="{Binding SaveDiceCommand}" CommandParameter="4" RenderTransformOrigin="0.5,0.5">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
                 <Image Source="{Binding Dices[3].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
-            <Button x:Name="btnDice5" Grid.Row="5" Grid.Column="5" Command="{Binding SaveDiceCommand}" CommandParameter="5">
+            <Button x:Name="btnDice5" Grid.Row="5" Grid.Column="5" Command="{Binding SaveDiceCommand}" CommandParameter="5" RenderTransformOrigin="0.5,0.5">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
                 <Image Source="{Binding Dices[3].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
             <Button Style="{StaticResource TemplateButton}" x:Name="btnRollDices" Command="{Binding RollDicesCommand}" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" Content="Kasta"/>

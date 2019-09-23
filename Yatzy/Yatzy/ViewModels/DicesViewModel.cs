@@ -217,6 +217,7 @@ namespace Yatzy.Models
 
             }
             count++;
+            gameEngine.SetGameEngineDices(Dices);
             GetScoreCombinations();
         }
 
@@ -663,11 +664,11 @@ namespace Yatzy.Models
             get { return selectedViewModel; }
             set { selectedViewModel = value; OnPropertyChanged(new PropertyChangedEventArgs("SelectedViewModel")); }
         }
+
         public void Backcommand()
         {
-            SelectedViewModel = new MainMenuViewModel();
+            
         }
-
 
         private void QuitGame(object parameter)
         {
@@ -677,16 +678,15 @@ namespace Yatzy.Models
             }
             else
             {
-                dbOps.AbortGameTransaction();
+                dbOps.AbortGameTransaction(activePlayers[0].GameId);
                 gameEngine.NullProps();
                 playerEngine.NullProps();
-
                 Player = null;
-                ActivePlayer = null;
-                ActivePlayers = null;
                 Dices = null;
                 //SLÄNG I NÅGOT FÖR ATT BACKA TILL HUVUDMENY
-                Backcommand();
+                SelectedViewModel = new MainMenuViewModel();
+                //ActivePlayer = null;
+                //ActivePlayers = null;
             }
         }
         

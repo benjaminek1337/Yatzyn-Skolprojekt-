@@ -15,10 +15,19 @@ namespace Yatzy.ViewModels
     class LeaderBoardViewModel : INotifyPropertyChanged
     {
 
+        #region Commands
+
+        public ICommand BackCommand { get; set; }
+        public ICommand ShowGamesLboard { get; set; }
+        public ICommand ShowWinStreakLboard { get; set; }
+        public ICommand ShowLBoard { get; set; }
+
+        #endregion
+
+
         #region Fields
 
         DbOperations dbOps = new DbOperations();
-        public ICommand BackCommand { get; set; }
 
         private ObservableCollection<Player> _leaderboardsevenDays;
         public ObservableCollection<Player> LeaderboardsevenDays {
@@ -30,16 +39,40 @@ namespace Yatzy.ViewModels
         public ObservableCollection<Player> MostGames
         {
             get { return _mostGames; }
-            set { _mostGames = value; OnPropertyChanged("LeaderboardsevenDays"); }
+            set { _mostGames = value; OnPropertyChanged("MostGames"); }
         }
 
         private ObservableCollection<Player> _mostvictoriesinaRow;
         public ObservableCollection<Player> MostVictoriesInaRow
         {
             get { return _mostvictoriesinaRow; }
-            set { _mostvictoriesinaRow = value; OnPropertyChanged("LeaderboardsevenDays"); }
+            set { _mostvictoriesinaRow = value; OnPropertyChanged("MostVictoriesInaRow"); }
         }
 
+        #endregion
+
+
+        #region Fields for Showing LeaderBoards
+        private bool _showmostgame;
+        public bool ShowMostGames
+        {
+            get { return _showmostgame; }
+            set { _showmostgame = value;OnPropertyChanged("ShowMostGames"); }
+        }
+
+        private bool _showleaderboard;
+        public bool ShowLeaderBoard
+        {
+            get { return _showleaderboard; }
+            set { _showleaderboard = value; OnPropertyChanged("ShowLeaderBoard"); }
+        }
+
+        private bool _showwinstreak;
+        public bool ShowWinStreak
+        {
+            get { return _showwinstreak; }
+            set { _showwinstreak = value; OnPropertyChanged("ShowWinStreak"); }
+        }
         #endregion
 
 
@@ -49,10 +82,20 @@ namespace Yatzy.ViewModels
         {
             dbOps = new DbOperations();            
             LeaderboardsevenDays = new ObservableCollection<Player>();
+            MostGames = new ObservableCollection<Player>();
+
             LeaderBoard7Days();
             LeaderBoardMostGames();
             LeaderBoardMostVicoriesInARow();
-            BackCommand = new RelayCommand(Backcommand, CanExecuteMethod);           
+
+            ShowLBoard = new RelayCommand(ShowLeaderBoardFromMostGamesMethod, CanExecuteMethod);
+            ShowWinStreakLboard = new RelayCommand(ShowWinStreakMethod ,CanExecuteMethod);
+            ShowGamesLboard = new RelayCommand(ShowMostGamesMethod, CanExecuteMethod);
+            BackCommand = new RelayCommand(Backcommand, CanExecuteMethod);          
+
+            ShowMostGames = false;
+            ShowLeaderBoard = true;
+            ShowWinStreak = false;
             
         }
 
@@ -74,7 +117,37 @@ namespace Yatzy.ViewModels
         #endregion
 
 
-        #region Methods
+        #region Methods for showing leaderboards
+
+        private void ShowWinStreakMethod(object paramater)
+        {
+            ShowLeaderBoard = false;
+            ShowWinStreak = true;
+        }
+
+        private void ShowMostGamesMethod(object paramater)
+        {          
+            ShowLeaderBoard = false;
+            ShowMostGames = true;
+        }
+
+        private void ShowLeaderBoardFromMostGamesMethod(object paramater)
+        {
+            ShowWinStreak = false;
+            ShowLeaderBoard = true;
+            ShowMostGames = false;
+        }
+
+        private void ShowLeaderBoardFromWinStreakMethod(object paramater)
+        {
+            ShowLeaderBoard = true;
+            ShowWinStreak = false;
+        }
+        #endregion
+
+
+        #region Methods for populatiing leaderboards
+
 
         private void LeaderBoard7Days()
         {
@@ -88,7 +161,7 @@ namespace Yatzy.ViewModels
 
         private void LeaderBoardMostVicoriesInARow()
         {
-            MostVictoriesInaRow = dbOps.GetHighestWinStreak(4);
+            //MostVictoriesInaRow = dbOps.GetHighestWinStreak(4);
         }
 
         #endregion

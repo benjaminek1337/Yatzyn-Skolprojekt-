@@ -32,6 +32,11 @@ namespace Yatzy.Models
             Dices = null;
         }
 
+        public void SetGameEngineDices(ObservableCollection<Dice> _dices)
+        {
+            Dices = _dices;
+        }
+
         /// <summary>
         /// Konverterar tärningarna i en lista till en array med antal tärningar i varje kategori
         /// </summary>
