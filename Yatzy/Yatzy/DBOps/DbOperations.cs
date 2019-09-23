@@ -245,13 +245,13 @@ namespace Yatzy.DBOps
             try
             {
                 
-                string stmt = "select player.firstname, player.nickname, player.lastname,game.gametype_id, count(game_player.player_id) as Won_Games " +
-                    "from((game_player" +
-                    "inner join player on player.player_id = game_player.player_id)" +
-                    "inner join game on game_player.game_id = game.game_id)" +
-                    "where game.gametype_id = @gametype" +
-                    "group by game_player.player_id, player.firstname, player.nickname, player.lastname, game.gametype_id" +
-                    "order by count(game_player.player_id) desc;";
+                string stmt = "select player.nickname, player.firstname, player.lastname, count(game_player.player_id) as Played_Games " +
+                    " from((game_player" +
+                    " inner join player on player.player_id = game_player.player_id)" +
+                    " inner join game on game_player.game_id = game.game_id)" +
+                    " where game.gametype_id = @gametype" +
+                    " group by game_player.player_id, player.firstname, player.nickname, player.lastname" +
+                    " order by count(game_player.player_id) desc;";
                 conn = new NpgsqlConnection(Connect);
                 conn.Open();                
                 cmd = new NpgsqlCommand(stmt, conn);
@@ -282,47 +282,7 @@ namespace Yatzy.DBOps
             }
         }
 
-        public ObservableCollection<Player> GetHighestWinStreak(int gametype)
-        {
-            Player p;
-
-            ObservableCollection<Player> players = new ObservableCollection<Player>();
-
-            NpgsqlConnection conn = null;
-            NpgsqlCommand cmd = null;
-            try
-            {
-                string stmt = "";
-                conn = new NpgsqlConnection(Connect);
-                conn.Open();
-
-                cmd = new NpgsqlCommand(stmt, conn);
-                cmd.Parameters.AddWithValue("gametype", gametype);
-                using (var reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        p = new Player()
-                        {
-                            Nickname = reader.GetString(0),
-                            Firstname = reader.GetString(1),
-                            Lastname = reader.GetString(2),
-                            HighScore = reader.GetInt32(3)
-                        };
-
-                        players.Add(p);
-
-                    }
-                }
-                conn.Close();
-                return players;
-            }
-            catch (Exception)
-            {
-                conn.Close();
-                return null;
-            }
-        }
+       
         #endregion
 
 

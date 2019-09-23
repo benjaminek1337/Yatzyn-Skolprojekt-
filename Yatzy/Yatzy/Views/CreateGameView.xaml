@@ -100,7 +100,7 @@
                 </Button>
             </StackPanel>
 
-            <!-- <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="3" Content="{Binding SelectedViewModel}" Margin="1,0,-1,0"/> -->
+            <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="3" Content="{Binding SelectedViewModel}" Margin="1,0,-1,0"/>
         </Grid>
     </Viewbox>
 
