@@ -59,81 +59,7 @@ namespace Yatzy.DBOps
             }
         }
 
-        /*public ObservableCollection<Player> GetMostWins()
-        //{
-        //    Player p;
-
-        //    ObservableCollection<Player> players = new ObservableCollection<Player>();
-
-        //    NpgsqlTransaction transaction = null;
-        //    NpgsqlConnection conn = null;
-        //    NpgsqlCommand cmd = null;
-        //    try
-        //    {
-        //        string[] stmts = new string[1];
-        //        stmts[0] = "SELECT * from player";
-        //        stmts[1] = "SELECT * FROM game_player order by game_player.game_id desc";
-        //        stmts[2] = "";
-
-        //        conn = new NpgsqlConnection(Connect);
-        //        conn.Open();
-        //        transaction = conn.BeginTransaction();
-
-
-        //            cmd = new NpgsqlCommand(stmts[0], conn);
-        //            cmd.Transaction = transaction;
-        //            using (var reader = cmd.ExecuteReader())
-        //            {
-        //                while (reader.Read())
-        //                {
-        //                    p = new Player()
-        //                    {
-        //                        Nickname = reader.GetString(2),
-        //                        Firstname = reader.GetString(1),
-        //                        Lastname = reader.GetString(3),
-        //                        PlayerId = reader.GetInt32(0)
-        //                    };
-
-        //                players.Add(p);
-        //                }
-        //            }
-
-        //        cmd = new NpgsqlCommand(stmts[0], conn);
-        //        cmd.Transaction = transaction;
-        //        using (var reader = cmd.ExecuteReader())
-        //        {
-        //            while (reader.Read())
-        //            {
-        //                p = new Player()
-        //                {
-        //                    Nickname = reader.GetString(2),
-        //                    Firstname = reader.GetString(1),
-        //                    Lastname = reader.GetString(3),
-        //                    PlayerId = reader.GetInt32(0)
-        //                };
-
-        //                players.Add(p);
-        //            }
-        //        }
-
-
-        //        transaction.Commit();
-        //        conn.Close();
-        //        return players;
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //        transaction.Rollback();
-        //        conn.Close();
-        //        return null;
-        //    }
-
-
-
-
-
-        //}*/
+        
 
         public ObservableCollection<Player> GetAvaliablePlayers()
         {
@@ -231,7 +157,124 @@ namespace Yatzy.DBOps
             }
         }
 
+        public ObservableCollection<Player> GetMostWins()
+        {
 
+
+            Player p;
+            Game g;
+
+            ObservableCollection<Player> allplayers = new ObservableCollection<Player>();
+            ObservableCollection<Player> pointplayers = new ObservableCollection<Player>();
+            ObservableCollection<Game> games = new ObservableCollection<Game>();
+
+            allplayers = GetPlayers();
+
+            NpgsqlTransaction transaction = null;
+            NpgsqlConnection conn = null;
+            NpgsqlCommand cmd = null;
+            try
+            {
+                string[] stmts = new string[2];
+                stmts[0] = "SELECT game_id, MAX (score) FROM game_player GROUP BY game_id order by game_id desc";
+                stmts[1] = "SELECT gp.game_id, p.nickname, gp.score FROM game_player gp " +
+                           "inner join player p " +
+                           "on p.player_id = gp.player_id "+
+                           "order by gp.game_id desc";
+
+                conn = new NpgsqlConnection(Connect);
+                conn.Open();
+                transaction = conn.BeginTransaction();
+
+                cmd = new NpgsqlCommand(stmts[0], conn);
+                cmd.Transaction = transaction;
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        g = new Game()
+                        {
+                            GameId = reader.GetInt32(0),
+                            HighestScore = reader.GetInt32(1)
+
+                        };
+
+                        games.Add(g);
+
+                    }
+                }
+
+                cmd = new NpgsqlCommand(stmts[1], conn);
+                cmd.Transaction = transaction;
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+
+
+                        p = new Player()
+                        {
+                            GameId = reader.GetInt32(0),
+                            Nickname = reader.GetString(1),
+                            HighScore = reader.GetInt32(2)
+
+                        };
+
+                        pointplayers.Add(p);
+
+                    }
+                }
+
+                foreach (var player in allplayers)
+                {
+                    player.GamesInARow = 0;
+                    foreach (var game in games)
+                    {
+                        bool flag = false;
+                        foreach (var pointplayer in pointplayers)
+                        {
+                            
+                            if (pointplayer.Nickname == player.Nickname)
+                            {
+                                if (game.GameId == pointplayer.GameId)
+                                {
+                                    if (pointplayer.HighScore == game.HighestScore)
+                                    {
+
+                                        player.GamesInARow++;
+                                    }
+                                    else
+                                    {
+                                        flag = true;
+                                        break;
+                                    }
+
+                                }
+                            }
+                            
+                        }
+                        if (flag==true)
+                        {
+                            break;
+                        }
+
+                    }
+                }
+
+
+                transaction.Commit();
+                conn.Close();
+                return allplayers;
+            }
+            catch (Exception)
+            {
+                transaction.Rollback();
+                conn.Close();
+                return null;
+            }
+
+
+        }
 
         #endregion
 
