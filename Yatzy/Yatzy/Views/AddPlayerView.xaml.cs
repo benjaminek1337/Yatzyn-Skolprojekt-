@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,24 +10,22 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Yatzy.Models;
+using Yatzy.ViewModels;
 
 namespace Yatzy.Views
 {
     /// <summary>
-    /// Interaction logic for GameView.xaml
+    /// Interaction logic for AddPlayerView.xaml
     /// </summary>
-    public partial class GameView : Page
+    public partial class AddPlayerView : Window
     {
-        DicesViewModel dicesViewModel;
-        public GameView()
+        //AddPlayerViewModel addPlayerViewModel;
+        public AddPlayerView()
         {
-            dicesViewModel = new DicesViewModel(4);//La till 4 för att kunna köra
-            DataContext = dicesViewModel;
+            //addPlayerViewModel = new AddPlayerViewModel();
+            //DataContext = addPlayerViewModel;
+            InitializeComponent();
         }
     }
-
-
 }

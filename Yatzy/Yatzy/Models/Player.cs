@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -10,10 +12,19 @@ namespace Yatzy.Models
     class Player : INotifyPropertyChanged
     { 
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+
+
+        public override string ToString()
+        {
+            return Firstname + " '" + Nickname + "' " + Lastname;
+        }
+
         #region variabler till properties
         private string _firstname;
         private string _lastname;
@@ -43,7 +54,6 @@ namespace Yatzy.Models
         private int? _yatzy;
         private int? _totalScore;
         #endregion
-
 
         #region player properties
         public string Firstname

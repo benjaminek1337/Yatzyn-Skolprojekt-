@@ -93,8 +93,8 @@
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\NavigationViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
-    <Compile Include="Views\ChoseGameType.xaml.cs">
-      <DependentUpon>ChoseGameType.xaml</DependentUpon>
+    <Compile Include="Views\AddPlayerView.xaml.cs">
+      <DependentUpon>AddPlayerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CreateGameView.xaml.cs">
       <DependentUpon>CreateGameView.xaml</DependentUpon>
@@ -102,14 +102,14 @@
     <Compile Include="Views\DicesView.xaml.cs">
       <DependentUpon>DicesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\GameView.xaml.cs">
-      <DependentUpon>GameView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\LeaderBoardView.xaml.cs">
       <DependentUpon>LeaderBoardView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainMenuView.xaml.cs">
       <DependentUpon>MainMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlayGameView.xaml.cs">
+      <DependentUpon>PlayGameView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RulesView.xaml.cs">
       <DependentUpon>RulesView.xaml</DependentUpon>
@@ -129,7 +129,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\ChoseGameType.xaml">
+    <Page Include="Views\AddPlayerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -141,15 +141,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\GameView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\LeaderBoardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PlayGameView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -214,12 +214,12 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\dice1.png" />
-    <Resource Include="Resources\dice2.png" />
-    <Resource Include="Resources\dice3.png" />
-    <Resource Include="Resources\dice4.png" />
-    <Resource Include="Resources\dice5.png" />
-    <Resource Include="Resources\dice6.png" />
+    <Resource Include="Resources\Images\dice1.png" />
+    <Resource Include="Resources\Images\dice2.png" />
+    <Resource Include="Resources\Images\dice3.png" />
+    <Resource Include="Resources\Images\dice4.png" />
+    <Resource Include="Resources\Images\dice5.png" />
+    <Resource Include="Resources\Images\dice6.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\soundoff.png" />
@@ -228,6 +228,18 @@
   <ItemGroup>
     <Resource Include="Resources\MouseOver.png" />
     <Resource Include="Resources\NotMouseOver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\leftgreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\rightgreen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

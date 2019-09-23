@@ -23,7 +23,7 @@ namespace Yatzy.Views
     {
         public LeaderBoardView()
         {
-            this.DataContext = new NavigationViewModel();
+            this.DataContext = new LeaderBoardViewModel();
             InitializeComponent();
         }
     }

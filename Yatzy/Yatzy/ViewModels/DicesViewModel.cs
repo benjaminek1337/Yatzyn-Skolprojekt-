@@ -10,20 +10,64 @@ using System.Windows.Input;
 using Yatzy.Commands;
 using Yatzy.DBOps;
 using Yatzy.GameEngine;
+using System.Windows.Media.Imaging;
+using Yatzy.ViewModels;
 
 namespace Yatzy.Models
 {
     class DicesViewModel : INotifyPropertyChanged
     {
-        //ATT GÖRA I DEN HÄR KLASSEN
-        // NÄR ETT SPEL SKAPAS OCH KLASSEN INSTANSERAS SÅ SKA EN INT PASSERAS TILL int gameType (finns i regionen alldeles nedan) MED VÄRDE 4 FÖR KLASSISK ELLER 5 FÖR STYRD
-        // OCH SE TILL ATT NÄR ETT SPEL AVSLUTATS (regionen längst ned) SÅ ÅTERGÅR VYN TILL HUVUDMENYN
-        //SEN ÄR ALLT GULD OCH GRÖNA SKOGAR. ANTAR JAG.
+        //ALLT SKA VA GULD Å GRÖNA SKOGAR HÄR.
+
 
         #region Objekt och lokala variabler
         PlayerEngine playerEngine;
         GameEngine gameEngine;
-        DbOperations dbOperations = new DbOperations();
+        DbOperations dbOps;
+        ObservableCollection<Dice> diceImages;
+
+        ObservableCollection<Dice> DiceImages()
+        {
+            BitmapImage diceImage1 = new BitmapImage(new Uri(@"pack://application:,,,/Resources/Images/dice1.png", UriKind.RelativeOrAbsolute));
+            BitmapImage diceImage2 = new BitmapImage(new Uri(@"pack://application:,,,/Resources/Images/dice2.png", UriKind.RelativeOrAbsolute));
+            BitmapImage diceImage3 = new BitmapImage(new Uri(@"pack://application:,,,/Resources/Images/dice3.png", UriKind.RelativeOrAbsolute));
+            BitmapImage diceImage4 = new BitmapImage(new Uri(@"pack://application:,,,/Resources/Images/dice4.png", UriKind.RelativeOrAbsolute));
+            BitmapImage diceImage5 = new BitmapImage(new Uri(@"pack://application:,,,/Resources/Images/dice5.png", UriKind.RelativeOrAbsolute));
+            BitmapImage diceImage6 = new BitmapImage(new Uri(@"pack://application:,,,/Resources/Images/dice6.png", UriKind.RelativeOrAbsolute));
+
+            diceImages = new ObservableCollection<Dice>();
+            diceImages.Add(new Dice()
+            {
+                DiceImage = diceImage1
+            });
+
+            diceImages.Add(new Dice()
+            {
+                DiceImage = diceImage2
+            });
+
+            diceImages.Add(new Dice()
+            {
+                DiceImage = diceImage3
+            });
+
+            diceImages.Add(new Dice()
+            {
+                DiceImage = diceImage4
+            });
+
+            diceImages.Add(new Dice()
+            {
+                DiceImage = diceImage5
+            });
+
+            diceImages.Add(new Dice()
+            {
+                DiceImage = diceImage6
+            });
+            return diceImages;
+        }
+
         private int count = 0;
         private int rounds = 0;
         private int gameType = 0;
@@ -74,21 +118,19 @@ namespace Yatzy.Models
         }
 
         private Player _activePlayer;
-        public Player activePlayer
+        public Player ActivePlayer
         {
             get { return _activePlayer; }
             set { _activePlayer = value; OnPropertyChanged(new PropertyChangedEventArgs("activePlayer")); }
         }
 
-
         #endregion
 
-        #region Instansera en ny Game Engine och kolla poäng
+        #region Instansera en ny Game Engine och skicka in tärningarna, aktiva spelaren och speltypen
 
         private void GetGameEngine()
         {
-            gameEngine = new GameEngine(Dices, activePlayer, gameType);
-            GetScoreCombinations();
+            gameEngine = new GameEngine(Dices, ActivePlayer, gameType);
         }
 
         #endregion
@@ -101,16 +143,24 @@ namespace Yatzy.Models
             if (PropertyChanged != null)
                 PropertyChanged(this, e);
         }
-            
+
         #endregion
 
         #region Konstruktor
 
-        public DicesViewModel(int _gameType)
+        public DicesViewModel(PlayerEngine _playerEngine)
         {
-            gameType = _gameType;
-            playerEngine = new PlayerEngine();
             Player = new Player();
+            playerEngine = _playerEngine;
+            dbOps = new DbOperations();
+            gameType = playerEngine.SetGameType();
+            ActivePlayers = playerEngine.SetPlayers();
+            ActivePlayer = playerEngine.SetActivePlayer();
+            GenerateDices();
+            GetGameEngine();
+            DiceImages();
+
+
             SaveDiceCommand = new RelayCommand(SaveDice, CanExecuteMethod);
             RollDicesCommand = new RelayCommand(RollDices, IsTriesEnabled);
             Ones = new RelayCommand(ChooseScoreCategory, IsOnesEnabled);
@@ -130,24 +180,9 @@ namespace Yatzy.Models
             Yatzy = new RelayCommand(ChooseScoreCategory, IsYatzyEnabled);
             QuitGameCommand = new RelayCommand(QuitGame, CanExecuteMethod);
 
-            GenerateDices();
-            GetGameEngine();
-            GetPlayersObservableCollection();
-            GetActivePlayer();           
+
         }
 
-        #endregion
-
-        #region Hämta spelare samt lista över spelare från PlayerEngine 
-        private void GetActivePlayer()
-        {
-            activePlayer = playerEngine.GetActivePlayer();
-        }
-
-        private void GetPlayersObservableCollection ()
-        {
-            ActivePlayers = playerEngine.GetList();
-        }
         #endregion
 
         #region Metoder för att kasta/spara/rensa tärningar samt en bool för att godkänna att metod används
@@ -167,7 +202,6 @@ namespace Yatzy.Models
             }
         }
 
-        //Metod för att kasta tärningen
         private void RollDices(object parameter)
         {
             Random random = new Random();
@@ -178,13 +212,14 @@ namespace Yatzy.Models
                 {
                     int rand = random.Next(1, 7);
                     Dices[i].DiceValue = rand;
+                    Dices[i].DiceImage = diceImages[rand-1].DiceImage;
                 }
 
             }
             count++;
             GetScoreCombinations();
         }
-        
+
         //Metod för att välja en tärning att spara genom att skifta värde på IsDiceEnabled
         private void SaveDice(object parameter)
         {           
@@ -226,6 +261,7 @@ namespace Yatzy.Models
             {
                 Dices[i].DiceValue = 0;
                 Dices[i].IsDiceEnabled = true;
+                Dices[i].DiceImage = null;
             }            
         }
 
@@ -236,44 +272,43 @@ namespace Yatzy.Models
         private void ChooseScoreCategory(object parameter)
         {          
             if (int.Parse(parameter.ToString()) == 1)
-                activePlayer.Ones = Player.Ones;
+                ActivePlayer.Ones = Player.Ones;
             if (int.Parse(parameter.ToString()) == 2)
-                activePlayer.Twos = Player.Twos;
+                ActivePlayer.Twos = Player.Twos;
             if (int.Parse(parameter.ToString()) == 3)
-                activePlayer.Threes = Player.Threes;
+                ActivePlayer.Threes = Player.Threes;
             if (int.Parse(parameter.ToString()) == 4)
-                activePlayer.Fours = Player.Fours;
+                ActivePlayer.Fours = Player.Fours;
             if (int.Parse(parameter.ToString()) == 5)
-                activePlayer.Fives = Player.Fives;
+                ActivePlayer.Fives = Player.Fives;
             if (int.Parse(parameter.ToString()) == 6)
-                activePlayer.Sixes = Player.Sixes;
+                ActivePlayer.Sixes = Player.Sixes;
             if (int.Parse(parameter.ToString()) == 7)
-                activePlayer.Pair = Player.Pair;
+                ActivePlayer.Pair = Player.Pair;
             if (int.Parse(parameter.ToString()) == 8)
-                activePlayer.TwoPairs = Player.TwoPairs;
+                ActivePlayer.TwoPairs = Player.TwoPairs;
             if (int.Parse(parameter.ToString()) == 9)
-                activePlayer.ThreeOfaKind = Player.ThreeOfaKind;
+                ActivePlayer.ThreeOfaKind = Player.ThreeOfaKind;
             if (int.Parse(parameter.ToString()) == 10)
-                activePlayer.FourOfaKind = Player.FourOfaKind;
+                ActivePlayer.FourOfaKind = Player.FourOfaKind;
             if (int.Parse(parameter.ToString()) == 11)
-                activePlayer.SmalLadder = Player.SmalLadder;
+                ActivePlayer.SmalLadder = Player.SmalLadder;
             if (int.Parse(parameter.ToString()) == 12)
-                activePlayer.LargeLadder = Player.LargeLadder;
+                ActivePlayer.LargeLadder = Player.LargeLadder;
             if (int.Parse(parameter.ToString()) == 13)
-                activePlayer.FullHouse = Player.FullHouse;
+                ActivePlayer.FullHouse = Player.FullHouse;
             if (int.Parse(parameter.ToString()) == 14)
-                activePlayer.Chance = Player.Chance;
+                ActivePlayer.Chance = Player.Chance;
             if (int.Parse(parameter.ToString()) == 15)
-                activePlayer.Yatzy = Player.Yatzy;
+                ActivePlayer.Yatzy = Player.Yatzy;
 
-
-            gameEngine.SetUpperScore(activePlayer);
-            gameEngine.SetTotalScore(activePlayer);
+            GetGameEngine();
+            gameEngine.SetUpperScore();
+            gameEngine.SetTotalScore();
             ResetDices();
             RoundsLeft();
-            GetGameEngine();
-            playerEngine.SetActivePlayer();
-            GetActivePlayer();
+            GetScoreCombinations();
+            ActivePlayer = playerEngine.SetActivePlayer();
             if (rounds == 15)
             {
                 GameEnded();
@@ -282,7 +317,7 @@ namespace Yatzy.Models
 
         private void RoundsLeft()
         {
-            if (activePlayer == ActivePlayers[ActivePlayers.Count - 1])
+            if (ActivePlayer == ActivePlayers[ActivePlayers.Count - 1])
             {
                 rounds += 1;
             }
@@ -315,7 +350,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.Ones != null)
+                if (ActivePlayer.Ones != null)
                     return false;
                 else
                     return true;
@@ -334,7 +369,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.Twos != null)
+                if (ActivePlayer.Twos != null)
                     return false;
                 else
                     return true;
@@ -353,7 +388,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.Threes != null)
+                if (ActivePlayer.Threes != null)
                     return false;
                 else
                     return true;
@@ -372,7 +407,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.Fours != null)
+                if (ActivePlayer.Fours != null)
                     return false;
                 else
                     return true;
@@ -392,7 +427,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.Fives != null)
+                if (ActivePlayer.Fives != null)
                     return false;
                 else
                     return true;
@@ -411,7 +446,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.Sixes != null)
+                if (ActivePlayer.Sixes != null)
                     return false;
                 else
                     return true;
@@ -430,7 +465,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.Pair != null)
+                if (ActivePlayer.Pair != null)
                     return false;
                 else
                     return true;
@@ -449,7 +484,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.TwoPairs != null)
+                if (ActivePlayer.TwoPairs != null)
                     return false;
                 else
                     return true;
@@ -468,7 +503,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.ThreeOfaKind != null)
+                if (ActivePlayer.ThreeOfaKind != null)
                     return false;
                 else
                     return true;
@@ -487,7 +522,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.FourOfaKind != null)
+                if (ActivePlayer.FourOfaKind != null)
                     return false;
                 else
                     return true;
@@ -506,7 +541,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.SmalLadder != null)
+                if (ActivePlayer.SmalLadder != null)
                     return false;
                 else
                     return true;
@@ -526,7 +561,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.LargeLadder != null)
+                if (ActivePlayer.LargeLadder != null)
                     return false;
                 else
                     return true;
@@ -546,7 +581,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.FullHouse != null)
+                if (ActivePlayer.FullHouse != null)
                     return false;
                 else
                     return true;
@@ -566,7 +601,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.Chance != null)
+                if (ActivePlayer.Chance != null)
                     return false;
                 else
                     return true;
@@ -586,7 +621,7 @@ namespace Yatzy.Models
             }
             else
             {
-                if (activePlayer.Yatzy != null)
+                if (ActivePlayer.Yatzy != null)
                     return false;
                 else
                     return true;
@@ -622,6 +657,18 @@ namespace Yatzy.Models
 
         #region Metoder för när spelet avslutas
 
+        private object selectedViewModel;
+        public object SelectedViewModel
+        {
+            get { return selectedViewModel; }
+            set { selectedViewModel = value; OnPropertyChanged(new PropertyChangedEventArgs("SelectedViewModel")); }
+        }
+        public void Backcommand()
+        {
+            SelectedViewModel = new MainMenuViewModel();
+        }
+
+
         private void QuitGame(object parameter)
         {
             if (MessageBox.Show("Vill du avsluta spelet?", "Avsluta spel", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
@@ -630,22 +677,36 @@ namespace Yatzy.Models
             }
             else
             {
-                dbOperations.AbortGameTransaction();
+                dbOps.AbortGameTransaction();
                 gameEngine.NullProps();
                 playerEngine.NullProps();
-                //SLÄNG I NÅGOT FÖR ATT GÅ TILL HUVUDMENY
+
+                Player = null;
+                ActivePlayer = null;
+                ActivePlayers = null;
+                Dices = null;
+                //SLÄNG I NÅGOT FÖR ATT BACKA TILL HUVUDMENY
+                Backcommand();
             }
         }
         
         private void GameEnded()
         {
+            List<Player> Results = new List<Player>();
             for (int i = 0; i < ActivePlayers.Count; i++)
             {
-                ActivePlayers.OrderBy(activePlayer => activePlayer.TotalScore).ToList();
-                MessageBox.Show(ActivePlayers.First().Firstname.ToString() + " vann med " + ActivePlayers.First().TotalScore.ToString() + " poäng");
-                dbOperations.SaveGameTransaction(ActivePlayers);
-                //SLÄNG I NÅGOT FÖR ATT GÅ TILL HUVUDMENY
+                Results = ActivePlayers.ToList<Player>();
+                Results.OrderBy(activePlayer => activePlayer.TotalScore).ToList();
             }
+            MessageBox.Show(Results.First().Firstname.ToString() + " vann med " + Results.First().TotalScore.ToString() + " poäng");
+            dbOps.SaveGameTransaction(ActivePlayers);
+            gameEngine.NullProps();
+            playerEngine.NullProps();
+
+            Player = null;
+            ActivePlayer = null;
+            ActivePlayers = null;
+            Dices = null;
         }
         
         #endregion

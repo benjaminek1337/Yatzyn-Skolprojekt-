@@ -34,7 +34,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter TargetName="border" Property="Background" Value="Transparent"/>
+                                <Setter TargetName="border" Property="Background" Value="Transparent"/>                                
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -133,22 +133,8 @@
 
             <StackPanel Grid.Row="2" Grid.Column="3"  Grid.RowSpan="5" Margin="5" >
 
-                <Button Style="{StaticResource MyButton}" >
-                    <Label Content="Test" FontSize="45" Cursor="Hand" Margin="10" HorizontalAlignment="Left">
-                        <Label.Style>
-                            <Style>
-                                <Setter Property="Label.Foreground" Value="AntiqueWhite" />
-                                <Style.Triggers>
-                                    <Trigger Property="Label.IsMouseOver" Value="true">
-                                        <Setter Property="Label.Foreground" Value="IndianRed"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Label.Style>
-                    </Label>
-                </Button>
-
-                <Button Style="{StaticResource MyButton}" Command="{Binding}">
+                
+                <Button Style="{StaticResource MyButton}" Command="{Binding ToggleSound}">
                     <Label Content="Ljud" FontSize="45" Cursor="Hand" Margin="10" >
                         <Label.Style>
                             <Style>

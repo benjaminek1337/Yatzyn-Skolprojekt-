@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace Yatzy.Models
 {
@@ -24,12 +25,28 @@ namespace Yatzy.Models
                 {
                     diceValue = value;
                     PropertyChanged(this, new PropertyChangedEventArgs("DiceValue"));
+                }                
+            }
+        }      
+
+        public int DiceID { get; set; }
+
+        private BitmapImage diceImage;
+        public BitmapImage DiceImage
+        {
+            get { return diceImage; }
+            set
+            {
+                if (diceImage != value)
+                {
+                    diceImage = value;
+                    PropertyChanged(this, new PropertyChangedEventArgs("DiceImage"));
                 }
-                
             }
         }
 
-        public int DiceID { get; set; }
+
+
         //public int DiceValue { get; set; }
         //public bool IsDiceEnabled { get; set; }
 
@@ -48,6 +65,7 @@ namespace Yatzy.Models
                 
             }
         }
+
 
 
     }

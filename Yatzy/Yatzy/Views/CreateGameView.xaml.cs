@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Yatzy.ViewModels;
+using Yatzy.Models;
+using System.Collections.ObjectModel;
 
 namespace Yatzy.Views
 {
@@ -21,9 +23,12 @@ namespace Yatzy.Views
     /// </summary>
     public partial class CreateGameView : UserControl
     {
+        CreateGameViewModel createGameViewModel;
+
         public CreateGameView()
         {
-            this.DataContext = new NavigationViewModel();
+            createGameViewModel = new CreateGameViewModel();
+            DataContext = createGameViewModel;
             InitializeComponent();
         }
     }

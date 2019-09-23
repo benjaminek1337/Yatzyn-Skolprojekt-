@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Yatzy.GameEngine;
 using Yatzy.Models;
 
 namespace Yatzy.Views
@@ -20,13 +22,18 @@ namespace Yatzy.Views
     /// </summary>
     public partial class DicesView : Window
     {
-        DicesViewModel dicesViewModel;
+        //DicesViewModel dicesViewModel;
 
         public DicesView()
         {
-            dicesViewModel = new DicesViewModel(4);//La till 4 för att kunna köra
-            this.DataContext = dicesViewModel;
+            //dicesViewModel = new DicesViewModel();
+            //this.DataContext = dicesViewModel;
             InitializeComponent();
+        }
+
+        private void Window_SourceInitialized(object sender, EventArgs e)
+        {
+
         }
     }
 }

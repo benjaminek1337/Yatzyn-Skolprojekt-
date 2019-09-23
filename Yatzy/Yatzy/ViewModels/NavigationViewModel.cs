@@ -5,7 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows;
+using System.Windows.Media;
 using Yatzy.Commands;
+using Yatzy.Models;
 
 namespace Yatzy.ViewModels
 {
@@ -26,10 +29,8 @@ namespace Yatzy.ViewModels
         #region Contructor
         public object SelectedViewModel
         {
-
             get { return selectedViewModel; }
             set { selectedViewModel = value; OnPropertyChanged("SelectedViewModel"); }
-
         }
 
         public NavigationViewModel()
@@ -51,7 +52,7 @@ namespace Yatzy.ViewModels
         }
 
         private void OpenGameMenu(object parameter)
-        {
+        {            
             SelectedViewModel = new CreateGameViewModel();
         }
 
