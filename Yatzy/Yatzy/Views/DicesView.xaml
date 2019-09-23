@@ -9,9 +9,7 @@
         mc:Ignorable="d"
         Title="DicesView" Height="800" Width="1000">
     <Grid ShowGridLines="True">
-        <Grid.Background>
-            <ImageBrush ImageSource="/Resources/wood4.jpg"/>
-        </Grid.Background>
+
         
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
