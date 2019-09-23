@@ -143,7 +143,7 @@
                     </Style.Triggers>
                 </Style>
             </Grid.Resources>
-            <Button x:Name="btnDice1" Grid.Row="5" Grid.Column="1"  Command="{Binding SaveDiceCommand}" CommandParameter="1" RenderTransformOrigin="0.5,0.5">
+            <Button x:Name="btnDice1" Grid.Row="5" Grid.Column="1"  Command="{Binding SaveDiceCommand}" CommandParameter="1" RenderTransformOrigin="0.5,0.5" Background="Black" >
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -196,7 +196,7 @@
                         <TranslateTransform/>
                     </TransformGroup>
                 </Button.RenderTransform>
-                <Image Source="{Binding Dices[3].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
+                <Image Source="{Binding Dices[4].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
             <Button Style="{StaticResource TemplateButton}" x:Name="btnRollDices" Command="{Binding RollDicesCommand}" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" Content="Kasta"/>
             <Button Style="{StaticResource TemplateButton}" x:Name="btnQuitGame" Command="{Binding QuitGameCommand}" Grid.Row="8" Grid.Column="6"  Content="Avsluta"/>
@@ -215,33 +215,33 @@
         </ListView>
 
         <StackPanel Width="49" Margin="0,0,0,0" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right">
-            <Button Name="Empty" VerticalAlignment="Top" MinHeight="25" Background="Transparent" />
-            <Button Content="{Binding Path = Player.Ones}" Command="{Binding Ones}" CommandParameter="1" VerticalAlignment="Top" MinHeight="25"/>
-            <Button Content="{Binding Path = Player.Twos}" Command="{Binding Twos}" CommandParameter="2" VerticalAlignment="Top" MinHeight="25"/>
-            <Button Content="{Binding Path = Player.Threes}" Command="{Binding Threes}" CommandParameter="3" VerticalAlignment="Top" MinHeight="25"/>
-            <Button Content="{Binding Path = Player.Fours}" Command="{Binding Fours}" CommandParameter="4" VerticalAlignment="Top" MinHeight="25"/>
-            <Button Content="{Binding Path = Player.Fives}" Command="{Binding Fives}" CommandParameter="5" VerticalAlignment="Top" MinHeight="25"/>
-            <Button Content="{Binding Path = Player.Sixes}" Command="{Binding Sixes}" CommandParameter="6" VerticalAlignment="Top" MinHeight="25"/>
-            <Button Name="Empty1" VerticalAlignment="Top" MinHeight="25" Background="Transparent" BorderBrush="Transparent" />
-            <Button Name="Empty2" VerticalAlignment="Top" MinHeight="25" Background="Transparent" BorderBrush="Transparent" />
-            <Button Content="{Binding Path = Player.Pair}" Command="{Binding Pair}" CommandParameter="7" VerticalAlignment="Top" MinHeight="25"/>
-            <Button Content="{Binding Path = Player.TwoPairs}" Command="{Binding TwoPair}" CommandParameter="8" VerticalAlignment="Top" MinHeight="25"/>
-            <Button Content="{Binding Path = Player.ThreeOfaKind}" Command="{Binding Threeofakind}" CommandParameter="9" VerticalAlignment="Top" MinHeight="25"/>
-            <Button Content="{Binding Path = Player.FourOfaKind}" Command="{Binding Fourofakind}" CommandParameter="10" VerticalAlignment="Top" MinHeight="25"/>
-            <Button Content="{Binding Path = Player.SmalLadder}" Command="{Binding Smallstraight}" CommandParameter="11" VerticalAlignment="Top" MinHeight="25"/>
-            <Button Content="{Binding Path = Player.LargeLadder}" Command="{Binding Largestraight}" CommandParameter="12" VerticalAlignment="Top" MinHeight="25"/>
-            <Button Content="{Binding Path = Player.FullHouse}" Command="{Binding Fullhouse}" CommandParameter="13" VerticalAlignment="Top" MinHeight="25"/>
-            <Button Content="{Binding Path = Player.Chance}" Command="{Binding Chance}" CommandParameter="14" VerticalAlignment="Top" MinHeight="25"/>
-            <Button Content="{Binding Path = Player.Yatzy}" Command="{Binding Yatzy}" CommandParameter="15" VerticalAlignment="Top" MinHeight="25"/>
+            <Button Name="Empty" VerticalAlignment="Top" MinHeight="29" Background="Transparent" />
+            <Button Content="{Binding Path = Player.Ones}" Command="{Binding Ones}" CommandParameter="1" VerticalAlignment="Top" MinHeight="29"/>
+            <Button Content="{Binding Path = Player.Twos}" Command="{Binding Twos}" CommandParameter="2" VerticalAlignment="Top" MinHeight="29"/>
+            <Button Content="{Binding Path = Player.Threes}" Command="{Binding Threes}" CommandParameter="3" VerticalAlignment="Top" MinHeight="29"/>
+            <Button Content="{Binding Path = Player.Fours}" Command="{Binding Fours}" CommandParameter="4" VerticalAlignment="Top" MinHeight="29"/>
+            <Button Content="{Binding Path = Player.Fives}" Command="{Binding Fives}" CommandParameter="5" VerticalAlignment="Top" MinHeight="29"/>
+            <Button Content="{Binding Path = Player.Sixes}" Command="{Binding Sixes}" CommandParameter="6" VerticalAlignment="Top" MinHeight="29"/>
+            <Button Name="Empty1" VerticalAlignment="Top" MinHeight="29" Background="Transparent" BorderBrush="Transparent" />
+            <Button Name="Empty2" VerticalAlignment="Top" MinHeight="29" Background="Transparent" BorderBrush="Transparent" />
+            <Button Content="{Binding Path = Player.Pair}" Command="{Binding Pair}" CommandParameter="7" VerticalAlignment="Top" MinHeight="29"/>
+            <Button Content="{Binding Path = Player.TwoPairs}" Command="{Binding TwoPair}" CommandParameter="8" VerticalAlignment="Top" MinHeight="29"/>
+            <Button Content="{Binding Path = Player.ThreeOfaKind}" Command="{Binding Threeofakind}" CommandParameter="9" VerticalAlignment="Top" MinHeight="29"/>
+            <Button Content="{Binding Path = Player.FourOfaKind}" Command="{Binding Fourofakind}" CommandParameter="10" VerticalAlignment="Top" MinHeight="29"/>
+            <Button Content="{Binding Path = Player.SmalLadder}" Command="{Binding Smallstraight}" CommandParameter="11" VerticalAlignment="Top" MinHeight="29"/>
+            <Button Content="{Binding Path = Player.LargeLadder}" Command="{Binding Largestraight}" CommandParameter="12" VerticalAlignment="Top" MinHeight="29"/>
+            <Button Content="{Binding Path = Player.FullHouse}" Command="{Binding Fullhouse}" CommandParameter="13" VerticalAlignment="Top" MinHeight="29"/>
+            <Button Content="{Binding Path = Player.Chance}" Command="{Binding Chance}" CommandParameter="14" VerticalAlignment="Top" MinHeight="29"/>
+            <Button Content="{Binding Path = Player.Yatzy}" Command="{Binding Yatzy}" CommandParameter="15" VerticalAlignment="Top" MinHeight="29"/>
 
         </StackPanel>
 
-        <Label x:Name="label" Grid.Row="0" Grid.Column="2" Content="{Binding Path = activePlayer.Firstname, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="22,20,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label" Grid.Row="0" Grid.Column="2" Content="{Binding Path = activePlayer.Firstname, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="22,20,0,0" VerticalAlignment="Top"  />
 
         <DataGrid ItemsSource="{Binding Path=ActivePlayers}"  Grid.Column="2" Grid.Row="1" BorderThickness="1" BorderBrush="Black" FontSize="20"
                   IsReadOnly="True" CanUserSortColumns="False" IsHitTestVisible="False" HorizontalAlignment="Left" VerticalAlignment="Top"
                   HorizontalGridLinesBrush="Black" VerticalGridLinesBrush="Black" MinRowHeight="80"  AutoGenerateColumns="False" CanUserAddRows="False"  HeadersVisibility="Column" 
-                  ColumnHeaderHeight="25"   >
+                     >
             <DataGrid.Resources>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="Background" Value="White"/>
@@ -252,7 +252,25 @@
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Förnamn" Binding="{Binding Firstname}" />
+             
+            <!--TEST
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        <DataTemplate>
+                            <Button Content="{Binding Path=Player.Ones}" Command="{Binding Ones}" CommandParameter="1" MinHeight="20" MinWidth="50" Background="LightGray"  />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.Header>
+                </DataGridTemplateColumn>
 
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="{Binding Path=Ones}" Command="{Binding Ones}" CommandParameter="1" MinHeight="20" MinWidth="50" Background="LightGray"  />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            SLUT TEST-->
+                
                 <DataGridTextColumn Header="Ettor" Binding="{Binding Ones}"/>
                 <DataGridTextColumn Header="Tvåor" Binding="{Binding Twos}"/>
                 <DataGridTextColumn Header="Treor" Binding="{Binding Threes}"/>
