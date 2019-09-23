@@ -344,7 +344,7 @@ namespace Yatzy.DBOps
 
                 string stmt1 = "INSERT INTO game (gametype_id) VALUES (@gametype_id)";
                 string stmt2 = "SELECT game_id FROM game ORDER BY game_id DESC LIMIT 1";
-                string stmt3 = "INSERT INTO game_player (player_id, game_id) VALUES (@player_id, @game_id)";
+                string stmt3 = "INSERT INTO game_player (player_id, game_id) VALUES (@player_id , @game_id)";
 
                 //cmd.Parameters.AddWithValue("gametype", gameType);
                 //cmd.Parameters.AddWithValue("game_id", gameId);
@@ -377,6 +377,7 @@ namespace Yatzy.DBOps
                     cmd.Parameters.AddWithValue("player_id", item.PlayerId);
                     cmd.Parameters.AddWithValue("game_id", gameId);
                     cmd.ExecuteNonQuery();
+                    item.GameId = gameId;
                 }
 
 
@@ -385,7 +386,7 @@ namespace Yatzy.DBOps
                 conn.Close();
                 
             }
-            catch (Exception)
+            catch (Exception error)
             {
                 
                 transaction.Rollback();
@@ -395,7 +396,7 @@ namespace Yatzy.DBOps
         }
 
 
-        public void AbortGameTransaction()
+        public void AbortGameTransaction(int gameId)
         {
             NpgsqlTransaction transaction = null;
             NpgsqlConnection conn = null;
@@ -492,21 +493,19 @@ namespace Yatzy.DBOps
             try
             {
 
-                string stmts = "insert into player(firstname, nickname, lastname) values(@fname,@nname,@lname)";
+                string stmt = "insert into player(firstname, nickname, lastname) values(@fname,@nname,@lname)";
                 
 
                 conn = new NpgsqlConnection(Connect);
                 conn.Open();            
 
-                for (int i = 0; i < stmts.Length; i++)
-                {
-                    cmd = new NpgsqlCommand(stmts, conn);
-                    //cmd.Transaction = transaction;
+                    cmd = new NpgsqlCommand(stmt, conn);
+                 
                     cmd.Parameters.AddWithValue("fname", player.Firstname);
                     cmd.Parameters.AddWithValue("nname", player.Nickname);
                     cmd.Parameters.AddWithValue("lname", player.Lastname);
                     cmd.ExecuteNonQuery();
-                }               
+                          
                 conn.Close();
 
             }

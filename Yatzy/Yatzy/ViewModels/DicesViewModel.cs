@@ -678,7 +678,7 @@ namespace Yatzy.Models
             }
             else
             {
-                dbOps.AbortGameTransaction();
+                dbOps.AbortGameTransaction(activePlayers[0].GameId);
                 gameEngine.NullProps();
                 playerEngine.NullProps();
                 Player = null;
