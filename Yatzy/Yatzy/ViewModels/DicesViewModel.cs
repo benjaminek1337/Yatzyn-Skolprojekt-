@@ -12,18 +12,18 @@ using Yatzy.DBOps;
 using Yatzy.GameEngine;
 using System.Windows.Media.Imaging;
 using Yatzy.ViewModels;
+using Yatzy.Views;
 
 namespace Yatzy.Models
 {
     class DicesViewModel : INotifyPropertyChanged
     {
-        //ALLT SKA VA GULD Å GRÖNA SKOGAR HÄR.
-
 
         #region Objekt och lokala variabler
         PlayerEngine playerEngine;
         GameEngine gameEngine;
         DbOperations dbOps;
+        PlayGameView pgv;
         ObservableCollection<Dice> diceImages;
 
         ObservableCollection<Dice> DiceImages()
@@ -71,7 +71,7 @@ namespace Yatzy.Models
         private int count = 0;
         private int rounds = 0;
         private int gameType = 0;
-        
+
         #endregion
 
         #region Properties 
@@ -94,7 +94,7 @@ namespace Yatzy.Models
         public RelayCommand Chance { get; set; }
         public RelayCommand Yatzy { get; set; }
         public RelayCommand QuitGameCommand { get; set; }
-
+        
 
         private ObservableCollection<Dice> dices;
         public ObservableCollection<Dice> Dices
@@ -138,7 +138,7 @@ namespace Yatzy.Models
         #region Changed Event Handler
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void OnPropertyChanged (PropertyChangedEventArgs e)
+        protected void OnPropertyChanged(PropertyChangedEventArgs e)
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, e);
@@ -159,9 +159,9 @@ namespace Yatzy.Models
             GenerateDices();
             GetGameEngine();
             DiceImages();
+            pgv = new PlayGameView(0);
 
-
-            SaveDiceCommand = new RelayCommand(SaveDice, CanExecuteMethod);
+            SaveDiceCommand = new RelayCommand(SaveDice, CanSaveDices);
             RollDicesCommand = new RelayCommand(RollDices, IsTriesEnabled);
             Ones = new RelayCommand(ChooseScoreCategory, IsOnesEnabled);
             Twos = new RelayCommand(ChooseScoreCategory, IsTwosEnabled);
@@ -179,8 +179,6 @@ namespace Yatzy.Models
             Chance = new RelayCommand(ChooseScoreCategory, IsChanceEnabled);
             Yatzy = new RelayCommand(ChooseScoreCategory, IsYatzyEnabled);
             QuitGameCommand = new RelayCommand(QuitGame, CanExecuteMethod);
-
-
         }
 
         #endregion
@@ -212,7 +210,7 @@ namespace Yatzy.Models
                 {
                     int rand = random.Next(1, 7);
                     Dices[i].DiceValue = rand;
-                    Dices[i].DiceImage = diceImages[rand-1].DiceImage;
+                    Dices[i].DiceImage = diceImages[rand - 1].DiceImage;
                 }
 
             }
@@ -223,7 +221,7 @@ namespace Yatzy.Models
 
         //Metod för att välja en tärning att spara genom att skifta värde på IsDiceEnabled
         private void SaveDice(object parameter)
-        {           
+        {
             int diceButtonValue = int.Parse(parameter.ToString());
             for (int i = 0; i < Dices.Count; i++)
             {
@@ -238,9 +236,16 @@ namespace Yatzy.Models
             }
         }
 
-        private bool CanExecuteMethod(object parameter)
+        private bool CanSaveDices(object parameter)
         {
-            return true;
+            for (int i = 0; i < Dices.Count; i++)
+            {
+                if (Dices[i].DiceValue != 0)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         //Metod för att tillåta kast
@@ -263,15 +268,17 @@ namespace Yatzy.Models
                 Dices[i].DiceValue = 0;
                 Dices[i].IsDiceEnabled = true;
                 Dices[i].DiceImage = null;
-            }            
+            }
+            pgv = new PlayGameView(1);
         }
+
 
         #endregion
 
         #region Metod för att välja en poängkategori och metod för att avgöra hur många rundor som är kvar.
 
         private void ChooseScoreCategory(object parameter)
-        {          
+        {
             if (int.Parse(parameter.ToString()) == 1)
                 ActivePlayer.Ones = Player.Ones;
             if (int.Parse(parameter.ToString()) == 2)
@@ -328,6 +335,11 @@ namespace Yatzy.Models
 
         #region Bools för att avgöra om en kategori kan användas eller inte beroende på speltyp
 
+        private bool CanExecuteMethod(object parameter)
+        {
+            return true;
+        }
+
         private bool IsGameTypeStyrd()
         {
             if (gameType == 5)
@@ -355,7 +367,7 @@ namespace Yatzy.Models
                     return false;
                 else
                     return true;
-            }          
+            }
         }
         private bool IsTwosEnabled(object parameter)
         {
@@ -636,7 +648,7 @@ namespace Yatzy.Models
         private void GetScoreCombinations()
         {
             gameEngine.DiceCount();
-            
+
             Player.Ones = gameEngine.GetUpperScore(1);
             Player.Twos = gameEngine.GetUpperScore(2);
             Player.Threes = gameEngine.GetUpperScore(3);
@@ -667,7 +679,7 @@ namespace Yatzy.Models
 
         public void Backcommand()
         {
-            
+
         }
 
         private void QuitGame(object parameter)
@@ -682,14 +694,14 @@ namespace Yatzy.Models
                 gameEngine.NullProps();
                 playerEngine.NullProps();
                 Player = null;
-                Dices = null;
+
                 //SLÄNG I NÅGOT FÖR ATT BACKA TILL HUVUDMENY
                 SelectedViewModel = new MainMenuViewModel();
                 //ActivePlayer = null;
                 //ActivePlayers = null;
             }
         }
-        
+
         private void GameEnded()
         {
             List<Player> Results = new List<Player>();
@@ -708,8 +720,14 @@ namespace Yatzy.Models
             ActivePlayers = null;
             Dices = null;
         }
-        
+
         #endregion
+
+            
+            
+         
+
+
     }
 
 
