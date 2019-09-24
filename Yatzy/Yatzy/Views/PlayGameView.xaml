@@ -386,7 +386,7 @@
                 <DataGridTextColumn Header="Liten stege" Binding="{Binding SmalLadder}"/>
                 <DataGridTextColumn Header="Stor stege" Binding="{Binding LargeLadder}"/>
                 <DataGridTextColumn Header="Kåk" Binding="{Binding FullHouse}"/>
-                <DataGridTextColumn Header="Chans" Binding="{Binding Chanse}"/>
+                <DataGridTextColumn Header="Chans" Binding="{Binding Chance}"/>
                 <DataGridTextColumn Header="Yatzy" Binding="{Binding Yatzy}"/>
                 <DataGridTextColumn Header="Total summa" Binding="{Binding TotalScore}"/>
             </DataGrid.Columns>
