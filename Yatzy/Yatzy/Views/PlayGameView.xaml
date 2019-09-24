@@ -353,6 +353,23 @@
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Förnamn" Binding="{Binding Firstname}" />
+                <!--TEST
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        <DataTemplate>
+                            <Button Content="{Binding Path=Player.Ones}" Command="{Binding Ones}" CommandParameter="1" MinHeight="20" MinWidth="50" Background="LightGray"  />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.Header>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="{Binding Path=Ones}" Command="{Binding Ones}" CommandParameter="1" MinHeight="20" MinWidth="50" Background="LightGray"  />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            SLUT TEST-->
 
                 <DataGridTextColumn Header="Ettor" Binding="{Binding Ones}"/>
                 <DataGridTextColumn Header="Tvåor" Binding="{Binding Twos}"/>
