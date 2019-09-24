@@ -44,7 +44,7 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-360.38"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.Target="{Binding ElementName=btnDice5}">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-110.894"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-115.894"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="RollDice5_Copy1">
@@ -145,7 +145,7 @@
             </Grid.Resources>
             <Label Content="{Binding ActivePlayer.Firstname}" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" Margin="0,0,0,0" FontSize="30"/>
 
-            <Button x:Name="btnDice1" Grid.Row="5" Grid.Column="1"  Command="{Binding SaveDiceCommand}" CommandParameter="1" RenderTransformOrigin="0.5,0.5" Click="BtnDice1_Click">
+            <Button x:Name="btnDice1" Grid.Row="5" Grid.Column="1"  Command="{Binding SaveDiceCommand}" CommandParameter="1" RenderTransformOrigin="0.5,0.5" Click="BtnDice1_Click" BorderBrush="Transparent">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
@@ -176,7 +176,7 @@
                 </Button.RenderTransform>
                 <Image Source="{Binding Dices[0].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
-            <Button x:Name="btnDice2" Grid.Row="5" Grid.Column="2" Command="{Binding SaveDiceCommand}" CommandParameter="2" RenderTransformOrigin="0.5,0.5" Click="BtnDice2_Click">
+            <Button x:Name="btnDice2" Grid.Row="5" Grid.Column="2" Command="{Binding SaveDiceCommand}" CommandParameter="2" RenderTransformOrigin="0.5,0.5" Click="BtnDice2_Click" BorderBrush="Transparent">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
@@ -206,7 +206,7 @@
                 </Button.RenderTransform>
                 <Image Source="{Binding Dices[1].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
-            <Button x:Name="btnDice3" Grid.Row="5" Grid.Column="3" Command="{Binding SaveDiceCommand}" CommandParameter="3" RenderTransformOrigin="0.5,0.5" Click="BtnDice3_Click">
+            <Button x:Name="btnDice3" Grid.Row="5" Grid.Column="3" Command="{Binding SaveDiceCommand}" CommandParameter="3" RenderTransformOrigin="0.5,0.5" Click="BtnDice3_Click" BorderBrush="Transparent">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
@@ -236,7 +236,7 @@
                 </Button.RenderTransform>
                 <Image Source="{Binding Dices[2].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
-            <Button x:Name="btnDice4" Grid.Row="5" Grid.Column="4" Command="{Binding SaveDiceCommand}" CommandParameter="4" RenderTransformOrigin="0.5,0.5" Click="BtnDice4_Click">
+            <Button x:Name="btnDice4" Grid.Row="5" Grid.Column="4" Command="{Binding SaveDiceCommand}" CommandParameter="4" RenderTransformOrigin="0.5,0.5" Click="BtnDice4_Click" BorderBrush="Transparent">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
@@ -268,7 +268,7 @@
                 
                 <Image Source="{Binding Dices[3].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
-            <Button x:Name="btnDice5" Grid.Row="5" Grid.Column="5" Command="{Binding SaveDiceCommand}" CommandParameter="5" RenderTransformOrigin="0.5,0.5" Click="BtnDice5_Click">
+            <Button x:Name="btnDice5" Grid.Row="5" Grid.Column="5" Command="{Binding SaveDiceCommand}" CommandParameter="5" RenderTransformOrigin="0.5,0.5" Click="BtnDice5_Click" BorderBrush="Transparent">
                 <Button.Style>
                     <Style TargetType="Button">
                         
