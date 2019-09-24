@@ -90,7 +90,7 @@
     </UserControl.Resources>
 
 
-    <Grid ShowGridLines="True">
+    <Grid ShowGridLines="False">
         <Grid.Background>
             <ImageBrush ImageSource="/Resources/wood4.jpg"/>
         </Grid.Background>
@@ -105,7 +105,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <!--Grid för tärningar och kasta knapp-->
-        <Grid x:Name="DiceBoard" ShowGridLines="True" Grid.Column="1" Grid.Row="1">
+        <Grid x:Name="DiceBoard" ShowGridLines="False" Grid.Column="1" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="*"/>
@@ -143,6 +143,8 @@
                     </Style.Triggers>
                 </Style>
             </Grid.Resources>
+            <Label Content="{Binding ActivePlayer.Firstname}" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" Margin="0,0,0,0" FontSize="30"/>
+
             <Button x:Name="btnDice1" Grid.Row="5" Grid.Column="1"  Command="{Binding SaveDiceCommand}" CommandParameter="1" RenderTransformOrigin="0.5,0.5" Click="BtnDice1_Click">
                 <Button.Style>
                     <Style TargetType="Button">
@@ -297,15 +299,13 @@
                 </Button.RenderTransform>
                 <Image Source="{Binding Dices[4].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
-            <Button x:Name="Button" Command="{Binding RollDicesCommand}" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" Content="Kasta" Click="Button_Click">
-
-            </Button>
+            <Button x:Name="Button" Command="{Binding RollDicesCommand}" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" Width="130" Content="Kasta" Click="Button_Click" Background="#4CC33434" BorderBrush="#4CFFFFFF" FontSize="35" FontFamily="Global Sans Serif"/>
             <Button Style="{StaticResource TemplateButton}" x:Name="btnQuitGame" Command="{Binding QuitGameCommand}" Grid.Row="8" Grid.Column="6"  Content="Avsluta"/>
         </Grid>
 
 
 
-        <ListView x:Name="listView" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Height="157" Margin="27,24,0,0" VerticalAlignment="Top" Width="199" ItemsSource="{Binding Dices}">
+        <!--ListView x:Name="listView" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Height="157" Margin="27,24,0,0" VerticalAlignment="Top" Width="199" ItemsSource="{Binding Dices}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="60" Header="Nummer" DisplayMemberBinding="{Binding DiceValue}"/>
@@ -313,7 +313,7 @@
                     <GridViewColumn Width="60" Header="ID" DisplayMemberBinding="{Binding DiceID}"/>
                 </GridView>
             </ListView.View>
-        </ListView>
+        </-->
 
         <StackPanel Width="49" Margin="0,0,0,0" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right">
             <Button Name="Empty" VerticalAlignment="Top" MinHeight="25" Background="Transparent" />

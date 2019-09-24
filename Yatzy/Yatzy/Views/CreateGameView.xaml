@@ -22,7 +22,7 @@
 
     <Viewbox Stretch="UniformToFill">
 
-        <Grid ShowGridLines="True" Margin="0" MaxHeight="1080" MinWidth="1920" >
+        <Grid ShowGridLines="False" Margin="0" MaxHeight="1080" MinWidth="1920" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
