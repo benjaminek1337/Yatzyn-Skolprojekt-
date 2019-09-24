@@ -144,7 +144,10 @@
 
     <Viewbox Stretch="UniformToFill" StretchDirection="Both">
 
-        <Grid Margin="0" MaxHeight="1080" MinWidth="1920">
+        <Grid ShowGridLines="True" Margin="0" MaxHeight="1080" MinWidth="1920" >
+            <Grid.Background>
+                <ImageBrush ImageSource="/REsources/wood4.jpg"/>
+            </Grid.Background>
 
 
             <Grid.ColumnDefinitions>
@@ -200,7 +203,7 @@
             </StackPanel>
 
 
-            <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="4" HorizontalAlignment="Center">
+            <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="4" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0">
                 <StackPanel Visibility="{Binding ShowLeaderBoard, Converter={StaticResource ToggleVisibility}}">
                     <Label Content="Bästa spelarna de senaste 7 dagarna (Klassisk)" FontSize="30" HorizontalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
                     <ListView MaxWidth="600" Width="600"  ItemsSource="{Binding LeaderboardsevenDays}"  Background="Transparent" Foreground="LightGreen" BorderBrush="Transparent" FontSize="17" >
@@ -255,12 +258,50 @@
                 <Button Style="{StaticResource SwitchRight}" Command="{Binding ShowLBoard}" HorizontalAlignment="Left"
                         Visibility="{Binding ShowMostGames, Converter={StaticResource ToggleVisibility}}"/>
             </StackPanel>
+            
 
             <StackPanel Grid.Row="1" Grid.Column="1">
                 <Button Style="{StaticResource SwitchLeft}" Command="{Binding ShowGamesLboard}" HorizontalAlignment="Right"
                         Visibility="{Binding ShowLeaderBoard, Converter={StaticResource ToggleVisibility}}"/>
                 <Button Style="{StaticResource SwitchLeft}" Command="{Binding ShowLBoard}" HorizontalAlignment="Right" 
                         Visibility="{Binding ShowWinStreak, Converter={StaticResource ToggleVisibility}}"/>
+            </StackPanel>
+
+
+            <StackPanel Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2">
+                <StackPanel Visibility="{Binding ShowLeaderBoard, Converter={StaticResource ToggleVisibility}}">
+                    <Button Style="{StaticResource MyButton}">
+                        <Label Content="Styrd Yatzy Leaderboard" FontStyle="Normal" FontSize="18">
+                            <Label.Style>
+                                <Style>
+                                <Setter Property="Label.Foreground" Value="AntiqueWhite" />
+                                <Style.Triggers>
+                                    <Trigger Property="Label.IsMouseOver" Value="true">
+                                        <Setter Property="Label.Foreground" Value="IndianRed"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                            </Label.Style>
+                        </Label>
+                    </Button>                    
+                </StackPanel>
+
+                <StackPanel Visibility="{Binding ShowLeaderBoard, Converter={StaticResource ToggleVisibility}}">
+                    <Button Style="{StaticResource MyButton}">
+                        <Label Content="Klassisk Yatzy Leaderboard" FontStyle="Normal" FontSize="18">
+                            <Label.Style>
+                                <Style>
+                                    <Setter Property="Label.Foreground" Value="AntiqueWhite" />
+                                    <Style.Triggers>
+                                        <Trigger Property="Label.IsMouseOver" Value="true">
+                                            <Setter Property="Label.Foreground" Value="IndianRed"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Label.Style>
+                        </Label>
+                    </Button>
+                </StackPanel>
             </StackPanel>
 
             <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7" Content="{Binding SelectedViewModel}"/>

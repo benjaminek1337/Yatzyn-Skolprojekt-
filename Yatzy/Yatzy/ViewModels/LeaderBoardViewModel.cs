@@ -21,7 +21,9 @@ namespace Yatzy.ViewModels
         public ICommand ShowGamesLboard { get; set; }
         public ICommand ShowWinStreakLboard { get; set; }
         public ICommand ShowLBoard { get; set; }
-
+        public ICommand ShowForcedCommand { get; set; }
+        public ICommand ShowForcedGamesCommand { get; set; }
+        public ICommand ShowForcedWinStreakCommand { get; set; }
         #endregion
 
 
@@ -72,6 +74,27 @@ namespace Yatzy.ViewModels
         {
             get { return _showwinstreak; }
             set { _showwinstreak = value; OnPropertyChanged("ShowWinStreak"); }
+        }
+
+        private bool _showForcedgame;
+        public bool ShowForcedMostGames
+        {
+            get { return _showForcedgame; }
+            set { _showForcedgame = value; OnPropertyChanged("ShowForcedMostGames"); }
+        }
+
+        private bool _showForcedleaderboard;
+        public bool ShowForcedLeaderBoard
+        {
+            get { return _showForcedleaderboard; }
+            set { _showForcedleaderboard = value; OnPropertyChanged("ShowForcedLeaderBoard"); }
+        }
+
+        private bool _showForcedwinstreak;
+        public bool ShowForcedWinStreakL
+        {
+            get { return _showForcedwinstreak; }
+            set { _showForcedwinstreak = value; OnPropertyChanged("ShowForcedWinStreakL"); }
         }
         #endregion
 
@@ -143,6 +166,26 @@ namespace Yatzy.ViewModels
             ShowLeaderBoard = true;
             ShowWinStreak = false;
         }
+
+        private void ShowForcedYatzyMethod(object parameter)
+        {
+            ShowForcedLeaderBoard = true;
+            ShowForcedMostGames = false;
+            ShowForcedWinStreakL = false;
+        }
+
+        private void ShowForcedMostGamesMethod(object parameter)
+        {
+            ShowForcedMostGames = true;
+            ShowForcedLeaderBoard = false;
+        }
+
+        private void ShowForcedWinStreakMethod(object parameter)
+        {
+            ShowForcedWinStreakL = true;
+            ShowForcedLeaderBoard = false;
+        }
+
         #endregion
 
 
