@@ -79,10 +79,10 @@ namespace Yatzy.DBOps
             try
             {
                 string[] stmts = new string[2];
-                stmts[0] = "SELECT game_id, MAX (score) FROM game_player GROUP BY game_id order by game_id desc";
+                stmts[0] = "SELECT game_id, MAX (score) FROM game_player WHERE score is not null GROUP BY game_id order by game_id desc";
                 stmts[1] = "SELECT gp.game_id, p.nickname, gp.score FROM game_player gp " +
                            "inner join player p " +
-                           "on p.player_id = gp.player_id " +
+                           "on p.player_id = gp.player_id  WHERE gp.score is not null " +
                            "order by gp.game_id desc";
 
                 conn = new NpgsqlConnection(Connect);
@@ -168,11 +168,11 @@ namespace Yatzy.DBOps
                 transaction.Commit();
                 conn.Close();
 
-               var sortedList = allplayers.OrderByDescending(x => x.GamesInARow).Take(5);
+                var sortedList = allplayers.OrderByDescending(x => x.GamesInARow).Take(5);
                
                 return sortedList;
             }
-            catch (Exception)
+            catch (Exception error)
             {
                 transaction.Rollback();
                 conn.Close();
@@ -436,8 +436,8 @@ namespace Yatzy.DBOps
 
         public void SaveGameTransaction (ObservableCollection<Player> players)
         {
-            
 
+            gameId = players[0].GameId;
             NpgsqlTransaction transaction = null;
             NpgsqlConnection conn = null;
             NpgsqlCommand cmd = null;
