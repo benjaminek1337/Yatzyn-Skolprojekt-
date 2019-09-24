@@ -23,7 +23,8 @@ namespace Yatzy.ViewModels
         public ICommand ShowLBoard { get; set; }
         public ICommand ShowForcedCommand { get; set; }
         public ICommand ShowForcedGamesCommand { get; set; }
-        public ICommand ShowForcedWinStreakCommand { get; set; }
+        public ICommand ShowForcedWinStreak { get; set; }
+
         #endregion
 
 
@@ -50,6 +51,22 @@ namespace Yatzy.ViewModels
             get { return _mostvictoriesinaRow; }
             set { _mostvictoriesinaRow = value; OnPropertyChanged("MostVictoriesInaRow"); }
         }
+
+        private ObservableCollection<Player> _leaderboardsevenDaysforced;
+        public ObservableCollection<Player> LeaderboardsevenDaysForced
+        {
+            get { return _leaderboardsevenDaysforced; }
+            set { _leaderboardsevenDaysforced = value; OnPropertyChanged("LeaderboardsevenDaysForced"); }
+        }
+
+        private ObservableCollection<Player> _mostGamesforced;
+        public ObservableCollection<Player> MostGamesForced
+        {
+            get { return _mostGamesforced; }
+            set { _mostGamesforced = value; OnPropertyChanged("MostGamesForced"); }
+        }
+
+
 
         #endregion
 
@@ -90,12 +107,13 @@ namespace Yatzy.ViewModels
             set { _showForcedleaderboard = value; OnPropertyChanged("ShowForcedLeaderBoard"); }
         }
 
-        private bool _showForcedwinstreak;
-        public bool ShowForcedWinStreakL
+        private bool _showwinstreakforced;
+        public bool ShowWinStreakForced
         {
-            get { return _showForcedwinstreak; }
-            set { _showForcedwinstreak = value; OnPropertyChanged("ShowForcedWinStreakL"); }
+            get { return _showwinstreakforced; }
+            set { _showwinstreakforced = value; OnPropertyChanged("ShowWinStreakForced"); }
         }
+
         #endregion
 
 
@@ -106,18 +124,26 @@ namespace Yatzy.ViewModels
             dbOps = new DbOperations();            
             LeaderboardsevenDays = new ObservableCollection<Player>();
             MostGames = new ObservableCollection<Player>();
+            MostVictoriesInaRow = new ObservableCollection<Player>();
 
             LeaderBoard7Days();
             LeaderBoardMostGames();
             LeaderBoardMostVicoriesInARow();
+            LeaderBoardMostGamesForced();
+            LeaderBoard7DaysForced();
 
+            BackCommand = new RelayCommand(Backcommand, CanExecuteMethod);
             ShowLBoard = new RelayCommand(ShowLeaderBoardFromMostGamesMethod, CanExecuteMethod);
             ShowWinStreakLboard = new RelayCommand(ShowWinStreakMethod ,CanExecuteMethod);
             ShowGamesLboard = new RelayCommand(ShowMostGamesMethod, CanExecuteMethod);
-            BackCommand = new RelayCommand(Backcommand, CanExecuteMethod);          
 
-            ShowMostGames = false;
+            ShowForcedCommand = new RelayCommand(ShowForcedYatzyMethod , CanExecuteMethod);
+            ShowForcedGamesCommand = new RelayCommand(ShowForcedMostGamesMethod, CanExecuteMethod);
+            ShowForcedWinStreak = new RelayCommand(ShowForcedWinstreak, CanExecuteMethod);
+
             ShowLeaderBoard = true;
+            ShowMostGames = false;
+            ShowWinStreakForced = false;
             ShowWinStreak = false;
             
         }
@@ -144,46 +170,63 @@ namespace Yatzy.ViewModels
 
         private void ShowWinStreakMethod(object paramater)
         {
-            ShowLeaderBoard = false;
             ShowWinStreak = true;
+            ShowLeaderBoard = false;
+            ShowForcedLeaderBoard = false;
+            ShowMostGames = false;
+            ShowForcedMostGames = false;
+            ShowWinStreakForced = false;
         }
 
         private void ShowMostGamesMethod(object paramater)
         {          
-            ShowLeaderBoard = false;
             ShowMostGames = true;
+            ShowLeaderBoard = false;
+            ShowWinStreak = false;
+            ShowForcedLeaderBoard = false;
+            ShowForcedMostGames = false;
+            ShowWinStreakForced = false;
         }
 
         private void ShowLeaderBoardFromMostGamesMethod(object paramater)
         {
-            ShowWinStreak = false;
             ShowLeaderBoard = true;
+            ShowWinStreak = false;
+            ShowForcedLeaderBoard = false;
             ShowMostGames = false;
-        }
-
-        private void ShowLeaderBoardFromWinStreakMethod(object paramater)
-        {
-            ShowLeaderBoard = true;
-            ShowWinStreak = false;
+            ShowForcedMostGames = false;
+            ShowWinStreakForced = false;
         }
 
         private void ShowForcedYatzyMethod(object parameter)
         {
             ShowForcedLeaderBoard = true;
             ShowForcedMostGames = false;
-            ShowForcedWinStreakL = false;
+            ShowWinStreak = false;
+            ShowLeaderBoard = false;
+            ShowMostGames = false;
+            ShowWinStreakForced = false;
+
         }
 
         private void ShowForcedMostGamesMethod(object parameter)
         {
             ShowForcedMostGames = true;
             ShowForcedLeaderBoard = false;
+            ShowWinStreak = false;
+            ShowLeaderBoard = false;
+            ShowMostGames = false;
+            ShowWinStreakForced = false;
         }
 
-        private void ShowForcedWinStreakMethod(object parameter)
+        private void ShowForcedWinstreak(object parameter)
         {
-            ShowForcedWinStreakL = true;
+            ShowWinStreakForced = true;
+            ShowForcedMostGames = false;
             ShowForcedLeaderBoard = false;
+            ShowWinStreak = false;
+            ShowLeaderBoard = false;
+            ShowMostGames = false;
         }
 
         #endregion
@@ -204,8 +247,20 @@ namespace Yatzy.ViewModels
 
         private void LeaderBoardMostVicoriesInARow()
         {
-            //MostVictoriesInaRow = dbOps.GetHighestWinStreak(4);
+            MostVictoriesInaRow = new ObservableCollection<Player>(dbOps.GetWinStreak());
+            
         }
+
+        private void LeaderBoard7DaysForced()
+        {
+            LeaderboardsevenDaysForced = dbOps.GetHighScorePlayers(5);
+        }
+
+        private void LeaderBoardMostGamesForced()
+        {
+            MostGamesForced = dbOps.GetHighestGames(5);
+        }
+
 
         #endregion
 
