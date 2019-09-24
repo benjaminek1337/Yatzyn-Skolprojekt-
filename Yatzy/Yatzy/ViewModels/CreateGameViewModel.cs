@@ -81,7 +81,7 @@ namespace Yatzy.ViewModels
 
         #region Objekt och lokala variabler
 
-        PlayerEngine playerEngine;
+        PlayerEngine playerEngine;        
         DbOperations dbOps;
 
         private int gameType = 0; //Denna ändras till 4 för klassisk eller 5 för styrd.
@@ -228,7 +228,7 @@ namespace Yatzy.ViewModels
 
         private void StartGame(object parameter)
         {
-            dbOps.StartGameTransaction(SelectedPlayers, gameType);
+            //dbOps.StartGameTransaction(SelectedPlayers, gameType);
             PlayGameView dicesView = new PlayGameView();
             SelectedViewModel = new DicesViewModel(playerEngine);
             dicesView.DataContext = SelectedViewModel;

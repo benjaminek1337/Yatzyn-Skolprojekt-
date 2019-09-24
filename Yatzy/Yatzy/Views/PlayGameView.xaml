@@ -317,23 +317,23 @@
 
         <StackPanel Width="49" Margin="0,0,0,0" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right">
             <Button Name="Empty" VerticalAlignment="Top" MinHeight="25" Background="Transparent" />
-            <Button Content="{Binding Path = Player.Ones}" Command="{Binding Ones}" CommandParameter="1" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_1"/>
-            <Button Content="{Binding Path = Player.Twos}" Command="{Binding Twos}" CommandParameter="2" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_2"/>
-            <Button Content="{Binding Path = Player.Threes}" Command="{Binding Threes}" CommandParameter="3" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_3"/>
-            <Button Content="{Binding Path = Player.Fours}" Command="{Binding Fours}" CommandParameter="4" VerticalAlignment="Top" MinHeight="25" HorizontalAlignment="Left" Width="49" Click="Button_Click_4"/>
-            <Button Content="{Binding Path = Player.Fives}" Command="{Binding Fives}" CommandParameter="5" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_5"/>
-            <Button Content="{Binding Path = Player.Sixes}" Command="{Binding Sixes}" CommandParameter="6" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_6"/>
-            <Button Name="Empty1" VerticalAlignment="Top" MinHeight="25" Background="Transparent" BorderBrush="Transparent" />
-            <Button Name="Empty2" VerticalAlignment="Top" MinHeight="25" Background="Transparent" BorderBrush="Transparent" />
-            <Button Content="{Binding Path = Player.Pair}" Command="{Binding Pair}" CommandParameter="7" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_7"/>
-            <Button Content="{Binding Path = Player.TwoPairs}" Command="{Binding TwoPair}" CommandParameter="8" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_8"/>
-            <Button Content="{Binding Path = Player.ThreeOfaKind}" Command="{Binding Threeofakind}" CommandParameter="9" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_9"/>
-            <Button Content="{Binding Path = Player.FourOfaKind}" Command="{Binding Fourofakind}" CommandParameter="10" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_10"/>
-            <Button Content="{Binding Path = Player.SmalLadder}" Command="{Binding Smallstraight}" CommandParameter="11" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_11"/>
-            <Button Content="{Binding Path = Player.LargeLadder}" Command="{Binding Largestraight}" CommandParameter="12" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_12"/>
-            <Button Content="{Binding Path = Player.FullHouse}" Command="{Binding Fullhouse}" CommandParameter="13" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_13"/>
-            <Button Content="{Binding Path = Player.Chance}" Command="{Binding Chance}" CommandParameter="14" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_14"/>
-            <Button Content="{Binding Path = Player.Yatzy}" Command="{Binding Yatzy}" CommandParameter="15" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_15"/>
+            <Button Content="{Binding Path = Player.Ones}" Margin="0,5,0,0" Command="{Binding Ones}" CommandParameter="1" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_1"/>
+            <Button Content="{Binding Path = Player.Twos}" Margin="0,5,0,0" Command="{Binding Twos}" CommandParameter="2" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_2"/>
+            <Button Content="{Binding Path = Player.Threes}" Margin="0,5,0,0" Command="{Binding Threes}" CommandParameter="3" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_3"/>
+            <Button Content="{Binding Path = Player.Fours}" Margin="0,5,0,0" Command="{Binding Fours}" CommandParameter="4" VerticalAlignment="Top" MinHeight="25" HorizontalAlignment="Left" Width="49" Click="Button_Click_4"/>
+            <Button Content="{Binding Path = Player.Fives}" Margin="0,5,0,0" Command="{Binding Fives}" CommandParameter="5" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_5"/>
+            <Button Content="{Binding Path = Player.Sixes}" Margin="0,5,0,0" Command="{Binding Sixes}" CommandParameter="6" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_6"/>
+            <Button Name="Empty1" VerticalAlignment="Top" Margin="0,5,0,0" MinHeight="25" Background="Transparent" BorderBrush="Transparent" />
+            <Button Name="Empty2" VerticalAlignment="Top" Margin="0,5,0,0" MinHeight="25" Background="Transparent" BorderBrush="Transparent" />
+            <Button Content="{Binding Path = Player.Pair}" Margin="0,5,0,0" Command="{Binding Pair}" CommandParameter="7" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_7"/>
+            <Button Content="{Binding Path = Player.TwoPairs}" Margin="0,5,0,0" Command="{Binding TwoPair}" CommandParameter="8" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_8"/>
+            <Button Content="{Binding Path = Player.ThreeOfaKind}" Margin="0,5,0,0" Command="{Binding Threeofakind}" CommandParameter="9" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_9"/>
+            <Button Content="{Binding Path = Player.FourOfaKind}" Margin="0,5,0,0" Command="{Binding Fourofakind}" CommandParameter="10" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_10"/>
+            <Button Content="{Binding Path = Player.SmalLadder}" Margin="0,5,0,0" Command="{Binding Smallstraight}" CommandParameter="11" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_11"/>
+            <Button Content="{Binding Path = Player.LargeLadder}" Margin="0,5,0,0" Command="{Binding Largestraight}" CommandParameter="12" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_12"/>
+            <Button Content="{Binding Path = Player.FullHouse}" Margin="0,5,0,0" Command="{Binding Fullhouse}" CommandParameter="13" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_13"/>
+            <Button Content="{Binding Path = Player.Chance}" Margin="0,5,0,0" Command="{Binding Chance}" CommandParameter="14" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_14"/>
+            <Button Content="{Binding Path = Player.Yatzy}" Margin="0,5,0,0" Command="{Binding Yatzy}" CommandParameter="15" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_15"/>
 
         </StackPanel>
 

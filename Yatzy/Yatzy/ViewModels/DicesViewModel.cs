@@ -718,7 +718,6 @@ namespace Yatzy.Models
             Player = null;
             ActivePlayer = null;
             ActivePlayers = null;
-            Dices = null;
         }
 
         #endregion
