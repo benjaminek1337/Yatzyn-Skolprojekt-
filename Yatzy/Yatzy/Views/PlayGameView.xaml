@@ -366,7 +366,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Förnamn" Binding="{Binding Firstname}"  MinWidth="35" FontWeight="Bold" />
 
-                <!--Knapp i datagrid men bindingen fungerar ej 
+                <!--Knapp i datagrid, nu funkar commandbindingen men inte Content binding -->
                 <DataGridTextColumn  IsReadOnly="True" Binding="{Binding Ones}">
                     <DataGridTextColumn.Header>
                         <Grid Margin="0">
@@ -375,11 +375,11 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" Text="Ettor" />
-                            <Button Grid.Column="1" x:Name="btnOnes" Content="{Binding Path = Player.Ones}" Command="{Binding Ones}" CommandParameter="1" Width="40" Height="30" Margin="30,0,0,0"/>
+                            <Button Grid.Column="1" x:Name="btnOnes" Content="{Binding Path = Player.Ones}" Command="{Binding Path=DataContext.Ones, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid }}}" CommandParameter="1" Width="40" Height="30" Margin="30,0,0,0"/>
                         </Grid>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
-             -->
+             
 
                 <DataGridTextColumn Header="Ettor" Binding="{Binding Ones}" MinWidth="45"/>
                 <DataGridTextColumn Header="Tvåor" Binding="{Binding Twos}" MinWidth="45"/>
