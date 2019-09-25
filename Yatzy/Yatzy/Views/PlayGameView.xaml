@@ -331,6 +331,7 @@
                     <Style TargetType="Button">
                         <Style.Triggers>
                             <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="OverridesDefaultStyle" Value="True" />
                                 <Setter Property="Background" Value="Transparent"/>
                                 <Setter Property="Foreground" Value="Transparent"/>
                                 <Setter Property="BorderBrush" Value="Transparent"/>
@@ -344,6 +345,7 @@
                     <Style TargetType="Button">
                         <Style.Triggers>
                             <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="OverridesDefaultStyle" Value="True" />
                                 <Setter Property="Background" Value="Transparent"/>
                                 <Setter Property="Foreground" Value="Transparent"/>
                                 <Setter Property="BorderBrush" Value="Transparent"/>
@@ -357,6 +359,7 @@
                     <Style TargetType="Button">
                         <Style.Triggers>
                             <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="OverridesDefaultStyle" Value="True" />
                                 <Setter Property="Background" Value="Transparent"/>
                                 <Setter Property="Foreground" Value="Transparent"/>
                                 <Setter Property="BorderBrush" Value="Transparent"/>
@@ -370,6 +373,7 @@
                     <Style TargetType="Button">
                         <Style.Triggers>
                             <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="OverridesDefaultStyle" Value="True" />
                                 <Setter Property="Background" Value="Transparent"/>
                                 <Setter Property="Foreground" Value="Transparent"/>
                                 <Setter Property="BorderBrush" Value="Transparent"/>
@@ -383,6 +387,7 @@
                     <Style TargetType="Button">
                         <Style.Triggers>
                             <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="OverridesDefaultStyle" Value="True" />
                                 <Setter Property="Background" Value="Transparent"/>
                                 <Setter Property="Foreground" Value="Transparent"/>
                                 <Setter Property="BorderBrush" Value="Transparent"/>
@@ -396,6 +401,7 @@
                     <Style TargetType="Button">
                         <Style.Triggers>
                             <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="OverridesDefaultStyle" Value="True" />
                                 <Setter Property="Background" Value="Transparent"/>
                                 <Setter Property="Foreground" Value="Transparent"/>
                                 <Setter Property="BorderBrush" Value="Transparent"/>
@@ -411,6 +417,7 @@
                     <Style TargetType="Button">
                         <Style.Triggers>
                             <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="OverridesDefaultStyle" Value="True" />
                                 <Setter Property="Background" Value="Transparent"/>
                                 <Setter Property="Foreground" Value="Transparent"/>
                                 <Setter Property="BorderBrush" Value="Transparent"/>
@@ -424,6 +431,7 @@
                     <Style TargetType="Button">
                         <Style.Triggers>
                             <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="OverridesDefaultStyle" Value="True" />
                                 <Setter Property="Background" Value="Transparent"/>
                                 <Setter Property="Foreground" Value="Transparent"/>
                                 <Setter Property="BorderBrush" Value="Transparent"/>
@@ -437,6 +445,7 @@
                     <Style TargetType="Button">
                         <Style.Triggers>
                             <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="OverridesDefaultStyle" Value="True" />
                                 <Setter Property="Background" Value="Transparent"/>
                                 <Setter Property="Foreground" Value="Transparent"/>
                                 <Setter Property="BorderBrush" Value="Transparent"/>
@@ -450,6 +459,7 @@
                     <Style TargetType="Button">
                         <Style.Triggers>
                             <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="OverridesDefaultStyle" Value="True" />
                                 <Setter Property="Background" Value="Transparent"/>
                                 <Setter Property="Foreground" Value="Transparent"/>
                                 <Setter Property="BorderBrush" Value="Transparent"/>
@@ -463,6 +473,7 @@
                     <Style TargetType="Button">
                         <Style.Triggers>
                             <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="OverridesDefaultStyle" Value="True" />
                                 <Setter Property="Background" Value="Transparent"/>
                                 <Setter Property="Foreground" Value="Transparent"/>
                                 <Setter Property="BorderBrush" Value="Transparent"/>
@@ -476,6 +487,7 @@
                     <Style TargetType="Button">
                         <Style.Triggers>
                             <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="OverridesDefaultStyle" Value="True" />
                                 <Setter Property="Background" Value="Transparent"/>
                                 <Setter Property="Foreground" Value="Transparent"/>
                                 <Setter Property="BorderBrush" Value="Transparent"/>
@@ -489,6 +501,7 @@
                     <Style TargetType="Button">
                         <Style.Triggers>
                             <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="OverridesDefaultStyle" Value="True" />
                                 <Setter Property="Background" Value="Transparent"/>
                                 <Setter Property="Foreground" Value="Transparent"/>
                                 <Setter Property="BorderBrush" Value="Transparent"/>
@@ -502,6 +515,7 @@
                     <Style TargetType="Button">
                         <Style.Triggers>
                             <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="OverridesDefaultStyle" Value="True" />
                                 <Setter Property="Background" Value="Transparent"/>
                                 <Setter Property="Foreground" Value="Transparent"/>
                                 <Setter Property="BorderBrush" Value="Transparent"/>
@@ -515,6 +529,7 @@
                     <Style TargetType="Button">
                         <Style.Triggers>
                             <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="OverridesDefaultStyle" Value="True" />
                                 <Setter Property="Background" Value="Transparent"/>
                                 <Setter Property="Foreground" Value="Transparent"/>
                                 <Setter Property="BorderBrush" Value="Transparent"/>
