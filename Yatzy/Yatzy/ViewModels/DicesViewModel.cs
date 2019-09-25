@@ -35,6 +35,9 @@ namespace Yatzy.Models
             BitmapImage diceImage5 = new BitmapImage(new Uri(@"pack://application:,,,/Resources/Images/dice5.png", UriKind.RelativeOrAbsolute));
             BitmapImage diceImage6 = new BitmapImage(new Uri(@"pack://application:,,,/Resources/Images/dice6.png", UriKind.RelativeOrAbsolute));
 
+            
+
+
             diceImages = new ObservableCollection<Dice>();
             diceImages.Add(new Dice()
             {
@@ -71,6 +74,8 @@ namespace Yatzy.Models
         private int count = 0;
         private int rounds = 0;
         private int gameType = 0;
+        System.Timers.Timer timer1;
+        System.Timers.Timer timer2;
 
         #endregion
 
@@ -159,7 +164,11 @@ namespace Yatzy.Models
             GenerateDices();
             GetGameEngine();
             DiceImages();
+            SetWarningTimer();
+            SetEndTimer();
+
             pgv = new PlayGameView(0);
+
 
             SaveDiceCommand = new RelayCommand(SaveDice, CanSaveDices);
             RollDicesCommand = new RelayCommand(RollDices, IsTriesEnabled);
@@ -274,6 +283,41 @@ namespace Yatzy.Models
 
 
         #endregion
+
+
+        #region Metoder gällande tidtagning
+
+        private void SetWarningTimer()
+        {
+            timer1 = new System.Timers.Timer(6300000);
+            timer1.Elapsed += Timer1_Elapsed;
+            timer1.Enabled = true;
+        }
+
+        private void SetEndTimer()
+        {
+            timer2 = new System.Timers.Timer(7200000);
+            timer2.Elapsed += Timer2_Elapsed;
+            timer2.Enabled = true;
+        }
+
+        private void Timer2_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            timer2.Stop();
+            dbOps.AbortGameTransaction(activePlayers[0].GameId);
+            gameEngine.NullProps();
+            playerEngine.NullProps();
+            Player = null;
+            Dices = null;
+        }
+
+        private void Timer1_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            MessageBox.Show("Nu har ni 15 minuter på er att avsluta spelet");
+            timer1.Stop();
+        }
+        #endregion
+
 
         #region Metod för att välja en poängkategori och metod för att avgöra hur många rundor som är kvar.
 
