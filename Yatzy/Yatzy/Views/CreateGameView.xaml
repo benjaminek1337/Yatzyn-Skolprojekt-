@@ -17,7 +17,27 @@
 
         <DataTemplate DataType="{x:Type Models:DicesViewModel}">
             <Views:PlayGameView Content="{Binding}"/>
-        </DataTemplate>   
+        </DataTemplate>
+
+        <Style x:Key="Underlined" TargetType="TextBlock">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="TextBlock.TextDecorations" Value="Underline" />
+                    <Setter Property="TextBlock.Effect">
+                        <Setter.Value>
+                            <DropShadowEffect
+                                Color="Black"
+                                ShadowDepth="4"
+                                Opacity="0.7"
+                                BlurRadius="4"
+                                Direction="330"
+                                />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
     </UserControl.Resources>
 
     <Viewbox Stretch="UniformToFill">
@@ -69,12 +89,20 @@
 
             <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" Grid.RowSpan="1">
                 <Label Content="Välj spelare" HorizontalAlignment="Center" FontWeight="Bold" Foreground="AntiqueWhite"/>
-                <ListBox ItemsSource="{Binding AvailablePlayers, IsAsync=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedItem="{Binding AvailablePlayer}" 
-                         Background="#19FFFFFF" Foreground="AntiqueWhite" Width="410" Height="500" FontSize="24" BorderBrush="#00000000"/>
-                <Button Style="{StaticResource TemplateButton}"  Command="{Binding AddPlayerCommand}" Margin="0,20,0,0" HorizontalAlignment="Center" >
-                    <Label Content="Lägg till vald spelare" FontSize="30"/>
-                </Button>
-
+                <ListView ItemsSource="{Binding AvailablePlayers, IsAsync=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedItem="{Binding AvailablePlayer}" 
+                         Background="#19FFFFFF" Foreground="AntiqueWhite" Width="410" Height="500" FontSize="24" BorderBrush="#00000000">
+            <!-- Tillägg för dubbelklick, command funkar ej -->
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}">
+                                <TextBlock.InputBindings>
+                                    <MouseBinding Gesture="LeftDoubleClick" Command="{Binding AddPlayerCommand}"/>
+                                </TextBlock.InputBindings>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+            <!-- Tillägg slut -->
+                </ListView>
             </StackPanel>
 
             <StackPanel Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="1" Grid.RowSpan="1">
@@ -88,15 +116,61 @@
             <StackPanel Grid.Row="1" Grid.Column="4"  Grid.RowSpan="1">
                 <Label Content="Välj Speltyp" HorizontalAlignment="Right" Margin="0,0,30,0" FontWeight="Bold" Foreground="AntiqueWhite"/>
                 <Button Style="{StaticResource TemplateButton}" Command="{Binding ClassicGameCommand}" Margin="0,70,30,10" CommandParameter="4" HorizontalAlignment="Right">
-                    <Label Content="Klassisk Yatzy" FontSize="45"/>
+                    <Label  FontSize="45">
+                        <TextBlock Style="{StaticResource Underlined}">
+                            Klassisk Yatzy
+                        </TextBlock>
+                        <Label.Style>
+                            <Style>
+                                <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
+                                <Style.Triggers>
+                                    <Trigger Property="Label.IsMouseOver" Value="true">
+                                        <Setter Property="Label.Foreground" Value="#007EA7"/>
+                                    </Trigger>
+                                    <Trigger Property="Label.IsEnabled" Value="false">
+                                        <Setter Property="Label.Foreground" Value="White"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Label.Style>
+                    </Label>                 
+                    
                 </Button>
 
                 <Button Style="{StaticResource TemplateButton}" Command="{Binding StyrdGameCommand}" CommandParameter="5" Margin="0,0,30,0" HorizontalAlignment="Right">
-                    <Label  Content="Styrd Yatzy" FontSize="45"/>
+                    <Label  FontSize="45">
+                        <TextBlock Style="{StaticResource Underlined}">
+                            Styrd Yatzy
+                        </TextBlock>
+                        <Label.Style>
+                            <Style>
+                                <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
+                                <Style.Triggers>
+                                    <Trigger Property="Label.IsMouseOver" Value="true">
+                                        <Setter Property="Label.Foreground" Value="#007EA7"/>
+                                    </Trigger>
+                                    <Trigger Property="Label.IsEnabled" Value="false">
+                                        <Setter Property="Label.Foreground" Value="White"/>                                        
+                                    </Trigger>
+                                </Style.Triggers>                                
+                            </Style>
+                        </Label.Style>
+                    </Label>                                   
                 </Button>
 
                 <Button Style="{StaticResource TemplateButton}" Command="{Binding StartGameCommand}" Margin="0,400,30,0" HorizontalAlignment="Right">
-                    <Label  Content="Starta Spelet" FontSize="45"/>
+                    <Label  Content="Starta Spelet" FontSize="45">
+                        <Label.Style>
+                            <Style>
+                                <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
+                                <Style.Triggers>
+                                    <Trigger Property="Label.IsMouseOver" Value="true">
+                                        <Setter Property="Label.Foreground" Value="IndianRed"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Label.Style>
+                    </Label>
                 </Button>
             </StackPanel>
 
