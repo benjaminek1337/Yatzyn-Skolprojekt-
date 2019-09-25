@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using Yatzy.Commands;
 using Yatzy.DBOps;
 using Yatzy.GameEngine;
-using System.Windows.Media.Imaging;
 using Yatzy.ViewModels;
 using Yatzy.Views;
 
@@ -24,8 +21,7 @@ namespace Yatzy.Models
         GameEngine gameEngine;
         DbOperations dbOps;
         PlayGameView pgv;
-
-        bool gameEnded = false;
+        
         ObservableCollection<Dice> diceImages;
 
         ObservableCollection<Dice> DiceImages()
@@ -73,6 +69,8 @@ namespace Yatzy.Models
             return diceImages;
         }
 
+        private bool gameEnded = false;
+        private int throwsLeft = 0;
         private int count = 0;
         private int rounds = 0;
         private int gameType = 0;
@@ -128,8 +126,16 @@ namespace Yatzy.Models
         public Player ActivePlayer
         {
             get { return _activePlayer; }
-            set { _activePlayer = value; OnPropertyChanged(new PropertyChangedEventArgs("activePlayer")); }
+            set { _activePlayer = value; OnPropertyChanged(new PropertyChangedEventArgs("ActivePlayer")); }
         }
+
+        private string _throwsLeft;
+        public string ThrowsLeft
+        {
+            get { return ("Du har " + _throwsLeft + " kast kvar"); }
+            set { _throwsLeft = value; OnPropertyChanged(new PropertyChangedEventArgs("ThrowsLeft")); }
+        }
+
 
         #endregion
 
@@ -170,7 +176,8 @@ namespace Yatzy.Models
             SetEndTimer();
 
             pgv = new PlayGameView(0);
-
+            throwsLeft = 3;
+            SetThrowsLeft(throwsLeft);
 
             SaveDiceCommand = new RelayCommand(SaveDice, CanSaveDices);
             RollDicesCommand = new RelayCommand(RollDices, IsTriesEnabled);
@@ -225,6 +232,8 @@ namespace Yatzy.Models
                 }
 
             }
+            throwsLeft--;
+            SetThrowsLeft(throwsLeft);
             count++;
             gameEngine.SetGameEngineDices(Dices);
             GetScoreCombinations();
@@ -280,9 +289,15 @@ namespace Yatzy.Models
                 Dices[i].IsDiceEnabled = true;
                 Dices[i].DiceImage = null;
             }
+            throwsLeft = 3;
+            SetThrowsLeft(throwsLeft);
             pgv = new PlayGameView(1);
         }
 
+        private void SetThrowsLeft(int _throwsLeft)
+        {
+            ThrowsLeft = _throwsLeft.ToString();
+        }
 
         #endregion
 

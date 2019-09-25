@@ -152,7 +152,11 @@
                     </Style.Triggers>
                 </Style>
             </Grid.Resources>
-            <Label Content="{Binding ActivePlayer.Firstname}" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" Margin="0,0,0,0" FontSize="30"/>
+            <Label Content="{Binding ActivePlayer.Firstname}" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Center" Margin="0,0,0,0" FontSize="35" >
+                <Label.Effect>
+                    <DropShadowEffect Opacity="0.75" Direction="270" BlurRadius="7" ShadowDepth="3"/>
+                </Label.Effect>
+            </Label>
 
             <Button x:Name="btnDice1" Grid.Row="5" Grid.Column="1"  Command="{Binding SaveDiceCommand}" CommandParameter="1" RenderTransformOrigin="0.5,0.5" Click="BtnDice1_Click" BorderBrush="Transparent">
                 <Button.Style>
@@ -310,6 +314,7 @@
             </Button>
             <Button x:Name="Button" Command="{Binding RollDicesCommand}" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" Width="130" Content="Kasta" Click="Button_Click" Background="#4CC33434" BorderBrush="#4CFFFFFF" FontSize="35" FontFamily="Global Sans Serif"/>
             <Button Style="{StaticResource TemplateButton}" x:Name="btnQuitGame" Command="{Binding QuitGameCommand}" Grid.Row="8" Grid.Column="6"  Content="Avsluta"/>
+            <Label Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="4" Content="{Binding ThrowsLeft}" HorizontalAlignment="Left"/>
         </Grid>
 
 
