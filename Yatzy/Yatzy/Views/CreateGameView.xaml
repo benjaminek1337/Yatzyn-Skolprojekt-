@@ -125,10 +125,10 @@
                                 <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
                                 <Style.Triggers>
                                     <Trigger Property="Label.IsMouseOver" Value="true">
-                                        <Setter Property="Label.Foreground" Value="#007EA7"/>
+                                        <Setter Property="Label.Foreground" Value="White"/>
                                     </Trigger>
                                     <Trigger Property="Label.IsEnabled" Value="false">
-                                        <Setter Property="Label.Foreground" Value="White"/>
+                                        <Setter Property="Label.Foreground" Value="Goldenrod"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -147,10 +147,10 @@
                                 <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
                                 <Style.Triggers>
                                     <Trigger Property="Label.IsMouseOver" Value="true">
-                                        <Setter Property="Label.Foreground" Value="#007EA7"/>
+                                        <Setter Property="Label.Foreground" Value="White"/>
                                     </Trigger>
                                     <Trigger Property="Label.IsEnabled" Value="false">
-                                        <Setter Property="Label.Foreground" Value="White"/>                                        
+                                        <Setter Property="Label.Foreground" Value="Goldenrod"/>                                        
                                     </Trigger>
                                 </Style.Triggers>                                
                             </Style>
@@ -165,7 +165,10 @@
                                 <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
                                 <Style.Triggers>
                                     <Trigger Property="Label.IsMouseOver" Value="true">
-                                        <Setter Property="Label.Foreground" Value="IndianRed"/>
+                                        <Setter Property="Label.Foreground" Value="White"/>
+                                    </Trigger>
+                                    <Trigger Property="Label.IsEnabled" Value="true">
+                                        <Setter Property="Label.Foreground" Value="Goldenrod"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
