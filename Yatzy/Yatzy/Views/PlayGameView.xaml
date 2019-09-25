@@ -328,6 +328,7 @@
             <Button Name="Empty" VerticalAlignment="Top" MinHeight="25" Background="Transparent" />
             <Button Content="{Binding Path = Player.Ones}" Margin="0,5,0,0" Command="{Binding Ones}" CommandParameter="1" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_1">
                 <Button.Style>
+                    
                     <Style TargetType="Button">
                         <Style.Triggers>
                             <Trigger Property="IsEnabled" Value="false">

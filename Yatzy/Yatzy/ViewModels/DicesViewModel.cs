@@ -307,10 +307,11 @@ namespace Yatzy.Models
         {
             timer2.Stop();
             dbOps.AbortGameTransaction(activePlayers[0].GameId);
+
+            MessageBox.Show("Tiden har gått ut, spelet avslutas.");
+            SelectedViewModel = new MainMenuViewModel();
             gameEngine.NullProps();
             playerEngine.NullProps();
-            Player = null;
-            Dices = null;
         }
 
         private void Timer1_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
