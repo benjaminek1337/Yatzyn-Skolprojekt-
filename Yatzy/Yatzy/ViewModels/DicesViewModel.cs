@@ -694,8 +694,6 @@ namespace Yatzy.Models
                 playerEngine.NullProps();
 
                 SelectedViewModel = new MainMenuViewModel();
-                //ActivePlayer = null;
-                //ActivePlayers = null;
             }
         }
 
@@ -706,7 +704,7 @@ namespace Yatzy.Models
             for (int i = 0; i < ActivePlayers.Count; i++)
             {
                 Results = ActivePlayers.ToList<Player>();
-                Results.OrderBy(activePlayer => activePlayer.TotalScore).ToList();
+                Results.OrderBy(ActivePlayer => ActivePlayer.TotalScore).ToList();
             }
             MessageBox.Show(Results.First().Firstname.ToString() + " vann med " + Results.First().TotalScore.ToString() + " poäng");
             dbOps.SaveGameTransaction(ActivePlayers);
