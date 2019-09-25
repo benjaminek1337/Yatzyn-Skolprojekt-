@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using Yatzy.Commands;
 using Yatzy.DBOps;
 using Yatzy.GameEngine;
-using System.Windows.Media.Imaging;
 using Yatzy.ViewModels;
 using Yatzy.Views;
 
@@ -24,8 +21,7 @@ namespace Yatzy.Models
         GameEngine gameEngine;
         DbOperations dbOps;
         PlayGameView pgv;
-
-        bool gameEnded = false;
+        
         ObservableCollection<Dice> diceImages;
 
         ObservableCollection<Dice> DiceImages()
@@ -36,6 +32,9 @@ namespace Yatzy.Models
             BitmapImage diceImage4 = new BitmapImage(new Uri(@"pack://application:,,,/Resources/Images/dice4.png", UriKind.RelativeOrAbsolute));
             BitmapImage diceImage5 = new BitmapImage(new Uri(@"pack://application:,,,/Resources/Images/dice5.png", UriKind.RelativeOrAbsolute));
             BitmapImage diceImage6 = new BitmapImage(new Uri(@"pack://application:,,,/Resources/Images/dice6.png", UriKind.RelativeOrAbsolute));
+
+            
+
 
             diceImages = new ObservableCollection<Dice>();
             diceImages.Add(new Dice()
@@ -70,9 +69,13 @@ namespace Yatzy.Models
             return diceImages;
         }
 
+        private bool gameEnded = false;
+        private int throwsLeft = 0;
         private int count = 0;
         private int rounds = 0;
         private int gameType = 0;
+        System.Timers.Timer timer1;
+        System.Timers.Timer timer2;
 
         #endregion
 
@@ -123,8 +126,16 @@ namespace Yatzy.Models
         public Player ActivePlayer
         {
             get { return _activePlayer; }
-            set { _activePlayer = value; OnPropertyChanged(new PropertyChangedEventArgs("activePlayer")); }
+            set { _activePlayer = value; OnPropertyChanged(new PropertyChangedEventArgs("ActivePlayer")); }
         }
+
+        private string _throwsLeft;
+        public string ThrowsLeft
+        {
+            get { return ("Du har " + _throwsLeft + " kast kvar"); }
+            set { _throwsLeft = value; OnPropertyChanged(new PropertyChangedEventArgs("ThrowsLeft")); }
+        }
+
 
         #endregion
 
@@ -161,7 +172,12 @@ namespace Yatzy.Models
             GenerateDices();
             GetGameEngine();
             DiceImages();
+            SetWarningTimer();
+            SetEndTimer();
+
             pgv = new PlayGameView(0);
+            throwsLeft = 3;
+            SetThrowsLeft(throwsLeft);
 
             SaveDiceCommand = new RelayCommand(SaveDice, CanSaveDices);
             RollDicesCommand = new RelayCommand(RollDices, IsTriesEnabled);
@@ -216,6 +232,8 @@ namespace Yatzy.Models
                 }
 
             }
+            throwsLeft--;
+            SetThrowsLeft(throwsLeft);
             count++;
             gameEngine.SetGameEngineDices(Dices);
             GetScoreCombinations();
@@ -271,11 +289,53 @@ namespace Yatzy.Models
                 Dices[i].IsDiceEnabled = true;
                 Dices[i].DiceImage = null;
             }
+            throwsLeft = 3;
+            SetThrowsLeft(throwsLeft);
             pgv = new PlayGameView(1);
         }
 
+        private void SetThrowsLeft(int _throwsLeft)
+        {
+            ThrowsLeft = _throwsLeft.ToString();
+        }
 
         #endregion
+
+
+        #region Metoder gällande tidtagning
+
+        private void SetWarningTimer()
+        {
+            timer1 = new System.Timers.Timer(6300000);
+            timer1.Elapsed += Timer1_Elapsed;
+            timer1.Enabled = true;
+        }
+
+        private void SetEndTimer()
+        {
+            timer2 = new System.Timers.Timer(7200000);
+            timer2.Elapsed += Timer2_Elapsed;
+            timer2.Enabled = true;
+        }
+
+        private void Timer2_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            timer2.Stop();
+            dbOps.AbortGameTransaction(activePlayers[0].GameId);
+
+            MessageBox.Show("Tiden har gått ut, spelet avslutas.");
+            SelectedViewModel = new MainMenuViewModel();
+            gameEngine.NullProps();
+            playerEngine.NullProps();
+        }
+
+        private void Timer1_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            MessageBox.Show("Nu har ni 15 minuter på er att avsluta spelet");
+            timer1.Stop();
+        }
+        #endregion
+
 
         #region Metod för att välja en poängkategori och metod för att avgöra hur många rundor som är kvar.
 
@@ -694,8 +754,6 @@ namespace Yatzy.Models
                 playerEngine.NullProps();
 
                 SelectedViewModel = new MainMenuViewModel();
-                //ActivePlayer = null;
-                //ActivePlayers = null;
             }
         }
 
@@ -706,9 +764,14 @@ namespace Yatzy.Models
             for (int i = 0; i < ActivePlayers.Count; i++)
             {
                 Results = ActivePlayers.ToList<Player>();
-                Results.OrderBy(activePlayer => activePlayer.TotalScore).ToList();
+                //Results.OrderBy(ActivePlayer => ActivePlayer.TotalScore).ToList();
             }
-            MessageBox.Show(Results.First().Firstname.ToString() + " vann med " + Results.First().TotalScore.ToString() + " poäng");
+
+            var orderByResult = from r in Results
+                                orderby r.TotalScore descending
+                                select r;
+
+            MessageBox.Show(orderByResult.First().Firstname.ToString() + " vann med " + orderByResult.First().TotalScore.ToString() + " poäng");
             dbOps.SaveGameTransaction(ActivePlayers);
 
 
