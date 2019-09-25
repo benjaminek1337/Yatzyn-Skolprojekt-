@@ -24,6 +24,8 @@ namespace Yatzy.Models
         GameEngine gameEngine;
         DbOperations dbOps;
         PlayGameView pgv;
+
+        bool gameEnded = false;
         ObservableCollection<Dice> diceImages;
 
         ObservableCollection<Dice> DiceImages()
@@ -94,7 +96,7 @@ namespace Yatzy.Models
         public RelayCommand Chance { get; set; }
         public RelayCommand Yatzy { get; set; }
         public RelayCommand QuitGameCommand { get; set; }
-        
+
 
         private ObservableCollection<Dice> dices;
         public ObservableCollection<Dice> Dices
@@ -677,11 +679,6 @@ namespace Yatzy.Models
             set { selectedViewModel = value; OnPropertyChanged(new PropertyChangedEventArgs("SelectedViewModel")); }
         }
 
-        public void Backcommand()
-        {
-
-        }
-
         private void QuitGame(object parameter)
         {
             if (MessageBox.Show("Vill du avsluta spelet?", "Avsluta spel", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
@@ -690,12 +687,12 @@ namespace Yatzy.Models
             }
             else
             {
-                dbOps.AbortGameTransaction(activePlayers[0].GameId);
+                if (gameEnded == false)
+                    dbOps.AbortGameTransaction(activePlayers[0].GameId);
+
                 gameEngine.NullProps();
                 playerEngine.NullProps();
-                Player = null;
 
-                //SLÄNG I NÅGOT FÖR ATT BACKA TILL HUVUDMENY
                 SelectedViewModel = new MainMenuViewModel();
                 //ActivePlayer = null;
                 //ActivePlayers = null;
@@ -704,6 +701,7 @@ namespace Yatzy.Models
 
         private void GameEnded()
         {
+            gameEnded = true;
             List<Player> Results = new List<Player>();
             for (int i = 0; i < ActivePlayers.Count; i++)
             {
@@ -712,23 +710,32 @@ namespace Yatzy.Models
             }
             MessageBox.Show(Results.First().Firstname.ToString() + " vann med " + Results.First().TotalScore.ToString() + " poäng");
             dbOps.SaveGameTransaction(ActivePlayers);
-            gameEngine.NullProps();
-            playerEngine.NullProps();
 
-            Player = null;
-            ActivePlayer = null;
-            ActivePlayers = null;
+
+
+
+            if (MessageBox.Show("Spelet är slut, vill du avsluta?", "Avsluta spel", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+            {
+                //rutan stängs ned här
+            }
+            else
+            {
+                gameEngine.NullProps();
+                playerEngine.NullProps();
+
+                SelectedViewModel = new MainMenuViewModel();
+            }
+
         }
 
         #endregion
 
-            
-            
-         
+
+
+
 
 
     }
 
 
 }
-

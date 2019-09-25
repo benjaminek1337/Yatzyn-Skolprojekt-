@@ -27,6 +27,7 @@
         <DataTemplate DataType="{x:Type ViewModels:CreateGameViewModel}">
             <Views:CreateGameView Content="{Binding}"/>
         </DataTemplate>
+
         
         <Style x:Key="MyButton" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True"/>

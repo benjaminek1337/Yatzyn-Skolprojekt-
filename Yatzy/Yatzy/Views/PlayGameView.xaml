@@ -3,10 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Yatzy.Views"
+             xmlns:Views="clr-namespace:Yatzy.Views"
+             xmlns:ViewModels="clr-namespace:Yatzy.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="1000">
     <UserControl.Resources>
+        <DataTemplate DataType="{x:Type ViewModels:MainMenuViewModel}">
+            <Views:MainMenuView Content="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type ViewModels:CreateGameViewModel}">
+            <Views:CreateGameView Content="Binding"/>
+        </DataTemplate>
+       
+        
         <Storyboard x:Key="RollDice1">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.Target="{Binding ElementName=btnDice1}">
                 <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="380.75"/>
@@ -352,7 +361,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Förnamn" Binding="{Binding Firstname}" />
 
-                <!--Knapp i datagrid men bindingen fungerar ej 
+                <!--Knapp i datagrid men bindingen fungerar ej -->
                 <DataGridTextColumn  IsReadOnly="True" Binding="{Binding Ones}">
                     <DataGridTextColumn.Header>
                         <Grid Margin="0">
@@ -365,7 +374,7 @@
                         </Grid>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
-             -->
+             
 
                 <DataGridTextColumn Header="Ettor" Binding="{Binding Ones}"/>
                 <DataGridTextColumn Header="Tvåor" Binding="{Binding Twos}"/>
@@ -419,6 +428,6 @@
                 </Style>
             </DataGrid.CellStyle>
         </DataGrid>
-
+        <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7" Content="{Binding SelectedViewModel}"/>
     </Grid>
 </UserControl>
