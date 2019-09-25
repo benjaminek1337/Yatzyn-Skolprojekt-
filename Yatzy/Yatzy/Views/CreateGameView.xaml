@@ -103,6 +103,9 @@
                     </ListView.ItemTemplate>
             <!-- Tillägg slut -->
                 </ListView>
+                <Button Style="{StaticResource TemplateButton}"  Command="{Binding AddPlayerCommand}" Margin="0,20,0,0" HorizontalAlignment="Center" >
+                    <Label Content="Lägg till vald spelare" FontSize="30"/>
+                </Button>
             </StackPanel>
 
             <StackPanel Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="1" Grid.RowSpan="1">
