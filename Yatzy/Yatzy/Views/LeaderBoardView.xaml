@@ -144,7 +144,7 @@
 
     <Viewbox Stretch="UniformToFill" StretchDirection="Both">
 
-        <Grid ShowGridLines="True" Margin="0" MaxHeight="1080" MinWidth="1920" >
+        <Grid  Margin="0" MaxHeight="1080" MinWidth="1920" >
             <Grid.Background>
                 <ImageBrush ImageSource="/REsources/wood4.jpg"/>
             </Grid.Background>
