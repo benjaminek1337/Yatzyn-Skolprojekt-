@@ -249,6 +249,8 @@
     <EmbeddedResource Include="Resources\Sound\DiceThrow.wav" />
     <EmbeddedResource Include="Resources\Sound\Gamemusic.wav" />
     <EmbeddedResource Include="Resources\Sound\Main menu.wav" />
+    <Resource Include="Resources\alternativ.png" />
+    <Resource Include="Resources\LEADERBOARD.png" />
     <Content Include="Resources\Theme\Neon Sunset OC_1.mp4" />
   </ItemGroup>
   <ItemGroup />

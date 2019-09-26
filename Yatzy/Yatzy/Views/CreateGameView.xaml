@@ -70,7 +70,7 @@
                 <Button Style="{StaticResource Back}" Command="{Binding BackCommand}" MaxHeight="110" MaxWidth="110" MinHeight="80" MinWidth="80"/>
             </StackPanel>
             
-            <Label Content="YATZY" Grid.Column="2" Grid.ColumnSpan="2" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="55" Foreground="DodgerBlue" />
+            <Image Source="/Resources/YATZY.png" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="75" Margin="15"/>
 
             <Label Content="Skapa ny spelare"  HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0" Foreground="AntiqueWhite" Grid.ColumnSpan="2" Margin="0,225,0,500" FontSize="26" />
 
