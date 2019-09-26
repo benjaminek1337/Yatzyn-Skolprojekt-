@@ -154,7 +154,7 @@
                     </Style.Triggers>
                 </Style>
             </Grid.Resources>
-            <Label Content="{Binding ActivePlayer.Firstname}" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Center" Margin="0,0,0,0" FontSize="35" Foreground="AliceBlue">
+            <Label Content="{Binding ActivePlayer.Firstname}" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Center" Margin="0,0,0,0" FontSize="75" Foreground="AntiqueWhite">
                 <Label.Effect>
                     <DropShadowEffect Opacity="0.75" Direction="270" BlurRadius="7" ShadowDepth="3"/>
                 </Label.Effect>
@@ -314,8 +314,9 @@
                 </Button.RenderTransform>
                 <Image Source="{Binding Dices[4].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
-            <Button Style="{DynamicResource CategoryButton}" x:Name="Button" Command="{Binding RollDicesCommand}" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" Width="130" Height="45" Foreground="OrangeRed" Content="Kasta" Click="Button_Click" FontSize="28" FontFamily="Global Sans Serif"/>
-            <Label Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="4" Content="{Binding ThrowsLeft}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" Foreground="AntiqueWhite"/>
+            
+            <Button Style="{DynamicResource CategoryButton}" x:Name="Button" Command="{Binding RollDicesCommand}" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3" VerticalAlignment="Top" Margin="0,10,0,0" HorizontalAlignment="Center" Width="130" Height="45" Foreground="OrangeRed" Content="Kasta" Click="Button_Click" FontSize="28" FontFamily="Global Sans Serif"/>
+            <Label Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="5" Content="{Binding ThrowsLeft}" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="25" Foreground="AntiqueWhite"/>
             <Button Style="{StaticResource TemplateButton}" x:Name="btnQuitGame" Command="{Binding QuitGameCommand}" Grid.Row="8" Grid.Column="5" Grid.ColumnSpan="2" Content="Avsluta spel" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,20"/>
         </Grid>
 
@@ -364,11 +365,13 @@
                     <Setter Property="Background" Value="White"/>
                     <Setter Property="BorderBrush" Value="Black"/>
                     <Setter Property="BorderThickness" Value="1,1,2,1"/>
+                 
+
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Förnamn" Binding="{Binding Firstname}"  MinWidth="35" FontWeight="Bold" />
-                <!-- Knapp i cell istället för i header, Command-binding funkar men inte Content-binding -->
+                <!-- Knapp i cell istället för i header, Command-binding funkar men inte Content-binding 
                 <DataGridTemplateColumn  Header="Ettor" IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -383,6 +386,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                -->
                 
                 <!--Knapp i datagrid, nu funkar commandbindingen men inte Content binding
                 <DataGridTextColumn  IsReadOnly="True" Binding="{Binding Ones}">
@@ -399,14 +403,14 @@
                 </DataGridTextColumn>
               -->
 
-                <DataGridTextColumn Header="Ettor" Binding="{Binding Ones}" MinWidth="45"/>
+                <DataGridTextColumn Header="Ettor" Binding="{Binding Ones}" MinWidth="45" />
                 <DataGridTextColumn Header="Tvåor" Binding="{Binding Twos}" MinWidth="45"/>
                 <DataGridTextColumn Header="Treor" Binding="{Binding Threes}" MinWidth="45"/>
                 <DataGridTextColumn Header="Fyror" Binding="{Binding Fours}" MinWidth="45"/>
                 <DataGridTextColumn Header="Femmor" Binding="{Binding Fives}" MinWidth="45"/>
                 <DataGridTextColumn Header="Sexor" Binding="{Binding Sixes}" MinWidth="45"/>
-                <DataGridTextColumn Header="Summa" Binding="{Binding UpperScore}" MinWidth="45"/>
-                <DataGridTextColumn Header="Bonus" Binding="{Binding UpperBonus}" MinWidth="45"/>
+                <DataGridTextColumn Header="Summa" Binding="{Binding UpperScore}" MinWidth="45" FontWeight="Bold"/>
+                <DataGridTextColumn Header="Bonus" Binding="{Binding UpperBonus}" MinWidth="45" Foreground="Red" FontWeight="Bold"/>
                 <DataGridTextColumn Header="Par" Binding="{Binding Pair}" MinWidth="45"/>
                 <DataGridTextColumn Header="Två par" Binding="{Binding TwoPairs}" MinWidth="45"/>
                 <DataGridTextColumn Header="Tretal" Binding="{Binding ThreeOfaKind}" MinWidth="45"/>
@@ -415,8 +419,8 @@
                 <DataGridTextColumn Header="Stor stege" Binding="{Binding LargeLadder}" MinWidth="45"/>
                 <DataGridTextColumn Header="Kåk" Binding="{Binding FullHouse}" MinWidth="45"/>
                 <DataGridTextColumn Header="Chans" Binding="{Binding Chance}" MinWidth="45"/>
-                <DataGridTextColumn Header="Yatzy" Binding="{Binding Yatzy}" MinWidth="45"/>
-                <DataGridTextColumn Header="Total summa" Binding="{Binding TotalScore}" MinWidth="45"/>
+                <DataGridTextColumn Header="Yatzy" Binding="{Binding Yatzy}" MinWidth="45" Foreground="Red"/>
+                <DataGridTextColumn Header="Total summa" Binding="{Binding TotalScore}" MinWidth="45" FontWeight="Bold" />
             </DataGrid.Columns>
 
             <!--Konverterar kolumnerna så de visas vertikalt istället för horisontellt-->
@@ -451,7 +455,7 @@
                 </Style>
             </DataGrid.CellStyle>
         </DataGrid>
-        
+
         <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7" Content="{Binding SelectedViewModel}"/>
     </Grid>
 </UserControl>
