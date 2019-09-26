@@ -129,7 +129,7 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition/>
-                <RowDefinition />
+                <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -329,7 +329,7 @@
                 <Image Source="{Binding Dices[4].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
 
-            <Button Style="{DynamicResource CategoryButton}" x:Name="Button" Command="{Binding RollDicesCommand}" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3" VerticalAlignment="Top" Margin="0,10,0,0" HorizontalAlignment="Center" Width="130" Height="45" Foreground="OrangeRed" Content="Kasta" Click="Button_Click" FontSize="28" FontFamily="Global Sans Serif"/>
+            <Button Style="{DynamicResource ThrowButton}" x:Name="Button" Command="{Binding RollDicesCommand}" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3" VerticalAlignment="Top" Margin="0,10,0,0" HorizontalAlignment="Center" Width="130" Height="45" Foreground="OrangeRed" Content="Kasta" Click="Button_Click" FontSize="28" FontFamily="Global Sans Serif"/>
             <Label Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="5" Content="{Binding ThrowsLeft}" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="25" Foreground="AntiqueWhite"/>
            
             <Label Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="5" IsHitTestVisible="False" Content="_________________________________________________________" Foreground="AntiqueWhite" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50" Height="83" Margin="0,10"/>
@@ -371,11 +371,11 @@
 
         <Label x:Name="label" Grid.Row="0" Grid.Column="2" Content="{Binding Path = activePlayer.Firstname, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="22,20,0,0" VerticalAlignment="Top"/>
 
-        <DataGrid ItemsSource="{Binding Path=ActivePlayers}"  Grid.Column="2" Grid.Row="1" BorderThickness="2" BorderBrush="Black" FontSize="30" SelectionUnit="Cell"
-                  IsReadOnly="True" CanUserSortColumns="False" IsHitTestVisible="True" HorizontalAlignment="Left" VerticalAlignment="Top"
+        <DataGrid x:Name="Datagrid1"  ItemsSource="{Binding Path=ActivePlayers}"  Grid.Column="2" Grid.Row="1" BorderThickness="2" BorderBrush="Black" FontSize="30" SelectionUnit="Cell"
+                  IsReadOnly="True" CanUserSortColumns="False" IsHitTestVisible="False" HorizontalAlignment="Left" VerticalAlignment="Top"
                   HorizontalGridLinesBrush="Black" VerticalGridLinesBrush="Black" MinRowHeight="80"  AutoGenerateColumns="False" CanUserAddRows="False"  HeadersVisibility="Column">
             <DataGrid.Resources>
-                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Blue"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Gray"/>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="Background" Value="White"/>
                     <Setter Property="BorderBrush" Value="Black"/>
@@ -386,7 +386,7 @@
             </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Spelare" Binding="{Binding Nickname}"  MinWidth="45" FontWeight="Bold" />
-                <!-- Knapp i cell istället för i header, Command-binding funkar men inte Content-binding 
+                <!--
                 <DataGridTemplateColumn  Header="Ettor" IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -396,12 +396,12 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="{Binding Ones}"/>
-                                <Button Grid.Column="1" x:Name="btnOnes" Content="{Binding Path = Player.Ones}" Command="{Binding Path=DataContext.Ones, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid }}}" CommandParameter="1" />
+                                <Button Grid.Column="1" x:Name="btnOnes" Content="{Binding ElementName=Datagrid1, Path = Player.Ones}" Command="{Binding Path=DataContext.Ones, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid }}}" CommandParameter="1" />
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                -->
+                </DataGridTemplateColumn> -->
+                
 
                 <!--Knapp i datagrid, nu funkar commandbindingen men inte Content binding
                 <DataGridTextColumn  IsReadOnly="True" Binding="{Binding Ones}">
@@ -470,7 +470,7 @@
                 </Style>
             </DataGrid.CellStyle>
         </DataGrid>
-        <Button Style="{StaticResource TemplateButton}" Command="{Binding QuitGameCommand}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Content="Avsluta spelet" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,20,0"/>
-        <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7" Content="{Binding SelectedViewModel}"/>
+        <Button Style="{StaticResource TemplateButton1}" Command="{Binding QuitGameCommand}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Content="Avsluta spelet" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,20,0"/>
+        <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7" Content="{Binding SelectedViewModel}"/> 
     </Grid>
 </UserControl>

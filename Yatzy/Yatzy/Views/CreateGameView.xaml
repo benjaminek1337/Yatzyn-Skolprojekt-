@@ -81,10 +81,10 @@
             </StackPanel>
 
             <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="1" VerticalAlignment="Center">
-                <TextBox Text="{Binding _Firstname, UpdateSourceTrigger=PropertyChanged}" />
-                <TextBox Text="{Binding _Lastname, UpdateSourceTrigger=PropertyChanged}" />
-                <TextBox Text="{Binding _Nickname, UpdateSourceTrigger=PropertyChanged}"/>
-                <Button Style="{StaticResource TemplateButton}" Content="Skapa" Command="{Binding AddNewPlayerCommand}" Height="50" MinWidth="165" FontSize="25" HorizontalAlignment="Left"/>
+                <TextBox Style="{StaticResource TextBoxStyle1}" Text="{Binding _Firstname, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Style="{StaticResource TextBoxStyle1}" Text="{Binding _Lastname, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Style="{StaticResource TextBoxStyle1}" Text="{Binding _Nickname, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Style="{StaticResource TemplateButton1}" Content="Skapa" Command="{Binding AddNewPlayerCommand}" Height="50" MinWidth="165" FontSize="25" HorizontalAlignment="Left"/>
 
             </StackPanel>
 
@@ -152,11 +152,9 @@
 
             <StackPanel Grid.Row="1" Grid.Column="4"  Grid.RowSpan="1">
                 <Label Content="Välj Speltyp" HorizontalAlignment="Right" Margin="0,0,30,0" FontWeight="Bold" Foreground="AntiqueWhite" FontSize="30"/>
-                <Button Style="{StaticResource TemplateButton}" Command="{Binding ClassicGameCommand}" Margin="0,70,30,10" CommandParameter="4" HorizontalAlignment="Right">
+                <Button Style="{StaticResource TemplateButton1}" Command="{Binding ClassicGameCommand}" Margin="0,70,30,10" CommandParameter="4" HorizontalAlignment="Right">
                     <Label  FontSize="45">
-                        <TextBlock Style="{StaticResource Underlined}">
-                            Klassisk Yatzy
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource Underlined}" Text="Klassisk Yatzy"/> 
                         <Label.Style>
                             <Style>
                                 <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
@@ -174,7 +172,7 @@
 
                 </Button>
 
-                <Button Style="{StaticResource TemplateButton}" Command="{Binding StyrdGameCommand}" CommandParameter="5" Margin="0,0,30,0" HorizontalAlignment="Right">
+                <Button Style="{StaticResource TemplateButton1}" Command="{Binding StyrdGameCommand}" CommandParameter="5" Margin="0,0,30,0" HorizontalAlignment="Right">
                     <Label  FontSize="45">
                         <TextBlock Style="{StaticResource Underlined}">
                             Styrd Yatzy
@@ -195,7 +193,7 @@
                     </Label>
                 </Button>
 
-                <Button Style="{StaticResource TemplateButton}" Command="{Binding StartGameCommand}" Margin="0,400,30,0" HorizontalAlignment="Right">
+                <Button Style="{StaticResource TemplateButton1}" Command="{Binding StartGameCommand}" Margin="0,400,30,0" HorizontalAlignment="Right">
                     <Label  Content="Starta Spelet" FontSize="45">
                         <Label.Style>
                             <Style>
