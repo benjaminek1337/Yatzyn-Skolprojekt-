@@ -245,7 +245,13 @@
     <Resource Include="Resources\YATZY.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Theme\Neon Sunset OC_1.mp4" />
+    <Resource Include="Resources\Theme\Neon Sunset OC_1.mp4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\LEADERBOARD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\alternativ.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
