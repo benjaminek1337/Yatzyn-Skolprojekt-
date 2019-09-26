@@ -37,7 +37,7 @@ namespace Yatzy.DBOps
                 {
 
                     cmd.Connection = conn;
-                    cmd.CommandText = "SELECT * FROM player";
+                    cmd.CommandText = "SELECT * FROM player ORDER BY firstname ASC";
 
 
                     using (var reader = cmd.ExecuteReader())
@@ -194,7 +194,7 @@ namespace Yatzy.DBOps
             try
             {
                 
-                string stmt = "SELECT * FROM player WHERE EXISTS ( SELECT score FROM game_player WHERE score IS NOT null)";
+                string stmt = "SELECT * FROM player WHERE EXISTS ( SELECT score FROM game_player WHERE score IS NOT null) ORDER BY firstname ASC";
 
                 conn = new NpgsqlConnection(Connect);
                 conn.Open();
