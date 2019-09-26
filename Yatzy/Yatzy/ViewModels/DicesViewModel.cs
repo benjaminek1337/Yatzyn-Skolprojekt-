@@ -294,13 +294,13 @@ namespace Yatzy.Models
             pgv = new PlayGameView(1);
         }
 
+        //Sätt värde på Propen ThrowsLeft för att visa kvarvarande kast i gränssnitt
         private void SetThrowsLeft(int _throwsLeft)
         {
             ThrowsLeft = _throwsLeft.ToString();
         }
 
         #endregion
-
 
         #region Metoder gällande tidtagning
 
@@ -335,7 +335,6 @@ namespace Yatzy.Models
             timer1.Stop();
         }
         #endregion
-
 
         #region Metod för att välja en poängkategori och metod för att avgöra hur många rundor som är kvar.
 
@@ -793,12 +792,5 @@ namespace Yatzy.Models
 
         #endregion
 
-
-
-
-
-
     }
-
-
 }

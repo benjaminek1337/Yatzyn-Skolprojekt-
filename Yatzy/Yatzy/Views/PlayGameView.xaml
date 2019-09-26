@@ -6,7 +6,7 @@
              xmlns:Views="clr-namespace:Yatzy.Views"
              xmlns:ViewModels="clr-namespace:Yatzy.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="1000">
+             d:DesignHeight="1080" d:DesignWidth="1920">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type ViewModels:MainMenuViewModel}">
             <Views:MainMenuView Content="{Binding}"/>
@@ -104,14 +104,16 @@
             <ImageBrush ImageSource="/Resources/wood4.jpg"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="1*"/>
+
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="12*"/>
-            <RowDefinition/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <!--Grid för tärningar och kasta knapp-->
         <Grid x:Name="DiceBoard" ShowGridLines="False" Grid.Column="1" Grid.Row="1">
@@ -122,7 +124,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
@@ -152,13 +154,13 @@
                     </Style.Triggers>
                 </Style>
             </Grid.Resources>
-            <Label Content="{Binding ActivePlayer.Firstname}" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Center" Margin="0,0,0,0" FontSize="35" >
+            <Label Content="{Binding ActivePlayer.Firstname}" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Center" Margin="0,0,0,0" FontSize="35" Foreground="AliceBlue">
                 <Label.Effect>
                     <DropShadowEffect Opacity="0.75" Direction="270" BlurRadius="7" ShadowDepth="3"/>
                 </Label.Effect>
             </Label>
 
-            <Button x:Name="btnDice1" Grid.Row="5" Grid.Column="1"  Command="{Binding SaveDiceCommand}" CommandParameter="1" RenderTransformOrigin="0.5,0.5" Click="BtnDice1_Click" BorderBrush="Transparent">
+            <Button x:Name="btnDice1" Grid.Row="6" Grid.Column="1"  Command="{Binding SaveDiceCommand}" CommandParameter="1" RenderTransformOrigin="0.5,0.5" Click="BtnDice1_Click" BorderBrush="Transparent">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
@@ -189,7 +191,7 @@
                 </Button.RenderTransform>
                 <Image Source="{Binding Dices[0].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
-            <Button x:Name="btnDice2" Grid.Row="5" Grid.Column="2" Command="{Binding SaveDiceCommand}" CommandParameter="2" RenderTransformOrigin="0.5,0.5" Click="BtnDice2_Click" BorderBrush="Transparent">
+            <Button x:Name="btnDice2" Grid.Row="6" Grid.Column="2" Command="{Binding SaveDiceCommand}" CommandParameter="2" RenderTransformOrigin="0.5,0.5" Click="BtnDice2_Click" BorderBrush="Transparent">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
@@ -219,7 +221,7 @@
                 </Button.RenderTransform>
                 <Image Source="{Binding Dices[1].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
-            <Button x:Name="btnDice3" Grid.Row="5" Grid.Column="3" Command="{Binding SaveDiceCommand}" CommandParameter="3" RenderTransformOrigin="0.5,0.5" Click="BtnDice3_Click" BorderBrush="Transparent">
+            <Button x:Name="btnDice3" Grid.Row="6" Grid.Column="3" Command="{Binding SaveDiceCommand}" CommandParameter="3" RenderTransformOrigin="0.5,0.5" Click="BtnDice3_Click" BorderBrush="Transparent">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
@@ -249,7 +251,7 @@
                 </Button.RenderTransform>
                 <Image Source="{Binding Dices[2].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
-            <Button x:Name="btnDice4" Grid.Row="5" Grid.Column="4" Command="{Binding SaveDiceCommand}" CommandParameter="4" RenderTransformOrigin="0.5,0.5" Click="BtnDice4_Click" BorderBrush="Transparent">
+            <Button x:Name="btnDice4" Grid.Row="6" Grid.Column="4" Command="{Binding SaveDiceCommand}" CommandParameter="4" RenderTransformOrigin="0.5,0.5" Click="BtnDice4_Click" BorderBrush="Transparent">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
@@ -281,7 +283,7 @@
                 
                 <Image Source="{Binding Dices[3].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
-            <Button x:Name="btnDice5" Grid.Row="5" Grid.Column="5" Command="{Binding SaveDiceCommand}" CommandParameter="5" RenderTransformOrigin="0.5,0.5" Click="BtnDice5_Click" BorderBrush="Transparent">
+            <Button x:Name="btnDice5" Grid.Row="6" Grid.Column="5" Command="{Binding SaveDiceCommand}" CommandParameter="5" RenderTransformOrigin="0.5,0.5" Click="BtnDice5_Click" BorderBrush="Transparent">
                 <Button.Style>
                     <Style TargetType="Button">
                         
@@ -312,9 +314,9 @@
                 </Button.RenderTransform>
                 <Image Source="{Binding Dices[4].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
-            <Button x:Name="Button" Command="{Binding RollDicesCommand}" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" Width="130" Content="Kasta" Click="Button_Click" Background="#4CC33434" BorderBrush="#4CFFFFFF" FontSize="35" FontFamily="Global Sans Serif"/>
-            <Button Style="{StaticResource TemplateButton}" x:Name="btnQuitGame" Command="{Binding QuitGameCommand}" Grid.Row="8" Grid.Column="6"  Content="Avsluta"/>
-            <Label Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="4" Content="{Binding ThrowsLeft}" HorizontalAlignment="Left"/>
+            <Button Style="{DynamicResource CategoryButton}" x:Name="Button" Command="{Binding RollDicesCommand}" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" Width="130" Height="45" Foreground="OrangeRed" Content="Kasta" Click="Button_Click" FontSize="28" FontFamily="Global Sans Serif"/>
+            <Label Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="4" Content="{Binding ThrowsLeft}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" Foreground="AntiqueWhite"/>
+            <Button Style="{StaticResource TemplateButton}" x:Name="btnQuitGame" Command="{Binding QuitGameCommand}" Grid.Row="8" Grid.Column="5" Grid.ColumnSpan="2" Content="Avsluta spel" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,20"/>
         </Grid>
 
 
@@ -329,230 +331,35 @@
             </ListView.View>
         </-->
 
-        <StackPanel Width="49" Margin="0,0,0,0" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right">
-            <Button Name="Empty" VerticalAlignment="Top" MinHeight="25" Background="Transparent" />
-            <Button Content="{Binding Path = Player.Ones}" Margin="0,5,0,0" Command="{Binding Ones}" CommandParameter="1" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_1">
-                <Button.Style>
-                    
-                    <Style TargetType="Button">
-                        <Style.Triggers>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="OverridesDefaultStyle" Value="True" />
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="Foreground" Value="Transparent"/>
-                                <Setter Property="BorderBrush" Value="Transparent"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-            <Button Content="{Binding Path = Player.Twos}" Margin="0,5,0,0" Command="{Binding Twos}" CommandParameter="2" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_2">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Style.Triggers>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="OverridesDefaultStyle" Value="True" />
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="Foreground" Value="Transparent"/>
-                                <Setter Property="BorderBrush" Value="Transparent"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-            <Button Content="{Binding Path = Player.Threes}" Margin="0,5,0,0" Command="{Binding Threes}" CommandParameter="3" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_3">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Style.Triggers>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="OverridesDefaultStyle" Value="True" />
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="Foreground" Value="Transparent"/>
-                                <Setter Property="BorderBrush" Value="Transparent"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-            <Button Content="{Binding Path = Player.Fours}" Margin="0,5,0,0" Command="{Binding Fours}" CommandParameter="4" VerticalAlignment="Top" MinHeight="25" HorizontalAlignment="Left" Width="49" Click="Button_Click_4">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Style.Triggers>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="OverridesDefaultStyle" Value="True" />
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="Foreground" Value="Transparent"/>
-                                <Setter Property="BorderBrush" Value="Transparent"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-            <Button Content="{Binding Path = Player.Fives}" Margin="0,5,0,0" Command="{Binding Fives}" CommandParameter="5" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_5">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Style.Triggers>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="OverridesDefaultStyle" Value="True" />
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="Foreground" Value="Transparent"/>
-                                <Setter Property="BorderBrush" Value="Transparent"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-            <Button Content="{Binding Path = Player.Sixes}" Margin="0,5,0,0" Command="{Binding Sixes}" CommandParameter="6" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_6">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Style.Triggers>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="OverridesDefaultStyle" Value="True" />
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="Foreground" Value="Transparent"/>
-                                <Setter Property="BorderBrush" Value="Transparent"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-            <Button Name="Empty1" VerticalAlignment="Top" Margin="0,5,0,0" MinHeight="25" Background="Transparent" BorderBrush="Transparent" />
-            <Button Name="Empty2" VerticalAlignment="Top" Margin="0,5,0,0" MinHeight="25" Background="Transparent" BorderBrush="Transparent" />
-            <Button Content="{Binding Path = Player.Pair}" Margin="0,5,0,0" Command="{Binding Pair}" CommandParameter="7" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_7">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Style.Triggers>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="OverridesDefaultStyle" Value="True" />
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="Foreground" Value="Transparent"/>
-                                <Setter Property="BorderBrush" Value="Transparent"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-            <Button Content="{Binding Path = Player.TwoPairs}" Margin="0,5,0,0" Command="{Binding TwoPair}" CommandParameter="8" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_8">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Style.Triggers>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="OverridesDefaultStyle" Value="True" />
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="Foreground" Value="Transparent"/>
-                                <Setter Property="BorderBrush" Value="Transparent"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-            <Button Content="{Binding Path = Player.ThreeOfaKind}" Margin="0,5,0,0" Command="{Binding Threeofakind}" CommandParameter="9" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_9">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Style.Triggers>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="OverridesDefaultStyle" Value="True" />
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="Foreground" Value="Transparent"/>
-                                <Setter Property="BorderBrush" Value="Transparent"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-            <Button Content="{Binding Path = Player.FourOfaKind}" Margin="0,5,0,0" Command="{Binding Fourofakind}" CommandParameter="10" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_10">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Style.Triggers>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="OverridesDefaultStyle" Value="True" />
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="Foreground" Value="Transparent"/>
-                                <Setter Property="BorderBrush" Value="Transparent"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-            <Button Content="{Binding Path = Player.SmalLadder}" Margin="0,5,0,0" Command="{Binding Smallstraight}" CommandParameter="11" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_11">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Style.Triggers>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="OverridesDefaultStyle" Value="True" />
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="Foreground" Value="Transparent"/>
-                                <Setter Property="BorderBrush" Value="Transparent"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-            <Button Content="{Binding Path = Player.LargeLadder}" Margin="0,5,0,0" Command="{Binding Largestraight}" CommandParameter="12" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_12">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Style.Triggers>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="OverridesDefaultStyle" Value="True" />
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="Foreground" Value="Transparent"/>
-                                <Setter Property="BorderBrush" Value="Transparent"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-            <Button Content="{Binding Path = Player.FullHouse}" Margin="0,5,0,0" Command="{Binding Fullhouse}" CommandParameter="13" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_13">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Style.Triggers>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="OverridesDefaultStyle" Value="True" />
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="Foreground" Value="Transparent"/>
-                                <Setter Property="BorderBrush" Value="Transparent"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-            <Button Content="{Binding Path = Player.Chance}" Margin="0,5,0,0" Command="{Binding Chance}" CommandParameter="14" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_14">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Style.Triggers>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="OverridesDefaultStyle" Value="True" />
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="Foreground" Value="Transparent"/>
-                                <Setter Property="BorderBrush" Value="Transparent"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-            <Button Content="{Binding Path = Player.Yatzy}" Margin="0,5,0,0" Command="{Binding Yatzy}" CommandParameter="15" VerticalAlignment="Top" MinHeight="25" Click="Button_Click_15">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Style.Triggers>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="OverridesDefaultStyle" Value="True" />
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="Foreground" Value="Transparent"/>
-                                <Setter Property="BorderBrush" Value="Transparent"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
+        <StackPanel Width="49" Margin="0,10,0,0" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" >
+            <Button Style="{DynamicResource EmptyCategoryButton}" Name="Empty" VerticalAlignment="Top" MinHeight="25" Background="Transparent" BorderBrush="Transparent" IsEnabled="False"/>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Ones}" Margin="0,5,5,0" Command="{Binding Ones}" CommandParameter="1" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_1"/>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Twos}" Margin="0,5,5,0" Command="{Binding Twos}" CommandParameter="2" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_2"/>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Threes}" Margin="0,5,5,0" Command="{Binding Threes}" CommandParameter="3" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_3"/>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Fours}" Margin="0,5,5,0" Command="{Binding Fours}" CommandParameter="4" VerticalAlignment="Top" MinHeight="40"  Click="Button_Click_4"/>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Fives}" Margin="0,5,5,0" Command="{Binding Fives}" CommandParameter="5" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_5"/>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Sixes}" Margin="0,5,5,0" Command="{Binding Sixes}" CommandParameter="6" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_6"/>
+            <Button Style="{DynamicResource EmptyCategoryButton}" Name="Empty1" VerticalAlignment="Top" Margin="0,5,5,0" MinHeight="40" Background="Transparent" BorderBrush="Transparent" IsEnabled="False"/>
+            <Button Style="{DynamicResource EmptyCategoryButton}" Name="Empty2" VerticalAlignment="Top" Margin="0,5,5,0" MinHeight="40" Background="Transparent" BorderBrush="Transparent" IsEnabled="False" />
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Pair}" Margin="0,5,5,0" Command="{Binding Pair}" CommandParameter="7" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_7"/>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.TwoPairs}" Margin="0,5,5,0" Command="{Binding TwoPair}" CommandParameter="8" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_8"/>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.ThreeOfaKind}" Margin="0,5,5,0" Command="{Binding Threeofakind}" CommandParameter="9" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_9"/>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.FourOfaKind}" Margin="0,5,5,0" Command="{Binding Fourofakind}" CommandParameter="10" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_10"/>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.SmalLadder}" Margin="0,5,5,0" Command="{Binding Smallstraight}" CommandParameter="11" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_11"/>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.LargeLadder}" Margin="0,5,5,0" Command="{Binding Largestraight}" CommandParameter="12" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_12"/>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.FullHouse}" Margin="0,5,5,0" Command="{Binding Fullhouse}" CommandParameter="13" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_13"/>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Chance}" Margin="0,5,5,0" Command="{Binding Chance}" CommandParameter="14" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_14"/>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Yatzy}" Margin="0,5,5,0" Command="{Binding Yatzy}" CommandParameter="15" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_15"/>
+
         </StackPanel>
 
         <Label x:Name="label" Grid.Row="0" Grid.Column="2" Content="{Binding Path = activePlayer.Firstname, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="22,20,0,0" VerticalAlignment="Top"/>
 
-        <DataGrid ItemsSource="{Binding Path=ActivePlayers}"  Grid.Column="2" Grid.Row="1" BorderThickness="2" BorderBrush="Black" FontSize="20" SelectionUnit="Cell"
-                  IsReadOnly="True" CanUserSortColumns="True" IsHitTestVisible="True" HorizontalAlignment="Left" VerticalAlignment="Top"
+        <DataGrid ItemsSource="{Binding Path=ActivePlayers}"  Grid.Column="2" Grid.Row="1" BorderThickness="2" BorderBrush="Black" FontSize="30" SelectionUnit="Cell"
+                  IsReadOnly="True" CanUserSortColumns="False" IsHitTestVisible="True" HorizontalAlignment="Left" VerticalAlignment="Top"
                   HorizontalGridLinesBrush="Black" VerticalGridLinesBrush="Black" MinRowHeight="80"  AutoGenerateColumns="False" CanUserAddRows="False"  HeadersVisibility="Column">
             <DataGrid.Resources>
-                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Blue"/>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="Background" Value="White"/>
                     <Setter Property="BorderBrush" Value="Black"/>
@@ -560,9 +367,24 @@
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Förnamn" Binding="{Binding Firstname}" />
-
-                <!--Knapp i datagrid men bindingen fungerar ej 
+                <DataGridTextColumn Header="Förnamn" Binding="{Binding Firstname}"  MinWidth="35" FontWeight="Bold" />
+                <!-- Knapp i cell istället för i header, Command-binding funkar men inte Content-binding -->
+                <DataGridTemplateColumn  Header="Ettor" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding Ones}"/>
+                                <Button Grid.Column="1" x:Name="btnOnes" Content="{Binding Path = Player.Ones}" Command="{Binding Path=DataContext.Ones, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid }}}" CommandParameter="1" />
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                <!--Knapp i datagrid, nu funkar commandbindingen men inte Content binding
                 <DataGridTextColumn  IsReadOnly="True" Binding="{Binding Ones}">
                     <DataGridTextColumn.Header>
                         <Grid Margin="0">
@@ -571,30 +393,30 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" Text="Ettor" />
-                            <Button Grid.Column="1" x:Name="btnOnes" Content="{Binding Path = Player.Ones}" Command="{Binding Ones}" CommandParameter="1" Width="40" Height="30" Margin="30,0,0,0"/>
+                            <Button Grid.Column="1" x:Name="btnOnes" Content="{Binding Player.Ones}" Command="{Binding Path=DataContext.Ones, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid }}}" CommandParameter="1" Width="40" Height="30" Margin="30,0,0,0"/>
                         </Grid>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
-             -->
+              -->
 
-                <DataGridTextColumn Header="Ettor" Binding="{Binding Ones}"/>
-                <DataGridTextColumn Header="Tvåor" Binding="{Binding Twos}"/>
-                <DataGridTextColumn Header="Treor" Binding="{Binding Threes}"/>
-                <DataGridTextColumn Header="Fyror" Binding="{Binding Fours}"/>
-                <DataGridTextColumn Header="Femmor" Binding="{Binding Fives}"/>
-                <DataGridTextColumn Header="Sexor" Binding="{Binding Sixes}"/>
-                <DataGridTextColumn Header="Summa" Binding="{Binding UpperScore}"/>
-                <DataGridTextColumn Header="Bonus" Binding="{Binding UpperBonus}"/>
-                <DataGridTextColumn Header="Par" Binding="{Binding Pair}"/>
-                <DataGridTextColumn Header="Två par" Binding="{Binding TwoPairs}"/>
-                <DataGridTextColumn Header="Tretal" Binding="{Binding ThreeOfaKind}"/>
-                <DataGridTextColumn Header="Fyrtal" Binding="{Binding FourOfaKind}"/>
-                <DataGridTextColumn Header="Liten stege" Binding="{Binding SmalLadder}"/>
-                <DataGridTextColumn Header="Stor stege" Binding="{Binding LargeLadder}"/>
-                <DataGridTextColumn Header="Kåk" Binding="{Binding FullHouse}"/>
-                <DataGridTextColumn Header="Chans" Binding="{Binding Chance}"/>
-                <DataGridTextColumn Header="Yatzy" Binding="{Binding Yatzy}"/>
-                <DataGridTextColumn Header="Total summa" Binding="{Binding TotalScore}"/>
+                <DataGridTextColumn Header="Ettor" Binding="{Binding Ones}" MinWidth="45"/>
+                <DataGridTextColumn Header="Tvåor" Binding="{Binding Twos}" MinWidth="45"/>
+                <DataGridTextColumn Header="Treor" Binding="{Binding Threes}" MinWidth="45"/>
+                <DataGridTextColumn Header="Fyror" Binding="{Binding Fours}" MinWidth="45"/>
+                <DataGridTextColumn Header="Femmor" Binding="{Binding Fives}" MinWidth="45"/>
+                <DataGridTextColumn Header="Sexor" Binding="{Binding Sixes}" MinWidth="45"/>
+                <DataGridTextColumn Header="Summa" Binding="{Binding UpperScore}" MinWidth="45"/>
+                <DataGridTextColumn Header="Bonus" Binding="{Binding UpperBonus}" MinWidth="45"/>
+                <DataGridTextColumn Header="Par" Binding="{Binding Pair}" MinWidth="45"/>
+                <DataGridTextColumn Header="Två par" Binding="{Binding TwoPairs}" MinWidth="45"/>
+                <DataGridTextColumn Header="Tretal" Binding="{Binding ThreeOfaKind}" MinWidth="45"/>
+                <DataGridTextColumn Header="Fyrtal" Binding="{Binding FourOfaKind}" MinWidth="45"/>
+                <DataGridTextColumn Header="Liten stege" Binding="{Binding SmalLadder}" MinWidth="45"/>
+                <DataGridTextColumn Header="Stor stege" Binding="{Binding LargeLadder}" MinWidth="45"/>
+                <DataGridTextColumn Header="Kåk" Binding="{Binding FullHouse}" MinWidth="45"/>
+                <DataGridTextColumn Header="Chans" Binding="{Binding Chance}" MinWidth="45"/>
+                <DataGridTextColumn Header="Yatzy" Binding="{Binding Yatzy}" MinWidth="45"/>
+                <DataGridTextColumn Header="Total summa" Binding="{Binding TotalScore}" MinWidth="45"/>
             </DataGrid.Columns>
 
             <!--Konverterar kolumnerna så de visas vertikalt istället för horisontellt-->
@@ -629,6 +451,7 @@
                 </Style>
             </DataGrid.CellStyle>
         </DataGrid>
+        
         <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7" Content="{Binding SelectedViewModel}"/>
     </Grid>
 </UserControl>
