@@ -252,6 +252,8 @@
     <Resource Include="Resources\alternativ.png" />
     <Resource Include="Resources\LEADERBOARD.png" />
     <EmbeddedResource Include="Resources\Sound\Flawless.wav" />
+    <Resource Include="Resources\PPM.png" />
+    <Resource Include="Resources\PPMHOVER.png" />
     <Content Include="Resources\Theme\Neon Sunset OC_1.mp4" />
   </ItemGroup>
   <ItemGroup />

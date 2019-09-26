@@ -34,7 +34,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter TargetName="border" Property="Background" Value="Transparent"/>                                
+                                <Setter TargetName="border" Property="Background" Value="Transparent"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -70,17 +70,45 @@
             </Setter>
         </Style>
 
+        <Style x:Key="PPM" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="MinHeight" Value="50"/>
+            <Setter Property="MinWidth" Value="50"/>
+            <Setter Property="FontStyle" Value="Normal"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Image Name="MouseOver" Source="/Resources/PPMHOVER.png"/>
+                            <Image Name="NotMouseOver" Source="/Resources/PPM.png"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Image.IsMouseOver" Value="true">
+                                <Setter TargetName="MouseOver" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="NotMouseOver" Property="Visibility" Value="Hidden"/>
+                            </Trigger>
+                            <Trigger Property="Image.IsMouseOver" Value="false">
+                                <Setter TargetName="MouseOver" Property="Visibility" Value="Hidden"/>
+                                <Setter TargetName="NotMouseOver" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </UserControl.Resources>
 
 
 
     <Viewbox Stretch="UniformToFill" >
 
-        <Grid Margin="0"  MaxHeight="1080" MinWidth="1920" >            
+        <Grid Margin="0"  MaxHeight="1080" MinWidth="1920" >
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="184"/>
+                <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -102,7 +130,7 @@
             </Grid.RowDefinitions>
 
 
-            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7">                
+            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7">
                 <Image Source="/Resources/wood4.jpg" Opacity="1" Stretch="UniformToFill"/>
             </StackPanel>
 
@@ -133,7 +161,7 @@
 
             <StackPanel Grid.Row="2" Grid.Column="3"  Grid.RowSpan="5" Margin="5" >
 
-                
+
                 <Button Style="{StaticResource MyButton}" Command="{Binding ToggleSound}">
                     <Label Content="Ljud" FontSize="45" Cursor="Hand" Margin="10" >
                         <Label.Style>
@@ -165,19 +193,8 @@
                     </Label.Style>
                 </Label>
 
-                <Button Style="{StaticResource MyButton}" Command="{Binding}">
-                    <Label Content="Photon Prism Mode" FontSize="45" Cursor="Hand" Margin="10" >
-                        <Label.Style>
-                            <Style>
-                                <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
-                                <Style.Triggers>
-                                    <Trigger Property="Label.IsMouseOver" Value="true">
-                                        <Setter Property="Label.Foreground" Value="#007EA7"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Label.Style>
-                    </Label>
+                <Button Style="{StaticResource PPM}" Command="{Binding}" Cursor="Hand"  HorizontalAlignment="Left" Height="59" Width="404">
+                    <Image Source="/Resources/PPM.png" Stretch="Uniform" Height="160" Width="441" />
                 </Button>
             </StackPanel>
 
