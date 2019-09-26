@@ -156,10 +156,10 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
@@ -203,7 +203,7 @@
             </StackPanel>
 
 
-            <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="4" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="4" HorizontalAlignment="Center" VerticalAlignment="Top" >
                 
                 <StackPanel Visibility="{Binding ShowLeaderBoard, Converter={StaticResource ToggleVisibility}}">
                     <Label Content="Bästa spelarna de senaste 7 dagarna (Klassisk)" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
@@ -382,7 +382,7 @@
             </StackPanel>
 
 
-            <StackPanel Grid.Row="1" Grid.Column="4">
+            <StackPanel Grid.Row="1" Grid.Column="4" Margin="0" MaxHeight="50" MaxWidth="50">
                 <Button Style="{StaticResource SwitchRight}" Command="{Binding ShowWinStreakLboard}" HorizontalAlignment="Left"
                         Visibility="{Binding ShowLeaderBoard, Converter={StaticResource ToggleVisibility}}" Cursor="Hand"/>
                 
@@ -397,7 +397,7 @@
             </StackPanel>
             
 
-            <StackPanel Grid.Row="1" Grid.Column="1">
+            <StackPanel Grid.Row="1" Grid.Column="1" Margin="0" MaxHeight="50" MaxWidth="50">
                 <Button Style="{StaticResource SwitchLeft}" Command="{Binding ShowGamesLboard}" HorizontalAlignment="Right"
                         Visibility="{Binding ShowLeaderBoard, Converter={StaticResource ToggleVisibility}}" Cursor="Hand"/>
                 
@@ -415,7 +415,7 @@
             <StackPanel Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="1">
                 <StackPanel Visibility="{Binding ShowLeaderBoard, Converter={StaticResource ToggleVisibility}}">
                     <Button Style="{StaticResource MyButton}" Command="{Binding ShowForcedCommand}" Cursor="Hand">
-                        <Label Content="Styrd Yatzy Leaderboard" FontStyle="Normal" FontSize="30">
+                        <Label Content="Visa Styrd Yatzy Leaderboard" FontStyle="Normal" FontSize="35">
                             <Label.Style>
                                 <Style>
                                 <Setter Property="Label.Foreground" Value="AntiqueWhite" />
@@ -433,7 +433,7 @@
 
                 <StackPanel Visibility="{Binding ShowForcedLeaderBoard, Converter={StaticResource ToggleVisibility}}">
                     <Button Style="{StaticResource MyButton}" Command="{Binding ShowLBoard}" Cursor="Hand">
-                        <Label Content="Klassisk Yatzy Leaderboard" FontStyle="Normal" FontSize="30">
+                        <Label Content="Visa Klassisk Yatzy Leaderboard" FontStyle="Normal" FontSize="35">
                             <Label.Style>
                                 <Style>
                                     <Setter Property="Label.Foreground" Value="AntiqueWhite" />

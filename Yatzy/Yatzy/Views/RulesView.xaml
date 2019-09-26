@@ -127,25 +127,24 @@
             </StackPanel>
 
 
-            <StackPanel Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="4">
+            <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" Grid.RowSpan="7" Margin="105">
                 
-                <TextBlock Foreground="Black" Background="AliceBlue" Width="700" Height="800" FontSize="16" >
-                    YATZY<LineBreak/> 
-                    En omgång Yatzy spelas av minst två och max 4 spelare. Spelaren kan välja  mellan klassisk <LineBreak/> och styrd Yatzy. Maximal speltid för en omgång är 2 timmar, därefter avbryts spelet automatiskt." 
-                    <LineBreak/>
-                    <LineBreak/>
+                <TextBlock Foreground="AliceBlue" Background="Transparent" Width="700" Height="800" FontSize="24" >
+                    <Run FontSize="35" Foreground="Goldenrod">Yatzy</Run><LineBreak/> 
+                    En omgång Yatzy spelas av minst två och max 4 spelare. Spelaren <LineBreak/> kan välja mellan klassisk och styrd Yatzy.Maximal speltid för en <LineBreak/> omgång är 2 timmar, därefter avbryts spelet automatiskt." 
+
                     <LineBreak/>
 
                     
-                     <LineBreak/><LineBreak/>KLASSISK
-                    <LineBreak/><LineBreak/><LineBreak/>
+                    <LineBreak/><LineBreak/><Run FontSize="35" Foreground="Goldenrod">KLASSISK YATZY</Run>
+                    <LineBreak/>
                     
-                    Varje gång en spelare står i tur har denne rätt till tre tärningskast, dock behöver inte alla <LineBreak/> kast utnyttjas. Spelaren väljer själv vilka tärningar som skall kastas om, och spelaren väljer
-                    <LineBreak/>på vilken rad som poängsumman ska införs i protokollet. Varje rad i protokollet motsvarar en regel <LineBreak/>som tärningarna måste uppfylla för att räknas. Till exempel på raden "femmor" får man endast 
-                    <LineBreak/>skriva in poängen från de tärningar som visar fem prickar.<LineBreak/> Om poängsumman för den övre delen blir 63 poäng eller högre utfaller en bonus på 50 poäng.
+                    Varje gång en spelare står i tur har denne rätt till tre <LineBreak/>tärningskast, dock behöver inte alla kast utnyttjas. Spelaren<LineBreak/> väljer själv vilka tärningar som skall kastas om, och spelaren <LineBreak/>väljer
+                    på vilken rad som poängsumman ska införs i protokollet. <LineBreak/>Varje rad i protokollet motsvarar en regel som tärningarna måste <LineBreak/>uppfylla för att räknas. Till exempel på raden "femmor" får man <LineBreak/>endast 
+                    skriva in poängen från de tärningar som visar fem prickar.<LineBreak/> Om poängsumman för den övre delen blir 63 poäng eller högre <LineBreak/>utfaller en bonus på 50 poäng.
                     
-                    <LineBreak/><LineBreak/>  STYRD
-                    <LineBreak/><LineBreak/><LineBreak/>
+                    <LineBreak/><LineBreak/><Run FontSize="35" Foreground="Goldenrod"> STYRD YATZY</Run>
+                    <LineBreak/><LineBreak/>
                     
                     Vid styrd Yatzy måste poängsumman föras in i protokollet uppifrån och ner, spelaren får alltså <LineBreak/> inte välja
                     rad själv. Eftersom detta är ett svårare sätt att spela Yatzy så är gränsen för bonus lägre.<LineBreak/> Det räcker med att få 42 poäng eller högre i den övre delen för att få en bonus på 50 poäng.
