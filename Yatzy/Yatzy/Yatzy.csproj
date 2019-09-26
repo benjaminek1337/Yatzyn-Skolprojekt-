@@ -251,6 +251,7 @@
     <EmbeddedResource Include="Resources\Sound\Main menu.wav" />
     <Resource Include="Resources\alternativ.png" />
     <Resource Include="Resources\LEADERBOARD.png" />
+    <EmbeddedResource Include="Resources\Sound\Flawless.wav" />
     <Content Include="Resources\Theme\Neon Sunset OC_1.mp4" />
   </ItemGroup>
   <ItemGroup />

@@ -469,7 +469,7 @@ namespace Yatzy.DBOps
                 conn.Close();
 
             }
-            catch (Exception)
+            catch (Exception err)
             {
 
                 transaction.Rollback();
