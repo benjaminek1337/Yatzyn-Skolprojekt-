@@ -38,8 +38,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
-        
+
 
     </UserControl.Resources>
 
@@ -94,7 +93,6 @@
                 <ListView x:Name="ListViewAdd" ItemsSource="{Binding AvailablePlayers, IsAsync=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedItem="{Binding AvailablePlayer}" 
                          Background="#1EDADADA" Foreground="AntiqueWhite" Width="500" Height="680" FontSize="24" BorderBrush="#7FFAEBD7" BorderThickness="3">
                     <ListBox.ItemContainerStyle>
-
                         <Style TargetType="ListBoxItem">
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
@@ -138,9 +136,7 @@
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="IsSelected" Value="True"/>
                                     <Setter Property="Cursor" Value="Hand"/>
-                                    <Setter Property="FontWeight" Value="Bold" />
                                     <Setter Property="Foreground" Value="#FFBD0000"/>
-
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
