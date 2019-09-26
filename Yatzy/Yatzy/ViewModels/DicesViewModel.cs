@@ -72,7 +72,7 @@ namespace Yatzy.Models
             return diceImages;
         }
 
-        private bool gameEnded = false;
+        private bool gameEnded;
         private int throwsLeft = 0;
         private int count = 0;
         private int rounds = 0;
@@ -181,6 +181,7 @@ namespace Yatzy.Models
 
             pgv = new PlayGameView(0);
             throwsLeft = 3;
+            gameEnded = false;
             SetThrowsLeft(throwsLeft);
 
             SaveDiceCommand = new RelayCommand(SaveDice, CanSaveDices);
@@ -782,7 +783,7 @@ namespace Yatzy.Models
             else
             {
                 if (gameEnded == false)
-                    dbOps.AbortGameTransaction(activePlayers[0].GameId);
+                    dbOps.AbortGameTransaction(ActivePlayers[0].GameId);
 
                 gameEngine.NullProps();
                 playerEngine.NullProps();
