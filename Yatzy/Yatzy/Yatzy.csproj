@@ -204,11 +204,6 @@
     <Resource Include="Resources\wood3.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\DiceThrow.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\wood4.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -245,7 +240,11 @@
     <Resource Include="Resources\YATZY.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Sound\DiceThrow.wav" />
+    <EmbeddedResource Include="Resources\Sound\Gamemusic.wav" />
+    <EmbeddedResource Include="Resources\Sound\Main menu.wav" />
     <Content Include="Resources\Theme\Neon Sunset OC_1.mp4" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

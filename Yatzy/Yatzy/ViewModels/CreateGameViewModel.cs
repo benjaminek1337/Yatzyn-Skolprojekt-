@@ -232,7 +232,7 @@ namespace Yatzy.ViewModels
         private void StartGame(object parameter)
         {
             
-            nav.EndMainMusic();
+            //nav.EndMainMusic();
             dbOps.StartGameTransaction(SelectedPlayers, gameType);
             PlayGameView dicesView = new PlayGameView();
             SelectedViewModel = new DicesViewModel(playerEngine);
