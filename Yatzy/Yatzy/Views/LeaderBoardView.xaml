@@ -79,6 +79,7 @@
                 </Setter.Value>                
             </Setter>
         </Style>
+       
 
         <Style x:Key="SwitchRight" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
@@ -107,6 +108,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
         
         <Style x:Key="SwitchLeft" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
@@ -145,21 +147,19 @@
     <Viewbox Stretch="UniformToFill" StretchDirection="Both">
 
         <Grid  Margin="0" MaxHeight="1080" MinWidth="1920" >
-            <Grid.Background>
-                <ImageBrush ImageSource="/REsources/wood4.jpg"/>
-            </Grid.Background>
+            
 
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition MinWidth="70"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
@@ -194,7 +194,7 @@
 
 
             <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2">
-                <Label Content="LEADERBOARD"  HorizontalAlignment="Center" FontSize="55" Foreground="DodgerBlue" />
+                <Image Source="/Resources/LEADERBOARD.png"  Margin="15" Height="75"/>
             </StackPanel>
 
 
@@ -203,11 +203,25 @@
             </StackPanel>
 
 
-            <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="4" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0">
+            <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="4" HorizontalAlignment="Center" VerticalAlignment="Top">
                 
                 <StackPanel Visibility="{Binding ShowLeaderBoard, Converter={StaticResource ToggleVisibility}}">
                     <Label Content="Bästa spelarna de senaste 7 dagarna (Klassisk)" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
-                    <ListView MaxWidth="600" Width="600"  ItemsSource="{Binding LeaderboardsevenDays}"  Background="Transparent" Foreground="LightGreen" BorderBrush="Transparent" FontSize="17" >
+                    <ListView MaxWidth="650" Width="650"  ItemsSource="{Binding LeaderboardsevenDays}"  Background="#19FFFFFF" Foreground="AntiqueWhite" FontSize="24" BorderBrush="#00000000">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListViewItem}">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="BorderBrush" Value="Black"/>                                        
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="true">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="BorderBrush" Value="Transparent"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListView.ItemContainerStyle>                        
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn  Header="Plats" Width="70" DisplayMemberBinding="{Binding }"/>
@@ -222,7 +236,21 @@
 
                 <StackPanel Visibility="{Binding ShowMostGames, Converter={StaticResource ToggleVisibility}}">
                     <Label Content="Mest spelade spel (Klassisk)" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
-                    <ListView  MaxWidth="600" Width="600"  ItemsSource="{Binding MostGames}"  Background="Transparent" Foreground="LightGreen" BorderBrush="Transparent" FontSize="17" >
+                    <ListView  MaxWidth="650" Width="650"  ItemsSource="{Binding MostGames}"  Background="#19FFFFFF" Foreground="AntiqueWhite" FontSize="24" BorderBrush="#00000000" >
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListViewItem}">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="BorderBrush" Value="Black"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="true">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="BorderBrush" Value="Transparent"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListView.ItemContainerStyle>
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn  Header="Plats" Width="70" DisplayMemberBinding="{Binding }"/>
@@ -237,7 +265,21 @@
 
                 <StackPanel Visibility="{Binding ShowWinStreak, Converter={StaticResource ToggleVisibility}}">
                     <Label Content="Mest vunna spel i rad " FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
-                    <ListView  MaxWidth="600" Width="600"  ItemsSource="{Binding MostVictoriesInaRow}"  Background="Transparent" Foreground="LightGreen" BorderBrush="Transparent" FontSize="17" >
+                    <ListView  MaxWidth="650" Width="650"  ItemsSource="{Binding MostVictoriesInaRow}"  Background="#19FFFFFF" Foreground="AntiqueWhite" FontSize="24" BorderBrush="#00000000" >
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListViewItem}">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="BorderBrush" Value="Black"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="true">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="BorderBrush" Value="Transparent"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListView.ItemContainerStyle>
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn  Header="Plats" Width="70" DisplayMemberBinding="{Binding }"/>
@@ -252,7 +294,21 @@
 
                 <StackPanel Visibility="{Binding ShowForcedLeaderBoard, Converter={StaticResource ToggleVisibility}}">
                     <Label Content="Bästa spelarna de senaste 7 dagarna (Styrd)" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
-                    <ListView MaxWidth="600" Width="600"  ItemsSource="{Binding LeaderboardsevenDaysForced}"  Background="Transparent" Foreground="LightGreen" BorderBrush="Transparent" FontSize="17" >
+                    <ListView  MaxWidth="650" Width="650" ItemsSource="{Binding LeaderboardsevenDaysForced}"  Background="#19FFFFFF" Foreground="AntiqueWhite" FontSize="24" BorderBrush="#00000000" >
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListViewItem}">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="BorderBrush" Value="Black"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="true">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="BorderBrush" Value="Transparent"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListView.ItemContainerStyle>
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn  Header="Plats" Width="70" DisplayMemberBinding="{Binding }"/>
@@ -267,7 +323,21 @@
 
                 <StackPanel Visibility="{Binding ShowForcedMostGames, Converter={StaticResource ToggleVisibility}}">
                     <Label Content="Mest spelade spel (Styrd)" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
-                    <ListView  MaxWidth="600" Width="600"  ItemsSource="{Binding MostGamesForced}"  Background="Transparent" Foreground="LightGreen" BorderBrush="Transparent" FontSize="17" >
+                    <ListView  MaxWidth="650" Width="650" ItemsSource="{Binding MostGamesForced}"  Background="#19FFFFFF" Foreground="AntiqueWhite" FontSize="24" BorderBrush="#00000000" >
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListViewItem}">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="BorderBrush" Value="Black"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="true">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="BorderBrush" Value="Transparent"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListView.ItemContainerStyle>
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn  Header="Plats" Width="70" DisplayMemberBinding="{Binding }"/>
@@ -282,7 +352,21 @@
 
                 <StackPanel Visibility="{Binding ShowWinStreakForced, Converter={StaticResource ToggleVisibility}}">
                     <Label Content="Mest vunna spel i rad " FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
-                    <ListView  MaxWidth="600" Width="600"  ItemsSource="{Binding MostVictoriesInaRow}"  Background="Transparent" Foreground="LightGreen" BorderBrush="Transparent" FontSize="17" >
+                    <ListView  MaxWidth="650" Width="650" ItemsSource="{Binding MostVictoriesInaRow}" Background="#19FFFFFF" Foreground="AntiqueWhite" FontSize="24" BorderBrush="#00000000" >
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListViewItem}">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="BorderBrush" Value="Black"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="true">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="BorderBrush" Value="Transparent"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListView.ItemContainerStyle>
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn  Header="Plats" Width="70" DisplayMemberBinding="{Binding }"/>
@@ -337,7 +421,7 @@
                                 <Setter Property="Label.Foreground" Value="AntiqueWhite" />
                                 <Style.Triggers>
                                     <Trigger Property="Label.IsMouseOver" Value="true">
-                                        <Setter Property="Label.Foreground" Value="#007EA7"/>
+                                            <Setter Property="Label.Foreground" Value="Goldenrod"/>
                                         
                                     </Trigger>
                                 </Style.Triggers>
@@ -355,7 +439,7 @@
                                     <Setter Property="Label.Foreground" Value="AntiqueWhite" />
                                     <Style.Triggers>
                                         <Trigger Property="Label.IsMouseOver" Value="true">
-                                            <Setter Property="Label.Foreground" Value="#007EA7"/>
+                                            <Setter Property="Label.Foreground" Value="Goldenrod"/>
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>

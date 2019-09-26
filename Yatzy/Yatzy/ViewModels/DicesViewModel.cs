@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Media;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using Yatzy.Commands;
@@ -21,6 +22,8 @@ namespace Yatzy.Models
         GameEngine gameEngine;
         DbOperations dbOps;
         PlayGameView pgv;
+        SoundPlayer sPlayer;
+        SoundPlayer sEffects;
         
         ObservableCollection<Dice> diceImages;
 
@@ -166,6 +169,7 @@ namespace Yatzy.Models
             Player = new Player();
             playerEngine = _playerEngine;
             dbOps = new DbOperations();
+            
             gameType = playerEngine.SetGameType();
             ActivePlayers = playerEngine.SetPlayers();
             ActivePlayer = playerEngine.SetActivePlayer();
@@ -234,6 +238,7 @@ namespace Yatzy.Models
             }
             throwsLeft--;
             SetThrowsLeft(throwsLeft);
+            DiceSound();
             count++;
             gameEngine.SetGameEngineDices(Dices);
             GetScoreCombinations();
@@ -335,6 +340,30 @@ namespace Yatzy.Models
             timer1.Stop();
         }
         #endregion
+
+        #region Metoder för ljud
+        private void StartGameMusic()
+        {
+            sPlayer = new SoundPlayer();
+            sPlayer.Stream = Properties.Resources.Gamemusic; ;
+            sPlayer.PlayLooping();
+
+
+        }
+
+        public void EndGameMusic()
+        {
+            sPlayer.Stop();
+        }
+
+        public void DiceSound()
+        {
+            sEffects = new SoundPlayer();
+            sEffects.Stream = Properties.Resources.DiceThrow;
+            sEffects.Play();
+        }
+        #endregion
+
 
         #region Metod för att välja en poängkategori och metod för att avgöra hur många rundor som är kvar.
 

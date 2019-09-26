@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Yatzy"
              StartupUri="MainWindow.xaml">
-    
+
     <Application.Resources>
+
 
         <Style TargetType="Button" x:Key="CategoryButton">
             <Style.Triggers>
@@ -19,7 +20,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid x:Name="grid">
-                            <Border x:Name="border" CornerRadius="8" BorderBrush="SlateGray" BorderThickness="4">
+                            <Border x:Name="border" CornerRadius="8" BorderBrush="#FFB90000" BorderThickness="4">
                                 <Border.Background>
                                     <RadialGradientBrush GradientOrigin="0.496,1.052">
                                         <RadialGradientBrush.RelativeTransform>
@@ -64,12 +65,15 @@
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter Property="Opacity" TargetName="grid" Value="0.25"/>
                             </Trigger>
-
+                            <Trigger Property="Content" Value="0">
+                                <Setter Property="Foreground" Value="DarkGray"/>
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="Foreground" Value="#FFB48510"/>
         </Style>
 
         <Style TargetType="Button" x:Key="EmptyCategoryButton">
@@ -111,6 +115,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style> -->
+
         
         <Style TargetType="{x:Type TextBox}">
             <Setter Property="Background" Value="AntiqueWhite" />
@@ -137,6 +142,8 @@
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Foreground" Value="AntiqueWhite"/>
             <Setter Property="Cursor" Value="Hand"/>
+            
+
 
             <Setter Property="Template">
                 <Setter.Value>

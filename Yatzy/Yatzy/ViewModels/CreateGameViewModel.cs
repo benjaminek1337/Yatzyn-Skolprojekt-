@@ -10,6 +10,7 @@ using Yatzy.GameEngine;
 using Yatzy.Models;
 using Yatzy.DBOps;
 using Yatzy.Views;
+using Yatzy.ViewModels;
 using System.Windows.Input;
 using System.Windows;
 
@@ -83,6 +84,7 @@ namespace Yatzy.ViewModels
 
         PlayerEngine playerEngine;        
         DbOperations dbOps;
+        NavigationViewModel nav;
 
         private int gameType = 0; //Denna ändras till 4 för klassisk eller 5 för styrd.
 
@@ -97,6 +99,7 @@ namespace Yatzy.ViewModels
             SelectedPlayers = new ObservableCollection<Player>();
             AvailablePlayer = new Player();
             AvailablePlayers = new ObservableCollection<Player>();
+            nav = new NavigationViewModel();
 
             ClassicGameCommand = new RelayCommand(ClassicGame, CanChooseClassicYatzy);
             StyrdGameCommand = new RelayCommand(StyrdGame, CanChooseStyrdYatzy);
@@ -228,7 +231,9 @@ namespace Yatzy.ViewModels
 
         private void StartGame(object parameter)
         {
-            //dbOps.StartGameTransaction(SelectedPlayers, gameType);
+            
+            //nav.EndMainMusic();
+            dbOps.StartGameTransaction(SelectedPlayers, gameType);
             PlayGameView dicesView = new PlayGameView();
             SelectedViewModel = new DicesViewModel(playerEngine);
             dicesView.DataContext = SelectedViewModel;
