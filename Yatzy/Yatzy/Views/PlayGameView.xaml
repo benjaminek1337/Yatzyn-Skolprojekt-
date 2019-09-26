@@ -154,7 +154,7 @@
                     </Style.Triggers>
                 </Style>
             </Grid.Resources>
-            <Label Content="{Binding ActivePlayer.Firstname}" Grid.Column="1" IsHitTestVisible="False" Grid.ColumnSpan="5" Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,100" FontSize="75" Foreground="AntiqueWhite">
+            <Label Content="{Binding ActivePlayer.Nickname}" Grid.Column="1" IsHitTestVisible="False" Grid.ColumnSpan="5" Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,100" FontSize="75" Foreground="AntiqueWhite">
                 <Label.Effect>
                     <DropShadowEffect Opacity="0.75" Direction="270" BlurRadius="7" ShadowDepth="3"/>
                 </Label.Effect>
@@ -164,7 +164,9 @@
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
-
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
                                 <Setter Property="OverridesDefaultStyle" Value="True" />
                                 <Setter Property="Background" Value="#00FFFFFF"/>
@@ -195,6 +197,9 @@
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
                                 <Setter Property="OverridesDefaultStyle" Value="True" />
                                 <Setter Property="Background" Value="#00FFFFFF"/>
@@ -225,6 +230,9 @@
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
                                 <Setter Property="OverridesDefaultStyle" Value="True" />
                                 <Setter Property="Background" Value="#00FFFFFF"/>
@@ -255,6 +263,9 @@
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
                                 <Setter Property="OverridesDefaultStyle" Value="True" />
                                 <Setter Property="Background" Value="#00FFFFFF"/>
@@ -288,6 +299,9 @@
                     <Style TargetType="Button">
 
                         <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
                                 <Setter Property="OverridesDefaultStyle" Value="True" />
                                 <Setter Property="Background" Value="#00FFFFFF"/>
@@ -333,7 +347,7 @@
             </ListView.View>
         </-->
 
-        <StackPanel Width="49" Margin="0,20,0,0" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" >
+        <StackPanel Width="59" Margin="0,20,0,0" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" >
             <Button Style="{DynamicResource EmptyCategoryButton}" Name="Empty" VerticalAlignment="Top" MinHeight="25" Background="Transparent" BorderBrush="Transparent" IsEnabled="False"/>
             <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Ones}" Margin="0,5,5,0" Command="{Binding Ones}" CommandParameter="1" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_1"/>
             <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Twos}" Margin="0,5,5,0" Command="{Binding Twos}" CommandParameter="2" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_2"/>
@@ -371,7 +385,7 @@
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Förnamn" Binding="{Binding Firstname}"  MinWidth="45" FontWeight="Bold" />
+                <DataGridTextColumn Header="Spelare" Binding="{Binding Nickname}"  MinWidth="45" FontWeight="Bold" />
                 <!-- Knapp i cell istället för i header, Command-binding funkar men inte Content-binding 
                 <DataGridTemplateColumn  Header="Ettor" IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>

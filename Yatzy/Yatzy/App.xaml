@@ -20,7 +20,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid x:Name="grid">
-                            <Border x:Name="border" CornerRadius="8" BorderBrush="#FFB90000" BorderThickness="4">
+                            <Border x:Name="border" CornerRadius="10,50,50,10" BorderBrush="#FFB90000" BorderThickness="4">
                                 <Border.Background>
                                     <RadialGradientBrush GradientOrigin="0.496,1.052">
                                         <RadialGradientBrush.RelativeTransform>
@@ -74,6 +74,7 @@
             </Setter>
             <Setter Property="FontSize" Value="22"/>
             <Setter Property="Foreground" Value="#FFB48510"/>
+            
         </Style>
 
         <Style TargetType="Button" x:Key="EmptyCategoryButton">

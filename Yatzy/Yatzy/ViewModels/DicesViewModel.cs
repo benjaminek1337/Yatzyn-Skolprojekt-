@@ -362,6 +362,12 @@ namespace Yatzy.Models
             sEffects.Stream = Properties.Resources.DiceThrow;
             sEffects.Play();
         }
+        public void VictorySound()
+        {
+            sEffects = new SoundPlayer();
+            sEffects.Stream = Properties.Resources.Flawless;
+            sEffects.Play();
+        }
         #endregion
 
 
@@ -798,7 +804,7 @@ namespace Yatzy.Models
             var orderByResult = from r in Results
                                 orderby r.TotalScore descending
                                 select r;
-
+            VictorySound();
             MessageBox.Show(orderByResult.First().Firstname.ToString() + " vann med " + orderByResult.First().TotalScore.ToString() + " poäng");
             dbOps.SaveGameTransaction(ActivePlayers);
 
