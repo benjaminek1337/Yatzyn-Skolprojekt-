@@ -102,7 +102,8 @@
 
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7">
+
+            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7">                
                 <Image Source="/Resources/wood4.jpg" Opacity="1" Stretch="UniformToFill"/>
             </StackPanel>
 
@@ -127,7 +128,7 @@
 
 
             <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Button Style="{StaticResource Back}" Command="{Binding MainMenuCommand}" MaxHeight="110" MaxWidth="110" MinHeight="80" MinWidth="80"/>
+                <Button Style="{StaticResource Back}" Command="{Binding MainMenuCommand}" MaxHeight="110" MaxWidth="110" MinHeight="80" MinWidth="80" Cursor="Hand"/>
             </StackPanel>
 
 
@@ -166,7 +167,7 @@
                 </Label>
 
                 <Button Style="{StaticResource MyButton}" Command="{Binding}">
-                    <Label Content="Lägg till spelare" FontSize="45" Cursor="Hand" Margin="10" >
+                    <Label Content="Photon Prism Mode" FontSize="45" Cursor="Hand" Margin="10" >
                         <Label.Style>
                             <Style>
                                 <Setter Property="Label.Foreground" Value="AntiqueWhite"/>

@@ -20,7 +20,7 @@
             <Setter Property="MinHeight" Value="50"/>
             <Setter Property="MinWidth" Value="50"/>
             <Setter Property="FontStyle" Value="Normal"/>
-            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Background" Value="Transparent"/>            
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -199,14 +199,14 @@
 
 
             <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Button Style="{StaticResource Back}" Command="{Binding BackCommand}" MaxHeight="110" MaxWidth="110" MinHeight="80" MinWidth="80"/>
+                <Button Style="{StaticResource Back}" Command="{Binding BackCommand}" MaxHeight="110" MaxWidth="110" MinHeight="80" MinWidth="80" Cursor="Hand"/>
             </StackPanel>
 
 
             <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="4" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0">
                 
                 <StackPanel Visibility="{Binding ShowLeaderBoard, Converter={StaticResource ToggleVisibility}}">
-                    <Label Content="Bästa spelarna de senaste 7 dagarna (Klassisk)" FontSize="30" HorizontalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
+                    <Label Content="Bästa spelarna de senaste 7 dagarna (Klassisk)" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
                     <ListView MaxWidth="600" Width="600"  ItemsSource="{Binding LeaderboardsevenDays}"  Background="Transparent" Foreground="LightGreen" BorderBrush="Transparent" FontSize="17" >
                         <ListView.View>
                             <GridView>
@@ -221,7 +221,7 @@
                 </StackPanel>
 
                 <StackPanel Visibility="{Binding ShowMostGames, Converter={StaticResource ToggleVisibility}}">
-                    <Label Content="Mest spelade spel (Klassisk)" FontSize="30" HorizontalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
+                    <Label Content="Mest spelade spel (Klassisk)" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
                     <ListView  MaxWidth="600" Width="600"  ItemsSource="{Binding MostGames}"  Background="Transparent" Foreground="LightGreen" BorderBrush="Transparent" FontSize="17" >
                         <ListView.View>
                             <GridView>
@@ -236,7 +236,7 @@
                 </StackPanel>
 
                 <StackPanel Visibility="{Binding ShowWinStreak, Converter={StaticResource ToggleVisibility}}">
-                    <Label Content="Mest vunna spel i rad " FontSize="30" HorizontalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
+                    <Label Content="Mest vunna spel i rad " FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
                     <ListView  MaxWidth="600" Width="600"  ItemsSource="{Binding MostVictoriesInaRow}"  Background="Transparent" Foreground="LightGreen" BorderBrush="Transparent" FontSize="17" >
                         <ListView.View>
                             <GridView>
@@ -251,7 +251,7 @@
                 </StackPanel>
 
                 <StackPanel Visibility="{Binding ShowForcedLeaderBoard, Converter={StaticResource ToggleVisibility}}">
-                    <Label Content="Bästa spelarna de senaste 7 dagarna (Styrd)" FontSize="30" HorizontalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
+                    <Label Content="Bästa spelarna de senaste 7 dagarna (Styrd)" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
                     <ListView MaxWidth="600" Width="600"  ItemsSource="{Binding LeaderboardsevenDaysForced}"  Background="Transparent" Foreground="LightGreen" BorderBrush="Transparent" FontSize="17" >
                         <ListView.View>
                             <GridView>
@@ -266,7 +266,7 @@
                 </StackPanel>
 
                 <StackPanel Visibility="{Binding ShowForcedMostGames, Converter={StaticResource ToggleVisibility}}">
-                    <Label Content="Mest spelade spel (Styrd)" FontSize="30" HorizontalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
+                    <Label Content="Mest spelade spel (Styrd)" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
                     <ListView  MaxWidth="600" Width="600"  ItemsSource="{Binding MostGamesForced}"  Background="Transparent" Foreground="LightGreen" BorderBrush="Transparent" FontSize="17" >
                         <ListView.View>
                             <GridView>
@@ -281,7 +281,7 @@
                 </StackPanel>
 
                 <StackPanel Visibility="{Binding ShowWinStreakForced, Converter={StaticResource ToggleVisibility}}">
-                    <Label Content="Mest vunna spel i rad " FontSize="30" HorizontalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
+                    <Label Content="Mest vunna spel i rad " FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DodgerBlue" BorderBrush="Black"/>
                     <ListView  MaxWidth="600" Width="600"  ItemsSource="{Binding MostVictoriesInaRow}"  Background="Transparent" Foreground="LightGreen" BorderBrush="Transparent" FontSize="17" >
                         <ListView.View>
                             <GridView>
@@ -300,44 +300,45 @@
 
             <StackPanel Grid.Row="1" Grid.Column="4">
                 <Button Style="{StaticResource SwitchRight}" Command="{Binding ShowWinStreakLboard}" HorizontalAlignment="Left"
-                        Visibility="{Binding ShowLeaderBoard, Converter={StaticResource ToggleVisibility}}"/>
+                        Visibility="{Binding ShowLeaderBoard, Converter={StaticResource ToggleVisibility}}" Cursor="Hand"/>
                 
                 <Button Style="{StaticResource SwitchRight}" Command="{Binding ShowLBoard}" HorizontalAlignment="Left"
-                        Visibility="{Binding ShowMostGames, Converter={StaticResource ToggleVisibility}}"/>
+                        Visibility="{Binding ShowMostGames, Converter={StaticResource ToggleVisibility}}" Cursor="Hand"/>
 
                 <Button Style="{StaticResource SwitchRight}" Command="{Binding ShowForcedWinStreak}" HorizontalAlignment="Left"
-                        Visibility="{Binding ShowForcedLeaderBoard, Converter={StaticResource ToggleVisibility}}"/>
+                        Visibility="{Binding ShowForcedLeaderBoard, Converter={StaticResource ToggleVisibility}}" Cursor="Hand"/>
 
                 <Button Style="{StaticResource SwitchRight}" Command="{Binding ShowForcedCommand}" HorizontalAlignment="Left"
-                        Visibility="{Binding ShowForcedMostGames, Converter={StaticResource ToggleVisibility}}"/>
+                        Visibility="{Binding ShowForcedMostGames, Converter={StaticResource ToggleVisibility}}" Cursor="Hand"/>
             </StackPanel>
             
 
             <StackPanel Grid.Row="1" Grid.Column="1">
                 <Button Style="{StaticResource SwitchLeft}" Command="{Binding ShowGamesLboard}" HorizontalAlignment="Right"
-                        Visibility="{Binding ShowLeaderBoard, Converter={StaticResource ToggleVisibility}}"/>
+                        Visibility="{Binding ShowLeaderBoard, Converter={StaticResource ToggleVisibility}}" Cursor="Hand"/>
                 
                 <Button Style="{StaticResource SwitchLeft}" Command="{Binding ShowLBoard}" HorizontalAlignment="Right" 
-                        Visibility="{Binding ShowWinStreak, Converter={StaticResource ToggleVisibility}}"/>
+                        Visibility="{Binding ShowWinStreak, Converter={StaticResource ToggleVisibility}}" Cursor="Hand"/>
 
                 <Button Style="{StaticResource SwitchLeft}" Command="{Binding ShowForcedGamesCommand}" HorizontalAlignment="Right"
-                        Visibility="{Binding ShowForcedLeaderBoard, Converter={StaticResource ToggleVisibility}}"/>
+                        Visibility="{Binding ShowForcedLeaderBoard, Converter={StaticResource ToggleVisibility}}" Cursor="Hand"/>
 
                 <Button Style="{StaticResource SwitchLeft}" Command="{Binding ShowForcedCommand}" HorizontalAlignment="Right" 
-                        Visibility="{Binding ShowWinStreakForced, Converter={StaticResource ToggleVisibility}}"/>
+                        Visibility="{Binding ShowWinStreakForced, Converter={StaticResource ToggleVisibility}}" Cursor="Hand" />
             </StackPanel>
 
 
-            <StackPanel Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2">
+            <StackPanel Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="1">
                 <StackPanel Visibility="{Binding ShowLeaderBoard, Converter={StaticResource ToggleVisibility}}">
-                    <Button Style="{StaticResource MyButton}" Command="{Binding ShowForcedCommand}">
-                        <Label Content="Styrd Yatzy Leaderboard" FontStyle="Normal" FontSize="18">
+                    <Button Style="{StaticResource MyButton}" Command="{Binding ShowForcedCommand}" Cursor="Hand">
+                        <Label Content="Styrd Yatzy Leaderboard" FontStyle="Normal" FontSize="30">
                             <Label.Style>
                                 <Style>
                                 <Setter Property="Label.Foreground" Value="AntiqueWhite" />
                                 <Style.Triggers>
                                     <Trigger Property="Label.IsMouseOver" Value="true">
-                                        <Setter Property="Label.Foreground" Value="IndianRed"/>
+                                        <Setter Property="Label.Foreground" Value="#007EA7"/>
+                                        
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -347,14 +348,14 @@
                 </StackPanel>
 
                 <StackPanel Visibility="{Binding ShowForcedLeaderBoard, Converter={StaticResource ToggleVisibility}}">
-                    <Button Style="{StaticResource MyButton}" Command="{Binding ShowLBoard}">
-                        <Label Content="Klassisk Yatzy Leaderboard" FontStyle="Normal" FontSize="18">
+                    <Button Style="{StaticResource MyButton}" Command="{Binding ShowLBoard}" Cursor="Hand">
+                        <Label Content="Klassisk Yatzy Leaderboard" FontStyle="Normal" FontSize="30">
                             <Label.Style>
                                 <Style>
                                     <Setter Property="Label.Foreground" Value="AntiqueWhite" />
                                     <Style.Triggers>
                                         <Trigger Property="Label.IsMouseOver" Value="true">
-                                            <Setter Property="Label.Foreground" Value="IndianRed"/>
+                                            <Setter Property="Label.Foreground" Value="#007EA7"/>
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>
