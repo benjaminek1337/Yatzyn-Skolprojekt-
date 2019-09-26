@@ -9,11 +9,15 @@ using System.Windows;
 using System.Windows.Media;
 using Yatzy.Commands;
 using Yatzy.Models;
+using System.Media;
 
 namespace Yatzy.ViewModels
 {
     class NavigationViewModel : INotifyPropertyChanged
     {
+
+        SoundPlayer sPlayer;
+
         #region Properties
 
         public ICommand SettingsCommand { get; set; }
@@ -40,9 +44,34 @@ namespace Yatzy.ViewModels
             LeaderBoardCommand = new RelayCommand(OpenLeaderBoard, CanExecuteMethod);
             RulesCommand = new RelayCommand(OpenRules, CanExecuteMethod);
             CreateGamesCommand = new RelayCommand(OpenGameMenu ,CanExecuteMethod);
+            //StartMainMusic();
+
         }
 
         #endregion
+
+        #region Ljud
+        private void StartMainMusic()
+        {
+            
+
+
+            //MediaPlayer mp = new MediaPlayer();
+            //mp.Open(new Uri("pack://application:,,,/otherAssemblyName;component/Sounds/Mainmenu.wav"));
+            //mp.Play();
+            sPlayer = new SoundPlayer();
+            sPlayer.Stream = Properties.Resources.Main_menu;
+            sPlayer.PlayLooping();
+        }
+
+        public void EndMainMusic ()
+        {
+            sPlayer.Stop();
+        }
+
+
+        #endregion
+
 
         #region Methods
 

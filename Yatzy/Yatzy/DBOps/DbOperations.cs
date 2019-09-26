@@ -346,9 +346,6 @@ namespace Yatzy.DBOps
                 string stmt2 = "SELECT game_id FROM game ORDER BY game_id DESC LIMIT 1";
                 string stmt3 = "INSERT INTO game_player (player_id, game_id) VALUES (@player_id , @game_id)";
 
-                //cmd.Parameters.AddWithValue("gametype", gameType);
-                //cmd.Parameters.AddWithValue("game_id", gameId);
-
                 conn = new NpgsqlConnection(Connect);
                 conn.Open();
                 transaction = conn.BeginTransaction();
@@ -386,7 +383,7 @@ namespace Yatzy.DBOps
                 conn.Close();
                 
             }
-            catch (Exception error)
+            catch (Exception)
             {
                 
                 transaction.Rollback();

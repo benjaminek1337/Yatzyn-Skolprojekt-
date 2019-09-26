@@ -13,6 +13,8 @@ using Yatzy.GameEngine;
 using System.Windows.Media.Imaging;
 using Yatzy.ViewModels;
 using Yatzy.Views;
+using System.Media;
+using System.Windows.Media;
 
 namespace Yatzy.Models
 {
@@ -24,6 +26,8 @@ namespace Yatzy.Models
         GameEngine gameEngine;
         DbOperations dbOps;
         PlayGameView pgv;
+        SoundPlayer sPlayer;
+        SoundPlayer sEffects;
 
         bool gameEnded = false;
         ObservableCollection<Dice> diceImages;
@@ -160,6 +164,7 @@ namespace Yatzy.Models
             Player = new Player();
             playerEngine = _playerEngine;
             dbOps = new DbOperations();
+            sPlayer = new SoundPlayer();
             gameType = playerEngine.SetGameType();
             ActivePlayers = playerEngine.SetPlayers();
             ActivePlayer = playerEngine.SetActivePlayer();
@@ -168,6 +173,8 @@ namespace Yatzy.Models
             DiceImages();
             SetWarningTimer();
             SetEndTimer();
+            //StartGameMusic();
+            
 
             pgv = new PlayGameView(0);
 
@@ -226,6 +233,7 @@ namespace Yatzy.Models
 
             }
             count++;
+            DiceSound();
             gameEngine.SetGameEngineDices(Dices);
             GetScoreCombinations();
         }
@@ -318,6 +326,31 @@ namespace Yatzy.Models
             MessageBox.Show("Nu har ni 15 minuter på er att avsluta spelet");
             timer1.Stop();
         }
+        #endregion
+
+        #region Metoder för ljud
+        private void StartGameMusic()
+        {
+            sPlayer = new SoundPlayer();
+            sPlayer.Stream = Properties.Resources.Gamemusic; ;
+            sPlayer.PlayLooping();
+
+
+        }
+
+        public void EndGameMusic()
+        {
+            sPlayer.Stop();
+        }
+
+        public void DiceSound()
+        {
+            sEffects = new SoundPlayer();
+            sPlayer.Stream = Properties.Resources.DiceThrow;
+            sEffects.Play();
+        }
+
+
         #endregion
 
 
@@ -733,7 +766,7 @@ namespace Yatzy.Models
             {
                 if (gameEnded == false)
                     dbOps.AbortGameTransaction(activePlayers[0].GameId);
-
+                EndGameMusic();
                 gameEngine.NullProps();
                 playerEngine.NullProps();
 
@@ -767,6 +800,7 @@ namespace Yatzy.Models
             }
             else
             {
+                EndGameMusic();
                 gameEngine.NullProps();
                 playerEngine.NullProps();
 
