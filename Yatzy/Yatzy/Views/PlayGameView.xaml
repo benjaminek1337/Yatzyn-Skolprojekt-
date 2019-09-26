@@ -6,7 +6,7 @@
              xmlns:Views="clr-namespace:Yatzy.Views"
              xmlns:ViewModels="clr-namespace:Yatzy.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="1000">
+             d:DesignHeight="1080" d:DesignWidth="1920">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type ViewModels:MainMenuViewModel}">
             <Views:MainMenuView Content="{Binding}"/>
@@ -104,9 +104,11 @@
             <ImageBrush ImageSource="/Resources/wood4.jpg"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="1*"/>
+
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -122,7 +124,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
@@ -314,6 +316,7 @@
             </Button>
             <Button Style="{DynamicResource CategoryButton}" x:Name="Button" Command="{Binding RollDicesCommand}" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" Width="130" Height="45" Foreground="OrangeRed" Content="Kasta" Click="Button_Click" FontSize="28" FontFamily="Global Sans Serif"/>
             <Label Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="4" Content="{Binding ThrowsLeft}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" Foreground="AntiqueWhite"/>
+            <Button Style="{StaticResource TemplateButton}" x:Name="btnQuitGame" Command="{Binding QuitGameCommand}" Grid.Row="8" Grid.Column="5" Grid.ColumnSpan="2" Content="Avsluta spel" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,20"/>
         </Grid>
 
 
@@ -352,8 +355,8 @@
 
         <Label x:Name="label" Grid.Row="0" Grid.Column="2" Content="{Binding Path = activePlayer.Firstname, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="22,20,0,0" VerticalAlignment="Top"/>
 
-        <DataGrid ItemsSource="{Binding Path=ActivePlayers}"  Grid.Column="2" Grid.Row="1" BorderThickness="2" BorderBrush="Black" FontSize="20" SelectionUnit="Cell"
-                  IsReadOnly="True" CanUserSortColumns="True" IsHitTestVisible="True" HorizontalAlignment="Left" VerticalAlignment="Top"
+        <DataGrid ItemsSource="{Binding Path=ActivePlayers}"  Grid.Column="2" Grid.Row="1" BorderThickness="2" BorderBrush="Black" FontSize="30" SelectionUnit="Cell"
+                  IsReadOnly="True" CanUserSortColumns="False" IsHitTestVisible="True" HorizontalAlignment="Left" VerticalAlignment="Top"
                   HorizontalGridLinesBrush="Black" VerticalGridLinesBrush="Black" MinRowHeight="80"  AutoGenerateColumns="False" CanUserAddRows="False"  HeadersVisibility="Column">
             <DataGrid.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Blue"/>
@@ -448,7 +451,7 @@
                 </Style>
             </DataGrid.CellStyle>
         </DataGrid>
-        <Button Style="{StaticResource TemplateButton}" x:Name="btnQuitGame" Command="{Binding QuitGameCommand}" Grid.Row="1" Grid.Column="2"  Content="Avsluta spel" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,20"/>
+        
         <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7" Content="{Binding SelectedViewModel}"/>
     </Grid>
 </UserControl>
