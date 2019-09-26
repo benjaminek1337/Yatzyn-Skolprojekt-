@@ -14,8 +14,8 @@
         <DataTemplate DataType="{x:Type ViewModels:CreateGameViewModel}">
             <Views:CreateGameView Content="Binding"/>
         </DataTemplate>
-       
-        
+
+
         <Storyboard x:Key="RollDice1">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.Target="{Binding ElementName=btnDice1}">
                 <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="380.75"/>
@@ -53,7 +53,7 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-360.38"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.Target="{Binding ElementName=btnDice5}">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-115.894"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-490.894"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="RollDice5_Copy1">
@@ -66,7 +66,7 @@
         </Storyboard>
         <Storyboard x:Key="RollDice1_Copy1">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.Target="{Binding ElementName=btnDice1}" >
-            <SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.Target="{Binding ElementName=btnDice1}">
                 <SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
@@ -154,7 +154,7 @@
                     </Style.Triggers>
                 </Style>
             </Grid.Resources>
-            <Label Content="{Binding ActivePlayer.Firstname}" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Center" Margin="0,0,0,0" FontSize="75" Foreground="AntiqueWhite">
+            <Label Content="{Binding ActivePlayer.Firstname}" Grid.Column="1" IsHitTestVisible="False" Grid.ColumnSpan="5" Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,100" FontSize="75" Foreground="AntiqueWhite">
                 <Label.Effect>
                     <DropShadowEffect Opacity="0.75" Direction="270" BlurRadius="7" ShadowDepth="3"/>
                 </Label.Effect>
@@ -173,7 +173,7 @@
                                 <Setter Property="Background" Value="#00FFFFFF"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Dices[0].IsDiceEnabled}" Value="false">
-                                <Setter Property="Background" Value="Gold"/>
+                                <Setter Property="Background" Value="Transparent"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Dices[0].IsDiceEnabled}" Value="true">
                                 <Setter Property="Background" Value="#00FFFFFF"/>
@@ -203,7 +203,7 @@
                                 <Setter Property="Background" Value="#00FFFFFF"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Dices[1].IsDiceEnabled}" Value="false">
-                                <Setter Property="Background" Value="Gold"/>
+                                <Setter Property="Background" Value="Transparent"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Dices[1].IsDiceEnabled}" Value="true">
                                 <Setter Property="Background" Value="#00FFFFFF"/>
@@ -233,7 +233,7 @@
                                 <Setter Property="Background" Value="#00FFFFFF"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Dices[2].IsDiceEnabled}" Value="false">
-                                <Setter Property="Background" Value="Gold"/>
+                                <Setter Property="Background" Value="Transparent"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Dices[2].IsDiceEnabled}" Value="true">
                                 <Setter Property="Background" Value="#00FFFFFF"/>
@@ -263,7 +263,7 @@
                                 <Setter Property="Background" Value="#00FFFFFF"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Dices[3].IsDiceEnabled}" Value="false">
-                                <Setter Property="Background" Value="Gold"/>
+                                <Setter Property="Background" Value="Transparent"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Dices[3].IsDiceEnabled}" Value="true">
                                 <Setter Property="Background" Value="#00FFFFFF"/>
@@ -280,13 +280,13 @@
                     </TransformGroup>
                 </Button.RenderTransform>
 
-                
+
                 <Image Source="{Binding Dices[3].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
             <Button x:Name="btnDice5" Grid.Row="6" Grid.Column="5" Command="{Binding SaveDiceCommand}" CommandParameter="5" RenderTransformOrigin="0.5,0.5" Click="BtnDice5_Click" BorderBrush="Transparent">
                 <Button.Style>
                     <Style TargetType="Button">
-                        
+
                         <Style.Triggers>
                             <Trigger Property="IsEnabled" Value="false">
                                 <Setter Property="OverridesDefaultStyle" Value="True" />
@@ -296,7 +296,7 @@
                                 <Setter Property="Background" Value="#00FFFFFF"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Dices[4].IsDiceEnabled}" Value="false">
-                                <Setter Property="Background" Value="Gold"/>
+                                <Setter Property="Background" Value="Transparent"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Dices[4].IsDiceEnabled}" Value="true">
                                 <Setter Property="Background" Value="#00FFFFFF"/>
@@ -314,10 +314,11 @@
                 </Button.RenderTransform>
                 <Image Source="{Binding Dices[4].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
-            
+
             <Button Style="{DynamicResource CategoryButton}" x:Name="Button" Command="{Binding RollDicesCommand}" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3" VerticalAlignment="Top" Margin="0,10,0,0" HorizontalAlignment="Center" Width="130" Height="45" Foreground="OrangeRed" Content="Kasta" Click="Button_Click" FontSize="28" FontFamily="Global Sans Serif"/>
             <Label Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="5" Content="{Binding ThrowsLeft}" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="25" Foreground="AntiqueWhite"/>
             <Button Style="{StaticResource TemplateButton}" x:Name="btnQuitGame" Command="{Binding QuitGameCommand}" Grid.Row="8" Grid.Column="5" Grid.ColumnSpan="2" Content="Avsluta spel" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,20"/>
+            <Label Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="5" IsHitTestVisible="False" Content="_________________________________________________________" Foreground="AntiqueWhite" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50" Height="83" Margin="0,10"/>
         </Grid>
 
 
@@ -365,7 +366,7 @@
                     <Setter Property="Background" Value="White"/>
                     <Setter Property="BorderBrush" Value="Black"/>
                     <Setter Property="BorderThickness" Value="1,1,2,1"/>
-                 
+
 
                 </Style>
             </DataGrid.Resources>
@@ -387,7 +388,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 -->
-                
+
                 <!--Knapp i datagrid, nu funkar commandbindingen men inte Content binding
                 <DataGridTextColumn  IsReadOnly="True" Binding="{Binding Ones}">
                     <DataGridTextColumn.Header>
