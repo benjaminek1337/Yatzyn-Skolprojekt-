@@ -371,7 +371,6 @@ namespace Yatzy.Models
         }
         #endregion
 
-
         #region Metod för att välja en poängkategori och metod för att avgöra hur många rundor som är kvar.
 
         private void ChooseScoreCategory(object parameter)
