@@ -31,5 +31,10 @@ namespace Yatzy.Views
             DataContext = createGameViewModel;
             InitializeComponent();
         }
+
+        private void ListViewAdd_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
