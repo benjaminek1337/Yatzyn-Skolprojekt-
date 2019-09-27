@@ -256,7 +256,9 @@
     <Resource Include="Resources\PPMHOVER.png" />
     <Resource Include="Resources\Images\RollingDice1.gif" />
     <Resource Include="Resources\Images\RollingDice2.gif" />
-    <Content Include="Resources\Theme\Neon Sunset OC_1.mp4" />
+    <EmbeddedResource Include="Resources\Theme\Neon Sunset OC_1.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
