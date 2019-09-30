@@ -67,7 +67,7 @@
 
         <Style x:Key="CustomHeader" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="OverridesDefaultStyle" Value="True"/>            
-            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Foreground" Value="BlanchedAlmond"/>
             <Setter Property="FontSize" Value="25"/>
             <Setter Property="FontStyle" Value="Normal"/>            
             <Setter Property="Template">
@@ -239,7 +239,7 @@
                                     <Trigger Property="IsMouseOver" Value="true">
                                         <Setter Property="Background" Value="AliceBlue"/>
                                         <Setter Property="Foreground" Value="Black"/>
-                                        <Setter Property="BorderBrush" Value="Black"/>                                        
+                                        <Setter Property="BorderBrush" Value="AliceBlue"/>                                        
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -269,7 +269,7 @@
                                     <Trigger Property="IsMouseOver" Value="true">
                                         <Setter Property="Background" Value="AliceBlue"/>
                                         <Setter Property="Foreground" Value="Black"/>
-                                        <Setter Property="BorderBrush" Value="Black"/>
+                                        <Setter Property="BorderBrush" Value="AliceBlue"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -299,7 +299,7 @@
                                     <Trigger Property="IsMouseOver" Value="true">
                                         <Setter Property="Background" Value="AliceBlue"/>
                                         <Setter Property="Foreground" Value="Black"/>
-                                        <Setter Property="BorderBrush" Value="Black"/>
+                                        <Setter Property="BorderBrush" Value="AliceBlue"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -329,7 +329,7 @@
                                     <Trigger Property="IsMouseOver" Value="true">
                                         <Setter Property="Background" Value="AliceBlue"/>
                                         <Setter Property="Foreground" Value="Black"/>
-                                        <Setter Property="BorderBrush" Value="Black"/>
+                                        <Setter Property="BorderBrush" Value="AliceBlue"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -359,7 +359,7 @@
                                     <Trigger Property="IsMouseOver" Value="true">
                                         <Setter Property="Background" Value="AliceBlue"/>
                                         <Setter Property="Foreground" Value="Black"/>
-                                        <Setter Property="BorderBrush" Value="Black"/>
+                                        <Setter Property="BorderBrush" Value="AliceBlue"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -389,7 +389,7 @@
                                     <Trigger Property="IsMouseOver" Value="true">
                                         <Setter Property="Background" Value="AliceBlue"/>
                                         <Setter Property="Foreground" Value="Black"/>
-                                        <Setter Property="BorderBrush" Value="Black"/>
+                                        <Setter Property="BorderBrush" Value="AliceBlue"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
