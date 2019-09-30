@@ -138,6 +138,26 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
+
+        <Style x:Key="Underlined" TargetType="TextBlock">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="TextBlock.TextDecorations" Value="Underline" />
+                    <Setter Property="TextBlock.Effect">
+                        <Setter.Value>
+                            <DropShadowEffect
+                                Color="Black"
+                                ShadowDepth="4"
+                                Opacity="0.7"
+                                BlurRadius="4"
+                                Direction="330"
+                                />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
         <BooleanToVisibilityConverter x:Key="ToggleVisibility"/>
 
@@ -422,14 +442,16 @@
             <StackPanel Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="1">
                 <StackPanel Visibility="{Binding ShowLeaderBoard, Converter={StaticResource ToggleVisibility}}"  Margin="50">
                     <Button Style="{StaticResource MyButton}" Command="{Binding ShowForcedCommand}" Cursor="Hand">
-                        <Label Content="Visa Styrd Yatzy Topplista" FontStyle="Normal" FontSize="30">
+                        <Label  FontStyle="Normal" FontSize="30">
+                            <TextBlock Style="{StaticResource Underlined}">
+                                Visa Styrd Yatzy Topplista
+                            </TextBlock>
                             <Label.Style>
                                 <Style>
                                 <Setter Property="Label.Foreground" Value="AntiqueWhite" />
                                 <Style.Triggers>
                                     <Trigger Property="Label.IsMouseOver" Value="true">
-                                            <Setter Property="Label.Foreground" Value="Goldenrod"/>
-                                        
+                                        <Setter Property="Label.Foreground" Value="Goldenrod"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -440,7 +462,10 @@
 
                 <StackPanel Visibility="{Binding ShowForcedLeaderBoard, Converter={StaticResource ToggleVisibility}}" Margin="50">
                     <Button Style="{StaticResource MyButton}" Command="{Binding ShowLBoard}" Cursor="Hand">
-                        <Label Content="Visa Klassisk Yatzy Topplista" FontStyle="Normal" FontSize="30">
+                        <Label FontStyle="Normal" FontSize="30">
+                            <TextBlock Style="{StaticResource Underlined}">
+                                Visa Klassisk Yatzy Topplista
+                            </TextBlock>
                             <Label.Style>
                                 <Style>
                                     <Setter Property="Label.Foreground" Value="AntiqueWhite" />
