@@ -129,7 +129,7 @@
 
             <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" Grid.RowSpan="7" Margin="105">
                 
-                <TextBlock Foreground="AliceBlue" Background="Transparent" Width="700" Height="800" FontSize="24" >
+                <TextBlock Foreground="AliceBlue" Background="Transparent" Width="700" Height="850" FontSize="24" >
                     <Run FontSize="35" Foreground="Goldenrod">Yatzy</Run><LineBreak/> 
                     En omgång Yatzy spelas av minst två och max 4 spelare. Spelaren <LineBreak/> kan välja mellan klassisk och styrd Yatzy.Maximal speltid för en <LineBreak/> omgång är 2 timmar, därefter avbryts spelet automatiskt." 
 
@@ -147,7 +147,7 @@
                     <LineBreak/><LineBreak/>
                     
                     Vid styrd Yatzy måste poängsumman föras in i protokollet uppifrån och ner, spelaren får alltså <LineBreak/> inte välja
-                    rad själv. Eftersom detta är ett svårare sätt att spela Yatzy så är gränsen för bonus lägre.<LineBreak/> Det räcker med att få 42 poäng eller högre i den övre delen för att få en bonus på 50 poäng.
+                    rad själv. Eftersom detta är ett svårare sätt att spela<LineBreak/> Yatzy så är gränsen för bonus lägre.<LineBreak/> Det räcker med att få 42 poäng eller högre i den övre delen för att<LineBreak/> få en bonus på 50 poäng.
                 </TextBlock>
             </StackPanel>
 
