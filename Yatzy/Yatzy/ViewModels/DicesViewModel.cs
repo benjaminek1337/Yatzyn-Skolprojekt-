@@ -79,6 +79,7 @@ namespace Yatzy.Models
         private int gameType = 0;
         System.Timers.Timer timer1;
         System.Timers.Timer timer2;
+        System.Timers.Timer rollDiceTimer;
 
         #endregion
 
@@ -102,6 +103,7 @@ namespace Yatzy.Models
         public RelayCommand Chance { get; set; }
         public RelayCommand Yatzy { get; set; }
         public RelayCommand QuitGameCommand { get; set; }
+        public RelayCommand TimerRollDicesCommand { get; set; }
 
 
         private ObservableCollection<Dice> dices;
@@ -185,7 +187,8 @@ namespace Yatzy.Models
             SetThrowsLeft(throwsLeft);
 
             SaveDiceCommand = new RelayCommand(SaveDice, CanSaveDices);
-            RollDicesCommand = new RelayCommand(RollDices, IsTriesEnabled);
+            //RollDicesCommand = new RelayCommand(RollDices, IsTriesEnabled);
+            TimerRollDicesCommand = new RelayCommand(SetDiceTimer, IsTriesEnabled);
             Ones = new RelayCommand(ChooseScoreCategory, IsOnesEnabled);
             Twos = new RelayCommand(ChooseScoreCategory, IsTwosEnabled);
             Threes = new RelayCommand(ChooseScoreCategory, IsThreesEnabled);
@@ -223,7 +226,7 @@ namespace Yatzy.Models
             }
         }
 
-        private void RollDices(object parameter)
+        private void RollDices()
         {
             Random random = new Random();
 
@@ -234,13 +237,13 @@ namespace Yatzy.Models
                     int rand = random.Next(1, 7);
                     Dices[i].DiceValue = rand;
                     Dices[i].DiceImage = diceImages[rand - 1].DiceImage;
+                    Dices[i].DiceHasValue = true;
                 }
 
             }
             throwsLeft--;
             SetThrowsLeft(throwsLeft);
             DiceSound();
-            count++;
             gameEngine.SetGameEngineDices(Dices);
             GetScoreCombinations();
         }
@@ -294,6 +297,7 @@ namespace Yatzy.Models
                 Dices[i].DiceValue = 0;
                 Dices[i].IsDiceEnabled = true;
                 Dices[i].DiceImage = null;
+                Dices[i].DiceHasValue = false;
             }
             throwsLeft = 3;
             SetThrowsLeft(throwsLeft);
@@ -309,6 +313,32 @@ namespace Yatzy.Models
         #endregion
 
         #region Metoder gällande tidtagning
+
+        private void SetDiceTimer(object parameter)
+        {
+            for (int i = 0; i < Dices.Count; i++)
+            {
+                if (Dices[i].IsDiceEnabled)
+                {
+                    Dices[i].DiceValue = 0;
+                    Dices[i].DiceHasValue = false;
+                    Dices[i].DiceImage = null;
+                }
+            }
+
+            rollDiceTimer = new System.Timers.Timer(200);
+            rollDiceTimer.Elapsed += DiceTimerElapsed;
+            rollDiceTimer.Enabled = true;
+
+
+            count++;
+        }
+
+        private void DiceTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            rollDiceTimer.Stop();         
+            RollDices();
+        }
 
         private void SetWarningTimer()
         {

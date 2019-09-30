@@ -165,9 +165,10 @@
                 </Label.Effect>
             </Label>
 
-            
-            
+
+
             <Button x:Name="btnDice1" Grid.Row="6" Grid.Column="1"  Command="{Binding SaveDiceCommand}" CommandParameter="1" RenderTransformOrigin="0.5,0.5" Click="BtnDice1_Click" BorderBrush="Transparent">
+
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="OverridesDefaultStyle" Value="True"/>
@@ -188,6 +189,14 @@
                                             <Setter TargetName="RollingDice" Property="Visibility" Value="Hidden"/>
                                             <Setter TargetName="ValueDice" Property="Visibility" Value="Visible"/>
                                         </Trigger>
+                                        <DataTrigger Binding="{Binding Dices[0].DiceHasValue}" Value="false">
+                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Visible"/>
+                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Hidden"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Dices[0].DiceHasValue}" Value="true">
+                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Hidden"/>
+                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
                             </Setter.Value>
@@ -230,6 +239,14 @@
                                             <Setter TargetName="RollingDice" Property="Visibility" Value="Hidden"/>
                                             <Setter TargetName="ValueDice" Property="Visibility" Value="Visible"/>
                                         </Trigger>
+                                        <DataTrigger Binding="{Binding Dices[1].DiceHasValue}" Value="false">
+                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Visible"/>
+                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Hidden"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Dices[1].DiceHasValue}" Value="true">
+                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Hidden"/>
+                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
                             </Setter.Value>
@@ -272,6 +289,14 @@
                                             <Setter TargetName="RollingDice" Property="Visibility" Value="Hidden"/>
                                             <Setter TargetName="ValueDice" Property="Visibility" Value="Visible"/>
                                         </Trigger>
+                                        <DataTrigger Binding="{Binding Dices[2].DiceHasValue}" Value="false">
+                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Visible"/>
+                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Hidden"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Dices[2].DiceHasValue}" Value="true">
+                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Hidden"/>
+                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
                             </Setter.Value>
@@ -313,6 +338,14 @@
                                             <Setter TargetName="RollingDice" Property="Visibility" Value="Hidden"/>
                                             <Setter TargetName="ValueDice" Property="Visibility" Value="Visible"/>
                                         </Trigger>
+                                        <DataTrigger Binding="{Binding Dices[3].DiceHasValue}" Value="false">
+                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Visible"/>
+                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Hidden"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Dices[3].DiceHasValue}" Value="true">
+                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Hidden"/>
+                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
                             </Setter.Value>
@@ -354,6 +387,14 @@
                                             <Setter TargetName="RollingDice" Property="Visibility" Value="Hidden"/>
                                             <Setter TargetName="ValueDice" Property="Visibility" Value="Visible"/>
                                         </Trigger>
+                                        <DataTrigger Binding="{Binding Dices[4].DiceHasValue}" Value="false">
+                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Visible"/>
+                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Hidden"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Dices[4].DiceHasValue}" Value="true">
+                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Hidden"/>
+                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
                             </Setter.Value>
@@ -375,19 +416,7 @@
                 </Button.RenderTransform>
             </Button>
 
-            <Button Style="{DynamicResource ThrowButton}" x:Name="Button" Command="{Binding RollDicesCommand}" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3" VerticalAlignment="Top" Margin="0,10,0,0" HorizontalAlignment="Center" Width="130" Height="45" Foreground="OrangeRed" Content="Kasta" Click="Button_Click" FontSize="28" FontFamily="Global Sans Serif">
-                <!--Button.Triggers>
-                    <EventTrigger RoutedEvent="PreviewMouseLeftButtonDown">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation x:Name="RollingDice" Storyboard.Target="{Binding ElementName=btnDice1}"
-                                                 Storyboard.TargetProperty="Background" To=""
-                                                 Duration="0:0:0.2"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                </-->
-            </Button>
+            <Button Style="{DynamicResource ThrowButton}" x:Name="Button" Command="{Binding TimerRollDicesCommand}" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3" VerticalAlignment="Top" Margin="0,10,0,0" HorizontalAlignment="Center" Width="130" Height="45" Foreground="OrangeRed" Content="Kasta" Click="Button_Click" FontSize="28" FontFamily="Global Sans Serif"/>
             <Label Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="5" Content="{Binding ThrowsLeft}" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="25" Foreground="AntiqueWhite"/>
            
             <Label Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="5" IsHitTestVisible="False" Content="_________________________________________________________" Foreground="AntiqueWhite" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50" Height="83" Margin="0,10"/>
