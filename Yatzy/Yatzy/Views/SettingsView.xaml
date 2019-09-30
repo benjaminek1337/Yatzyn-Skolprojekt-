@@ -98,6 +98,9 @@
             </Setter>
         </Style>
 
+        <BooleanToVisibilityConverter x:Key="ToggleVisibility"/>
+
+
     </UserControl.Resources>
 
 
@@ -131,6 +134,7 @@
 
 
             <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7">
+                <MediaElement LoadedBehavior="Play" UnloadedBehavior="Play" Name="Test" Source="/Yatzy;component/Resources/Theme/Neon Sunset OC_1.mp4"/>
                 <Image Source="/Resources/wood4.jpg" Opacity="1" Stretch="UniformToFill"/>
             </StackPanel>
 
@@ -193,8 +197,8 @@
                     </Label.Style>
                 </Label>
 
-                <Button Style="{StaticResource PPM}" Command="{Binding}" Cursor="Hand"  HorizontalAlignment="Left" Height="59" Width="404">
-                    <Image Source="/Resources/PPM.png" Stretch="Uniform" Height="160" Width="441" />
+                <Button Style="{StaticResource PPM}" Command="{Binding}" Cursor="Hand"  HorizontalAlignment="Left" Height="59" Width="404"  Margin="15">
+                    <Image Source="/Resources/PPM.png" Stretch="Uniform" Height="160" Width="441"/>
                 </Button>
             </StackPanel>
 
