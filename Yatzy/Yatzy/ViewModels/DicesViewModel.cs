@@ -77,8 +77,8 @@ namespace Yatzy.Models
         private int count = 0;
         private int rounds = 0;
         private int gameType = 0;
-        System.Timers.Timer timer1;
-        System.Timers.Timer timer2;
+        System.Timers.Timer warningTimer;
+        System.Timers.Timer endTimer;
 
         #endregion
 
@@ -312,21 +312,21 @@ namespace Yatzy.Models
 
         private void SetWarningTimer()
         {
-            timer1 = new System.Timers.Timer(6300000);
-            timer1.Elapsed += Timer1_Elapsed;
-            timer1.Enabled = true;
+            warningTimer = new System.Timers.Timer(6300000);
+            warningTimer.Elapsed += Timer1_Elapsed;
+            warningTimer.Enabled = true;
         }
 
         private void SetEndTimer()
         {
-            timer2 = new System.Timers.Timer(7200000);
-            timer2.Elapsed += Timer2_Elapsed;
-            timer2.Enabled = true;
+            endTimer = new System.Timers.Timer(7200000);
+            endTimer.Elapsed += Timer2_Elapsed;
+            endTimer.Enabled = true;
         }
 
         private void Timer2_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            timer2.Stop();
+            endTimer.Stop();
             dbOps.AbortGameTransaction(activePlayers[0].GameId);
 
             MessageBox.Show("Tiden har gått ut, spelet avslutas.");
@@ -338,7 +338,7 @@ namespace Yatzy.Models
         private void Timer1_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             MessageBox.Show("Nu har ni 15 minuter på er att avsluta spelet");
-            timer1.Stop();
+            warningTimer.Stop();
         }
         #endregion
 
