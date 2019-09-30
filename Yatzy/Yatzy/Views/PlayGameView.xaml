@@ -5,7 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:Views="clr-namespace:Yatzy.Views"
              xmlns:ViewModels="clr-namespace:Yatzy.ViewModels"
-             mc:Ignorable="d" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
+    mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type ViewModels:MainMenuViewModel}">
@@ -15,11 +17,13 @@
             <Views:CreateGameView Content="Binding"/>
         </DataTemplate>
 
+        <Image x:Key="RollingDice" gif:ImageBehavior.AnimatedSource="/Resources/Images/RollingDiceGif.gif" gif:ImageBehavior.RepeatBehavior="Forever"/>
 
         <Storyboard x:Key="RollDice1">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.Target="{Binding ElementName=btnDice1}">
                 <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="380.75"/>
             </DoubleAnimationUsingKeyFrames>
+
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.Target="{Binding ElementName=btnDice1}">
                 <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-202.141"/>
             </DoubleAnimationUsingKeyFrames>
@@ -100,6 +104,8 @@
 
 
     <Grid ShowGridLines="False">
+
+        
         <Grid.Background>
             <ImageBrush ImageSource="/Resources/wood4.jpg"/>
         </Grid.Background>
@@ -160,10 +166,13 @@
                 </Label.Effect>
             </Label>
 
+            
+            
             <Button x:Name="btnDice1" Grid.Row="6" Grid.Column="1"  Command="{Binding SaveDiceCommand}" CommandParameter="1" RenderTransformOrigin="0.5,0.5" Click="BtnDice1_Click" BorderBrush="Transparent">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
+                            
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Cursor" Value="Hand"/>
                             </Trigger>
