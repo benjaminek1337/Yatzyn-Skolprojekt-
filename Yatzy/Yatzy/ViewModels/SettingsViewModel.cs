@@ -7,9 +7,6 @@ using System.Threading.Tasks;
 using System.Xaml;
 using System.Windows.Media;
 using System.Windows;
-using System.Windows.Input;
-using Yatzy.Commands;
-using System.Windows.Controls;
 
 namespace Yatzy.ViewModels
 {
@@ -20,20 +17,12 @@ namespace Yatzy.ViewModels
         public MediaPlayer mediaPlayer { get; set; }
 
 
-        public ICommand ShowPPMCommand { get; set; }
-        private bool _showppm;
-        public bool ShowPPM
-        {
-            get { return _showppm; }
-            set { _showppm = value; OnPropertyChanged("ShowPPM"); }
-        }
 
         #endregion
 
         public SettingsViewModel()
         {
-            ShowPPMCommand = new RelayCommand(TogglePPM, CanExecuteMethod);
-            ShowPPM = false;
+            
         }
         #region Methods
         public void ToggleSound()
@@ -41,14 +30,9 @@ namespace Yatzy.ViewModels
            
         }
 
-        public void TogglePPM(object paramater)
-        {
-            ShowPPM = true;
-        }
+        public void ToggleImage(object paramater)
+        {            
 
-        private bool CanExecuteMethod(object parameter)
-        {
-            return true;
         }
 
         #endregion
