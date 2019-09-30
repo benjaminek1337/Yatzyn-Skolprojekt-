@@ -17,8 +17,6 @@
             <Views:CreateGameView Content="Binding"/>
         </DataTemplate>
 
-        <Image x:Key="RollingDice" gif:ImageBehavior.AnimatedSource="/Resources/Images/RollingDiceGif.gif" gif:ImageBehavior.RepeatBehavior="Forever"/>
-
         <Storyboard x:Key="RollDice1">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.Target="{Binding ElementName=btnDice1}">
                 <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="380.75"/>
@@ -181,14 +179,6 @@
                                         <Image Name="ValueDice" Source="{Binding Dices[0].DiceImage, UpdateSourceTrigger=PropertyChanged}"/>
                                     </Grid>
                                     <ControlTemplate.Triggers>
-                                        <Trigger Property="IsEnabled" Value="false">
-                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Visible"/>
-                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Hidden"/>
-                                        </Trigger>
-                                        <Trigger Property="IsEnabled" Value="true">
-                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Hidden"/>
-                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Visible"/>
-                                        </Trigger>
                                         <DataTrigger Binding="{Binding Dices[0].DiceHasValue}" Value="false">
                                             <Setter TargetName="RollingDice" Property="Visibility" Value="Visible"/>
                                             <Setter TargetName="ValueDice" Property="Visibility" Value="Hidden"/>
@@ -204,6 +194,7 @@
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="IsEnabled" Value="True"/>
                             </Trigger>
                         </Style.Triggers>
                     </Style>
@@ -216,7 +207,6 @@
                         <TranslateTransform/>
                     </TransformGroup>
                 </Button.RenderTransform>
-                <Image Source="{Binding Dices[0].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
             <Button x:Name="btnDice2" Grid.Row="6" Grid.Column="2" Command="{Binding SaveDiceCommand}" CommandParameter="2" RenderTransformOrigin="0.5,0.5" Click="BtnDice2_Click" BorderBrush="Transparent">
                 <Button.Style>
@@ -231,14 +221,6 @@
                                         <Image Name="ValueDice" Source="{Binding Dices[1].DiceImage, UpdateSourceTrigger=PropertyChanged}"/>
                                     </Grid>
                                     <ControlTemplate.Triggers>
-                                        <Trigger Property="IsEnabled" Value="false">
-                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Visible"/>
-                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Hidden"/>
-                                        </Trigger>
-                                        <Trigger Property="IsEnabled" Value="true">
-                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Hidden"/>
-                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Visible"/>
-                                        </Trigger>
                                         <DataTrigger Binding="{Binding Dices[1].DiceHasValue}" Value="false">
                                             <Setter TargetName="RollingDice" Property="Visibility" Value="Visible"/>
                                             <Setter TargetName="ValueDice" Property="Visibility" Value="Hidden"/>
@@ -254,6 +236,7 @@
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="IsEnabled" Value="True"/>
                             </Trigger>
                         </Style.Triggers>
                     </Style>
@@ -281,14 +264,6 @@
                                         <Image Name="ValueDice" Source="{Binding Dices[2].DiceImage, UpdateSourceTrigger=PropertyChanged}"/>
                                     </Grid>
                                     <ControlTemplate.Triggers>
-                                        <Trigger Property="IsEnabled" Value="false">
-                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Visible"/>
-                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Hidden"/>
-                                        </Trigger>
-                                        <Trigger Property="IsEnabled" Value="true">
-                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Hidden"/>
-                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Visible"/>
-                                        </Trigger>
                                         <DataTrigger Binding="{Binding Dices[2].DiceHasValue}" Value="false">
                                             <Setter TargetName="RollingDice" Property="Visibility" Value="Visible"/>
                                             <Setter TargetName="ValueDice" Property="Visibility" Value="Hidden"/>
@@ -304,6 +279,7 @@
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="IsEnabled" Value="True"/>
                             </Trigger>
                         </Style.Triggers>
                     </Style>
@@ -330,14 +306,6 @@
                                         <Image Name="ValueDice" Source="{Binding Dices[3].DiceImage, UpdateSourceTrigger=PropertyChanged}"/>
                                     </Grid>
                                     <ControlTemplate.Triggers>
-                                        <Trigger Property="IsEnabled" Value="false">
-                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Visible"/>
-                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Hidden"/>
-                                        </Trigger>
-                                        <Trigger Property="IsEnabled" Value="true">
-                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Hidden"/>
-                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Visible"/>
-                                        </Trigger>
                                         <DataTrigger Binding="{Binding Dices[3].DiceHasValue}" Value="false">
                                             <Setter TargetName="RollingDice" Property="Visibility" Value="Visible"/>
                                             <Setter TargetName="ValueDice" Property="Visibility" Value="Hidden"/>
@@ -353,6 +321,7 @@
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="IsEnabled" Value="True"/>
                             </Trigger>
                         </Style.Triggers>
                     </Style>
@@ -379,14 +348,6 @@
                                         <Image Name="ValueDice" Source="{Binding Dices[4].DiceImage, UpdateSourceTrigger=PropertyChanged}"/>
                                     </Grid>
                                     <ControlTemplate.Triggers>
-                                        <Trigger Property="IsEnabled" Value="false">
-                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Visible"/>
-                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Hidden"/>
-                                        </Trigger>
-                                        <Trigger Property="IsEnabled" Value="true">
-                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Hidden"/>
-                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Visible"/>
-                                        </Trigger>
                                         <DataTrigger Binding="{Binding Dices[4].DiceHasValue}" Value="false">
                                             <Setter TargetName="RollingDice" Property="Visibility" Value="Visible"/>
                                             <Setter TargetName="ValueDice" Property="Visibility" Value="Hidden"/>
@@ -402,6 +363,7 @@
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="IsEnabled" Value="True"/>
                             </Trigger>
                         </Style.Triggers>
                     </Style>
@@ -416,7 +378,7 @@
                 </Button.RenderTransform>
             </Button>
 
-            <Button Style="{DynamicResource ThrowButton}" x:Name="Button" Command="{Binding TimerRollDicesCommand}" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3" VerticalAlignment="Top" Margin="0,10,0,0" HorizontalAlignment="Center" Width="130" Height="45" Foreground="OrangeRed" Content="Kasta" Click="Button_Click" FontSize="28" FontFamily="Global Sans Serif"/>
+            <Button Style="{DynamicResource ThrowButton}" x:Name="Button" Command="{Binding ThrowCommand}" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3" VerticalAlignment="Top" Margin="0,10,0,0" HorizontalAlignment="Center" Width="130" Height="45" Foreground="OrangeRed" Content="Kasta" Click="Button_Click" FontSize="28" FontFamily="Global Sans Serif"/>
             <Label Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="5" Content="{Binding ThrowsLeft}" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="25" Foreground="AntiqueWhite"/>
            
             <Label Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="5" IsHitTestVisible="False" Content="_________________________________________________________" Foreground="AntiqueWhite" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50" Height="83" Margin="0,10"/>

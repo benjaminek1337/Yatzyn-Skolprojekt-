@@ -67,6 +67,9 @@
                             <Trigger Property="Content" Value="0">
                                 <Setter Property="Foreground" Value="DarkGray"/>
                             </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -135,6 +138,9 @@
                             </Trigger>
                             <Trigger Property="Content" Value="0">
                                 <Setter Property="Foreground" Value="DarkGray"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="Hand"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

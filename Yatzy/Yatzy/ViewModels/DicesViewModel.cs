@@ -86,6 +86,7 @@ namespace Yatzy.Models
         #region Properties 
         public RelayCommand SaveDiceCommand { get; set; }
         public RelayCommand RollDicesCommand { get; set; }
+        public RelayCommand ThrowCommand { get; set; }
         public RelayCommand ChooseScoreCategoryCommand { get; set; }
         public RelayCommand Ones { get; set; }
         public RelayCommand Twos { get; set; }
@@ -102,8 +103,7 @@ namespace Yatzy.Models
         public RelayCommand Fullhouse { get; set; }
         public RelayCommand Chance { get; set; }
         public RelayCommand Yatzy { get; set; }
-        public RelayCommand QuitGameCommand { get; set; }
-        public RelayCommand TimerRollDicesCommand { get; set; }
+        public RelayCommand QuitGameCommand { get; set; }       
 
 
         private ObservableCollection<Dice> dices;
@@ -188,7 +188,7 @@ namespace Yatzy.Models
 
             SaveDiceCommand = new RelayCommand(SaveDice, CanSaveDices);
             //RollDicesCommand = new RelayCommand(RollDices, IsTriesEnabled);
-            TimerRollDicesCommand = new RelayCommand(SetDiceTimer, IsTriesEnabled);
+            ThrowCommand = new RelayCommand(Throw, IsTriesEnabled);
             Ones = new RelayCommand(ChooseScoreCategory, IsOnesEnabled);
             Twos = new RelayCommand(ChooseScoreCategory, IsTwosEnabled);
             Threes = new RelayCommand(ChooseScoreCategory, IsThreesEnabled);
@@ -221,9 +221,15 @@ namespace Yatzy.Models
                 dice = new Dice
                 {
                     DiceID = i + 1,
-                    IsDiceEnabled = true
+                    IsDiceEnabled = true,
+                    DiceHasValue = false
                 }; Dices.Add(dice);
             }
+        }
+
+        private void Throw (object parameter)
+        {
+            SetDiceTimer();
         }
 
         private void RollDices()
@@ -314,7 +320,7 @@ namespace Yatzy.Models
 
         #region Metoder gällande tidtagning
 
-        private void SetDiceTimer(object parameter)
+        private void SetDiceTimer()
         {
             for (int i = 0; i < Dices.Count; i++)
             {
@@ -325,12 +331,9 @@ namespace Yatzy.Models
                     Dices[i].DiceImage = null;
                 }
             }
-
             rollDiceTimer = new System.Timers.Timer(200);
             rollDiceTimer.Elapsed += DiceTimerElapsed;
             rollDiceTimer.Enabled = true;
-
-
             count++;
         }
 
