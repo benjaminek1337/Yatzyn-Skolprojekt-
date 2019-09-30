@@ -74,7 +74,7 @@ namespace Yatzy.Models
 
         private bool gameEnded;
         private int throwsLeft = 0;
-        private int count = 0;
+        private int count;
         private int rounds = 0;
         private int gameType = 0;
         System.Timers.Timer timer1;
@@ -182,6 +182,7 @@ namespace Yatzy.Models
             SetEndTimer();
 
             pgv = new PlayGameView(0);
+            count = 0;
             throwsLeft = 3;
             gameEnded = false;
             SetThrowsLeft(throwsLeft);
@@ -229,6 +230,7 @@ namespace Yatzy.Models
 
         private void Throw (object parameter)
         {
+            RollDices();
             SetDiceTimer();
         }
 
@@ -243,10 +245,10 @@ namespace Yatzy.Models
                     int rand = random.Next(1, 7);
                     Dices[i].DiceValue = rand;
                     Dices[i].DiceImage = diceImages[rand - 1].DiceImage;
-                    Dices[i].DiceHasValue = true;
                 }
 
             }
+            count++;
             throwsLeft--;
             SetThrowsLeft(throwsLeft);
             DiceSound();
@@ -326,21 +328,21 @@ namespace Yatzy.Models
             {
                 if (Dices[i].IsDiceEnabled)
                 {
-                    Dices[i].DiceValue = 0;
                     Dices[i].DiceHasValue = false;
-                    Dices[i].DiceImage = null;
                 }
             }
             rollDiceTimer = new System.Timers.Timer(200);
             rollDiceTimer.Elapsed += DiceTimerElapsed;
             rollDiceTimer.Enabled = true;
-            count++;
         }
 
         private void DiceTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            rollDiceTimer.Stop();         
-            RollDices();
+            for (int i = 0; i < Dices.Count; i++)
+            {
+                Dices[i].DiceHasValue = true;
+            }
+            rollDiceTimer.Stop();
         }
 
         private void SetWarningTimer()
