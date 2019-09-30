@@ -146,19 +146,19 @@
 
     <Viewbox Stretch="UniformToFill" StretchDirection="Both">
 
-        <Grid  Margin="0" MaxHeight="1080" MinWidth="1920" >
+        <Grid Margin="0" MaxHeight="1080" MinWidth="1920" >
             
 
 
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="184"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="350"/>
+                <ColumnDefinition Width="350"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="500"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
@@ -211,13 +211,14 @@
                         <ListView.ItemContainerStyle>
                             <Style TargetType="{x:Type ListViewItem}">
                                 <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="true">
-                                        <Setter Property="Background" Value="Transparent"/>
-                                        <Setter Property="BorderBrush" Value="Black"/>                                        
-                                    </Trigger>
                                     <Trigger Property="IsEnabled" Value="true">
                                         <Setter Property="Background" Value="Transparent"/>
                                         <Setter Property="BorderBrush" Value="Transparent"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" Value="AliceBlue"/>
+                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="BorderBrush" Value="Black"/>                                        
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -240,13 +241,14 @@
                         <ListView.ItemContainerStyle>
                             <Style TargetType="{x:Type ListViewItem}">
                                 <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="true">
-                                        <Setter Property="Background" Value="Transparent"/>
-                                        <Setter Property="BorderBrush" Value="Black"/>
-                                    </Trigger>
                                     <Trigger Property="IsEnabled" Value="true">
                                         <Setter Property="Background" Value="Transparent"/>
                                         <Setter Property="BorderBrush" Value="Transparent"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" Value="AliceBlue"/>
+                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="BorderBrush" Value="Black"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -269,13 +271,14 @@
                         <ListView.ItemContainerStyle>
                             <Style TargetType="{x:Type ListViewItem}">
                                 <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="true">
-                                        <Setter Property="Background" Value="Transparent"/>
-                                        <Setter Property="BorderBrush" Value="Black"/>
-                                    </Trigger>
                                     <Trigger Property="IsEnabled" Value="true">
                                         <Setter Property="Background" Value="Transparent"/>
                                         <Setter Property="BorderBrush" Value="Transparent"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" Value="AliceBlue"/>
+                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="BorderBrush" Value="Black"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -298,13 +301,14 @@
                         <ListView.ItemContainerStyle>
                             <Style TargetType="{x:Type ListViewItem}">
                                 <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="true">
-                                        <Setter Property="Background" Value="Transparent"/>
-                                        <Setter Property="BorderBrush" Value="Black"/>
-                                    </Trigger>
                                     <Trigger Property="IsEnabled" Value="true">
                                         <Setter Property="Background" Value="Transparent"/>
                                         <Setter Property="BorderBrush" Value="Transparent"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" Value="AliceBlue"/>
+                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="BorderBrush" Value="Black"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -327,13 +331,14 @@
                         <ListView.ItemContainerStyle>
                             <Style TargetType="{x:Type ListViewItem}">
                                 <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="true">
-                                        <Setter Property="Background" Value="Transparent"/>
-                                        <Setter Property="BorderBrush" Value="Black"/>
-                                    </Trigger>
                                     <Trigger Property="IsEnabled" Value="true">
                                         <Setter Property="Background" Value="Transparent"/>
                                         <Setter Property="BorderBrush" Value="Transparent"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" Value="AliceBlue"/>
+                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="BorderBrush" Value="Black"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -356,13 +361,14 @@
                         <ListView.ItemContainerStyle>
                             <Style TargetType="{x:Type ListViewItem}">
                                 <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="true">
-                                        <Setter Property="Background" Value="Transparent"/>
-                                        <Setter Property="BorderBrush" Value="Black"/>
-                                    </Trigger>
                                     <Trigger Property="IsEnabled" Value="true">
                                         <Setter Property="Background" Value="Transparent"/>
                                         <Setter Property="BorderBrush" Value="Transparent"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" Value="AliceBlue"/>
+                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="BorderBrush" Value="Black"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -413,9 +419,9 @@
 
 
             <StackPanel Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="1">
-                <StackPanel Visibility="{Binding ShowLeaderBoard, Converter={StaticResource ToggleVisibility}}">
+                <StackPanel Visibility="{Binding ShowLeaderBoard, Converter={StaticResource ToggleVisibility}}"  Margin="50">
                     <Button Style="{StaticResource MyButton}" Command="{Binding ShowForcedCommand}" Cursor="Hand">
-                        <Label Content="Visa Styrd Yatzy Leaderboard" FontStyle="Normal" FontSize="35">
+                        <Label Content="Visa Styrd Yatzy Leaderboard" FontStyle="Normal" FontSize="30">
                             <Label.Style>
                                 <Style>
                                 <Setter Property="Label.Foreground" Value="AntiqueWhite" />
@@ -431,9 +437,9 @@
                     </Button>                    
                 </StackPanel>
 
-                <StackPanel Visibility="{Binding ShowForcedLeaderBoard, Converter={StaticResource ToggleVisibility}}">
+                <StackPanel Visibility="{Binding ShowForcedLeaderBoard, Converter={StaticResource ToggleVisibility}}" Margin="50">
                     <Button Style="{StaticResource MyButton}" Command="{Binding ShowLBoard}" Cursor="Hand">
-                        <Label Content="Visa Klassisk Yatzy Leaderboard" FontStyle="Normal" FontSize="35">
+                        <Label Content="Visa Klassisk Yatzy Leaderboard" FontStyle="Normal" FontSize="30">
                             <Label.Style>
                                 <Style>
                                     <Setter Property="Label.Foreground" Value="AntiqueWhite" />
