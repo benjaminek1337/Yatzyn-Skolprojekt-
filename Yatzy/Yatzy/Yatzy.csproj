@@ -83,6 +83,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif, Version=1.4.18.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfAnimatedGif.1.4.18\lib\net\WpfAnimatedGif.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -252,13 +255,8 @@
     <Resource Include="Resources\alternativ.png" />
     <Resource Include="Resources\LEADERBOARD.png" />
     <EmbeddedResource Include="Resources\Sound\Flawless.wav" />
-    <Resource Include="Resources\PPM.png" />
-    <Resource Include="Resources\PPMHOVER.png" />
-    <Resource Include="Resources\Images\RollingDice1.gif" />
-    <Resource Include="Resources\Images\RollingDice2.gif" />
-    <EmbeddedResource Include="Resources\Theme\Neon Sunset OC_1.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <Resource Include="Resources\Images\RollingDiceGif.gif" />
+    <Content Include="Resources\Theme\Neon Sunset OC_1.mp4" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
