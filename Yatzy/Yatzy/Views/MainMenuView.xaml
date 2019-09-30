@@ -126,7 +126,7 @@
                 </Button>
 
                 <Button Style="{StaticResource MyButton}" Command="{Binding LeaderBoardCommand}">
-                    <Label  Content="Leaderboard" FontSize="45" Cursor="Hand" Margin="10" >
+                    <Label  Content="Topplista" FontSize="45" Cursor="Hand" Margin="10" >
                         <Label.Style>
                             <Style>
                                 <Setter Property="Label.Foreground" Value="AntiqueWhite"/>
