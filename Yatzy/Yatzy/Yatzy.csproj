@@ -16,7 +16,7 @@
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -246,12 +246,20 @@
     <Resource Include="Resources\YATZY.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Sound\DiceThrow.wav" />
-    <EmbeddedResource Include="Resources\Sound\Gamemusic.wav" />
-    <EmbeddedResource Include="Resources\Sound\Main menu.wav" />
+    <Content Include="Resources\Sound\DiceThrow.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Sound\Gamemusic.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Sound\Main menu.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Resources\alternativ.png" />
     <Resource Include="Resources\LEADERBOARD.png" />
-    <EmbeddedResource Include="Resources\Sound\Flawless.wav" />
+    <Content Include="Resources\Sound\Flawless.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Resources\PPM.png" />
     <Resource Include="Resources\PPMHOVER.png" />
     <Resource Include="Resources\Images\RollingDice1.gif" />
