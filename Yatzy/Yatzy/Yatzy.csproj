@@ -256,6 +256,11 @@
     <Resource Include="Resources\LEADERBOARD.png" />
     <EmbeddedResource Include="Resources\Sound\Flawless.wav" />
     <Resource Include="Resources\Images\RollingDiceGif.gif" />
+    <Resource Include="Resources\Images\RollingDice1.gif" />
+    <Resource Include="Resources\Images\RollingDice2.gif" />
+    <Resource Include="Resources\Images\RollingDice3.gif" />
+    <Resource Include="Resources\Images\RollingDice4.gif" />
+    <Resource Include="Resources\Images\RollingDice5.gif" />
     <Content Include="Resources\Theme\Neon Sunset OC_1.mp4" />
   </ItemGroup>
   <ItemGroup />
