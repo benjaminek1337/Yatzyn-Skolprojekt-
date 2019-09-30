@@ -176,7 +176,7 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
                                     <Grid>
-                                        <Image Name="RollingDice" gif:ImageBehavior.AnimatedSource="/Resources/Images/RollingDiceGif.gif" gif:ImageBehavior.RepeatBehavior="Forever"/>
+                                        <Image Name="RollingDice" gif:ImageBehavior.AnimatedSource="/Resources/Images/RollingDice1.gif" gif:ImageBehavior.RepeatBehavior="Forever"/>
                                         <Image Name="ValueDice" Source="{Binding Dices[0].DiceImage, UpdateSourceTrigger=PropertyChanged}"/>
                                     </Grid>
                                     <ControlTemplate.Triggers>
@@ -218,7 +218,7 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
                                     <Grid>
-                                        <Image Name="RollingDice" gif:ImageBehavior.AnimatedSource="/Resources/Images/RollingDiceGif.gif" gif:ImageBehavior.RepeatBehavior="Forever"/>
+                                        <Image Name="RollingDice" gif:ImageBehavior.AnimatedSource="/Resources/Images/RollingDice2.gif" gif:ImageBehavior.RepeatBehavior="Forever"/>
                                         <Image Name="ValueDice" Source="{Binding Dices[1].DiceImage, UpdateSourceTrigger=PropertyChanged}"/>
                                     </Grid>
                                     <ControlTemplate.Triggers>
@@ -260,7 +260,7 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
                                     <Grid>
-                                        <Image Name="RollingDice" gif:ImageBehavior.AnimatedSource="/Resources/Images/RollingDiceGif.gif" gif:ImageBehavior.RepeatBehavior="Forever"/>
+                                        <Image Name="RollingDice" gif:ImageBehavior.AnimatedSource="/Resources/Images/RollingDice3.gif" gif:ImageBehavior.RepeatBehavior="Forever"/>
                                         <Image Name="ValueDice" Source="{Binding Dices[2].DiceImage, UpdateSourceTrigger=PropertyChanged}"/>
                                     </Grid>
                                     <ControlTemplate.Triggers>
@@ -301,7 +301,7 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
                                     <Grid>
-                                        <Image Name="RollingDice" gif:ImageBehavior.AnimatedSource="/Resources/Images/RollingDiceGif.gif" gif:ImageBehavior.RepeatBehavior="Forever"/>
+                                        <Image Name="RollingDice" gif:ImageBehavior.AnimatedSource="/Resources/Images/RollingDice4.gif" gif:ImageBehavior.RepeatBehavior="Forever"/>
                                         <Image Name="ValueDice" Source="{Binding Dices[3].DiceImage, UpdateSourceTrigger=PropertyChanged}"/>
                                     </Grid>
                                     <ControlTemplate.Triggers>
@@ -342,7 +342,7 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
                                     <Grid>
-                                        <Image Name="RollingDice" gif:ImageBehavior.AnimatedSource="/Resources/Images/RollingDiceGif.gif" gif:ImageBehavior.RepeatBehavior="Forever"/>
+                                        <Image Name="RollingDice" gif:ImageBehavior.AnimatedSource="/Resources/Images/RollingDice5.gif" gif:ImageBehavior.RepeatBehavior="Forever"/>
                                         <Image Name="ValueDice" Source="{Binding Dices[4].DiceImage, UpdateSourceTrigger=PropertyChanged}"/>
                                     </Grid>
                                     <ControlTemplate.Triggers>
