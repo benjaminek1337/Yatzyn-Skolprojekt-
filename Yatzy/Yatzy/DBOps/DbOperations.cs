@@ -168,8 +168,15 @@ namespace Yatzy.DBOps
                 transaction.Commit();
                 conn.Close();
 
+                int rank = 1;
+
                 var sortedList = allplayers.OrderByDescending(x => x.GamesInARow).Take(5);
-               
+                foreach (var sortedPlayer in sortedList)
+                {
+                    sortedPlayer.Rank = rank++;
+                }
+
+
                 return sortedList;
             }
             catch (Exception error)
