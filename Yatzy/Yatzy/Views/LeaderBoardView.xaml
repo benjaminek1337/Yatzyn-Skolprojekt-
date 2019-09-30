@@ -211,13 +211,14 @@
                         <ListView.ItemContainerStyle>
                             <Style TargetType="{x:Type ListViewItem}">
                                 <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="true">
-                                        <Setter Property="Background" Value="Transparent"/>
-                                        <Setter Property="BorderBrush" Value="Black"/>                                        
-                                    </Trigger>
                                     <Trigger Property="IsEnabled" Value="true">
                                         <Setter Property="Background" Value="Transparent"/>
                                         <Setter Property="BorderBrush" Value="Transparent"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" Value="AliceBlue"/>
+                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="BorderBrush" Value="Black"/>                                        
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -240,13 +241,14 @@
                         <ListView.ItemContainerStyle>
                             <Style TargetType="{x:Type ListViewItem}">
                                 <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="true">
-                                        <Setter Property="Background" Value="Transparent"/>
-                                        <Setter Property="BorderBrush" Value="Black"/>
-                                    </Trigger>
                                     <Trigger Property="IsEnabled" Value="true">
                                         <Setter Property="Background" Value="Transparent"/>
                                         <Setter Property="BorderBrush" Value="Transparent"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" Value="AliceBlue"/>
+                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="BorderBrush" Value="Black"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -269,13 +271,14 @@
                         <ListView.ItemContainerStyle>
                             <Style TargetType="{x:Type ListViewItem}">
                                 <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="true">
-                                        <Setter Property="Background" Value="Transparent"/>
-                                        <Setter Property="BorderBrush" Value="Black"/>
-                                    </Trigger>
                                     <Trigger Property="IsEnabled" Value="true">
                                         <Setter Property="Background" Value="Transparent"/>
                                         <Setter Property="BorderBrush" Value="Transparent"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" Value="AliceBlue"/>
+                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="BorderBrush" Value="Black"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -298,13 +301,14 @@
                         <ListView.ItemContainerStyle>
                             <Style TargetType="{x:Type ListViewItem}">
                                 <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="true">
-                                        <Setter Property="Background" Value="Transparent"/>
-                                        <Setter Property="BorderBrush" Value="Black"/>
-                                    </Trigger>
                                     <Trigger Property="IsEnabled" Value="true">
                                         <Setter Property="Background" Value="Transparent"/>
                                         <Setter Property="BorderBrush" Value="Transparent"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" Value="AliceBlue"/>
+                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="BorderBrush" Value="Black"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -327,13 +331,14 @@
                         <ListView.ItemContainerStyle>
                             <Style TargetType="{x:Type ListViewItem}">
                                 <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="true">
-                                        <Setter Property="Background" Value="Transparent"/>
-                                        <Setter Property="BorderBrush" Value="Black"/>
-                                    </Trigger>
                                     <Trigger Property="IsEnabled" Value="true">
                                         <Setter Property="Background" Value="Transparent"/>
                                         <Setter Property="BorderBrush" Value="Transparent"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" Value="AliceBlue"/>
+                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="BorderBrush" Value="Black"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -356,13 +361,14 @@
                         <ListView.ItemContainerStyle>
                             <Style TargetType="{x:Type ListViewItem}">
                                 <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="true">
-                                        <Setter Property="Background" Value="Transparent"/>
-                                        <Setter Property="BorderBrush" Value="Black"/>
-                                    </Trigger>
                                     <Trigger Property="IsEnabled" Value="true">
                                         <Setter Property="Background" Value="Transparent"/>
                                         <Setter Property="BorderBrush" Value="Transparent"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" Value="AliceBlue"/>
+                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="BorderBrush" Value="Black"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>

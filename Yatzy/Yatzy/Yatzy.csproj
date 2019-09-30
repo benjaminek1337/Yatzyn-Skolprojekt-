@@ -16,7 +16,7 @@
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -83,6 +83,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif, Version=1.4.18.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfAnimatedGif.1.4.18\lib\net\WpfAnimatedGif.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -246,24 +249,13 @@
     <Resource Include="Resources\YATZY.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Sound\DiceThrow.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Sound\Gamemusic.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Sound\Main menu.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <EmbeddedResource Include="Resources\Sound\DiceThrow.wav" />
+    <EmbeddedResource Include="Resources\Sound\Gamemusic.wav" />
+    <EmbeddedResource Include="Resources\Sound\Main menu.wav" />
     <Resource Include="Resources\alternativ.png" />
     <Resource Include="Resources\LEADERBOARD.png" />
-    <Content Include="Resources\Sound\Flawless.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Resource Include="Resources\PPM.png" />
-    <Resource Include="Resources\PPMHOVER.png" />
-    <Resource Include="Resources\Images\RollingDice1.gif" />
-    <Resource Include="Resources\Images\RollingDice2.gif" />
+    <EmbeddedResource Include="Resources\Sound\Flawless.wav" />
+    <Resource Include="Resources\Images\RollingDiceGif.gif" />
     <Content Include="Resources\Theme\Neon Sunset OC_1.mp4" />
   </ItemGroup>
   <ItemGroup />
