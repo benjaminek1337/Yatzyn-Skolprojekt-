@@ -6,8 +6,13 @@
 
     <Application.Resources>
 
-<!--Mall för Kategoriknappar i PlayGameView-->
+
+
+        <!--Mall för Kategoriknappar i PlayGameView-->
+
         <Style TargetType="Button" x:Key="CategoryButton">
+            
+            
             <Style.Triggers>
                 <Trigger Property="IsEnabled" Value="false">
                     <Setter Property="OverridesDefaultStyle" Value="True" />
@@ -16,25 +21,17 @@
                     <Setter Property="BorderBrush" Value="Transparent"/>
                 </Trigger>
             </Style.Triggers>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="Foreground" Value="#FFB48510"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid x:Name="grid">
                             <Border x:Name="border" CornerRadius="10,50,50,10" BorderBrush="#FFB90000" BorderThickness="4">
                                 <Border.Background>
-                                    <RadialGradientBrush GradientOrigin="0.496,1.052">
-                                        <RadialGradientBrush.RelativeTransform>
-                                            <TransformGroup>
-                                                <ScaleTransform CenterX="2.5" CenterY="2.5" 
-                                                        ScaleX="3.5" ScaleY="3.5"/>
-                                                <TranslateTransform X="0.02" Y="0.3"/>
-                                            </TransformGroup>
-                                        </RadialGradientBrush.RelativeTransform>
-                                        <GradientStop Offset="1" Color="AntiqueWhite"/>
-                                        <GradientStop Offset="0.3" Color="AntiqueWhite"/>
-                                    </RadialGradientBrush>
+                                    <SolidColorBrush Color="AntiqueWhite"/>
                                 </Border.Background>
-                                <ContentPresenter HorizontalAlignment="Center"
+                                <ContentPresenter HorizontalAlignment="Left" Margin="7,0,0,0"
                                           VerticalAlignment="Center"
                                           TextElement.FontWeight="Bold">
                                 </ContentPresenter>
@@ -44,40 +41,28 @@
                             <Trigger Property="IsPressed" Value="True">
                                 <Setter Property="Background" TargetName="border">
                                     <Setter.Value>
-                                        <RadialGradientBrush GradientOrigin="0.496,1.052">
-                                            <RadialGradientBrush.RelativeTransform>
-                                                <TransformGroup>
-                                                    <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5"/>
-                                                    <TranslateTransform X="0.02" Y="0.3"/>
-                                                </TransformGroup>
-                                            </RadialGradientBrush.RelativeTransform>
-                                            <GradientStop Color="#00000000" Offset="1"/>
-                                            <GradientStop Color="#FF303030" Offset="0.3"/>
-                                        </RadialGradientBrush>
+                                        <SolidColorBrush Color="White"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="BorderBrush" TargetName="border" Value="Red"/>
-                                <Setter Property="BorderThickness" Value="6"/>
+                                <Setter Property="Foreground" Value="Goldenrod"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter Property="Opacity" TargetName="grid" Value="0.25"/>
-                            </Trigger>
-                            <Trigger Property="Content" Value="0">
-                                <Setter Property="Foreground" Value="DarkGray"/>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Cursor" Value="Hand"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Setter Property="FontSize" Value="22"/>
-            <Setter Property="Foreground" Value="#FFB48510"/>  
+
+
         </Style>
-        
+
+
         <!--Mall för Kastaknapp i PlayGameView-->
         <Style TargetType="Button" x:Key="ThrowButton">
             <Style.Triggers>

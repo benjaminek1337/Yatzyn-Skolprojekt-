@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:Views="clr-namespace:Yatzy.Views"
              xmlns:ViewModels="clr-namespace:Yatzy.ViewModels"
+             xmlns:conv="clr-namespace:Yatzy.GameEngine"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:gif="http://wpfanimatedgif.codeplex.com"
     mc:Ignorable="d" 
@@ -16,6 +17,7 @@
         <DataTemplate DataType="{x:Type ViewModels:CreateGameViewModel}">
             <Views:CreateGameView Content="Binding"/>
         </DataTemplate>
+        <conv:PropertyToStringConverter x:Key="conv"/>
 
         <Storyboard x:Key="RollDice1">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.Target="{Binding ElementName=btnDice1}">
@@ -97,6 +99,8 @@
                 <SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+
+
     </UserControl.Resources>
 
 
@@ -398,23 +402,158 @@
 
         <StackPanel Width="59" Margin="0,20,0,0" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" >
             <Button Style="{DynamicResource EmptyCategoryButton}" Name="Empty" VerticalAlignment="Top" MinHeight="25" Background="Transparent" BorderBrush="Transparent" IsEnabled="False"/>
-            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Ones}" Margin="0,5,5,0" Command="{Binding Ones}" CommandParameter="1" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_1"/>
-            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Twos}" Margin="0,5,5,0" Command="{Binding Twos}" CommandParameter="2" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_2"/>
-            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Threes}" Margin="0,5,5,0" Command="{Binding Threes}" CommandParameter="3" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_3"/>
-            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Fours}" Margin="0,5,5,0" Command="{Binding Fours}" CommandParameter="4" VerticalAlignment="Top" MinHeight="40"  Click="Button_Click_4"/>
-            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Fives}" Margin="0,5,5,0" Command="{Binding Fives}" CommandParameter="5" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_5"/>
-            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Sixes}" Margin="0,5,5,0" Command="{Binding Sixes}" CommandParameter="6" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_6"/>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Ones}" Margin="0,5,5,0" Command="{Binding Ones}" CommandParameter="1" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_1">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Twos}" Margin="0,5,5,0" Command="{Binding Twos}" CommandParameter="2" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_2">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Threes}" Margin="0,5,5,0" Command="{Binding Threes}" CommandParameter="3" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_3">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Fours}" Margin="0,5,5,0" Command="{Binding Fours}" CommandParameter="4" VerticalAlignment="Top" MinHeight="40"  Click="Button_Click_4">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Fives}" Margin="0,5,5,0" Command="{Binding Fives}" CommandParameter="5" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_5">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Sixes}" Margin="0,5,5,0" Command="{Binding Sixes}" CommandParameter="6" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_6">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
             <Button Style="{DynamicResource EmptyCategoryButton}" Name="Empty1" VerticalAlignment="Top" Margin="0,5,5,0" MinHeight="40" Background="Transparent" BorderBrush="Transparent" IsEnabled="False"/>
             <Button Style="{DynamicResource EmptyCategoryButton}" Name="Empty2" VerticalAlignment="Top" Margin="0,5,5,0" MinHeight="40" Background="Transparent" BorderBrush="Transparent" IsEnabled="False" />
-            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Pair}" Margin="0,5,5,0" Command="{Binding Pair}" CommandParameter="7" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_7"/>
-            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.TwoPairs}" Margin="0,5,5,0" Command="{Binding TwoPair}" CommandParameter="8" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_8"/>
-            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.ThreeOfaKind}" Margin="0,5,5,0" Command="{Binding Threeofakind}" CommandParameter="9" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_9"/>
-            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.FourOfaKind}" Margin="0,5,5,0" Command="{Binding Fourofakind}" CommandParameter="10" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_10"/>
-            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.SmalLadder}" Margin="0,5,5,0" Command="{Binding Smallstraight}" CommandParameter="11" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_11"/>
-            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.LargeLadder}" Margin="0,5,5,0" Command="{Binding Largestraight}" CommandParameter="12" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_12"/>
-            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.FullHouse}" Margin="0,5,5,0" Command="{Binding Fullhouse}" CommandParameter="13" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_13"/>
-            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Chance}" Margin="0,5,5,0" Command="{Binding Chance}" CommandParameter="14" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_14"/>
-            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Yatzy}" Margin="0,5,5,0" Command="{Binding Yatzy}" CommandParameter="15" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_15"/>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Pair}" Margin="0,5,5,0" Command="{Binding Pair}" CommandParameter="7" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_7">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.TwoPairs}" Margin="0,5,5,0" Command="{Binding TwoPair}" CommandParameter="8" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_8">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.ThreeOfaKind}" Margin="0,5,5,0" Command="{Binding Threeofakind}" CommandParameter="9" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_9">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.FourOfaKind}" Margin="0,5,5,0" Command="{Binding Fourofakind}" CommandParameter="10" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_10">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.SmalLadder}" Margin="0,5,5,0" Command="{Binding Smallstraight}" CommandParameter="11" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_11">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.LargeLadder}" Margin="0,5,5,0" Command="{Binding Largestraight}" CommandParameter="12" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_12">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.FullHouse}" Margin="0,5,5,0" Command="{Binding Fullhouse}" CommandParameter="13" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_13">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Chance}" Margin="0,5,5,0" Command="{Binding Chance}" CommandParameter="14" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_14">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button Style="{DynamicResource CategoryButton}" Content="{Binding Path = Player.Yatzy}" Margin="0,5,5,0" Command="{Binding Yatzy}" CommandParameter="15" VerticalAlignment="Top" MinHeight="40" Click="Button_Click_15">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
 
         </StackPanel>
 
