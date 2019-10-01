@@ -250,7 +250,6 @@
     <EmbeddedResource Include="Resources\Sound\Gamemusic.wav" />
     <EmbeddedResource Include="Resources\Sound\Main menu.wav" />
     <Resource Include="Resources\alternativ.png" />
-    <Resource Include="Resources\LEADERBOARD.png" />
     <EmbeddedResource Include="Resources\Sound\Flawless.wav" />
     <Resource Include="Resources\PPM.png" />
     <Resource Include="Resources\PPMHOVER.png" />
@@ -260,6 +259,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Topplista.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

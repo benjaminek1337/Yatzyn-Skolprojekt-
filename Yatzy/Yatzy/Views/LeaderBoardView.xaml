@@ -194,7 +194,7 @@
 
 
             <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2">
-                <Image Source="/Resources/LEADERBOARD.png"  Margin="15" Height="75"/>
+                <Image Source="/Resources/Topplista.png"  Margin="15" Height="75"/>
             </StackPanel>
 
 
