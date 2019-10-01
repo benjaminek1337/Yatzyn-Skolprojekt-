@@ -473,7 +473,7 @@ namespace Yatzy.Models
 
         private bool IsGameTypeStyrd()
         {
-            if (gameType == 5)
+            if (gameType == 2)
             {
                 return true;
             }

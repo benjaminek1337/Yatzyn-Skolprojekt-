@@ -133,7 +133,7 @@ namespace Yatzy.ViewModels
         #region bools
         private bool CanStartGame(object parameter)
         {
-            if (gameType < 6 && gameType > 3 && SelectedPlayers.Count >= 2 && SelectedPlayers.Count <= 4)
+            if (gameType < 3 && gameType > 0 && SelectedPlayers.Count >= 2 && SelectedPlayers.Count <= 4)
                 return true;
             else
                 return false;
@@ -164,7 +164,7 @@ namespace Yatzy.ViewModels
 
         private bool CanChooseClassicYatzy(object parameter)
         {
-            if (gameType == 4)
+            if (gameType == 1)
                 return false;
             else
                 return true;
@@ -172,7 +172,7 @@ namespace Yatzy.ViewModels
 
         private bool CanChooseStyrdYatzy(object parameter)
         {
-            if (gameType == 5)
+            if (gameType == 2)
                 return false;
             else
                 return true;

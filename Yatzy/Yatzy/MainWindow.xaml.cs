@@ -29,6 +29,7 @@ namespace Yatzy
            
         }
 
+
         //SoundPlayer sound = new SoundPlayer("Resources/DiceThrow.wav"); //.wav ska vara Embedded Resource annars hittar inte VS filen
 
     }
