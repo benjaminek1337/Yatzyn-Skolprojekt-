@@ -5,7 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:Views="clr-namespace:Yatzy.Views"
              xmlns:ViewModels="clr-namespace:Yatzy.ViewModels"
-             mc:Ignorable="d" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
+    mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type ViewModels:MainMenuViewModel}">
@@ -14,7 +16,6 @@
         <DataTemplate DataType="{x:Type ViewModels:CreateGameViewModel}">
             <Views:CreateGameView Content="Binding"/>
         </DataTemplate>
-
 
         <Storyboard x:Key="RollDice1">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.Target="{Binding ElementName=btnDice1}">
@@ -100,6 +101,8 @@
 
 
     <Grid ShowGridLines="False">
+
+        
         <Grid.Background>
             <ImageBrush ImageSource="/Resources/wood4.jpg"/>
         </Grid.Background>
@@ -160,26 +163,39 @@
                 </Label.Effect>
             </Label>
 
+
+
             <Button x:Name="btnDice1" Grid.Row="6" Grid.Column="1"  Command="{Binding SaveDiceCommand}" CommandParameter="1" RenderTransformOrigin="0.5,0.5" Click="BtnDice1_Click" BorderBrush="Transparent">
+
                 <Button.Style>
                     <Style TargetType="Button">
+                        <Setter Property="OverridesDefaultStyle" Value="True"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Image Name="RollingDice" gif:ImageBehavior.AnimatedSource="/Resources/Images/RollingDice1.gif" gif:ImageBehavior.RepeatBehavior="Forever"/>
+                                        <Image Name="ValueDice" Source="{Binding Dices[0].DiceImage, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Dices[0].DiceHasValue}" Value="false">
+                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Visible"/>
+                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Hidden"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Dices[0].DiceHasValue}" Value="true">
+                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Hidden"/>
+                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="IsEnabled" Value="True"/>
                             </Trigger>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="OverridesDefaultStyle" Value="True" />
-                                <Setter Property="Background" Value="#00FFFFFF"/>
-                            </Trigger>
-                            <DataTrigger Binding="{Binding Dices[0].DiceValue}" Value="0">
-                                <Setter Property="Background" Value="#00FFFFFF"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Dices[0].IsDiceEnabled}" Value="false">
-                                <Setter Property="Background" Value="Transparent"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Dices[0].IsDiceEnabled}" Value="true">
-                                <Setter Property="Background" Value="#00FFFFFF"/>
-                            </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </Button.Style>
@@ -191,28 +207,37 @@
                         <TranslateTransform/>
                     </TransformGroup>
                 </Button.RenderTransform>
-                <Image Source="{Binding Dices[0].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
             <Button x:Name="btnDice2" Grid.Row="6" Grid.Column="2" Command="{Binding SaveDiceCommand}" CommandParameter="2" RenderTransformOrigin="0.5,0.5" Click="BtnDice2_Click" BorderBrush="Transparent">
                 <Button.Style>
                     <Style TargetType="Button">
+                        <Setter Property="OverridesDefaultStyle" Value="True"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Image Name="RollingDice" gif:ImageBehavior.AnimatedSource="/Resources/Images/RollingDice2.gif" gif:ImageBehavior.RepeatBehavior="Forever"/>
+                                        <Image Name="ValueDice" Source="{Binding Dices[1].DiceImage, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Dices[1].DiceHasValue}" Value="false">
+                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Visible"/>
+                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Hidden"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Dices[1].DiceHasValue}" Value="true">
+                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Hidden"/>
+                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="IsEnabled" Value="True"/>
                             </Trigger>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="OverridesDefaultStyle" Value="True" />
-                                <Setter Property="Background" Value="#00FFFFFF"/>
-                            </Trigger>
-                            <DataTrigger Binding="{Binding Dices[1].DiceValue}" Value="0">
-                                <Setter Property="Background" Value="#00FFFFFF"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Dices[1].IsDiceEnabled}" Value="false">
-                                <Setter Property="Background" Value="Transparent"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Dices[1].IsDiceEnabled}" Value="true">
-                                <Setter Property="Background" Value="#00FFFFFF"/>
-                            </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </Button.Style>
@@ -224,28 +249,38 @@
                         <TranslateTransform/>
                     </TransformGroup>
                 </Button.RenderTransform>
-                <Image Source="{Binding Dices[1].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
+
             </Button>
             <Button x:Name="btnDice3" Grid.Row="6" Grid.Column="3" Command="{Binding SaveDiceCommand}" CommandParameter="3" RenderTransformOrigin="0.5,0.5" Click="BtnDice3_Click" BorderBrush="Transparent">
                 <Button.Style>
                     <Style TargetType="Button">
+                        <Setter Property="OverridesDefaultStyle" Value="True"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Image Name="RollingDice" gif:ImageBehavior.AnimatedSource="/Resources/Images/RollingDice3.gif" gif:ImageBehavior.RepeatBehavior="Forever"/>
+                                        <Image Name="ValueDice" Source="{Binding Dices[2].DiceImage, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Dices[2].DiceHasValue}" Value="false">
+                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Visible"/>
+                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Hidden"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Dices[2].DiceHasValue}" Value="true">
+                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Hidden"/>
+                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="IsEnabled" Value="True"/>
                             </Trigger>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="OverridesDefaultStyle" Value="True" />
-                                <Setter Property="Background" Value="#00FFFFFF"/>
-                            </Trigger>
-                            <DataTrigger Binding="{Binding Dices[2].DiceValue}" Value="0">
-                                <Setter Property="Background" Value="#00FFFFFF"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Dices[2].IsDiceEnabled}" Value="false">
-                                <Setter Property="Background" Value="Transparent"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Dices[2].IsDiceEnabled}" Value="true">
-                                <Setter Property="Background" Value="#00FFFFFF"/>
-                            </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </Button.Style>
@@ -257,28 +292,37 @@
                         <TranslateTransform/>
                     </TransformGroup>
                 </Button.RenderTransform>
-                <Image Source="{Binding Dices[2].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
             <Button x:Name="btnDice4" Grid.Row="6" Grid.Column="4" Command="{Binding SaveDiceCommand}" CommandParameter="4" RenderTransformOrigin="0.5,0.5" Click="BtnDice4_Click" BorderBrush="Transparent">
                 <Button.Style>
                     <Style TargetType="Button">
+                        <Setter Property="OverridesDefaultStyle" Value="True"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Image Name="RollingDice" gif:ImageBehavior.AnimatedSource="/Resources/Images/RollingDice4.gif" gif:ImageBehavior.RepeatBehavior="Forever"/>
+                                        <Image Name="ValueDice" Source="{Binding Dices[3].DiceImage, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Dices[3].DiceHasValue}" Value="false">
+                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Visible"/>
+                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Hidden"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Dices[3].DiceHasValue}" Value="true">
+                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Hidden"/>
+                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="IsEnabled" Value="True"/>
                             </Trigger>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="OverridesDefaultStyle" Value="True" />
-                                <Setter Property="Background" Value="#00FFFFFF"/>
-                            </Trigger>
-                            <DataTrigger Binding="{Binding Dices[3].DiceValue}" Value="0">
-                                <Setter Property="Background" Value="#00FFFFFF"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Dices[3].IsDiceEnabled}" Value="false">
-                                <Setter Property="Background" Value="Transparent"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Dices[3].IsDiceEnabled}" Value="true">
-                                <Setter Property="Background" Value="#00FFFFFF"/>
-                            </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </Button.Style>
@@ -290,31 +334,37 @@
                         <TranslateTransform/>
                     </TransformGroup>
                 </Button.RenderTransform>
-
-
-                <Image Source="{Binding Dices[3].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
             <Button x:Name="btnDice5" Grid.Row="6" Grid.Column="5" Command="{Binding SaveDiceCommand}" CommandParameter="5" RenderTransformOrigin="0.5,0.5" Click="BtnDice5_Click" BorderBrush="Transparent">
                 <Button.Style>
                     <Style TargetType="Button">
-
+                        <Setter Property="OverridesDefaultStyle" Value="True"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Image Name="RollingDice" gif:ImageBehavior.AnimatedSource="/Resources/Images/RollingDice5.gif" gif:ImageBehavior.RepeatBehavior="Forever"/>
+                                        <Image Name="ValueDice" Source="{Binding Dices[4].DiceImage, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Dices[4].DiceHasValue}" Value="false">
+                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Visible"/>
+                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Hidden"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Dices[4].DiceHasValue}" Value="true">
+                                            <Setter TargetName="RollingDice" Property="Visibility" Value="Hidden"/>
+                                            <Setter TargetName="ValueDice" Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="IsEnabled" Value="True"/>
                             </Trigger>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="OverridesDefaultStyle" Value="True" />
-                                <Setter Property="Background" Value="#00FFFFFF"/>
-                            </Trigger>
-                            <DataTrigger Binding="{Binding Dices[4].DiceValue}" Value="0">
-                                <Setter Property="Background" Value="#00FFFFFF"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Dices[4].IsDiceEnabled}" Value="false">
-                                <Setter Property="Background" Value="Transparent"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Dices[4].IsDiceEnabled}" Value="true">
-                                <Setter Property="Background" Value="#00FFFFFF"/>
-                            </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </Button.Style>
@@ -326,10 +376,9 @@
                         <TranslateTransform/>
                     </TransformGroup>
                 </Button.RenderTransform>
-                <Image Source="{Binding Dices[4].DiceImage, UpdateSourceTrigger=PropertyChanged}" />
             </Button>
 
-            <Button Style="{DynamicResource ThrowButton}" x:Name="Button" Command="{Binding RollDicesCommand}" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3" VerticalAlignment="Top" Margin="0,10,0,0" HorizontalAlignment="Center" Width="130" Height="45" Foreground="OrangeRed" Content="Kasta" Click="Button_Click" FontSize="28" FontFamily="Global Sans Serif"/>
+            <Button Style="{DynamicResource ThrowButton}" x:Name="Button" Command="{Binding ThrowCommand}" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3" VerticalAlignment="Top" Margin="0,10,0,0" HorizontalAlignment="Center" Width="130" Height="45" Foreground="OrangeRed" Content="Kasta" Click="Button_Click" FontSize="28" FontFamily="Global Sans Serif"/>
             <Label Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="5" Content="{Binding ThrowsLeft}" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="25" Foreground="AntiqueWhite"/>
            
             <Label Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="5" IsHitTestVisible="False" Content="_________________________________________________________" Foreground="AntiqueWhite" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50" Height="83" Margin="0,10"/>

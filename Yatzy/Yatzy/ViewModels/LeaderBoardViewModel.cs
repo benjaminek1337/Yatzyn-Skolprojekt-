@@ -237,12 +237,12 @@ namespace Yatzy.ViewModels
 
         private void LeaderBoard7Days()
         {
-            LeaderboardsevenDays = dbOps.GetHighScorePlayers(4);            
+            LeaderboardsevenDays = dbOps.GetHighScorePlayers(1);            
         }
         
         private void LeaderBoardMostGames()
         {
-            MostGames = dbOps.GetHighestGames(4); 
+            MostGames = dbOps.GetHighestGames(1); 
         }
 
         private void LeaderBoardMostVicoriesInARow()
@@ -253,12 +253,12 @@ namespace Yatzy.ViewModels
 
         private void LeaderBoard7DaysForced()
         {
-            LeaderboardsevenDaysForced = dbOps.GetHighScorePlayers(5);
+            LeaderboardsevenDaysForced = dbOps.GetHighScorePlayers(2);
         }
 
         private void LeaderBoardMostGamesForced()
         {
-            MostGamesForced = dbOps.GetHighestGames(5);
+            MostGamesForced = dbOps.GetHighestGames(2);
         }
 
 

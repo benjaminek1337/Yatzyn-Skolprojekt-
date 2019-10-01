@@ -168,8 +168,15 @@ namespace Yatzy.DBOps
                 transaction.Commit();
                 conn.Close();
 
+                int rank = 1;
+
                 var sortedList = allplayers.OrderByDescending(x => x.GamesInARow).Take(5);
-               
+                foreach (var sortedPlayer in sortedList)
+                {
+                    sortedPlayer.Rank = rank++;
+                }
+
+
                 return sortedList;
             }
             catch (Exception error)
@@ -240,12 +247,16 @@ namespace Yatzy.DBOps
             NpgsqlCommand cmd = null;
             try
             {
-                string stmt = "select nickname, firstname, lastname, sum (game_player.score) from((player " +
-                                "inner join game_player on player.player_id = game_player.player_id) " +
-                               "inner join game on game_player.game_id = game.game_id) " +
-	                          "where game.ended_at >= current_timestamp - interval '7 days' and game.gametype_id = @gametype " +
-                              "group by player.nickname, player.firstname, player.lastname "+
-                               "order by sum desc ";
+                string stmt = " select rnk, nickname, firstname, lastname, s" +
+                              " from(select nickname, firstname, lastname, sum(game_player.score) as s," +
+                              " rank() over(order by sum(game_player.score) desc) as rnk" +
+                              " from " +
+                              " ((player inner join game_player on player.player_id = game_player.player_id)" +
+                              " inner join game on game_player.game_id = game.game_id)" +
+                              " where game.ended_at >= current_timestamp - interval '7 days' and game.gametype_id = @gametype and game_player.score is not null" +
+                              " group by player.nickname, player.firstname, player.lastname" +
+                              " order by s desc) t1" +
+                              " where  rnk <= 5";
                 conn = new NpgsqlConnection(Connect);
                 conn.Open();
   
@@ -257,10 +268,11 @@ namespace Yatzy.DBOps
                         {
                             p = new Player()
                             {
-                                Nickname = reader.GetString(0),
-                                Firstname = reader.GetString(1),
-                                Lastname = reader.GetString(2),
-                                HighScore = reader.GetInt32(3)
+                                Rank = reader.GetInt32(0),
+                                Nickname = reader.GetString(1),
+                                Firstname = reader.GetString(2),
+                                Lastname = reader.GetString(3),
+                                HighScore = reader.GetInt32(4)
                             };
 
                             players.Add(p);
@@ -268,9 +280,10 @@ namespace Yatzy.DBOps
                         }
                     }
                 conn.Close();
+                
                 return players;
             }
-            catch (Exception)
+            catch (Exception error )
             {
                 conn.Close();
                 return null;
@@ -288,14 +301,16 @@ namespace Yatzy.DBOps
             NpgsqlCommand cmd = null;
             try
             {
-                
-                string stmt = "select player.nickname, player.firstname, player.lastname, count(game_player.player_id) as Played_Games " +
-                    " from((game_player" +
-                    " inner join player on player.player_id = game_player.player_id)" +
-                    " inner join game on game_player.game_id = game.game_id)" +
-                    " where game.gametype_id = @gametype" +
-                    " group by game_player.player_id, player.firstname, player.nickname, player.lastname" +
-                    " order by count(game_player.player_id) desc;";
+
+                string stmt = " select rnk, nickname, firstname, lastname, gamecount" +
+                              " from(select nickname, firstname, lastname, count(game) as gamecount," +
+                              " rank() over(order by count(game) desc) as rnk" +
+                              " from((player" +
+                              " inner join game_player on player.player_id = game_player.player_id)" +
+                              " inner join game on game_player.game_id = game.game_id)" +
+                              " group by player.nickname, player.firstname, player.lastname" +
+                              " order by gamecount desc) as t1" +
+                              " where rnk <= 5";
                 conn = new NpgsqlConnection(Connect);
                 conn.Open();                
                 cmd = new NpgsqlCommand(stmt, conn);
@@ -306,10 +321,11 @@ namespace Yatzy.DBOps
                     {
                         p = new Player()
                         {
-                            Nickname = reader.GetString(0),
-                            Firstname = reader.GetString(1),
-                            Lastname = reader.GetString(2),
-                            HighScore = reader.GetInt32(3)
+                            Rank = reader.GetInt32(0),
+                            Nickname = reader.GetString(1),
+                            Firstname = reader.GetString(2),
+                            Lastname = reader.GetString(3),
+                            HighScore = reader.GetInt32(4)
                         };
 
                         players.Add(p);

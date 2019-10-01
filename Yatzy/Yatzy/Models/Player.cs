@@ -33,6 +33,7 @@ namespace Yatzy.Models
         private int _highscore;
         private int? _gamesinarow;
         private int _gameid;
+        private int _rank;
         
 
         private int? _ones;
@@ -146,6 +147,20 @@ namespace Yatzy.Models
                 }
             }
         }
+
+        public int Rank
+        {
+            get { return _rank; }
+            set
+            {
+                if (value != _rank)
+                {
+                    _rank = value;
+                    OnPropertyChanged("Rank");
+                }
+            }
+        }
+
         #endregion
 
         #region dice result properties

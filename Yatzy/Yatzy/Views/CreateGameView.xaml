@@ -42,7 +42,7 @@
 
     </UserControl.Resources>
 
-    <Viewbox Stretch="UniformToFill">
+    <Viewbox Stretch="UniformToFill" StretchDirection="Both">
 
         <Grid ShowGridLines="False" Margin="0" MaxHeight="1080" MinWidth="1920" >
             <Grid.ColumnDefinitions>
@@ -61,7 +61,7 @@
             <Grid.Resources>
                 
             </Grid.Resources>
-            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="7">
+            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="3">
                 <Image Source="/Resources/wood4.jpg" Opacity="1" Stretch="UniformToFill"/>
             </StackPanel>
 

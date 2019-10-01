@@ -66,6 +66,14 @@ namespace Yatzy.Models
             }
         }
 
+        private bool diceHasValue;
+
+        public bool DiceHasValue
+        {
+            get { return diceHasValue; }
+            set { diceHasValue = value; PropertyChanged(this, new PropertyChangedEventArgs("DiceHasValue")); }
+        }
+
 
 
     }

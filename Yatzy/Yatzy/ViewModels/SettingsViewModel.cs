@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Xaml;
 using System.Windows.Media;
 using System.Windows;
+using System.Windows.Input;
+using Yatzy.Commands;
 
 namespace Yatzy.ViewModels
 {
@@ -15,15 +17,18 @@ namespace Yatzy.ViewModels
         #region Properties
 
         public MediaPlayer mediaPlayer { get; set; }
-
+        public ICommand BackCommand { get; set; }
 
 
         #endregion
 
         public SettingsViewModel()
         {
-            
+            BackCommand = new RelayCommand(Backcommand, CanExecuteMethod);
+
+
         }
+
         #region Methods
         public void ToggleSound()
         {
@@ -47,6 +52,23 @@ namespace Yatzy.ViewModels
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
+        #endregion
+
+        #region Methods for going back
+        private object selectedViewModel;
+        public object SelectedViewModel
+        {
+            get { return selectedViewModel; }
+            set { selectedViewModel = value; OnPropertyChanged("SelectedViewModel"); }
+        }
+        public void Backcommand(object parameter)
+        {
+            SelectedViewModel = new MainMenuViewModel();
+        }
+        private bool CanExecuteMethod(object parameter)
+        {
+            return true;
+        }
         #endregion
     }
 }
