@@ -95,5 +95,14 @@ namespace Yatzy.Properties {
                 return ResourceManager.GetStream("Main_menu", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Yatzysound {
+            get {
+                return ResourceManager.GetStream("Yatzysound", resourceCulture);
+            }
+        }
     }
 }

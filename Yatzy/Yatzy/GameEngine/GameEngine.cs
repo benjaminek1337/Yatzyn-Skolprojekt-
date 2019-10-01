@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,6 +14,7 @@ namespace Yatzy.Models
         private ObservableCollection<Dice> Dices;      
         public int[] ArrayofCountedDices = new int[6];
         int gameType = 0;
+        SoundPlayer sEffects;
 
 
         public GameEngine(ObservableCollection<Dice> _dices, Player _activePlayer, int _gameType)
@@ -255,9 +257,11 @@ namespace Yatzy.Models
                 else if(Dices[i].DiceValue > 0)
                 {
                     sum = 50;
+                    
                 }
 
             }
+            Yatzysound(sum);
             return sum;
             
         }
@@ -325,6 +329,25 @@ namespace Yatzy.Models
         #endregion
 
 
+        #region Metoder för ljudeffekter vid yatzy och bonus
+        public void Yatzysound(int sum)
+        {
+            if (sum == 50)
+            {
+                sEffects = new SoundPlayer();
+                sEffects.Stream = Properties.Resources.Yatzysound;
+                sEffects.Play();
+            }
+
+        }
+
+
+
+
+
+        #endregion 
+
+
         #region Metoder för att sätta totalpoäng, samt beräkna de "övre" kategorierna och sätta bonus
 
         public void SetUpperScore()
@@ -353,22 +376,30 @@ namespace Yatzy.Models
                     SetBonus(upperScore);
                 }
             }
+            
             activePlayer.UpperScore = upperScoreArray.Sum();
+
         }
 
         public void SetBonus(int? upperScore)
         {
-            if(gameType == 5)
+            if(gameType == 2)
             {
                 if (upperScore >= 42)
+                {
+                   
                     activePlayer.UpperBonus = 50;
+                }
                 else
                     activePlayer.UpperBonus = 0;
             }
             else
             {
                 if (upperScore >= 63)
+                {
+                   
                     activePlayer.UpperBonus = 50;
+                }
                 else
                     activePlayer.UpperBonus = 0;
             }
