@@ -253,7 +253,6 @@
     <EmbeddedResource Include="Resources\Sound\Gamemusic.wav" />
     <EmbeddedResource Include="Resources\Sound\Main menu.wav" />
     <Resource Include="Resources\alternativ.png" />
-    <Resource Include="Resources\LEADERBOARD.png" />
     <EmbeddedResource Include="Resources\Sound\Flawless.wav" />
     <Resource Include="Resources\Images\RollingDiceGif.gif" />
     <Resource Include="Resources\Images\RollingDice1.gif" />
@@ -263,6 +262,8 @@
     <Resource Include="Resources\Images\RollingDice5.gif" />
     <Content Include="Resources\Theme\Neon Sunset OC_1.mp4" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Topplista.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
