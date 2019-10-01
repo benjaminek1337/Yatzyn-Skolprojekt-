@@ -30,15 +30,7 @@ namespace Yatzy.ViewModels
         }
 
         #region Methods
-        public void ToggleSound()
-        {
-           
-        }
-
-        public void ToggleImage(object paramater)
-        {            
-
-        }
+        
 
         #endregion
 

@@ -14,6 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Media;
 using Yatzy.ViewModels;
+using Yatzy.DBOps;
+using Yatzy.Models;
+using Yatzy.GameEngine;
 
 namespace Yatzy
 {

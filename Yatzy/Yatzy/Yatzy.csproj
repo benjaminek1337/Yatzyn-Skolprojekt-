@@ -226,10 +226,6 @@
     <Resource Include="Resources\Images\dice6.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\soundoff.png" />
-    <Resource Include="Resources\soundon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\MouseOver.png" />
     <Resource Include="Resources\NotMouseOver.png" />
   </ItemGroup>
@@ -238,12 +234,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\right.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\leftgreen.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\rightgreen.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\YATZY.png" />
@@ -260,10 +250,18 @@
     <Resource Include="Resources\Images\RollingDice3.gif" />
     <Resource Include="Resources\Images\RollingDice4.gif" />
     <Resource Include="Resources\Images\RollingDice5.gif" />
-    <Content Include="Resources\Theme\Neon Sunset OC_1.mp4" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Topplista.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\rglr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\leftblue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\rightblue.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

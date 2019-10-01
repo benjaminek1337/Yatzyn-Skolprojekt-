@@ -104,7 +104,7 @@
 
 
             <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3">
-                <Image Source="/Resources/tester.png"  MaxHeight="800" MaxWidth="300" RenderTransformOrigin="0.5,0.5" Opacity="1">
+                <Image Source="/Resources/tester.png"  MaxHeight="800" MaxWidth="300" Margin="55,0,10,25" RenderTransformOrigin="0.5,0.5" Opacity="1">
                     <Image.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -118,7 +118,7 @@
 
 
             <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2">
-                <Label Content="REGLER"  HorizontalAlignment="Center" FontSize="55" Foreground="DodgerBlue" />
+                <Image Source="/Resources/rglr.png" Margin="15" Height="75" />
             </StackPanel>
 
 
