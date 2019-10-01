@@ -92,7 +92,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Grid>
-                            <Image Name="MouseOver" Source="/Resources/rightgreen.png"/>
+                            <Image Name="MouseOver" Source="/Resources/rightblue.png"/>
                             <Image Name="NotMouseOver" Source="/Resources/right.png"/>                            
                         </Grid>
                         <ControlTemplate.Triggers>
@@ -121,7 +121,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Grid>
-                            <Image Name="MouseOver" Source="/Resources/leftgreen.png"/>
+                            <Image Name="MouseOver" Source="/Resources/leftblue.png"/>
                             <Image Name="NotMouseOver" Source="/Resources/left.png"/>
                         </Grid>
                         <ControlTemplate.Triggers>
