@@ -95,7 +95,7 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="DBOps\DbOperations.cs" />
     <Compile Include="GameEngine\PlayerEngine.cs" />
-    <Compile Include="GameEngine\PropertyToStringConverter.cs" />
+    <Compile Include="GameEngine\PropToStringConv.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="ViewModels\AddPlayerViewModel.cs" />
     <Compile Include="ViewModels\CreateGameViewModel.cs" />

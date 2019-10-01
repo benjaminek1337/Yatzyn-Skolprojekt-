@@ -8,11 +8,22 @@ using System.Windows.Data;
 
 namespace Yatzy.GameEngine
 {
-    class PropertyToStringConverter : IValueConverter
+    class PropToStringConv : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return int.Parse(value.ToString());
+            string valueString;
+
+
+            if (value != null)
+            {
+                valueString = value.ToString();
+                return valueString;
+            }
+
+
+            else
+                return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
