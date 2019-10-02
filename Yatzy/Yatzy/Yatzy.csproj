@@ -97,21 +97,14 @@
     <Compile Include="GameEngine\PlayerEngine.cs" />
     <Compile Include="GameEngine\PropToStringConv.cs" />
     <Compile Include="Models\Game.cs" />
-    <Compile Include="ViewModels\AddPlayerViewModel.cs" />
     <Compile Include="ViewModels\CreateGameViewModel.cs" />
     <Compile Include="ViewModels\DicesViewModel.cs" />
     <Compile Include="ViewModels\LeaderBoardViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\NavigationViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
-    <Compile Include="Views\AddPlayerView.xaml.cs">
-      <DependentUpon>AddPlayerView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\CreateGameView.xaml.cs">
       <DependentUpon>CreateGameView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DicesView.xaml.cs">
-      <DependentUpon>DicesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LeaderBoardView.xaml.cs">
       <DependentUpon>LeaderBoardView.xaml</DependentUpon>
@@ -140,15 +133,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\AddPlayerView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\CreateGameView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\DicesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

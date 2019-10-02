@@ -181,6 +181,7 @@ namespace Yatzy.DBOps
             }
             catch (Exception error)
             {
+                MessageBox.Show(error.ToString());
                 transaction.Rollback();
                 conn.Close();
                 return null;
@@ -229,8 +230,9 @@ namespace Yatzy.DBOps
                 conn.Close();
                 return players;
             }
-            catch (PostgresException ex)
+            catch (PostgresException error)
             {
+                MessageBox.Show(error.ToString());
                 transaction.Rollback();
                 conn.Close();
                 return null;
@@ -285,6 +287,7 @@ namespace Yatzy.DBOps
             }
             catch (Exception error )
             {
+                MessageBox.Show(error.ToString());
                 conn.Close();
                 return null;
             }
@@ -485,9 +488,9 @@ namespace Yatzy.DBOps
                 conn.Close();
 
             }
-            catch (Exception err)
+            catch (Exception error)
             {
-
+                MessageBox.Show(error.ToString());
                 transaction.Rollback();
                 conn.Close();
 

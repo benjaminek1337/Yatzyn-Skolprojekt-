@@ -18,14 +18,12 @@ namespace Yatzy.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-
-
         public override string ToString()
         {
             return Firstname + " '" + Nickname + "' " + Lastname;
         }
 
-        #region variabler till properties
+        #region privata variabler till properties
         private string _firstname;
         private string _lastname;
         private string _nickname;
@@ -35,7 +33,6 @@ namespace Yatzy.Models
         private int _gameid;
         private int _rank;
         
-
         private int? _ones;
         private int? _twos;
         private int? _threes;

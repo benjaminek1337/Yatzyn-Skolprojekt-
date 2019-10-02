@@ -15,55 +15,6 @@
             <Views:MainMenuView Content="{Binding}"/>
         </DataTemplate>
 
-        <Style x:Key="MyButton" TargetType="Button">
-            <Setter Property="OverridesDefaultStyle" Value="True"/>
-            <Setter Property="MinHeight" Value="50"/>
-            <Setter Property="MinWidth" Value="50"/>
-            <Setter Property="FontStyle" Value="Normal"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="border" BorderBrush="Transparent" BorderThickness="0" Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter TargetName="border" Property="Background" Value="Transparent"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style x:Key="Back" TargetType="Button">
-            <Setter Property="OverridesDefaultStyle" Value="True"/>
-            <Setter Property="MinHeight" Value="50"/>
-            <Setter Property="MinWidth" Value="50"/>
-            <Setter Property="FontStyle" Value="Normal"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Grid>
-                            <Image Name="MouseOver" Source="/Resources/MouseOver.png"/>
-                            <Image Name="NotMouseOver" Source="/REsources/NotMouseOver.png"/>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="Image.IsMouseOver" Value="true">
-                                <Setter TargetName="MouseOver" Property="Visibility" Value="Visible"/>
-                                <Setter TargetName="NotMouseOver" Property="Visibility" Value="Hidden"/>
-                            </Trigger>
-                            <Trigger Property="Image.IsMouseOver" Value="false">
-                                <Setter TargetName="MouseOver" Property="Visibility" Value="Hidden"/>
-                                <Setter TargetName="NotMouseOver" Property="Visibility" Value="Visible"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
 
 
     </UserControl.Resources>

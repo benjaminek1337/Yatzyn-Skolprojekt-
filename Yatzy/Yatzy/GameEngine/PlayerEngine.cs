@@ -13,7 +13,7 @@ namespace Yatzy.GameEngine
 {
     class PlayerEngine : INotifyPropertyChanged
     {
-        #region Objekt och variabler
+        #region Lokala objekt och variabler
         public int gameType = 0;
         #endregion
 
@@ -33,7 +33,7 @@ namespace Yatzy.GameEngine
 
         #endregion
 
-        #region Construktor
+        #region Konstruktor
         public PlayerEngine()
         {
             ActivePlayers = new ObservableCollection<Player>();
@@ -43,7 +43,7 @@ namespace Yatzy.GameEngine
         }
         #endregion
 
-        #region Metod för att nulla Props
+        #region Metod för att nollställa klassens props
         public void NullProps()
         {
             activePlayer = null;
@@ -68,33 +68,6 @@ namespace Yatzy.GameEngine
         {
             return ActivePlayers;
         }
-
-        public void AddPlayerHardCoded()
-        {
-            Player p = new Player
-            {
-                Firstname = "Beendjaameeehn",
-                Lastname = "Ek",
-                Nickname = "Galne_Gunnar1337"
-            }; ActivePlayers.Add(p);
-            //Player p2 = new Player
-            //{
-            //    Firstname = "Näääädaaliiiiee",
-            //    Lastname = "Öberg",
-            //    Nickname = "Examinat0rN^"
-            //}; ActivePlayers.Add(p2);
-            //Player p3 = new Player
-            //{
-            //    Firstname = "Däääämn",
-            //    Lastname = "Öberg",
-            //    Nickname = "Examinat0rN^"
-            //}; ActivePlayers.Add(p3);
-        }
-
-        //public Player GetActivePlayer()
-        //{
-        //    return activePlayer;
-        //}
 
         public Player SetActivePlayer()
         {
