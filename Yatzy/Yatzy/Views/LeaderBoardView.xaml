@@ -180,7 +180,7 @@
 
                 <StackPanel Visibility="{Binding ShowLeaderBoard, Converter={StaticResource ToggleVisibility}}">
                     <Label Content="Bästa spelarna de senaste 7 dagarna (Klassisk)" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="AntiqueWhite" BorderBrush="Black"/>
-                    <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" MaxWidth="1000" Width="1000"  ItemsSource="{Binding LeaderboardsevenDays}"  Background="#19FFFFFF" Foreground="AntiqueWhite" FontSize="28" BorderBrush="#00000000">
+                    <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" MaxWidth="1000" Width="1000"  ItemsSource="{Binding Leaderboard7Days}"  Background="#19FFFFFF" Foreground="AntiqueWhite" FontSize="28" BorderBrush="#00000000">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="{x:Type ListViewItem}">
                                 <Style.Triggers>

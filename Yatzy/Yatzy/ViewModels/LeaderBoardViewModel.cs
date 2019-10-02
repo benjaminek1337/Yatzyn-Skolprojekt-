@@ -35,7 +35,7 @@ namespace Yatzy.ViewModels
         private ObservableCollection<Player> _leaderboardsevenDays;
         public ObservableCollection<Player> Leaderboard7Days {
             get { return _leaderboardsevenDays; }
-            set { _leaderboardsevenDays = value; OnPropertyChanged("LeaderboardsevenDays");}
+            set { _leaderboardsevenDays = value; OnPropertyChanged("Leaderboard7Days");}
         }
 
         private ObservableCollection<Player> _mostGames;
