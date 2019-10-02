@@ -87,23 +87,23 @@ namespace Yatzy.ViewModels
             set
             {
                 _filterText = value;
-                this.FilteredPlayers.View.Refresh();
+                this._filteredPlayers.View.Refresh();
                 OnPropertyChanged("FilterText");
             }
         }
 
         private CollectionViewSource _filteredPlayers;
-        public CollectionViewSource FilteredPlayers
-        {
-            get { return _filteredPlayers; }
-            set { _filteredPlayers = value; OnPropertyChanged("FilteredPlayers"); }
-        }
+        //public CollectionViewSource FilteredPlayers
+        //{
+        //    get { return _filteredPlayers; }
+        //    set { _filteredPlayers = value; OnPropertyChanged("FilteredPlayers"); }
+        //}
         
         public ICollectionView FilteredCV
         {
             get
             {
-                return FilteredPlayers.View;
+                return this._filteredPlayers.View;
             }
         }
 
@@ -143,9 +143,8 @@ namespace Yatzy.ViewModels
             AddNewPlayerCommand = new RelayCommand(AddNewPlayer, CanAddNewPlayer);
 
             AvailablePlayer = null;
-            GetAvaliablePlayers();   
-
-
+            GetAvaliablePlayers();
+            GetFilteredPlayers();
         }
 
 
@@ -218,10 +217,13 @@ namespace Yatzy.ViewModels
         public void GetAvaliablePlayers()
         {
             AvailablePlayers = dbOps.GetAvaliablePlayers();
-            FilteredPlayers = null;
-            FilteredPlayers = new CollectionViewSource();
-            FilteredPlayers.Source = AvailablePlayers;
-            FilteredPlayers.Filter += SearchAvailablePlayers;
+        }
+
+        public void GetFilteredPlayers()
+        {
+            _filteredPlayers = new CollectionViewSource();
+            _filteredPlayers.Source = AvailablePlayers;
+            _filteredPlayers.Filter += SearchAvailablePlayers;
         }
 
         public void RemovePlayer(object parameter)
