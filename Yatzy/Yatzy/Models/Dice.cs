@@ -14,64 +14,56 @@ namespace Yatzy.Models
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
-        private int diceValue;
+        public int DiceID { get; set; }
 
+        private int _diceValue;
         public int DiceValue
         {
-            get { return diceValue; }
+            get { return _diceValue; }
             set
             {
-                if (diceValue != value)
+                if (_diceValue != value)
                 {
-                    diceValue = value;
+                    _diceValue = value;
                     PropertyChanged(this, new PropertyChangedEventArgs("DiceValue"));
                 }                
             }
         }      
 
-        public int DiceID { get; set; }
-
-        private BitmapImage diceImage;
+        private BitmapImage _diceImage;
         public BitmapImage DiceImage
         {
-            get { return diceImage; }
+            get { return _diceImage; }
             set
             {
-                if (diceImage != value)
+                if (_diceImage != value)
                 {
-                    diceImage = value;
+                    _diceImage = value;
                     PropertyChanged(this, new PropertyChangedEventArgs("DiceImage"));
                 }
             }
         }
 
-
-
-        //public int DiceValue { get; set; }
-        //public bool IsDiceEnabled { get; set; }
-
-        private bool isDiceEnabled;
-
+        private bool _isDiceEnabled;
         public bool IsDiceEnabled
         {
-            get { return isDiceEnabled; }
+            get { return _isDiceEnabled; }
             set
             {
-                if(isDiceEnabled != value)
+                if(_isDiceEnabled != value)
                 {
-                    isDiceEnabled = value;
+                    _isDiceEnabled = value;
                     PropertyChanged(this, new PropertyChangedEventArgs("IsDiceEnabled"));
                 }
                 
             }
         }
 
-        private bool diceHasValue;
-
+        private bool _diceHasValue;
         public bool DiceHasValue
         {
-            get { return diceHasValue; }
-            set { diceHasValue = value; PropertyChanged(this, new PropertyChangedEventArgs("DiceHasValue")); }
+            get { return _diceHasValue; }
+            set { _diceHasValue = value; PropertyChanged(this, new PropertyChangedEventArgs("DiceHasValue")); }
         }
 
 

@@ -13,15 +13,11 @@ namespace Yatzy.GameEngine
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string valueString;
-
-
             if (value != null)
             {
                 valueString = value.ToString();
                 return valueString;
             }
-
-
             else
                 return null;
         }

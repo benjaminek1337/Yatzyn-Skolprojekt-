@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 
 namespace Yatzy.Models
 {
-    class Game : INotifyPropertyChanged
+    class Game
 
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-
         public int GameId { get; set; }
+
         public int HighestScore { get; set; }
 
         public int Player_Id { get; set; }

@@ -10,27 +10,30 @@ namespace Yatzy.Models
 {
     class GameEngine
     {
-        Player activePlayer;
+        #region Lokala objekt och variabler
+
+        Player ActivePlayer;
         private ObservableCollection<Dice> Dices;      
         public int[] ArrayofCountedDices = new int[6];
         int gameType = 0;
         SoundPlayer sEffects;
+        #endregion
 
+        #region Konstruktor
 
         public GameEngine(ObservableCollection<Dice> _dices, Player _activePlayer, int _gameType)
         {
             gameType = _gameType;
-            activePlayer = new Player();
-            activePlayer = _activePlayer;
-            Dices = new ObservableCollection<Dice>();
+            ActivePlayer = _activePlayer;
             Dices = _dices;
-
             DiceCount();
         }
+        #endregion
 
+        #region Metoder för att nolla properties vid slutet av spelet, samt en för att uppdatera listan Dices
         public void NullProps()
         {
-            activePlayer = null;
+            ActivePlayer = null;
             Dices = null;
         }
 
@@ -38,7 +41,9 @@ namespace Yatzy.Models
         {
             Dices = _dices;
         }
+        #endregion
 
+        #region Metod som sorterar tärningen till en array 
         /// <summary>
         /// Konverterar tärningarna i en lista till en array med antal tärningar i varje kategori
         /// </summary>
@@ -74,6 +79,8 @@ namespace Yatzy.Models
                 }
             }
         }
+        #endregion
+
         #region Publika metoder som hämtar poäng från varje kategori
         /// <summary>
         /// Räknar ut poängen för kategori 1-6
@@ -267,68 +274,6 @@ namespace Yatzy.Models
         }
         #endregion
 
-        #region Publika metoder som sätter poäng för varje kategori
-        /// <summary>
-        /// Tilldelar aktiv spelare poäng i varje kategori
-        /// </summary>
-        /// <param name="category"></param>
-        public void SetScore(int category)
-        {
-            switch (category)
-            {
-                case 1:
-                    activePlayer.Ones = GetUpperScore(1);
-                    break;
-                case 2:
-                    activePlayer.Twos = GetUpperScore(2);
-                    break;
-                case 3:
-                    activePlayer.Threes = GetUpperScore(3);
-                    break;
-                case 4:
-                    activePlayer.Fours = GetUpperScore(4);
-                    break;
-                case 5:
-                    activePlayer.Fives = GetUpperScore(5);
-                    break;
-                case 6:
-                    activePlayer.Sixes = GetUpperScore(6);
-                    break;
-                case 7:
-                    activePlayer.Pair = GetPair();
-                    break;
-                case 8:
-                    activePlayer.TwoPairs = GetTwoPairs();
-                    break;
-                case 9:
-                    activePlayer.ThreeOfaKind = GetThreeOfAKind();
-                    break;
-                case 10:
-                    activePlayer.FourOfaKind = GetFourOfAKind();
-                    break;
-                case 11:
-                    activePlayer.SmalLadder = GetSmallLadder();
-                    break;
-                case 12:
-                    activePlayer.LargeLadder = GetLargeLadder();
-                    break;
-                case 13:
-                    activePlayer.FullHouse = GetFullHouse();
-                    break;
-                case 14:
-                    activePlayer.Chance = GetChance();
-                    break;
-                case 15:
-                    activePlayer.Yatzy= GetYatzy();
-                    break;
-
-                default:
-                    break;
-            }
-        }
-        #endregion
-
-
         #region Metoder för ljudeffekter vid yatzy och bonus
         public void Yatzysound(int sum)
         {
@@ -347,7 +292,6 @@ namespace Yatzy.Models
 
         #endregion 
 
-
         #region Metoder för att sätta totalpoäng, samt beräkna de "övre" kategorierna och sätta bonus
 
         public void SetUpperScore()
@@ -355,12 +299,12 @@ namespace Yatzy.Models
             int?[] upperScoreArray = new int?[6];
             int? upperScore = 0;
 
-            upperScoreArray[0] = activePlayer.Ones;
-            upperScoreArray[1] = activePlayer.Twos;
-            upperScoreArray[2] = activePlayer.Threes;
-            upperScoreArray[3] = activePlayer.Fours;
-            upperScoreArray[4] = activePlayer.Fives;
-            upperScoreArray[5] = activePlayer.Sixes;
+            upperScoreArray[0] = ActivePlayer.Ones;
+            upperScoreArray[1] = ActivePlayer.Twos;
+            upperScoreArray[2] = ActivePlayer.Threes;
+            upperScoreArray[3] = ActivePlayer.Fours;
+            upperScoreArray[4] = ActivePlayer.Fives;
+            upperScoreArray[5] = ActivePlayer.Sixes;
 
 
             for (int i = 0; i < upperScoreArray.Length; i++)
@@ -377,7 +321,7 @@ namespace Yatzy.Models
                 }
             }
             
-            activePlayer.UpperScore = upperScoreArray.Sum();
+            ActivePlayer.UpperScore = upperScoreArray.Sum();
 
         }
 
@@ -388,20 +332,20 @@ namespace Yatzy.Models
                 if (upperScore >= 42)
                 {
                    
-                    activePlayer.UpperBonus = 50;
+                    ActivePlayer.UpperBonus = 50;
                 }
                 else
-                    activePlayer.UpperBonus = 0;
+                    ActivePlayer.UpperBonus = 0;
             }
             else
             {
                 if (upperScore >= 63)
                 {
                    
-                    activePlayer.UpperBonus = 50;
+                    ActivePlayer.UpperBonus = 50;
                 }
                 else
-                    activePlayer.UpperBonus = 0;
+                    ActivePlayer.UpperBonus = 0;
             }
         }
 
@@ -410,24 +354,24 @@ namespace Yatzy.Models
            
             int?[] totalScoreArray = new int?[16];
 
-            totalScoreArray[0] = activePlayer.Ones;
-            totalScoreArray[1] = activePlayer.Twos;
-            totalScoreArray[2] = activePlayer.Threes;
-            totalScoreArray[3] = activePlayer.Fours;
-            totalScoreArray[4] = activePlayer.Fives;
-            totalScoreArray[5] = activePlayer.Sixes;
-            totalScoreArray[6] = activePlayer.UpperBonus;
-            totalScoreArray[7] = activePlayer.Pair;
-            totalScoreArray[8] = activePlayer.TwoPairs;
-            totalScoreArray[9] = activePlayer.ThreeOfaKind;
-            totalScoreArray[10] = activePlayer.FourOfaKind;
-            totalScoreArray[11] = activePlayer.SmalLadder;
-            totalScoreArray[12] = activePlayer.LargeLadder;
-            totalScoreArray[13] = activePlayer.FullHouse;
-            totalScoreArray[14] = activePlayer.Chance;
-            totalScoreArray[15] = activePlayer.Yatzy;
+            totalScoreArray[0] = ActivePlayer.Ones;
+            totalScoreArray[1] = ActivePlayer.Twos;
+            totalScoreArray[2] = ActivePlayer.Threes;
+            totalScoreArray[3] = ActivePlayer.Fours;
+            totalScoreArray[4] = ActivePlayer.Fives;
+            totalScoreArray[5] = ActivePlayer.Sixes;
+            totalScoreArray[6] = ActivePlayer.UpperBonus;
+            totalScoreArray[7] = ActivePlayer.Pair;
+            totalScoreArray[8] = ActivePlayer.TwoPairs;
+            totalScoreArray[9] = ActivePlayer.ThreeOfaKind;
+            totalScoreArray[10] = ActivePlayer.FourOfaKind;
+            totalScoreArray[11] = ActivePlayer.SmalLadder;
+            totalScoreArray[12] = ActivePlayer.LargeLadder;
+            totalScoreArray[13] = ActivePlayer.FullHouse;
+            totalScoreArray[14] = ActivePlayer.Chance;
+            totalScoreArray[15] = ActivePlayer.Yatzy;
 
-            activePlayer.TotalScore = totalScoreArray.Sum();
+            ActivePlayer.TotalScore = totalScoreArray.Sum();
         }
         #endregion
 

@@ -6,13 +6,8 @@
 
     <Application.Resources>
 
-
-
         <!--Mall för Kategoriknappar i PlayGameView-->
-
         <Style TargetType="Button" x:Key="CategoryButton">
-            
-            
             <Style.Triggers>
                 <Trigger Property="IsEnabled" Value="false">
                     <Setter Property="OverridesDefaultStyle" Value="True" />
@@ -69,10 +64,7 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-
-
         </Style>
-
 
         <!--Mall för Kastaknapp i PlayGameView-->
         <Style TargetType="Button" x:Key="ThrowButton">
@@ -171,21 +163,6 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
-        <!-- <Style TargetType="{x:Type Button}">
-            <Setter Property="Button.Foreground" Value="AntiqueWhite" />
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="FontSize" Value="30"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Style.Triggers>
-                <Trigger Property="Button.IsMouseOver" Value="true">
-                    <Setter Property="Button.Foreground" Value="Black"/>
-                    <Setter Property="Button.FontSize" Value="35"/>
-                    <Setter Property="BorderBrush" Value="Transparent"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style> -->
 
         <!--Mall för textboxar i CreateGameView-->
         <Style TargetType="{x:Type TextBox}" x:Key="TextBoxStyle1">
@@ -197,11 +174,32 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="true">
-                    <Setter Property="Foreground" Value="Black"/>
-                    <Setter Property="FontSize" Value="35"/>
+                    <Setter Property="Background" Value="White"/>
                 </Trigger>
                
             </Style.Triggers>
+        </Style>
+
+        <Style x:Key="MyButton" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="MinHeight" Value="50"/>
+            <Setter Property="MinWidth" Value="50"/>
+            <Setter Property="FontStyle" Value="Normal"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" BorderBrush="Transparent" BorderThickness="0" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="border" Property="Background" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
         <!--Mall för knappar i CreateGameView -->
