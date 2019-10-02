@@ -81,16 +81,27 @@ namespace Yatzy.ViewModels
         }
 
         private string _filterText;
-        public string _FilterText
+        public string FilterText
         {
             get { return _filterText; }
             set
             {
                 _filterText = value;
-                //this.AvailablePlayers.View.Refresh(); ???
-                OnPropertyChanged("_FilterText");
+                this.FilteredPlayers.View.Refresh();
+                OnPropertyChanged("FilterText");
             }
         }
+
+        private CollectionViewSource _filteredPlayers;
+        public CollectionViewSource FilteredPlayers
+        {
+            get { return _filteredPlayers; }
+            set { _filteredPlayers = value; OnPropertyChanged("FilteredPlayers"); }
+        }
+        
+        public ICollectionView FilteredCV { get; set; }
+
+
 
         #endregion
 
@@ -99,6 +110,8 @@ namespace Yatzy.ViewModels
         PlayerEngine playerEngine;        
         DbOperations dbOps;
         NavigationViewModel nav;
+
+
 
         private int gameType = 0; //Denna ändras till 4 för klassisk eller 5 för styrd.
 
@@ -115,6 +128,9 @@ namespace Yatzy.ViewModels
             AvailablePlayers = new ObservableCollection<Player>();
             nav = new NavigationViewModel();
 
+            FilteredCV = CollectionViewSource.GetDefaultView(AvailablePlayers);
+            FilteredCV.CurrentChanged += new EventHandler(FilteredCV_CurrentChanged);
+
             ClassicGameCommand = new RelayCommand(ClassicGame, CanChooseClassicYatzy);
             StyrdGameCommand = new RelayCommand(StyrdGame, CanChooseStyrdYatzy);
             AddPlayerCommand = new RelayCommand(AddPlayer, CanAddPlayer);
@@ -124,10 +140,15 @@ namespace Yatzy.ViewModels
             AddNewPlayerCommand = new RelayCommand(AddNewPlayer, CanAddNewPlayer);
 
             AvailablePlayer = null;
-            GetAvaliablePlayers();
+            GetAvaliablePlayers();   
+
+
         }
 
-
+        private void FilteredCV_CurrentChanged(object sender, EventArgs e)
+        {
+            
+        }
 
         #endregion
 
@@ -198,12 +219,10 @@ namespace Yatzy.ViewModels
         public void GetAvaliablePlayers()
         {
             AvailablePlayers = dbOps.GetAvaliablePlayers();
-        }
-
-        private void UpdateAvaliablePlayers()
-        {
-            AvailablePlayers.Clear();
-            AvailablePlayers = dbOps.GetAvaliablePlayers();
+            FilteredPlayers = null;
+            FilteredPlayers = new CollectionViewSource();
+            FilteredPlayers.Source = AvailablePlayers;
+            FilteredPlayers.Filter += SearchAvailablePlayers;
         }
 
         public void RemovePlayer(object parameter)
@@ -231,15 +250,23 @@ namespace Yatzy.ViewModels
             AvailablePlayer = null;
         }
 
-        public void SearchAvailablePlayers(object sender, FilterEventArgs e) //object parameter?
+        void SearchAvailablePlayers(object sender, FilterEventArgs e)
         {
-            if (string.IsNullOrEmpty(_FilterText))
+            if (string.IsNullOrEmpty(FilterText))
             {
                 e.Accepted = true;
                 return;
             }
             Player player = e.Item as Player;
-            if (player.Firstname.ToUpper().Contains(_FilterText.ToUpper()))
+            if (player.Firstname.ToUpper().Contains(FilterText.ToUpper()))
+            {
+                e.Accepted = true;
+            }
+            else if(player.Lastname.ToUpper().Contains(FilterText.ToUpper()))
+            {
+                e.Accepted = true;
+            }
+            else if (player.Nickname.ToUpper().Contains(FilterText.ToUpper()))
             {
                 e.Accepted = true;
             }
@@ -284,11 +311,10 @@ namespace Yatzy.ViewModels
             _Firstname = null;
             _Lastname = null;
             _Nickname = null;
-            UpdateAvaliablePlayers();
+            GetAvaliablePlayers();
         }
 
         #endregion
-
 
         #region Methods for going back
         private object selectedViewModel;
