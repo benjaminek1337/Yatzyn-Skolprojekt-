@@ -33,7 +33,7 @@ namespace Yatzy.ViewModels
         DbOperations dbOps = new DbOperations();
 
         private ObservableCollection<Player> _leaderboardsevenDays;
-        public ObservableCollection<Player> LeaderboardsevenDays {
+        public ObservableCollection<Player> Leaderboard7Days {
             get { return _leaderboardsevenDays; }
             set { _leaderboardsevenDays = value; OnPropertyChanged("LeaderboardsevenDays");}
         }
@@ -122,15 +122,15 @@ namespace Yatzy.ViewModels
         public LeaderBoardViewModel()
         {
             dbOps = new DbOperations();            
-            LeaderboardsevenDays = new ObservableCollection<Player>();
+            Leaderboard7Days = new ObservableCollection<Player>();
             MostGames = new ObservableCollection<Player>();
             MostVictoriesInaRow = new ObservableCollection<Player>();
 
-            LeaderBoard7Days();
-            LeaderBoardMostGames();
-            LeaderBoardMostVicoriesInARow();
-            LeaderBoardMostGamesForced();
-            LeaderBoard7DaysForced();
+            PopulateLeaderBoard7Days();
+            PopulateLeaderBoardMostGames();
+            PopulateLeaderBoardMostVicoriesInARow();
+            PopulateLeaderBoardMostGamesForced();
+            PopulateLeaderBoard7DaysForced();
 
             BackCommand = new RelayCommand(Backcommand, CanExecuteMethod);
             ShowLBoard = new RelayCommand(ShowLeaderBoardFromMostGamesMethod, CanExecuteMethod);
@@ -232,31 +232,31 @@ namespace Yatzy.ViewModels
         #endregion
 
 
-        #region Methods for populatiing leaderboards
+        #region Methods for populating leaderboards
 
 
-        private void LeaderBoard7Days()
+        private void PopulateLeaderBoard7Days()
         {
-            LeaderboardsevenDays = dbOps.GetHighScorePlayers(1);            
+            Leaderboard7Days = dbOps.GetHighScorePlayers(1);            
         }
         
-        private void LeaderBoardMostGames()
+        private void PopulateLeaderBoardMostGames()
         {
             MostGames = dbOps.GetHighestGames(1); 
         }
 
-        private void LeaderBoardMostVicoriesInARow()
+        private void PopulateLeaderBoardMostVicoriesInARow()
         {
             MostVictoriesInaRow = new ObservableCollection<Player>(dbOps.GetWinStreak());
             
         }
 
-        private void LeaderBoard7DaysForced()
+        private void PopulateLeaderBoard7DaysForced()
         {
             LeaderboardsevenDaysForced = dbOps.GetHighScorePlayers(2);
         }
 
-        private void LeaderBoardMostGamesForced()
+        private void PopulateLeaderBoardMostGamesForced()
         {
             MostGamesForced = dbOps.GetHighestGames(2);
         }

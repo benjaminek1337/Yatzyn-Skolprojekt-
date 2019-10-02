@@ -16,22 +16,17 @@ namespace Yatzy.ViewModels
     {
         #region Properties
 
-        public MediaPlayer mediaPlayer { get; set; }
+        public MediaPlayer MediaPlayer { get; set; }
         public ICommand BackCommand { get; set; }
 
 
         #endregion
 
+        #region Contstructor
         public SettingsViewModel()
         {
-            BackCommand = new RelayCommand(Backcommand, CanExecuteMethod);
-
-
+            BackCommand = new RelayCommand(Backcommand, CanExecuteMethod);            
         }
-
-        #region Methods
-        
-
         #endregion
 
         #region Event Handlers
