@@ -44,7 +44,7 @@
 
     <Viewbox Stretch="UniformToFill" StretchDirection="Both">
 
-        <Grid ShowGridLines="True" Margin="0" MaxHeight="1080" MinWidth="1920" >
+        <Grid ShowGridLines="False" Margin="0" MaxHeight="1080" MinWidth="1920" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -91,7 +91,7 @@
             <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" Grid.RowSpan="1">
                 <Label Content="Välj spelare" HorizontalAlignment="Center" FontWeight="Bold" Foreground="AntiqueWhite" FontSize="30"/>
                 
-                <ListView x:Name="ListViewAdd" ItemsSource="{Binding AvailablePlayers, IsAsync=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedItem="{Binding AvailablePlayer}" 
+                <ListView x:Name="ListViewAdd" ItemsSource="{Binding FilteredCV}" SelectedItem="{Binding AvailablePlayer}" 
                          Background="#1EDADADA" Foreground="AntiqueWhite" Width="500" Height="680" FontSize="24" BorderBrush="#7FFAEBD7" BorderThickness="3">
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
@@ -109,8 +109,8 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </ListView>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-                    <Label Content="Sök" Foreground="AntiqueWhite" FontSize="25" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,12,0,0">
+                    <Label Content="Sök" Foreground="AntiqueWhite" FontSize="25" Margin="0,5,5,0" />
                     <TextBox Style="{StaticResource TextBoxStyle1}" Text="{Binding _FilterText, UpdateSourceTrigger=PropertyChanged}" MinWidth="300" HorizontalAlignment="Center"  />
                 </StackPanel>
             </StackPanel>

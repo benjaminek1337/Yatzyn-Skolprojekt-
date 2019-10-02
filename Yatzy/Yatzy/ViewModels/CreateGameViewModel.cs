@@ -99,7 +99,13 @@ namespace Yatzy.ViewModels
             set { _filteredPlayers = value; OnPropertyChanged("FilteredPlayers"); }
         }
         
-        public ICollectionView FilteredCV { get; set; }
+        public ICollectionView FilteredCV
+        {
+            get
+            {
+                return FilteredPlayers.View;
+            }
+        }
 
 
 
@@ -128,9 +134,6 @@ namespace Yatzy.ViewModels
             AvailablePlayers = new ObservableCollection<Player>();
             nav = new NavigationViewModel();
 
-            FilteredCV = CollectionViewSource.GetDefaultView(AvailablePlayers);
-            FilteredCV.CurrentChanged += new EventHandler(FilteredCV_CurrentChanged);
-
             ClassicGameCommand = new RelayCommand(ClassicGame, CanChooseClassicYatzy);
             StyrdGameCommand = new RelayCommand(StyrdGame, CanChooseStyrdYatzy);
             AddPlayerCommand = new RelayCommand(AddPlayer, CanAddPlayer);
@@ -145,10 +148,6 @@ namespace Yatzy.ViewModels
 
         }
 
-        private void FilteredCV_CurrentChanged(object sender, EventArgs e)
-        {
-            
-        }
 
         #endregion
 
