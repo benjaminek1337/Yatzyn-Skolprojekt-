@@ -202,7 +202,7 @@
                                 <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Firstname" Width="250" DisplayMemberBinding="{Binding Firstname}"/>
                                 <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Nickname" Width="250" DisplayMemberBinding="{Binding Nickname}"/>
                                 <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Lastname" Width="250" DisplayMemberBinding="{Binding Lastname}"/>
-                                <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Spelade" Width="150"  DisplayMemberBinding="{Binding HighScore}"/>
+                                <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Poäng" Width="150"  DisplayMemberBinding="{Binding HighScore}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -232,7 +232,7 @@
                                 <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Firstname" Width="250" DisplayMemberBinding="{Binding Firstname}"/>
                                 <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Nickname" Width="250" DisplayMemberBinding="{Binding Nickname}"/>
                                 <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Lastname" Width="250" DisplayMemberBinding="{Binding Lastname}"/>
-                                <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Spelade" Width="150"  DisplayMemberBinding="{Binding HighScore}"/>
+                                <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Spel" Width="150"  DisplayMemberBinding="{Binding HighScore}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -262,7 +262,7 @@
                                 <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Firstname" Width="250" DisplayMemberBinding="{Binding Firstname}"/>
                                 <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Nickname" Width="250" DisplayMemberBinding="{Binding Nickname}"/>
                                 <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Lastname" Width="250" DisplayMemberBinding="{Binding Lastname}"/>
-                                <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Spelade" Width="150"  DisplayMemberBinding="{Binding HighScore}"/>
+                                <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Vinster" Width="150"  DisplayMemberBinding="{Binding HighScore}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -292,7 +292,7 @@
                                 <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Firstname" Width="250" DisplayMemberBinding="{Binding Firstname}"/>
                                 <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Nickname" Width="250" DisplayMemberBinding="{Binding Nickname}"/>
                                 <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Lastname" Width="250" DisplayMemberBinding="{Binding Lastname}"/>
-                                <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Spelade" Width="150"  DisplayMemberBinding="{Binding HighScore}"/>
+                                <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Poäng" Width="150"  DisplayMemberBinding="{Binding HighScore}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -322,7 +322,7 @@
                                 <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Firstname" Width="250" DisplayMemberBinding="{Binding Firstname}"/>
                                 <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Nickname" Width="250" DisplayMemberBinding="{Binding Nickname}"/>
                                 <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Lastname" Width="250" DisplayMemberBinding="{Binding Lastname}"/>
-                                <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Spelade" Width="150"  DisplayMemberBinding="{Binding HighScore}"/>
+                                <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Spel" Width="150"  DisplayMemberBinding="{Binding HighScore}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -352,7 +352,7 @@
                                 <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Firstname" Width="250" DisplayMemberBinding="{Binding Firstname}"/>
                                 <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Nickname" Width="250" DisplayMemberBinding="{Binding Nickname}"/>
                                 <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Lastname" Width="250" DisplayMemberBinding="{Binding Lastname}"/>
-                                <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Spelade" Width="150"  DisplayMemberBinding="{Binding HighScore}"/>
+                                <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Vinster" Width="150"  DisplayMemberBinding="{Binding HighScore}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
