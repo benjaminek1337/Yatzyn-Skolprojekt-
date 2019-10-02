@@ -37,11 +37,11 @@ namespace Yatzy.ViewModels
             set { _availablePlayers = value; OnPropertyChanged("AvailablePlayers"); }
         }
 
-        private ObservableCollection<Player> selectedPlayers;
+        private ObservableCollection<Player> _selectedPlayers;
         public ObservableCollection<Player> SelectedPlayers
         {
-            get { return selectedPlayers; }
-            set { selectedPlayers = value; OnPropertyChanged("SelectedPlayers"); }
+            get { return _selectedPlayers; }
+            set { _selectedPlayers = value; OnPropertyChanged("SelectedPlayers"); }
         }
 
         private Player _availablePlayer;
@@ -51,12 +51,12 @@ namespace Yatzy.ViewModels
             set { _availablePlayer = value; OnPropertyChanged("AvailablePlayer"); }
         }
 
-        private Player player;
+        private Player _player;
 
         public Player SelectedPlayer
         {
-            get { return player; }
-            set { player = value; OnPropertyChanged("SelectedPlayer"); }
+            get { return _player; }
+            set { _player = value; OnPropertyChanged("SelectedPlayer"); }
         }
 
         private string _firstname;
@@ -87,23 +87,30 @@ namespace Yatzy.ViewModels
             set
             {
                 _filterText = value;
-                this._filteredPlayers.View.Refresh();
                 OnPropertyChanged("FilterText");
+                _filteredCV.Refresh();
             }
         }
 
         private CollectionViewSource _filteredPlayers;
-        //public CollectionViewSource FilteredPlayers
-        //{
-        //    get { return _filteredPlayers; }
-        //    set { _filteredPlayers = value; OnPropertyChanged("FilteredPlayers"); }
-        //}
-        
+        public CollectionViewSource FilteredPlayers
+        {
+            get { return _filteredPlayers; }
+            set { _filteredPlayers = value; OnPropertyChanged("FilteredPlayers"); }
+        }
+
+        private ICollectionView _filteredCV;
         public ICollectionView FilteredCV
         {
             get
+            {             
+                return _filteredCV;
+            }
+            set
             {
-                return this._filteredPlayers.View;
+                _filteredCV = value;
+                this._filteredCV.Refresh();
+                OnPropertyChanged("FilteredCV");
             }
         }
 
@@ -144,7 +151,6 @@ namespace Yatzy.ViewModels
 
             AvailablePlayer = null;
             GetAvaliablePlayers();
-            GetFilteredPlayers();
         }
 
 
@@ -217,13 +223,26 @@ namespace Yatzy.ViewModels
         public void GetAvaliablePlayers()
         {
             AvailablePlayers = dbOps.GetAvaliablePlayers();
+            GetFilteredPlayers();
         }
 
         public void GetFilteredPlayers()
         {
-            _filteredPlayers = new CollectionViewSource();
-            _filteredPlayers.Source = AvailablePlayers;
-            _filteredPlayers.Filter += SearchAvailablePlayers;
+            //_filteredPlayers = new CollectionViewSource();
+            //_filteredPlayers.Source = AvailablePlayers;
+            //_filteredPlayers.Filter += SearchAvailablePlayers;
+            //_filteredCV = _filteredPlayers.View;
+            this._filteredCV = (ICollectionView)CollectionViewSource.GetDefaultView(this.AvailablePlayers);
+            _filteredCV.Filter = new Predicate<object>(o => Filter(o as Player));
+        }
+
+
+        private bool Filter(Player player)
+        {
+            return FilterText == null
+                || player.Firstname.IndexOf(FilterText, StringComparison.OrdinalIgnoreCase) != -1
+                || player.Lastname.IndexOf(FilterText, StringComparison.OrdinalIgnoreCase) != -1
+                || player.Nickname.IndexOf(FilterText, StringComparison.OrdinalIgnoreCase) != -1;
         }
 
         public void RemovePlayer(object parameter)
@@ -309,10 +328,11 @@ namespace Yatzy.ViewModels
                 Nickname = _Nickname
             };
             dbOps.RegisterPlayer(player);
+            AvailablePlayers.Add(player);
+            GetFilteredPlayers();
             _Firstname = null;
             _Lastname = null;
             _Nickname = null;
-            GetAvaliablePlayers();
         }
 
         #endregion
