@@ -13,6 +13,7 @@ using Yatzy.Views;
 using Yatzy.ViewModels;
 using System.Windows.Input;
 using System.Windows;
+using System.Windows.Data;
 
 namespace Yatzy.ViewModels
 {
@@ -78,6 +79,19 @@ namespace Yatzy.ViewModels
             get { return _nickname; }
             set { _nickname = value; OnPropertyChanged("_Nickname"); }
         }
+
+        private string _filterText;
+        public string _FilterText
+        {
+            get { return _filterText; }
+            set
+            {
+                _filterText = value;
+                //this.AvailablePlayers.View.Refresh(); ???
+                OnPropertyChanged("_FilterText");
+            }
+        }
+
         #endregion
 
         #region Objekt och lokala variabler
@@ -215,6 +229,24 @@ namespace Yatzy.ViewModels
                 AvailablePlayer = null;
             }
             AvailablePlayer = null;
+        }
+
+        public void SearchAvailablePlayers(object sender, FilterEventArgs e) //object parameter?
+        {
+            if (string.IsNullOrEmpty(_FilterText))
+            {
+                e.Accepted = true;
+                return;
+            }
+            Player player = e.Item as Player;
+            if (player.Firstname.ToUpper().Contains(_FilterText.ToUpper()))
+            {
+                e.Accepted = true;
+            }
+            else
+            {
+                e.Accepted = false;
+            }
         }
 
         private void ClassicGame(object parameter)

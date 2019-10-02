@@ -15,8 +15,11 @@ namespace Yatzy.ViewModels
 {
     class NavigationViewModel : INotifyPropertyChanged
     {
+        #region Objekt och lokala variabler
 
         SoundPlayer sPlayer;
+
+        #endregion
 
         #region Properties
 
@@ -50,12 +53,9 @@ namespace Yatzy.ViewModels
 
         #endregion
 
-        #region Ljud
+        #region Sound
         private void StartMainMusic()
         {
-            
-
-
             //MediaPlayer mp = new MediaPlayer();
             //mp.Open(new Uri("pack://application:,,,/otherAssemblyName;component/Sounds/Mainmenu.wav"));
             //mp.Play();
@@ -69,10 +69,8 @@ namespace Yatzy.ViewModels
             sPlayer.Stop();
         }
 
-
         #endregion
-
-
+        
         #region Methods
 
         private bool CanExecuteMethod(object parameter)

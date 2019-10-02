@@ -18,6 +18,7 @@ namespace Yatzy.Models
     {
 
         #region Objekt och lokala variabler
+
         PlayerEngine playerEngine;
         GameEngine gameEngine;
         DbOperations dbOps;
@@ -86,7 +87,6 @@ namespace Yatzy.Models
         #region Properties 
         public RelayCommand SaveDiceCommand { get; set; }
         public RelayCommand RollDicesCommand { get; set; }
-        public RelayCommand ThrowCommand { get; set; }
         public RelayCommand ChooseScoreCategoryCommand { get; set; }
         public RelayCommand Ones { get; set; }
         public RelayCommand Twos { get; set; }
@@ -141,6 +141,13 @@ namespace Yatzy.Models
             set { _throwsLeft = value; OnPropertyChanged(new PropertyChangedEventArgs("ThrowsLeft")); }
         }
 
+        private object selectedViewModel;
+        public object SelectedViewModel
+        {
+            get { return selectedViewModel; }
+            set { selectedViewModel = value; OnPropertyChanged(new PropertyChangedEventArgs("SelectedViewModel")); }
+        }
+
 
         #endregion
 
@@ -188,8 +195,7 @@ namespace Yatzy.Models
             SetThrowsLeft(throwsLeft);
 
             SaveDiceCommand = new RelayCommand(SaveDice, CanSaveDices);
-            //RollDicesCommand = new RelayCommand(RollDices, IsTriesEnabled);
-            ThrowCommand = new RelayCommand(Throw, IsTriesEnabled);
+            RollDicesCommand = new RelayCommand(RollDices, IsTriesEnabled);
             Ones = new RelayCommand(ChooseScoreCategory, IsOnesEnabled);
             Twos = new RelayCommand(ChooseScoreCategory, IsTwosEnabled);
             Threes = new RelayCommand(ChooseScoreCategory, IsThreesEnabled);
@@ -228,13 +234,7 @@ namespace Yatzy.Models
             }
         }
 
-        private void Throw (object parameter)
-        {
-            RollDices();
-            SetDiceTimer();
-        }
-
-        private void RollDices()
+        private void RollDices(object parameter)
         {
             Random random = new Random();
 
@@ -246,14 +246,14 @@ namespace Yatzy.Models
                     Dices[i].DiceValue = rand;
                     Dices[i].DiceImage = diceImages[rand - 1].DiceImage;
                 }
-
             }
             count++;
             throwsLeft--;
             SetThrowsLeft(throwsLeft);
-            DiceSound();
+            PlayDiceSound();
             gameEngine.SetGameEngineDices(Dices);
             GetScoreCombinations();
+            SetDiceTimer();
         }
 
         //Metod för att välja en tärning att spara genom att skifta värde på IsDiceEnabled
@@ -359,6 +359,11 @@ namespace Yatzy.Models
             timer2.Enabled = true;
         }
 
+        private void Timer1_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            MessageBox.Show("Nu har ni 15 minuter på er att avsluta spelet");
+            timer1.Stop();
+        }
         private void Timer2_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             timer2.Stop();
@@ -370,11 +375,7 @@ namespace Yatzy.Models
             playerEngine.NullProps();
         }
 
-        private void Timer1_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-        {
-            MessageBox.Show("Nu har ni 15 minuter på er att avsluta spelet");
-            timer1.Stop();
-        }
+
         #endregion
 
         #region Metoder för ljud
@@ -392,13 +393,13 @@ namespace Yatzy.Models
             sPlayer.Stop();
         }
 
-        public void DiceSound()
+        public void PlayDiceSound()
         {
             sEffects = new SoundPlayer();
             sEffects.Stream = Properties.Resources.DiceThrow;
             sEffects.Play();
         }
-        public void VictorySound()
+        public void PlayVictorySound()
         {
             sEffects = new SoundPlayer();
             sEffects.Stream = Properties.Resources.Flawless;
@@ -445,7 +446,7 @@ namespace Yatzy.Models
             gameEngine.SetUpperScore();
             gameEngine.SetTotalScore();
             ResetDices();
-            RoundsLeft();
+            CountRoundsLeft();
             GetScoreCombinations();
             ActivePlayer = playerEngine.SetActivePlayer();
             if (rounds == 15)
@@ -454,7 +455,7 @@ namespace Yatzy.Models
             }
         }
 
-        private void RoundsLeft()
+        private void CountRoundsLeft()
         {
             if (ActivePlayer == ActivePlayers[ActivePlayers.Count - 1])
             {
@@ -801,12 +802,7 @@ namespace Yatzy.Models
 
         #region Metoder för när spelet avslutas
 
-        private object selectedViewModel;
-        public object SelectedViewModel
-        {
-            get { return selectedViewModel; }
-            set { selectedViewModel = value; OnPropertyChanged(new PropertyChangedEventArgs("SelectedViewModel")); }
-        }
+
 
         private void QuitGame(object parameter)
         {
@@ -839,7 +835,7 @@ namespace Yatzy.Models
             var orderByResult = from r in Results
                                 orderby r.TotalScore descending
                                 select r;
-            VictorySound();
+            PlayVictorySound();
             MessageBox.Show(orderByResult.First().Firstname.ToString() + " vann med " + orderByResult.First().TotalScore.ToString() + " poäng");
             dbOps.SaveGameTransaction(ActivePlayers);
 
