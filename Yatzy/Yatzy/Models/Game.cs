@@ -12,7 +12,7 @@ namespace Yatzy.Models
     {
         public int GameId { get; set; }
 
-        public int HighestScore { get; set; }
+        public int? HighestScore { get; set; }
 
         public int Player_Id { get; set; }
 
