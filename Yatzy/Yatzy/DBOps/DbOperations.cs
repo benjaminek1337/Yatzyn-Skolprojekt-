@@ -37,7 +37,7 @@ namespace Yatzy.DBOps
                 {
 
                     cmd.Connection = conn;
-                    cmd.CommandText = "SELECT * FROM player ORDER BY firstname ASC";
+                    cmd.CommandText = "SELECT * FROM player WHERE firstname is not null ORDER BY firstname ASC ";
 
 
                     using (var reader = cmd.ExecuteReader())
@@ -190,11 +190,30 @@ namespace Yatzy.DBOps
 
         }
 
+        private int? CheckInt (NpgsqlDataReader reader, int value)
+        {
+            if (reader[value] != DBNull.Value)
+            {
+                
+                return reader.GetInt32(value);
+            }
+            else
+            {
+ 
+                return null;
+            }
+
+        }
+
+
         public ObservableCollection<Player> GetAvaliablePlayers()
         {
             Player p;
+            Game g;
 
+            ObservableCollection<Game> games = new ObservableCollection<Game>();
             ObservableCollection<Player> players = new ObservableCollection<Player>();
+            ObservableCollection<Player> newPlayers = new ObservableCollection<Player>();
 
             NpgsqlTransaction transaction = null;
             NpgsqlConnection conn = null;
@@ -202,15 +221,15 @@ namespace Yatzy.DBOps
             try
             {
                 
-                string stmt = "SELECT * FROM player WHERE EXISTS ( SELECT score FROM game_player WHERE score IS NOT null) ORDER BY firstname ASC";
-
+                string stmt = "SELECT * FROM player ORDER BY firstname ASC";
+                string stmt1 = "SELECT * FROM game_player ORDER BY game_id desc";
                 conn = new NpgsqlConnection(Connect);
                 conn.Open();
                 transaction = conn.BeginTransaction();
 
                     cmd = new NpgsqlCommand(stmt, conn);
                     cmd.Transaction = transaction;
-                    using (var reader = cmd.ExecuteReader())
+                    using (NpgsqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -226,9 +245,51 @@ namespace Yatzy.DBOps
 
                         }
                     }
+
+                cmd = new NpgsqlCommand(stmt1, conn);
+                cmd.Transaction = transaction;
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+
+
+                        g = new Game()
+                        {
+
+                            GameId = reader.GetInt32(0),
+                            Player_Id = reader.GetInt32(1),
+                            HighestScore = CheckInt(reader, 2)
+                        };
+                        
+                        games.Add(g);
+
+                    }
+                }
+
+                for (int i = 0; i < players.Count; i++)
+                {
+                    bool flag = false;
+                    foreach (var game in games)
+                    {
+                        if (players[i].PlayerId == game.Player_Id && game.HighestScore == null)
+                        {
+                            flag = true;
+                            break;
+                        }
+                    }
+
+                    if (flag == false)
+                    {
+                        newPlayers.Add(players[i]);
+                    }
+
+                }
+
+
                 transaction.Commit();
                 conn.Close();
-                return players;
+                return newPlayers;
             }
             catch (PostgresException error)
             {
