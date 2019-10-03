@@ -262,7 +262,7 @@
                                 <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Firstname" Width="250" DisplayMemberBinding="{Binding Firstname}"/>
                                 <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Nickname" Width="250" DisplayMemberBinding="{Binding Nickname}"/>
                                 <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Lastname" Width="250" DisplayMemberBinding="{Binding Lastname}"/>
-                                <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Vinster" Width="150"  DisplayMemberBinding="{Binding HighScore}"/>
+                                <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Vinster" Width="150"  DisplayMemberBinding="{Binding GameInARow}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
