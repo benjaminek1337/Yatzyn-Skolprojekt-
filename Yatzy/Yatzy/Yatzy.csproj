@@ -229,9 +229,6 @@
     <Resource Include="Resources\Topplista.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\rglr.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\leftblue.png" />
   </ItemGroup>
   <ItemGroup>
@@ -242,6 +239,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\bakgrund80s.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Regler.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
