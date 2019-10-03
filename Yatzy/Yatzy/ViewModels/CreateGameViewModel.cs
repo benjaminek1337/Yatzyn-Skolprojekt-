@@ -188,7 +188,7 @@ namespace Yatzy.ViewModels
 
         private bool CanAddNewPlayer(object parameter)
         {
-            if (!String.IsNullOrEmpty(_Firstname) && !String.IsNullOrEmpty(_Lastname) && !String.IsNullOrEmpty(_Nickname))
+            if (!String.IsNullOrWhiteSpace(_Firstname) && !String.IsNullOrWhiteSpace(_Lastname) && !String.IsNullOrWhiteSpace(_Nickname))
                 return true;
             else
                 return false;
