@@ -209,7 +209,7 @@
                 </StackPanel>
 
                 <StackPanel Visibility="{Binding ShowMostGames, Converter={StaticResource ToggleVisibility}}">
-                    <Label Content="Mest spelade spel (Klassisk)" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="AntiqueWhite" BorderBrush="Black"/>
+                    <Label Content="Mest spelade spel " FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="AntiqueWhite" BorderBrush="Black"/>
                     <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" MaxWidth="1000" Width="1000"  ItemsSource="{Binding MostGames}"  Background="#19FFFFFF" Foreground="AntiqueWhite" FontSize="28" BorderBrush="#00000000" >
                         <ListView.ItemContainerStyle>
                             <Style TargetType="{x:Type ListViewItem}">
@@ -262,7 +262,7 @@
                                 <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Firstname" Width="250" DisplayMemberBinding="{Binding Firstname}"/>
                                 <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Nickname" Width="250" DisplayMemberBinding="{Binding Nickname}"/>
                                 <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Lastname" Width="250" DisplayMemberBinding="{Binding Lastname}"/>
-                                <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Vinster" Width="150"  DisplayMemberBinding="{Binding GameInARow}"/>
+                                <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Vinster" Width="150"  DisplayMemberBinding="{Binding GamesInARow}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -299,7 +299,7 @@
                 </StackPanel>
 
                 <StackPanel Visibility="{Binding ShowForcedMostGames, Converter={StaticResource ToggleVisibility}}">
-                    <Label Content="Mest spelade spel (Styrd)" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="AntiqueWhite" BorderBrush="Black"/>
+                    <Label Content="Mest spelade spel " FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="AntiqueWhite" BorderBrush="Black"/>
                     <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" MaxWidth="1000" Width="1000" ItemsSource="{Binding MostGamesForced}"  Background="#19FFFFFF" Foreground="AntiqueWhite" FontSize="28" BorderBrush="#00000000" >
                         <ListView.ItemContainerStyle>
                             <Style TargetType="{x:Type ListViewItem}">
@@ -352,7 +352,7 @@
                                 <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Firstname" Width="250" DisplayMemberBinding="{Binding Firstname}"/>
                                 <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Nickname" Width="250" DisplayMemberBinding="{Binding Nickname}"/>
                                 <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Lastname" Width="250" DisplayMemberBinding="{Binding Lastname}"/>
-                                <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Vinster" Width="150"  DisplayMemberBinding="{Binding HighScore}"/>
+                                <GridViewColumn HeaderContainerStyle="{StaticResource CustomHeader}" Header="Vinster" Width="150"  DisplayMemberBinding="{Binding GamesInARow}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
