@@ -214,13 +214,9 @@
     <Resource Include="Resources\right.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\YATZY.png" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Resources\Sound\DiceThrow.wav" />
     <EmbeddedResource Include="Resources\Sound\Gamemusic.wav" />
     <EmbeddedResource Include="Resources\Sound\Main menu.wav" />
-    <Resource Include="Resources\alternativ.png" />
     <EmbeddedResource Include="Resources\Sound\Flawless.wav" />
     <Resource Include="Resources\Images\RollingDiceGif.gif" />
     <Resource Include="Resources\Images\RollingDice1.gif" />
@@ -240,6 +236,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\rightblue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\yatzy.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
