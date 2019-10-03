@@ -174,7 +174,7 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="true">
-                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="BorderBrush" Value="Transparent"/>
                 </Trigger>
                
             </Style.Triggers>
