@@ -98,7 +98,7 @@
     <Compile Include="GameEngine\PropToStringConv.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="ViewModels\CreateGameViewModel.cs" />
-    <Compile Include="ViewModels\DicesViewModel.cs" />
+    <Compile Include="ViewModels\PlayGameViewModel.cs" />
     <Compile Include="ViewModels\LeaderBoardViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\NavigationViewModel.cs" />
