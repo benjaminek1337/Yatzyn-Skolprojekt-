@@ -92,13 +92,6 @@ namespace Yatzy.ViewModels
             }
         }
 
-        private CollectionViewSource _filteredPlayers;
-        public CollectionViewSource FilteredPlayers
-        {
-            get { return _filteredPlayers; }
-            set { _filteredPlayers = value; OnPropertyChanged("FilteredPlayers"); }
-        }
-
         private ICollectionView _filteredCV;
         public ICollectionView FilteredCV
         {
@@ -228,12 +221,8 @@ namespace Yatzy.ViewModels
 
         public void GetFilteredPlayers()
         {
-            //_filteredPlayers = new CollectionViewSource();
-            //_filteredPlayers.Source = AvailablePlayers;
-            //_filteredPlayers.Filter += SearchAvailablePlayers;
-            //_filteredCV = _filteredPlayers.View;
             this._filteredCV = (ICollectionView)CollectionViewSource.GetDefaultView(this.AvailablePlayers);
-            _filteredCV.Filter = new Predicate<object>(o => Filter(o as Player));
+            _filteredCV.Filter = new Predicate<object>(player => Filter(player as Player));
         }
 
 
@@ -268,32 +257,6 @@ namespace Yatzy.ViewModels
                 AvailablePlayer = null;
             }
             AvailablePlayer = null;
-        }
-
-        void SearchAvailablePlayers(object sender, FilterEventArgs e)
-        {
-            if (string.IsNullOrEmpty(FilterText))
-            {
-                e.Accepted = true;
-                return;
-            }
-            Player player = e.Item as Player;
-            if (player.Firstname.ToUpper().Contains(FilterText.ToUpper()))
-            {
-                e.Accepted = true;
-            }
-            else if(player.Lastname.ToUpper().Contains(FilterText.ToUpper()))
-            {
-                e.Accepted = true;
-            }
-            else if (player.Nickname.ToUpper().Contains(FilterText.ToUpper()))
-            {
-                e.Accepted = true;
-            }
-            else
-            {
-                e.Accepted = false;
-            }
         }
 
         private void ClassicGame(object parameter)

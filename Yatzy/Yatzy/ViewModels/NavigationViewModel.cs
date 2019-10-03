@@ -23,7 +23,6 @@ namespace Yatzy.ViewModels
 
         #region Properties
 
-        public ICommand SettingsCommand { get; set; }
         public ICommand MainMenuCommand { get; set; }
         public ICommand LeaderBoardCommand { get; set; }
         public ICommand RulesCommand { get; set; }
@@ -42,7 +41,6 @@ namespace Yatzy.ViewModels
 
         public NavigationViewModel()
         {
-            SettingsCommand = new RelayCommand(OpenSettings, CanExecuteMethod);
             MainMenuCommand = new RelayCommand(OpenMainMenu, CanExecuteMethod);
             LeaderBoardCommand = new RelayCommand(OpenLeaderBoard, CanExecuteMethod);
             RulesCommand = new RelayCommand(OpenRules, CanExecuteMethod);
@@ -81,11 +79,6 @@ namespace Yatzy.ViewModels
         private void OpenGameMenu(object parameter)
         {            
             SelectedViewModel = new CreateGameViewModel();
-        }
-
-        private void OpenSettings(object parameter)
-        {
-            SelectedViewModel = new SettingsViewModel();
         }
 
         private void OpenMainMenu(object parameter)

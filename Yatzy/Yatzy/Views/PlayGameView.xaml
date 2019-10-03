@@ -38,10 +38,10 @@
         </Storyboard>
         <Storyboard x:Key="RollDice3">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.Target="{Binding ElementName=btnDice3}">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-380.245"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-300.245"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.Target="{Binding ElementName=btnDice3}">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-240.141"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-400.141"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="RollDice4">
@@ -54,10 +54,10 @@
         </Storyboard>
         <Storyboard x:Key="RollDice5">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.Target="{Binding ElementName=btnDice5}">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-360.38"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-320.38"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.Target="{Binding ElementName=btnDice5}">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-490.894"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-470.894"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="RollDice5_Copy1">
@@ -113,8 +113,8 @@
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="6*"/>
             <ColumnDefinition Width="1*"/>
 
         </Grid.ColumnDefinitions>
@@ -126,13 +126,13 @@
         <!--Grid för tärningar och kasta knapp-->
         <Grid x:Name="DiceBoard" ShowGridLines="False" Grid.Column="1" Grid.Row="1">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>

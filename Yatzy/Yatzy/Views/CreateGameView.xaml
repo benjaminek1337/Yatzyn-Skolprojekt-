@@ -155,7 +155,7 @@
                     
             </StackPanel>
 
-            <StackPanel Grid.Row="1" Grid.Column="4"  Grid.RowSpan="1">
+            <StackPanel Grid.Row="1" Grid.Column="4"  Grid.RowSpan="1" Margin="0,0,75,0">
                 <Label Content="Välj Speltyp" HorizontalAlignment="Right" Margin="0,0,30,0" FontWeight="Bold" Foreground="AntiqueWhite" FontSize="30"/>
                 <Button Style="{StaticResource TemplateButton1}" Command="{Binding ClassicGameCommand}" Margin="0,70,30,10" CommandParameter="1" HorizontalAlignment="Right">
                     <Label  FontSize="45">
