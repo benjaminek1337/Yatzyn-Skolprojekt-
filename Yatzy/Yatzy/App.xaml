@@ -172,15 +172,6 @@
             <Setter Property="MinHeight" Value="40"/>
             <Setter Property="Margin" Value="0,5,0,5"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
-            <!--
-            <Setter Property="Template"> 
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border x:Name="border" CornerRadius="10" BorderBrush="#7FFAEBD7" BorderThickness="2" Background="AntiqueWhite" />                        
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-                -->
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="true">
                     <Setter Property="Background" Value="White"/>
