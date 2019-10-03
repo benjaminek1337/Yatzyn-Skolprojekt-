@@ -188,7 +188,7 @@ namespace Yatzy.ViewModels
 
         private bool CanAddNewPlayer(object parameter)
         {
-            if (!String.IsNullOrEmpty(_Firstname) && !String.IsNullOrEmpty(_Lastname) && !String.IsNullOrEmpty(_Nickname))
+            if (!String.IsNullOrWhiteSpace(_Firstname) && !String.IsNullOrWhiteSpace(_Lastname) && !String.IsNullOrWhiteSpace(_Nickname))
                 return true;
             else
                 return false;
@@ -275,7 +275,7 @@ namespace Yatzy.ViewModels
         {
             
             //nav.EndMainMusic();
-            //dbOps.StartGameTransaction(SelectedPlayers, gameType);
+            dbOps.StartGameTransaction(SelectedPlayers, gameType);
             PlayGameView dicesView = new PlayGameView();
             SelectedViewModel = new DicesViewModel(playerEngine);
             dicesView.DataContext = SelectedViewModel;

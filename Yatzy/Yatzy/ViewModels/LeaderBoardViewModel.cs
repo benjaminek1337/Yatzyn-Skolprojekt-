@@ -32,10 +32,10 @@ namespace Yatzy.ViewModels
 
         DbOperations dbOps = new DbOperations();
 
-        private ObservableCollection<Player> _leaderboardsevenDays;
+        private ObservableCollection<Player> _leaderboard7Days;
         public ObservableCollection<Player> Leaderboard7Days {
-            get { return _leaderboardsevenDays; }
-            set { _leaderboardsevenDays = value; OnPropertyChanged("Leaderboard7Days");}
+            get { return _leaderboard7Days; }
+            set { _leaderboard7Days = value; OnPropertyChanged("Leaderboard7Days");}
         }
 
         private ObservableCollection<Player> _mostGames;
@@ -45,11 +45,11 @@ namespace Yatzy.ViewModels
             set { _mostGames = value; OnPropertyChanged("MostGames"); }
         }
 
-        private ObservableCollection<Player> _mostvictoriesinaRow;
+        private ObservableCollection<Player> _mostVictoriesInaRow;
         public ObservableCollection<Player> MostVictoriesInaRow
         {
-            get { return _mostvictoriesinaRow; }
-            set { _mostvictoriesinaRow = value; OnPropertyChanged("MostVictoriesInaRow"); }
+            get { return _mostVictoriesInaRow; }
+            set { _mostVictoriesInaRow = value; OnPropertyChanged("MostVictoriesInaRow"); }
         }
 
         private ObservableCollection<Player> _leaderboardsevenDaysforced;
