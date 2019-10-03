@@ -32,10 +32,10 @@ namespace Yatzy.ViewModels
 
         DbOperations dbOps = new DbOperations();
 
-        private ObservableCollection<Player> _leaderboardsevenDays;
+        private ObservableCollection<Player> _leaderboard7Days;
         public ObservableCollection<Player> Leaderboard7Days {
-            get { return _leaderboardsevenDays; }
-            set { _leaderboardsevenDays = value; OnPropertyChanged("Leaderboard7Days");}
+            get { return _leaderboard7Days; }
+            set { _leaderboard7Days = value; OnPropertyChanged("Leaderboard7Days");}
         }
 
         private ObservableCollection<Player> _mostGames;
