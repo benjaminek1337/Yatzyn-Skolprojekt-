@@ -827,7 +827,7 @@ namespace Yatzy.Models
         }
         public void ForcedQuitGame()
         {
-            if(ActivePlayer != null && Dices != null && ActivePlayers != null)
+            if(ActivePlayer != null && Dices != null)
             {
                 dbOps.AbortGameTransaction(ActivePlayers[0].GameId);
                 gameEngine.NullProps();

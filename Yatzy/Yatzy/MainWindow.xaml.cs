@@ -42,24 +42,6 @@ namespace Yatzy
             dicesViewModel.ForcedQuitGame();
         }
 
-        //public void QuitGame(object parameter)
-        //{
-        //    if (MessageBox.Show("Vill du avsluta spelet?", "Avsluta spel", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
-        //    {
-        //        //rutan stängs ned här
-        //    }
-        //    else
-        //    {
-
-        //        dbOps.AbortGameTransaction(ActivePlayers[0].GameId);
-
-        //        gameEngine.NullProps();
-        //        playerEngine.NullProps();
-
-        //        SelectedViewModel = new MainMenuViewModel();
-        //    }
-        //}
-        //SoundPlayer sound = new SoundPlayer("Resources/DiceThrow.wav"); //.wav ska vara Embedded Resource annars hittar inte VS filen
 
     }
 }
