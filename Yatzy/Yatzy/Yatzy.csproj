@@ -248,5 +248,8 @@
   <ItemGroup>
     <Resource Include="Resources\yatzy.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Regler.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
