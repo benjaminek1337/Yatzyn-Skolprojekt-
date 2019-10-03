@@ -173,6 +173,10 @@ namespace Yatzy.Models
 
         #region Konstruktor
 
+        public DicesViewModel()
+        {
+
+        }
         public DicesViewModel(PlayerEngine _playerEngine)
         {
             Player = new Player();
@@ -821,6 +825,17 @@ namespace Yatzy.Models
                 SelectedViewModel = new MainMenuViewModel();
             }
         }
+        public void ForcedQuitGame()
+        {
+            if(ActivePlayer != null && Dices != null && ActivePlayers != null)
+            {
+                dbOps.AbortGameTransaction(ActivePlayers[0].GameId);
+                gameEngine.NullProps();
+                playerEngine.NullProps();
+            }
+            
+        }
+
 
         private void GameEnded()
         {
