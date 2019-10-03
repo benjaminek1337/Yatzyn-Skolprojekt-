@@ -45,11 +45,11 @@ namespace Yatzy.ViewModels
             set { _mostGames = value; OnPropertyChanged("MostGames"); }
         }
 
-        private ObservableCollection<Player> _mostvictoriesinaRow;
+        private ObservableCollection<Player> _mostVictoriesInaRow;
         public ObservableCollection<Player> MostVictoriesInaRow
         {
-            get { return _mostvictoriesinaRow; }
-            set { _mostvictoriesinaRow = value; OnPropertyChanged("MostVictoriesInaRow"); }
+            get { return _mostVictoriesInaRow; }
+            set { _mostVictoriesInaRow = value; OnPropertyChanged("MostVictoriesInaRow"); }
         }
 
         private ObservableCollection<Player> _leaderboardsevenDaysforced;
