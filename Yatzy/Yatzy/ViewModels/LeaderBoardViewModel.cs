@@ -247,8 +247,7 @@ namespace Yatzy.ViewModels
 
         private void PopulateLeaderBoardMostVicoriesInARow()
         {
-            MostVictoriesInaRow = new ObservableCollection<Player>(dbOps.GetWinStreak());
-            
+            MostVictoriesInaRow = new ObservableCollection<Player>(dbOps.GetWinStreak());          
         }
 
         private void PopulateLeaderBoard7DaysForced()
