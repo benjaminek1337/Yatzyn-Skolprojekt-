@@ -238,9 +238,6 @@
     <Resource Include="Resources\yatzy.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\bakgrund80s.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Regler.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

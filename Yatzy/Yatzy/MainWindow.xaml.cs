@@ -25,15 +25,23 @@ namespace Yatzy
     /// </summary>
     public partial class MainWindow : Window
     {
+        DicesViewModel dicesViewModel;
         public MainWindow()
         {
             this.DataContext = new NavigationViewModel();
+            dicesViewModel = new DicesViewModel();
             InitializeComponent();
-           
+
+
+
+            this.Closed += new EventHandler(MainWindow_Closed);
+
+        }
+        void MainWindow_Closed(object sender, EventArgs e)
+        {
+            dicesViewModel.ForcedQuitGame();
         }
 
-
-        //SoundPlayer sound = new SoundPlayer("Resources/DiceThrow.wav"); //.wav ska vara Embedded Resource annars hittar inte VS filen
 
     }
 }
