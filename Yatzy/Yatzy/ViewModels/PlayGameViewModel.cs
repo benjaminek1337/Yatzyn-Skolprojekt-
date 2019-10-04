@@ -17,7 +17,7 @@ namespace Yatzy.Models
     class DicesViewModel : INotifyPropertyChanged
     {
 
-        #region Objekt och lokala variabler
+        #region Objekt och variabler
 
         PlayerEngine playerEngine;
         GameEngine gameEngine;
@@ -25,6 +25,7 @@ namespace Yatzy.Models
         PlayGameView pgv;
         SoundPlayer sPlayer;
         SoundPlayer sEffects;
+        private readonly Random random;
         
         ObservableCollection<Dice> diceImages;
 
@@ -182,6 +183,7 @@ namespace Yatzy.Models
             Player = new Player();
             playerEngine = _playerEngine;
             dbOps = new DbOperations();
+            random = new Random();
             
             gameType = playerEngine.SetGameType();
             ActivePlayers = playerEngine.SetPlayers();
@@ -240,8 +242,6 @@ namespace Yatzy.Models
 
         private void RollDices(object parameter)
         {
-            Random random = new Random();
-
             for (int i = 0; i < Dices.Count; i++)
             {
                 if (Dices[i].IsDiceEnabled)
