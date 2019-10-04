@@ -32,8 +32,6 @@ namespace Yatzy
             dicesViewModel = new DicesViewModel();
             InitializeComponent();
 
-
-
             this.Closed += new EventHandler(MainWindow_Closed);
 
         }

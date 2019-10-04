@@ -16,7 +16,7 @@
                     <Setter Property="BorderBrush" Value="Transparent"/>
                 </Trigger>
             </Style.Triggers>
-            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontSize" Value="24"/>
             <Setter Property="Foreground" Value="#FFB48510"/>
             <Setter Property="Template">
                 <Setter.Value>
