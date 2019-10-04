@@ -806,8 +806,6 @@ namespace Yatzy.Models
 
         #region Metoder för när spelet avslutas
 
-
-
         private void QuitGame(object parameter)
         {
             if (MessageBox.Show("Vill du avsluta spelet?", "Avsluta spel", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)

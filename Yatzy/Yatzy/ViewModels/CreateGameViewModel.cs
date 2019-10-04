@@ -281,6 +281,18 @@ namespace Yatzy.ViewModels
             dicesView.DataContext = SelectedViewModel;
         }
 
+        private bool CheckForNicknameAvailability()
+        {
+            for (int i = 0; i < AvailablePlayers.Count; i++)
+            { 
+                if(AvailablePlayers[i].Nickname == _Nickname)
+                {
+                    return false;
+                }                
+            }
+            return true;
+        }
+
         private void AddNewPlayer(object parameter)
         {
             Player player;
@@ -290,12 +302,17 @@ namespace Yatzy.ViewModels
                 Lastname = _Lastname,
                 Nickname = _Nickname
             };
-            dbOps.RegisterPlayer(player);
-            AvailablePlayers.Add(player);
-            GetFilteredPlayers();
-            _Firstname = null;
-            _Lastname = null;
-            _Nickname = null;
+            if (CheckForNicknameAvailability())
+            {
+                dbOps.RegisterPlayer(player);
+                AvailablePlayers.Add(player);
+                GetFilteredPlayers();
+                _Firstname = null;
+                _Lastname = null;
+                _Nickname = null;
+            }
+            else
+                MessageBox.Show("Användarnamnet är upptaget. Välj ett annat!");
         }
 
         #endregion
